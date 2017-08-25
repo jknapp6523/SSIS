@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/11/2014 1:20:19 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="IMONCIVAIS-L6"
+  DTS:CreatorName="CORPHQ\IMoncivais"
+  DTS:DTSID="{60C13D8D-5AD5-4ED2-AA6B-04062EE60CFF}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ReLoadSMfromFusion"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{0FDDF043-0122-4B19-9DFC-A76800227090}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{3BACE49F-2269-44A0-B314-7FC734C72C17}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\proj\CUBES\SalesMix\FromFusionToMenuLinkSalesMix.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6A56D697-367B-41F1-9DEC-09D8C7133B18}"
+      DTS:ObjectName="HQ-FINSQL-01.Audit.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=Audit;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; ReCreate table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D3E861DE-0941-46B7-85FE-4EA3E7903F9E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; ReCreate table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6A56D697-367B-41F1-9DEC-09D8C7133B18}"
+          SQLTask:SqlStatementSource="USE [Audit]&#xA;GO&#xA;&#xA;USE Audit&#xA;GO&#xA;&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data]'))&#xA;DROP TABLE [dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data]&#xA;GO&#xA;&#xA;&#xA;&#xA;CREATE TABLE [dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data](&#xA;&#x9;[SubPeriod#] [int] NULL,&#xA;&#x9;[SalesMixDate] [datetime] NULL,&#xA;&#x9;[StoreID] [int] NULL,&#xA;&#x9;[MenuItemID] [varchar](10) NULL,&#xA;&#x9;[TotalNumberSold] [float] NULL,&#xA;&#x9;[SellingPrice] [money] NULL,&#xA;&#x9;[SumOfPortionCost] [float] NULL&#xA;) ON [PRIMARY]&#xA;&#xA;GO&#xA;&#xA;--&#x9;-------------------imp&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load from MIX files"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F0E44F2D-4A26-4793-878D-551F63C5EAE2}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load from MIX files"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load from MIX files\Excel Source"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from MIX files\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[StoreID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[StoreID]"
+                      length="255"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[MenuItemID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[MenuItemID]"
+                      length="255"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[SubPeriod]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[SubPeriod]"
+                      name="SubPeriod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[SalesDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[SalesDate]"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[QuantitySold]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[QuantitySold]"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[QuantitySold]"
+                      name="QuantitySold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[MenuItemCost]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[MenuItemCost]"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[ItemC]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[ItemC]"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[ItemC]"
+                      name="ItemC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[SellingPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[StoreID]"
+                      dataType="wstr"
+                      length="255"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[MenuItemID]"
+                      dataType="wstr"
+                      length="255"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[SubPeriod]"
+                      dataType="r8"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[SalesDate]"
+                      dataType="date"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[QuantitySold]"
+                      dataType="r8"
+                      name="QuantitySold" />
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[MenuItemCost]"
+                      dataType="r8"
+                      name="MenuItemCost" />
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[ItemC]"
+                      dataType="r8"
+                      name="ItemC" />
+                    <externalMetadataColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Output].ExternalColumns[SellingPrice]"
+                      dataType="r8"
+                      name="SellingPrice" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[StoreID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[MenuItemID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[SubPeriod]"
+                      dataType="r8"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[SubPeriod]"
+                      name="SubPeriod" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[SalesDate]"
+                      dataType="date"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[SalesDate]"
+                      name="SalesDate" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[QuantitySold]"
+                      dataType="r8"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[QuantitySold]"
+                      name="QuantitySold" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[MenuItemCost]"
+                      dataType="r8"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[MenuItemCost]"
+                      name="MenuItemCost" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[ItemC]"
+                      dataType="r8"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[ItemC]"
+                      name="ItemC" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[SellingPrice]"
+                      dataType="r8"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from MIX files\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{34971E3B-54C2-4313-8420-84F2DB202BD7}"
+      DTS:From="Package\Drop &amp; ReCreate table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load from MIX files" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load from MIX files"
+          TopLeft="52,160" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Drop &amp; ReCreate table"
+          TopLeft="39,22" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="135.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,96"
+              Start="0,0"
+              End="0,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load from MIX files">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Load from MIX files\Excel Source"
+          TopLeft="75,30" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from MIX files\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

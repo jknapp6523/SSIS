@@ -1,0 +1,648 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/9/2016 10:56:32 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="AALLEN-L7"
+  DTS:CreatorName="CORPHQ\aallen"
+  DTS:DTSID="{8F4915F8-47E8-48B0-8A2C-665E7C2EBC96}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CreatePaidOutTExportFileForFusion"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{B043E219-D9DD-4CEA-B662-DB4603A2115D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A95C6972-716F-4F0B-B979-22C676BEBFEE}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ExportFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\aallen\Documents\CrunchTime\SalesAndPaidOutsToFusion\TestingFiles\PaidOut_20160708121553.dat">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreId"
+              DTS:DTSID="{957B57E9-0D9F-42EA-9F69-631B583D1311}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PeriodNumber"
+              DTS:DTSID="{0441B89A-B6E7-4CAF-BBC6-7DE6B50D2E6F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WeekNumber"
+              DTS:DTSID="{4DBAEF8A-6139-4E05-BB88-5229F3AE2D22}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{3085720A-6BE2-434E-8E20-DD09916B921F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="133"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateOfBusiness"
+              DTS:DTSID="{A24D3D4F-5B16-4F91-AD10-F3120011099B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="GLAccount"
+              DTS:DTSID="{6475492F-0189-4E6F-95F4-37C7EB08C218}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FBD599CE-A660-4EA6-A3E1-C4A2D68B0B83}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CountOfRowsToExport">
+      <DTS:VariableValue
+        DTS:DataType="2">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F97FFDDF-440B-4BC5-80F1-B965DE2223A6}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::PaidOutExportFileLocationName] + &quot;_&quot; + REPLACE((DT_WSTR, 10)(DT_DBDATE)@[System::StartTime], &quot;-&quot;,&quot;&quot;) + REPLACE((DT_WSTR,10)(DT_DBTIME)@[System::StartTime], &quot;:&quot;, &quot;&quot;) + &quot;.dat&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExportFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\aallen\Documents\CrunchTime\SalesAndPaidOutsToFusion\TestingFiles\PaidOut_20160708121553.dat</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Determine if there are rows to Export"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D8D503E2-2CB5-424B-8658-43A9B8B15EB0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Determine if there are rows to Export"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0B772069-7500-4348-B7D8-67A34BB9478D}"
+          SQLTask:SqlStatementSource="SELECT COUNT(1) AS CountOfRowsToExport&#xA;FROM dbo.vwExportPaidOutToFusion"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="CountOfRowsToExport"
+            SQLTask:DtsVariableName="User::CountOfRowsToExport" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Export Paid Outs for Fusion"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{a7741c6a-564e-4445-aff0-fe71ba40e8af}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export Paid Outs for Fusion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Create Paid Out Flat File">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].Columns[StoreId]"
+                      cachedDataType="i4"
+                      cachedName="StoreId"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[StoreId]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[StoreId]" />
+                    <inputColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].Columns[PeriodNumber]"
+                      cachedDataType="i4"
+                      cachedName="PeriodNumber"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[PeriodNumber]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[PeriodNumber]" />
+                    <inputColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].Columns[WeekNumber]"
+                      cachedDataType="i4"
+                      cachedName="WeekNumber"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[WeekNumber]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[WeekNumber]" />
+                    <inputColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].Columns[Amount]"
+                      cachedDataType="cy"
+                      cachedName="Amount"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbDate"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].Columns[GLAccount]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="GLAccount"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[GLAccount]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[GLAccount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[StoreId]"
+                      dataType="i4"
+                      name="StoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[PeriodNumber]"
+                      dataType="i4"
+                      name="PeriodNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[WeekNumber]"
+                      dataType="i4"
+                      name="WeekNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      dataType="cy"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbDate"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input].ExternalColumns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="GLAccount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Paid Out for Fusion Export"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT po.StoreId,
+     po.PeriodNumber,
+	po.WeekNumber,
+     po.Amount,
+	po.DateOfBusiness,
+	po.GLAccount	
+FROM dbo.vwExportPaidOutToFusion AS po;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Connections[OleDbConnection]"
+                  connectionManagerID="{0B772069-7500-4348-B7D8-67A34BB9478D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[StoreId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[StoreId]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[StoreId]"
+                      name="StoreId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[PeriodNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[PeriodNumber]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[PeriodNumber]"
+                      name="PeriodNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[WeekNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[WeekNumber]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[WeekNumber]"
+                      name="WeekNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[GLAccount]"
+                      length="10"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].Columns[GLAccount]"
+                      name="GLAccount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[StoreId]"
+                      dataType="i4"
+                      name="StoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[PeriodNumber]"
+                      dataType="i4"
+                      name="PeriodNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[WeekNumber]"
+                      dataType="i4"
+                      name="WeekNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="cy"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbDate"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output].ExternalColumns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="GLAccount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[StoreId]"
+                      dataType="i4"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[StoreId]"
+                      name="StoreId" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[PeriodNumber]"
+                      dataType="i4"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[PeriodNumber]"
+                      name="PeriodNumber" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[WeekNumber]"
+                      dataType="i4"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[WeekNumber]"
+                      name="WeekNumber" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="cy"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbDate"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[GLAccount]"
+                      name="GLAccount" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export Paid Outs for Fusion.Paths[OLE DB Source Output]"
+              endId="Package\Export Paid Outs for Fusion\Create Paid Out Flat File.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mark Sales to Fusion DW History as Exported"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d9dfb6e3-be57-43fb-83d0-02ad3581b112}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mark Sales to Fusion DW History as Exported"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0B772069-7500-4348-B7D8-67A34BB9478D}"
+          SQLTask:SqlStatementSource="EXEC dbo.uspMarkPaidOutsToFusionComplete ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@ExportFileName"
+            SQLTask:DtsVariableName="User::ExportFileName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="150" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{78C1FA3B-07A4-4EB9-8668-77BCDCFB61CF}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::CountOfRowsToExport]&gt;0"
+      DTS:From="Package\Determine if there are rows to Export"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Export Paid Outs for Fusion" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{4188fc0e-4535-43c5-8473-37ad8b21f12c}"
+      DTS:From="Package\Export Paid Outs for Fusion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Mark Sales to Fusion DW History as Exported" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="257,42"
+          Id="Package\Determine if there are rows to Export"
+          TopLeft="23.5,5.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Export Paid Outs for Fusion"
+          TopLeft="47,107.5" />
+        <NodeLayout
+          Size="293,42"
+          Id="Package\Mark Sales to Fusion DW History as Exported"
+          TopLeft="5.50000000000003,209.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="152,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="152,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Export Paid Outs for Fusion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export"
+          TopLeft="200,115" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Export Paid Outs for Fusion\Create Paid Out Flat File"
+          TopLeft="296,346" />
+        <EdgeLayout
+          Id="Package\Export Paid Outs for Fusion.Paths[OLE DB Source Output]"
+          TopLeft="312.5,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="81,189"
+              Start="0,0"
+              End="81,181.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,90.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,90.5"
+                    Point2="0,94.5"
+                    Point3="4,94.5" />
+                  <mssgle:LineSegment
+                    End="77,94.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="77,94.5"
+                    Point2="81,94.5"
+                    Point3="81,98.5" />
+                  <mssgle:LineSegment
+                    End="81,181.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export Paid Outs for Fusion\Get Paid Out for Fusion Export">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

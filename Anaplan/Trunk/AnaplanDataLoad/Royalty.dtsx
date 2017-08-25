@@ -1,0 +1,1363 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2014 10:57:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="LSELLITTO-L72"
+  DTS:CreatorName="CORPHQ\lsellitto"
+  DTS:DTSID="{298B536A-28FC-4878-959D-40D5584F7F07}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Royalty"
+  DTS:PackageType="5"
+  DTS:VersionBuild="83"
+  DTS:VersionGUID="{817062F9-5523-496D-9017-437A79125BE7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Anaplan Flat File Export]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Export file location for daily transactions"
+      DTS:DTSID="{AA5CD42B-3180-4F5D-91C9-5F93A2C249F8}"
+      DTS:ObjectName="Anaplan Flat File Export">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory] +  @[User::ExportFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-ssis2012-01\MessageHub\Anaplan\Outbox\Royalty_20170410134759.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Account"
+              DTS:DTSID="{59B96DB5-ED9B-445F-904D-1B1A59BBC243}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant"
+              DTS:DTSID="{C31D0801-E840-4582-9968-E8DE6B90544E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateOfBusiness"
+              DTS:DTSID="{A4C324F7-E266-4BDA-ACEF-0B857A1050FA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WeekInfo"
+              DTS:DTSID="{1B365CC1-01FB-4F79-9248-006882366392}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{2EF3CA73-AC56-467E-AC16-F9B5FFE604E9}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{F48F5E89-29EA-4F2F-9C9C-B8E366285BF9}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=True;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C5FF0C85-7B61-4190-B043-85B9468C31E7}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Royalty_&quot; + REPLACE((DT_WSTR, 200)(DT_DBDATE)GETUTCDATE(),&quot;-&quot;,&quot;&quot;)  + REPLACE((DT_WSTR, 8)(DT_DBTIME) @[System::StartTime] ,&quot;:&quot;,&quot;&quot;) &#xA; + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExportFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Royalty_20170410134759.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CBD43313-4A69-4630-BBB6-7273840818A7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValidateRecordCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Count Result Set Records"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Count Result Set Records"
+      DTS:DTSID="{7605750E-F8D0-4CB6-9742-CE47EB7703A3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Count Result Set Records"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DECLARE @StartDate DATETIME&#xA;,&#x9;&#x9;@EndDate DATETIME&#xA;&#xA;SET @StartDate = DATEADD(wk, -3, DATEADD(wk, DATEDIFF(wk, 0, CURRENT_TIMESTAMP), 0)) &#xA;SET @EndDate = DATEADD(dd, 0, DATEADD(dd, DATEDIFF(dd, 0, CURRENT_TIMESTAMP), 0))&#xA;&#xA;DECLARE @Hierarchy TABLE (StoreID INT, Company VARCHAR(100), OpenDate DATETIME, UNIQUE CLUSTERED (StoreID, Company))&#xA;INSERT INTO @Hierarchy&#xA;SELECT Restaurant, Company, OpenDate&#xA;FROM dbo.Hierarchy&#xA;WHERE Company IN ('RRGB','RRBW') &#xA;&#xA;SELECT COUNT(Account) Cnt&#xA;FROM dbo.Royalty r&#xA;JOIN @Hierarchy h&#xA;ON r.Restaurant = h.StoreID&#xA;WHERE DateOfBusiness &gt;= h.OpenDate&#xA;&#x9;AND DateOfBusiness &gt;= @StartDate&#xA;&#x9;AND DateOfBusiness &lt; @EndDate"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Cnt"
+            SQLTask:DtsVariableName="User::ValidateRecordCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete data for the current period"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data for the current period"
+      DTS:DTSID="{1908CD55-7ADD-46D5-AFD1-262055FCAAA2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete data for the current period"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.Royalty&#xA;WHERE DateOfBusiness &gt;= (SELECT MIN(FullDate) FullDate&#xA;&#x9;&#x9;&#x9;FROM Staging.dbo.vwCalendarShort&#xA;&#x9;&#x9;&#x9;WHERE Period IN (SELECT Period&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;FROM Staging.dbo.vwCalendarShort&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120) =  CONVERT(VARCHAR(10), CURRENT_TIMESTAMP -1, 120))&#xA;&#x9;&#x9;&#x9; AND FiscalYear IN (SELECT FiscalYear&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;FROM Staging.dbo.vwCalendarShort&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120)  =  CONVERT(VARCHAR(10), CURRENT_TIMESTAMP -1, 120))&#xA;&#x9;&#x9;&#x9;AND FullDate &lt; CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Data Older Than 13 Months"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data older than 13 months"
+      DTS:DTSID="{7A20F3AA-1425-444E-A3D0-787B6D05C2B1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Data Older Than 13 Months"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.Royalty&#xA;WHERE DateOfBusiness &lt;= DATEADD(mm, -25, DATEADD(mm, DATEDIFF(mm, 0, CURRENT_TIMESTAMP), 0))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate recent Royalty data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6EAB45A5-23EE-43E9-8D66-7AD321189E2B}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate recent Royalty data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Populate recent Royalty data\Radiant Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Radiant Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @Yesterday VARCHAR(10), @Today VARCHAR(10)
+SET @Yesterday = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP -1, 120)
+SET @Today = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)
+
+-- Limit Hierarchy to non-franchise restaurants
+DECLARE @Hierarchy TABLE (StoreID INT
+	, Company VARCHAR(100)
+	, OpenDate DATETIME
+	, UNIQUE CLUSTERED (StoreID, Company))
+INSERT INTO @Hierarchy
+SELECT Restaurant, Company, OpenDate
+FROM [HQ-FinSQL-01].AnaplanScorecardBudget.dbo.Hierarchy
+WHERE Company IN ('RRGB','RRBW') 
+
+DECLARE @Calendar TABLE (FiscalWeekNumOfYear INT
+	, FiscalYear INT
+	, FullDate	VARCHAR(10)	
+	, Period	INT
+	, UNIQUE CLUSTERED (FullDate, FiscalYear, Period))
+INSERT INTO @Calendar
+SELECT DISTINCT FiscalWeekNumOfYear
+	, FiscalYear
+	, CONVERT(VARCHAR(10), FullDate, 120) 
+	, Period	
+FROM [HQ-FinSQL-01].Staging.dbo.vwCalendarShort
+
+DECLARE @Result TABLE (Account VARCHAR(22), Restaurant INT, DateOfBusiness DATETIME, WeekInfo VARCHAR(12), Amount MONEY, UNIQUE CLUSTERED (Restaurant, DateOfBusiness))
+INSERT INTO @Result
+SELECT 'RegisteredRoyaltySales' AS Account
+, ck.FKStoreID AS Restaurant
+, ck.DateOfBusiness AS DateOfBusiness
+,'Week ' + CONVERT(VARCHAR(2), c.FiscalWeekNumOfYear) + 
+		' FY' +  SUBSTRING(CONVERT(VARCHAR(4), c.FiscalYear), 3, 2) AS WeekInfo
+,SUM(CASE 
+	WHEN m.ProfileAddedDateTime &lt;&gt; 0 
+		AND m.ProfileAddedDateTime IS NOT NULL 
+	THEN ck.CheckTotal
+	ELSE 0
+	END) AS Amount
+FROM dbo.HstvbofqCheck ck (NOLOCK)
+INNER JOIN @Hierarchy h
+ON h.StoreID = ck.fkStoreID
+LEFT OUTER JOIN dbo.HstvbofqAssignment a (NOLOCK)
+	ON ck.FKStoreID = a.FKStoreID
+	AND ck.DateOfBusiness = a.DateOfBusiness
+	AND ck.FKHstvbofqAssignmentID =  a.HstvbofqAssignmentID 
+LEFT OUTER JOIN dbo.vbofqMemberAccount m (NOLOCK)
+ON a.FKvbofqMemberAccountID = m.vbofqMemberAccountID
+JOIN @Calendar c 
+ON ck.DateOfBusiness = c.FullDate
+WHERE ck.DateOfBusiness &gt;= h.OpenDate	-- Restaurant is open
+AND ck.DateOfBusiness IN 
+	(SELECT FullDate
+	 FROM @Calendar
+	 WHERE Period IN 
+			(SELECT Period
+			FROM @Calendar
+			WHERE FullDate = @Yesterday)
+	 AND FiscalYear IN 
+		(SELECT FiscalYear
+		FROM @Calendar
+		WHERE FullDate = @Yesterday)
+	 AND FullDate &lt; @Today)
+AND a.[Status] = 4 
+AND a.FKStoreID &lt;&gt; 0
+GROUP BY ck.FKStoreID
+, ck.DateOfBusiness
+, a.[Status]
+, c.FiscalWeekNumOfYear
+, c.FiscalYear
+ORDER BY ck.FKStoreID
+, ck.DateOfBusiness
+
+--Get date info on when restaurants were closed during timeframe
+DECLARE @ClosedDates TABLE (StoreID INT, FirstDateClosed DATETIME, LastDateClosed DATETIME, UNIQUE CLUSTERED (StoreID, FirstDateClosed,LastDateClosed))
+INSERT INTO @ClosedDates
+SELECT DISTINCT [StoreID]
+      ,[FirstDateClosed]
+      ,[LastDateClosed]
+  FROM [HQ-FinSQL-01].[Interfaces].[Aloha].[ClosedRestaurants]
+  order by StoreID, FirstDateClosed desc
+
+-- Remove records for DateOfBusiness where restaurant was closed
+DELETE r
+FROM @Result r
+JOIN @ClosedDates c
+ON r.Restaurant = c.StoreID
+WHERE r.DateOfBusiness &gt;= c.FirstDateClosed
+  AND r.DateOfBusiness &lt;= c.LastDateClosed
+
+select * from @Result
+order by Restaurant, DateOfBusiness</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent Royalty data\Radiant Data.Connections[OleDbConnection]"
+                  connectionManagerID="{AE3FA1B0-F02D-40BC-A424-D4A438C442A1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Radiant SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      length="22"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      length="12"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="cy"
+                      name="Amount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="22"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="cy"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate recent Royalty data\Royalty"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Royalty"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Royalty]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent Royalty data\Royalty.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].Columns[Account]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="22"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].Columns[Amount]"
+                      cachedDataType="r8"
+                      cachedName="Amount"
+                      externalMetadataColumnId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output].Columns[Amount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate recent Royalty data\Royalty.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent Royalty data\Royalty.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent Royalty data\Royalty.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent Royalty data\Royalty.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Populate recent Royalty data.Paths[OLE DB Source Output]"
+              endId="Package\Populate recent Royalty data\Royalty.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Populate recent Royalty data\Radiant Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Select Output Data for Text File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B1BAB5DE-07BA-4199-820E-BD6D711625F1}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Select Output Data for Text File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Select Output Data for Text File\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Anaplan Flat File Export]"
+                  connectionManagerRefId="Package.ConnectionManagers[Anaplan Flat File Export]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Account]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="16"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DateOfBusiness" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Select Output Data for Text File\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Royalty]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @Hierarchy TABLE (StoreID INT, Company VARCHAR(100), OpenDate DATETIME, UNIQUE CLUSTERED (StoreID, Company))
+INSERT INTO @Hierarchy
+SELECT Restaurant, Company, OpenDate
+FROM dbo.Hierarchy
+WHERE Company IN ('RRGB','RRBW') 
+
+
+SELECT r.*
+FROM dbo.Royalty r
+INNER JOIN @Hierarchy h
+ON r.Restaurant = h.StoreID
+WHERE DATEADD(d, 0, DATEDIFF(d, 0, DateOfBusiness)) IN 
+		(SELECT FullDate
+		FROM Staging.dbo.vwCalendarShort
+		WHERE Period IN 
+			(SELECT Period
+			FROM Staging.dbo.vwCalendarShort
+			WHERE CONVERT(VARCHAR(10), FullDate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP -1, 120))
+		AND FiscalYear IN 
+			(SELECT FiscalYear
+			FROM Staging.dbo.vwCalendarShort
+			WHERE CONVERT(VARCHAR(10), FullDate, 120)  = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP -1, 120))
+		AND FullDate &lt;  CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120))	
+AND DateOfBusiness &gt;= h.OpenDate
+ORDER BY Restaurant
+,DateOfBusiness</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      precision="16"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="numeric"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+              endId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{589D8DF2-6273-49A3-96A7-0AE5908864EB}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F48F5E89-29EA-4F2F-9C9C-B8E366285BF9}"
+          SendMailTask:From="itdatasupport@redrobin.com"
+          SendMailTask:To="itsupportservices@redrobin.com"
+          SendMailTask:Subject="Anaplan Royalty Record Count Is Zero"
+          SendMailTask:MessageSource="From Job [Anaplan Royalty Data Load and Refresh] calling Royalty.dtsx" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{DB61E190-1437-4F16-B830-708CBB563CC1}"
+      DTS:From="Package\Delete Data Older Than 13 Months"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Delete data for the current period" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D397819A-6658-49A9-84DC-80823D55C135}"
+      DTS:From="Package\Populate recent Royalty data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Count Result Set Records" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7F2A76AE-64C6-4E7F-B4D0-6DEFBF7AEC69}"
+      DTS:From="Package\Delete data for the current period"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Populate recent Royalty data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{6049BB75-3409-4F53-8AD5-0EAEF5CBA541}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount &gt;= 1"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Select Output Data for Text File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{82CFBB37-3143-4AF6-907D-38381ABABB7F}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount == 0"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Send Mail Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Count Result Set Records"
+          TopLeft="246.268125000001,278" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Delete data for the current period"
+          TopLeft="246.268125000001,137" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Delete Data Older Than 13 Months"
+          TopLeft="246.268125000001,72" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Populate recent Royalty data"
+          TopLeft="246.268125000001,210.5" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Select Output Data for Text File"
+          TopLeft="198.254444444445,362" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Send Mail Task"
+          TopLeft="487,361" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="379.268125000001,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="379.268125000001,252.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.5"
+              Start="0,0"
+              End="0,18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="379.268125000001,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.5"
+              Start="0,0"
+              End="0,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="336.268125000001,320">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.0136805555555,42"
+              Start="0,0"
+              End="-23.0136805555555,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.9506726457399" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.9506726457399"
+                    Point2="0,16.9506726457399"
+                    Point3="-4,16.9506726457399" />
+                  <mssgle:LineSegment
+                    End="-19.0136805555555,16.9506726457399" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.0136805555555,16.9506726457399"
+                    Point2="-23.0136805555555,16.9506726457399"
+                    Point3="-23.0136805555555,20.9506726457399" />
+                  <mssgle:LineSegment
+                    End="-23.0136805555555,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.5068402777778,21.9506726457399,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="422.268125000001,320">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.731874999999,41"
+              Start="0,0"
+              End="140.731874999999,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5470852017937" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5470852017937"
+                    Point2="0,16.5470852017937"
+                    Point3="4,16.5470852017937" />
+                  <mssgle:LineSegment
+                    End="136.731874999999,16.5470852017937" />
+                  <mssgle:CubicBezierSegment
+                    Point1="136.731874999999,16.5470852017937"
+                    Point2="140.731874999999,16.5470852017937"
+                    Point3="140.731874999999,20.5470852017937" />
+                  <mssgle:LineSegment
+                    End="140.731874999999,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="62.3659374999997,21.5470852017937,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Populate recent Royalty data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Populate recent Royalty data\Royalty"
+          TopLeft="352,236" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Populate recent Royalty data\Radiant Data"
+          TopLeft="325,86" />
+        <EdgeLayout
+          Id="Package\Populate recent Royalty data.Paths[OLE DB Source Output]"
+          TopLeft="396,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,108"
+              Start="0,0"
+              End="14,100.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50"
+                    Point2="0,54"
+                    Point3="4,54" />
+                  <mssgle:LineSegment
+                    End="10,54" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,54"
+                    Point2="14,54"
+                    Point3="14,58" />
+                  <mssgle:LineSegment
+                    End="14,100.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent Royalty data\Radiant Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent Royalty data\Royalty">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Select Output Data for Text File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Select Output Data for Text File\OLE DB Source"
+          TopLeft="183.75,66" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Select Output Data for Text File\Flat File Destination"
+          TopLeft="179,135" />
+        <EdgeLayout
+          Id="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+          TopLeft="268.375,108">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Select Output Data for Text File\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

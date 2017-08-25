@@ -1,0 +1,1950 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/22/2014 2:50:59 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="AMINYARD-L7"
+  DTS:CreatorName="CORPHQ\KThurston"
+  DTS:DTSID="{CAF46192-A24A-45E9-9A16-71C823770353}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ML ST Data Single SubPeriod Check"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{A9DCA05D-017A-4548-8491-AA2ECBD251D8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AuditDataBase]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7EF635DA-8CF6-4EDB-B863-15CE4CD13E27}"
+      DTS:ObjectName="AuditDataBase">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SSIS2012-02;User ID=SSISUser;Initial Catalog=Audit;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABE4JWu39ZVm/O8RuVD9P5/AAAAAASAAACgAAAAEAAAAAhlHBocJYs0wKV4U59Nb+woAAAAl2OyVLNfpp2489x/kd25Fx5JgrAdt5QGQtLLVFzmz4nESGwakuQIexQAAADIibkf6bIxW8QKI5T4559YCloswA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cronus\cronussql2000.mlhq]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{0c8d24ed-ac8b-4587-8845-9d900e974cbf}"
+      DTS:ObjectName="cronus\cronussql2000.mlhq">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Retain="True"
+          DTS:ConnectionString="Data Source=cronus\cronussql2000;User ID=SSISUser;Initial Catalog=MLHQ;Persist Security Info=True;MultipleActiveResultSets=True;Application Name=SSIS-RefreshData-{2CE2D46C-23BC-47E2-B931-C9792D961AE9}cronus\cronussql2000.mlhq1;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACl4HNZdOi+OsxEecQoUa5kAAAAAASAAACgAAAAEAAAAHGQeRLe3d7w9WBfpjWjOR0oAAAAkhGt9/TgdxjgasZnNcfylWUZETjUsO/ifn3kpLRbdEVI6cWgrEnyJxQAAACiDLjUnTDQbvia2voXM+/xexZlTw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[hq-finsql-01.DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{881DAC2A-FCD6-4D2F-BD47-763C3DB2826B}"
+      DTS:ObjectName="hq-finsql-01.DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=hq-finsql-01;User ID=SSISUser;Initial Catalog=DW;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC5b91cmYFdjaI09bV5jnGoAAAAAASAAACgAAAAEAAAAO1TY+crguOaHMicd9e9KK4oAAAAgFL1Am0BYpp6EgZrj+5FFoXI0VJlgoXm9GC1gaFNVtqrDVuA/NyrTBQAAAAe0l9Sas0xWniOTU5l0rOC05GLSg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[hq-ssis2012-01.AlohaInterfaces]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FD06DA88-08EE-4900-9EE6-A94BC5E30770}"
+      DTS:ObjectName="hq-ssis2012-01.AlohaInterfaces">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=hq-ssis2012-01;User ID=SSISUser;Initial Catalog=AlohaInterfaces;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB/qZ2WbSM76EaQt2Cd3ebcAAAAAASAAACgAAAAEAAAACrpvrrF0szHV5Jb4BDqYJUoAAAAY/ftPT51aNGIrvAFs0ZM5nTv7PPnW39J47CtdAE79ZMGQHGE37hlSxQAAAAQi9G+yIBUxlt3fzz9DJDAroGcLg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{DBE29637-AFBD-4BA5-98FC-3A91CE841F58}"
+      DTS:ObjectName="CronusCronussql2000Mlhq_ConnectionString">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Data Source=cronus\cronussql2000;Initial Catalog=MLHQ;Integrated Security=True;MultipleActiveResultSets=True;Application Name=SSIS-RefreshData-{2CE2D46C-23BC-47E2-B931-C9792D961AE9}cronus\cronussql2000.mlhq1;</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{219BF756-FB11-4B94-AECB-5E811C73E680}"
+      DTS:ObjectName="DateOfBusiness">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">12:00:00 AM</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{CF80F04F-7B7B-4520-B4B5-514BF42815DA}"
+      DTS:ObjectName="HqFinsql01DW_ConnectionString">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Data Source=hq-finsql-01;Initial Catalog=DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{9C0259A7-966D-4705-85CA-11DE730568CA}"
+      DTS:ObjectName="LocalhostWorkspace_ConnectionString">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Data Source=localhost;Initial Catalog=Workspace;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{88AF6C13-B6BC-4A14-B6F3-AAC06FD082DE}"
+      DTS:ObjectName="SundayDate">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">12:00:00 AM</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2BFA3AEA-ED58-4E70-A11F-137B7C62C97C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_DATE) @[$Package::DateOfBusiness] ==  (DT_DATE)&quot;12-30-1899&quot; ?  (DT_DBDATE) dateadd(&quot;dd&quot;, -1, getdate()) :    @[$Package::DateOfBusiness]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateOfBusiness">
+      <DTS:VariableValue
+        DTS:DataType="7">12/3/2015</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{605844BB-1E9C-4531-8BAD-B33CE654D8DE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FiscalYear">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{01FC6CF6-F88C-42D2-A628-E1DDE9EE8C5D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ReportingPeriod">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9BD4F213-705C-4D63-BDA2-6591F9FEDAFB}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select L.StoreNum, &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot; SubPeriod, '&quot; + (DT_WSTR,32) &#xA;&#xA;&#xA; @[User::DateOfBusiness] + &quot;' PeriodEndDate, case isnull(B.StoreID, 1) when 1 then 1 else 0 end BeverageCostDataMissing,&#xA;&#xA;&#xA;case isnull(C.StoreID, 1) when 1 then 1 else 0 end CashAndSalesDataMissing,&#xA;&#xA;&#xA;case isnull(G.StoreID, 1) when 1 then 1 else 0 end CostOfGoodsDataMissing,&#xA;&#xA;&#xA;case when isnull(d.Cnt, 1) -  isnull(h.Cnt,1)  = 0 then 0 else 1 end InvoiceDetailsDataMissing,&#xA;&#xA;case  when isnull(d.Cnt, 1) - isnull(h.Cnt,1)  = 0 then 0 else 1 end InvoiceHeadersDataMissing,&#xA;&#xA;&#xA;case isnull(I.StoreID, 1) when 1 then 1 else 0 end ItemUseVarianceDataMissing,&#xA;&#xA;&#xA;case isnull(M.StoreID, 1) when 1 then 1 else 0 end MICDataMissing,&#xA;&#xA;&#xA;case isnull(V.StoreID, 1) when 1 then 1 else 0 end PandLCatDataMissing,&#xA;&#xA;&#xA;case isnull(W.StoreID, 1) when 1 then 1 else 0 end PandLPrctCatDataMissing,&#xA;&#xA;&#xA;case isnull(X.StoreID, 1) when 1 then 1 else 0 end PandLPrctGrpDataMissing,&#xA;&#xA;&#xA;case isnull(Y.StoreID, 1) when 1 then 1 else 0 end PandLPrctTotDataMissing,&#xA;&#xA;&#xA;case isnull(SG.StoreID, 1) when 1 then 1 else 0 end SalesGuestsByHalfHourDataMissing,&#xA;&#xA;&#xA;case isnull(SM.StoreID, 1) when 1 then 1 else 0 end SalesMixDataMissing&#xA;&#xA;&#xA;&#xA;from&#xA; MLAddOn.dbo.StoreList L&#xA;&#xA;&#xA;left join ##B B on B.StoreID = L.StoreNum&#xA;left join ##C C on C.StoreID = L.StoreNum&#xA;left join ##G G on G.StoreID = L.StoreNum&#xA;left join ##D D on D.StoreID = L.StoreNum&#xA;left join ##H H on H.StoreID = L.StoreNum&#xA;left join ##I I on I.StoreID = L.StoreNum&#xA;left join ##M M on M.StoreID = L.StoreNum&#xA;left join ##V V on V.StoreID = L.StoreNum&#xA;left join ##W W on W.StoreID = L.StoreNum&#xA;left join ##X X on X.StoreID = L.StoreNum&#xA;left join ##Y Y on Y.StoreID = L.StoreNum&#xA;left join ##SG SG on SG.StoreID = L.StoreNum&#xA;left join ##SM SM on SM.StoreID = L.StoreNum&#xA;&#xA;&#xA;&#xA;&#xA;where L.Category in ('O', 'F', 'P')&#xA;&#xA;   and DateOfOpen &lt;= '&quot; + (DT_WSTR, 32) @[User::DateOfBusiness] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ST_SourceQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">select L.StoreNum, 0 SubPeriod, '12/3/2015' PeriodEndDate, case isnull(B.StoreID, 1) when 1 then 1 else 0 end BeverageCostDataMissing,
+
+
+case isnull(C.StoreID, 1) when 1 then 1 else 0 end CashAndSalesDataMissing,
+
+
+case isnull(G.StoreID, 1) when 1 then 1 else 0 end CostOfGoodsDataMissing,
+
+
+case when isnull(d.Cnt, 1) -  isnull(h.Cnt,1)  = 0 then 0 else 1 end InvoiceDetailsDataMissing,
+
+case  when isnull(d.Cnt, 1) - isnull(h.Cnt,1)  = 0 then 0 else 1 end InvoiceHeadersDataMissing,
+
+
+case isnull(I.StoreID, 1) when 1 then 1 else 0 end ItemUseVarianceDataMissing,
+
+
+case isnull(M.StoreID, 1) when 1 then 1 else 0 end MICDataMissing,
+
+
+case isnull(V.StoreID, 1) when 1 then 1 else 0 end PandLCatDataMissing,
+
+
+case isnull(W.StoreID, 1) when 1 then 1 else 0 end PandLPrctCatDataMissing,
+
+
+case isnull(X.StoreID, 1) when 1 then 1 else 0 end PandLPrctGrpDataMissing,
+
+
+case isnull(Y.StoreID, 1) when 1 then 1 else 0 end PandLPrctTotDataMissing,
+
+
+case isnull(SG.StoreID, 1) when 1 then 1 else 0 end SalesGuestsByHalfHourDataMissing,
+
+
+case isnull(SM.StoreID, 1) when 1 then 1 else 0 end SalesMixDataMissing
+
+
+
+from
+ MLAddOn.dbo.StoreList L
+
+
+left join ##B B on B.StoreID = L.StoreNum
+left join ##C C on C.StoreID = L.StoreNum
+left join ##G G on G.StoreID = L.StoreNum
+left join ##D D on D.StoreID = L.StoreNum
+left join ##H H on H.StoreID = L.StoreNum
+left join ##I I on I.StoreID = L.StoreNum
+left join ##M M on M.StoreID = L.StoreNum
+left join ##V V on V.StoreID = L.StoreNum
+left join ##W W on W.StoreID = L.StoreNum
+left join ##X X on X.StoreID = L.StoreNum
+left join ##Y Y on Y.StoreID = L.StoreNum
+left join ##SG SG on SG.StoreID = L.StoreNum
+left join ##SM SM on SM.StoreID = L.StoreNum
+
+
+
+
+where L.Category in ('O', 'F', 'P')
+
+   and DateOfOpen &lt;= '12/3/2015'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{16EF82C3-2365-4F91-9EFD-BADFB9F3613F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SubPeriod">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C8780FF-6399-4841-80E7-D77C4FC027C8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_DATE) @[$Package::SundayDate] ==  (DT_DATE)&quot;12-30-1899&quot; ?  (DT_DBDATE) dateadd(&quot;dd&quot;, 1 - datepart(&quot;weekday&quot;, @[User::DateOfBusiness] ), @[User::DateOfBusiness]) :    @[$Package::SundayDate]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SundayDate">
+      <DTS:VariableValue
+        DTS:DataType="7">11/29/2015</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{97D0A2B6-F711-438F-80C8-5D05A596CF11}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select distinct StoreID into ##B&#xA;from ST_BeverageCost&#xA;where SubPeriod# = &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot;;&#xA;&#xA;select distinct StoreID into ##C&#xA;from [dbo].[ST_CashAndSales]&#xA;where SubPeriod# = &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot;;&#xA;&#xA;select distinct StoreID into ##G&#xA;from [dbo].[ST_CostOfGoods]&#xA;where SubPeriod = &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot;;&#xA;&#xA;select StoreID, count(distinct invoiceid) Cnt into ##D&#xA;from [dbo].[ST_InvoiceDetails]&#xA;where SubPeriod = &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot; group by storeid;&#xA;&#xA;select  StoreID, count(distinct invoiceid) Cnt into ##H&#xA;from [dbo].[ST_InvoiceHeaders]&#xA;where SubPeriod = &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot; group by storeid;&#xA;&#xA;select distinct StoreID into ##I&#xA;from [dbo].[ST_ItemUseVariance]&#xA;where SubPeriod = &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot;;&#xA;&#xA;select distinct StoreID into ##M&#xA;from [dbo].[ST_MIC]&#xA;where SubPeriod# = &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot;;&#xA;&#xA;select distinct StoreID into ##V&#xA;from [dbo].[ST_PandLCat]&#xA;where ReportingPeriod# = &quot; + (DT_WSTR, 2) @[User::ReportingPeriod] + &#xA;          &quot; and fiscalyear = &quot; + (DT_WSTR, 4) @[User::FiscalYear] + &#xA;          &quot;&#x9;and AmountWeek&quot; + (DT_WSTR, 1) @[User::WeekNumber] + &quot; &gt; 0;&#xA;&#xA;select distinct StoreID into ##W&#xA;from [dbo].[ST_PandLPrctCat]&#xA;where ReportingPeriod# = &quot; + (DT_WSTR, 2) @[User::ReportingPeriod] + &#xA;          &quot;  and fiscalyear = &quot; + (DT_WSTR, 4) @[User::FiscalYear] + &#xA;          &quot;  and PercentAmountWeek&quot; + (DT_WSTR, 1) @[User::WeekNumber] + &quot; &gt; 0;&#xA;&#xA;select distinct StoreID into ##X&#xA;from [dbo].[ST_PandLPrctGrp]&#xA;where ReportingPeriod# = &quot; + (DT_WSTR, 2) @[User::ReportingPeriod] + &#xA;          &quot;  and fiscalyear = &quot; + (DT_WSTR, 4) @[User::FiscalYear] + &#xA;          &quot;  and PercentAmountWeek&quot; + (DT_WSTR, 1) @[User::WeekNumber] + &quot; &gt; 0;&#xA;&#xA;select distinct StoreID into ##Y&#xA;from [dbo].[ST_PandLPrctTot]&#xA;where ReportingPeriod# = &quot; + (DT_WSTR, 2) @[User::ReportingPeriod] + &#xA;          &quot;  and fiscalyear = &quot; + (DT_WSTR, 4) @[User::FiscalYear] + &#xA;          &quot;  and PercentAmountWeek&quot; + (DT_WSTR, 1) @[User::WeekNumber] + &quot; &gt; 0;&#xA;&#xA;select distinct StoreID into ##SG&#xA;from [dbo].[ST_SalesGuestsByHalfHour]&#xA;where subperiod= &quot; + (DT_WSTR, 4)  @[User::SubPeriod] +&quot;;&#xA;&#xA;select distinct StoreID into ##SM&#xA;from [dbo].[ST_SalesMix]&#xA; where salesmixdate= '&quot; + (DT_WSTR, 32) @[User::DateOfBusiness] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TempTables">
+      <DTS:VariableValue
+        DTS:DataType="8">select distinct StoreID into ##B
+from ST_BeverageCost
+where SubPeriod# = 0;
+
+select distinct StoreID into ##C
+from [dbo].[ST_CashAndSales]
+where SubPeriod# = 0;
+
+select distinct StoreID into ##G
+from [dbo].[ST_CostOfGoods]
+where SubPeriod = 0;
+
+select StoreID, count(distinct invoiceid) Cnt into ##D
+from [dbo].[ST_InvoiceDetails]
+where SubPeriod = 0 group by storeid;
+
+select  StoreID, count(distinct invoiceid) Cnt into ##H
+from [dbo].[ST_InvoiceHeaders]
+where SubPeriod = 0 group by storeid;
+
+select distinct StoreID into ##I
+from [dbo].[ST_ItemUseVariance]
+where SubPeriod = 0;
+
+select distinct StoreID into ##M
+from [dbo].[ST_MIC]
+where SubPeriod# = 0;
+
+select distinct StoreID into ##V
+from [dbo].[ST_PandLCat]
+where ReportingPeriod# = 0 and fiscalyear = 0	and AmountWeek1 &gt; 0;
+
+select distinct StoreID into ##W
+from [dbo].[ST_PandLPrctCat]
+where ReportingPeriod# = 0  and fiscalyear = 0  and PercentAmountWeek1 &gt; 0;
+
+select distinct StoreID into ##X
+from [dbo].[ST_PandLPrctGrp]
+where ReportingPeriod# = 0  and fiscalyear = 0  and PercentAmountWeek1 &gt; 0;
+
+select distinct StoreID into ##Y
+from [dbo].[ST_PandLPrctTot]
+where ReportingPeriod# = 0  and fiscalyear = 0  and PercentAmountWeek1 &gt; 0;
+
+select distinct StoreID into ##SG
+from [dbo].[ST_SalesGuestsByHalfHour]
+where subperiod= 0;
+
+select distinct StoreID into ##SM
+from [dbo].[ST_SalesMix]
+ where salesmixdate= '12/3/2015'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D7E64D3D-CFF3-4107-8518-D9EC668B0B37}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="WeekNumber">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear out any pre-existing data for the sub period"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2ff61068-db0d-4d38-9340-d066613c505c}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear out any pre-existing data for the sub period"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7EF635DA-8CF6-4EDB-B863-15CE4CD13E27}"
+          SQLTask:SqlStatementSource="delete from ML_ST_WeeklyDataCheckResults&#xA; where SubPeriod = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Create Temp Tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7db84b47-af2e-49e5-ad9c-d1ff01943df1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create Temp Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0c8d24ed-ac8b-4587-8845-9d900e974cbf}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::TempTables" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete data showing no problems"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a372a4d3-7864-4539-83d2-844b6ffc9224}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete data showing no problems"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7EF635DA-8CF6-4EDB-B863-15CE4CD13E27}"
+          SQLTask:SqlStatementSource="delete &#xA;from [dbo].[ML_ST_WeeklyDataCheckResults] &#xA;where ((storeclosedforday = 1 and st_salesmixdatamissing = 1) or (StoreClosedForDay = 0 and ST_SalesMixDataMissing = 0))&#xA;OR&#xA;([ST_BeverageCostDataMissing] + [ST_CashAndSalesDataMissing] + [ST_CostOfGoodsDataMissing] + [ST_InvoiceDetailsDataMissing] +&#xA;[ST_InvoiceHeadersDataMissing] + [St_ItemUseVarianceDataMissing] + [ST_MICDataMissing] + [ST_PandLCatDataMissing] +&#xA;[ST_PandLPrctCatDataMissing] + [ST_PandLPrctGrpDataMissing] + [ST_PandLPrctTotDataMissing] + [ST_SalesGuestbyHalfHourDataMissing] +&#xA;[ST_SalesMixDataMissing]) =   0&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Flag Closed Stores"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{09441052-E2AD-4744-83E7-110DD3ECC997}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Flag Closed Stores"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7EF635DA-8CF6-4EDB-B863-15CE4CD13E27}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="update r&#xA;&#x9;set r.StoreClosedForDay = case when c.reason like '%closed%' then 1 else 0 end&#xA;from [dbo].[ML_ST_WeeklyDataCheckResults] r&#xA;left join dbo.MissedRestaurants c&#xA;&#x9;on r.storeid = c.storeid&#xA;&#x9;and r.dateofbusiness = c.dateofbusiness&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get the missing data list"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0d9f2214-a81c-42f4-8158-9efcb7f14b6c}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get the missing data list"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="[Get ST table data].[SqlCommand]">@[User::ST_SourceQuery]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get the missing data list\Get ST table data"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Get ST table data"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select L.StoreNum, 0 SubPeriod, '12/3/2015' PeriodEndDate, case isnull(B.StoreID, 1) when 1 then 1 else 0 end BeverageCostDataMissing,
+
+
+case isnull(C.StoreID, 1) when 1 then 1 else 0 end CashAndSalesDataMissing,
+
+
+case isnull(G.StoreID, 1) when 1 then 1 else 0 end CostOfGoodsDataMissing,
+
+
+case when isnull(d.Cnt, 1) -  isnull(h.Cnt,1)  = 0 then 0 else 1 end InvoiceDetailsDataMissing,
+
+case  when isnull(d.Cnt, 1) - isnull(h.Cnt,1)  = 0 then 0 else 1 end InvoiceHeadersDataMissing,
+
+
+case isnull(I.StoreID, 1) when 1 then 1 else 0 end ItemUseVarianceDataMissing,
+
+
+case isnull(M.StoreID, 1) when 1 then 1 else 0 end MICDataMissing,
+
+
+case isnull(V.StoreID, 1) when 1 then 1 else 0 end PandLCatDataMissing,
+
+
+case isnull(W.StoreID, 1) when 1 then 1 else 0 end PandLPrctCatDataMissing,
+
+
+case isnull(X.StoreID, 1) when 1 then 1 else 0 end PandLPrctGrpDataMissing,
+
+
+case isnull(Y.StoreID, 1) when 1 then 1 else 0 end PandLPrctTotDataMissing,
+
+
+case isnull(SG.StoreID, 1) when 1 then 1 else 0 end SalesGuestsByHalfHourDataMissing,
+
+
+case isnull(SM.StoreID, 1) when 1 then 1 else 0 end SalesMixDataMissing
+
+
+
+from
+ MLAddOn.dbo.StoreList L
+
+
+left join ##B B on B.StoreID = L.StoreNum
+left join ##C C on C.StoreID = L.StoreNum
+left join ##G G on G.StoreID = L.StoreNum
+left join ##D D on D.StoreID = L.StoreNum
+left join ##H H on H.StoreID = L.StoreNum
+left join ##I I on I.StoreID = L.StoreNum
+left join ##M M on M.StoreID = L.StoreNum
+left join ##V V on V.StoreID = L.StoreNum
+left join ##W W on W.StoreID = L.StoreNum
+left join ##X X on X.StoreID = L.StoreNum
+left join ##Y Y on Y.StoreID = L.StoreNum
+left join ##SG SG on SG.StoreID = L.StoreNum
+left join ##SM SM on SM.StoreID = L.StoreNum
+
+
+
+
+where L.Category in ('O', 'F', 'P')
+
+   and DateOfOpen &lt;= '12/3/2015'</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version= 11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter, Microsoft.SqlServer.ADONETSrc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get the missing data list\Get ST table data.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cronus\cronussql2000.mlhq]"
+                  connectionManagerRefId="Package.ConnectionManagers[cronus\cronussql2000.mlhq]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[StoreNum]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[StoreNum]"
+                      length="3"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[StoreNum]"
+                      name="StoreNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SubPeriod]"
+                      name="SubPeriod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PeriodEndDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PeriodEndDate]"
+                      length="9"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PeriodEndDate]"
+                      name="PeriodEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[BeverageCostDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[BeverageCostDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[BeverageCostDataMissing]"
+                      name="BeverageCostDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[CashAndSalesDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[CashAndSalesDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[CashAndSalesDataMissing]"
+                      name="CashAndSalesDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[CostOfGoodsDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[CostOfGoodsDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[CostOfGoodsDataMissing]"
+                      name="CostOfGoodsDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[InvoiceDetailsDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[InvoiceDetailsDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[InvoiceDetailsDataMissing]"
+                      name="InvoiceDetailsDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[InvoiceHeadersDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[InvoiceHeadersDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[InvoiceHeadersDataMissing]"
+                      name="InvoiceHeadersDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[ItemUseVarianceDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[ItemUseVarianceDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[ItemUseVarianceDataMissing]"
+                      name="ItemUseVarianceDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[MICDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[MICDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[MICDataMissing]"
+                      name="MICDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLCatDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLCatDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLCatDataMissing]"
+                      name="PandLCatDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctCatDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLPrctCatDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctCatDataMissing]"
+                      name="PandLPrctCatDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctGrpDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLPrctGrpDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctGrpDataMissing]"
+                      name="PandLPrctGrpDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctTotDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLPrctTotDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctTotDataMissing]"
+                      name="PandLPrctTotDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SalesGuestsByHalfHourDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[SalesGuestsByHalfHourDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SalesGuestsByHalfHourDataMissing]"
+                      name="SalesGuestsByHalfHourDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SalesMixDataMissing]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[SalesMixDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SalesMixDataMissing]"
+                      name="SalesMixDataMissing"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[StoreNum]"
+                      dataType="wstr"
+                      length="3"
+                      name="StoreNum" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PeriodEndDate]"
+                      dataType="wstr"
+                      length="9"
+                      name="PeriodEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[BeverageCostDataMissing]"
+                      dataType="i4"
+                      name="BeverageCostDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[CashAndSalesDataMissing]"
+                      dataType="i4"
+                      name="CashAndSalesDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[CostOfGoodsDataMissing]"
+                      dataType="i4"
+                      name="CostOfGoodsDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[InvoiceDetailsDataMissing]"
+                      dataType="i4"
+                      name="InvoiceDetailsDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[InvoiceHeadersDataMissing]"
+                      dataType="i4"
+                      name="InvoiceHeadersDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[ItemUseVarianceDataMissing]"
+                      dataType="i4"
+                      name="ItemUseVarianceDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[MICDataMissing]"
+                      dataType="i4"
+                      name="MICDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLCatDataMissing]"
+                      dataType="i4"
+                      name="PandLCatDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLPrctCatDataMissing]"
+                      dataType="i4"
+                      name="PandLPrctCatDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLPrctGrpDataMissing]"
+                      dataType="i4"
+                      name="PandLPrctGrpDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[PandLPrctTotDataMissing]"
+                      dataType="i4"
+                      name="PandLPrctTotDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[SalesGuestsByHalfHourDataMissing]"
+                      dataType="i4"
+                      name="SalesGuestsByHalfHourDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].ExternalColumns[SalesMixDataMissing]"
+                      dataType="i4"
+                      name="SalesMixDataMissing" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[StoreNum]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[StoreNum]"
+                      name="StoreNum" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[SubPeriod]"
+                      name="SubPeriod" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PeriodEndDate]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PeriodEndDate]"
+                      name="PeriodEndDate" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[BeverageCostDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[BeverageCostDataMissing]"
+                      name="BeverageCostDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[CashAndSalesDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[CashAndSalesDataMissing]"
+                      name="CashAndSalesDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[CostOfGoodsDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[CostOfGoodsDataMissing]"
+                      name="CostOfGoodsDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[InvoiceDetailsDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[InvoiceDetailsDataMissing]"
+                      name="InvoiceDetailsDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[InvoiceHeadersDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[InvoiceHeadersDataMissing]"
+                      name="InvoiceHeadersDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[ItemUseVarianceDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[ItemUseVarianceDataMissing]"
+                      name="ItemUseVarianceDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[MICDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[MICDataMissing]"
+                      name="MICDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLCatDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLCatDataMissing]"
+                      name="PandLCatDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLPrctCatDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLPrctCatDataMissing]"
+                      name="PandLPrctCatDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLPrctGrpDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLPrctGrpDataMissing]"
+                      name="PandLPrctGrpDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLPrctTotDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[PandLPrctTotDataMissing]"
+                      name="PandLPrctTotDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[SalesGuestsByHalfHourDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[SalesGuestsByHalfHourDataMissing]"
+                      name="SalesGuestsByHalfHourDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[SalesMixDataMissing]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[SalesMixDataMissing]"
+                      name="SalesMixDataMissing" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ML_ST_WeeklyDataCheckResults"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ML_ST_WeeklyDataCheckResults]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AuditDataBase]"
+                  connectionManagerRefId="Package.ConnectionManagers[AuditDataBase]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[SubPeriod]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SubPeriod]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[BeverageCostDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="BeverageCostDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_BeverageCostDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[BeverageCostDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[CashAndSalesDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="CashAndSalesDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_CashAndSalesDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[CashAndSalesDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[StoreNum]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="StoreNum"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[StoreNum]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[CostOfGoodsDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="CostOfGoodsDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_CostOfGoodsDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[CostOfGoodsDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[InvoiceDetailsDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="InvoiceDetailsDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_InvoiceDetailsDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[InvoiceDetailsDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[InvoiceHeadersDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="InvoiceHeadersDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_InvoiceHeadersDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[InvoiceHeadersDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[ItemUseVarianceDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="ItemUseVarianceDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[St_ItemUseVarianceDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[ItemUseVarianceDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[MICDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="MICDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_MICDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[MICDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[PandLCatDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="PandLCatDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLCatDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLCatDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[SalesGuestsByHalfHourDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="SalesGuestsByHalfHourDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_SalesGuestbyHalfHourDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SalesGuestsByHalfHourDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[SalesMixDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="SalesMixDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_SalesMixDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[SalesMixDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[PandLPrctCatDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="PandLPrctCatDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLPrctCatDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctCatDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[PandLPrctGrpDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="PandLPrctGrpDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLPrctGrpDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctGrpDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[PandLPrctTotDataMissing]"
+                      cachedDataType="i4"
+                      cachedName="PandLPrctTotDataMissing"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLPrctTotDataMissing]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PandLPrctTotDataMissing]" />
+                    <inputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].Columns[PeriodEndDate]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="PeriodEndDate"
+                      externalMetadataColumnId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output].Columns[PeriodEndDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_BeverageCostDataMissing]"
+                      dataType="i4"
+                      name="ST_BeverageCostDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_CashAndSalesDataMissing]"
+                      dataType="i4"
+                      name="ST_CashAndSalesDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_CostOfGoodsDataMissing]"
+                      dataType="i4"
+                      name="ST_CostOfGoodsDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_InvoiceDetailsDataMissing]"
+                      dataType="i4"
+                      name="ST_InvoiceDetailsDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_InvoiceHeadersDataMissing]"
+                      dataType="i4"
+                      name="ST_InvoiceHeadersDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[St_ItemUseVarianceDataMissing]"
+                      dataType="i4"
+                      name="St_ItemUseVarianceDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_MICDataMissing]"
+                      dataType="i4"
+                      name="ST_MICDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLCatDataMissing]"
+                      dataType="i4"
+                      name="ST_PandLCatDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLPrctCatDataMissing]"
+                      dataType="i4"
+                      name="ST_PandLPrctCatDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLPrctGrpDataMissing]"
+                      dataType="i4"
+                      name="ST_PandLPrctGrpDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_PandLPrctTotDataMissing]"
+                      dataType="i4"
+                      name="ST_PandLPrctTotDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_SalesGuestbyHalfHourDataMissing]"
+                      dataType="i4"
+                      name="ST_SalesGuestbyHalfHourDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[ST_SalesMixDataMissing]"
+                      dataType="i4"
+                      name="ST_SalesMixDataMissing" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input].ExternalColumns[StoreClosedForDay]"
+                      dataType="i4"
+                      name="StoreClosedForDay" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get the missing data list.Paths[ADO NET Source Output]"
+              endId="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults.Inputs[OLE DB Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Get the missing data list\Get ST table data.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Time Period Values"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6b9804c2-71ce-4d07-8bc6-ef1645cda3db}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Time Period Values"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{881DAC2A-FCD6-4D2F-BD47-763C3DB2826B}"
+          SQLTask:SqlStatementSource="select [period], [subperiod], [fiscalyear],[weeknumber]&#xA;from [dbo].[Time_Periods]&#xA;where salesmixdate = ?;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ReportingPeriod" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::SubPeriod" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::FiscalYear" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="3"
+            SQLTask:DtsVariableName="User::WeekNumber" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SundayDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Closed Stores"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3ADF2B81-7553-4B51-8E87-02C857F97D4B}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Closed Stores"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Closed Stores\OLE DB Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MissedRestaurants]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Closed Stores\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AuditDataBase]"
+                  connectionManagerRefId="Package.ConnectionManagers[AuditDataBase]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Reason]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Reason"
+                      externalMetadataColumnId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Reason]"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Reason]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Reason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Reason" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Closed Stores\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Closed Stores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Closed Stores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Closed Stores\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MissedRestaurants]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Closed Stores\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[hq-ssis2012-01.AlohaInterfaces]"
+                  connectionManagerRefId="Package.ConnectionManagers[hq-ssis2012-01.AlohaInterfaces]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Reason]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Reason]"
+                      length="50"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Reason]"
+                      name="Reason"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Reason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Reason" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Reason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Reason]"
+                      name="Reason" />
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Closed Stores.Paths[OLE DB Source Output]"
+              endId="Package\Load Closed Stores\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Closed Stores\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Record processing in ML_STProcessLog"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{522b6a75-e683-42ec-9e91-ba10e769b8b1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Record processing in ML_STProcessLog"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7EF635DA-8CF6-4EDB-B863-15CE4CD13E27}"
+          SQLTask:SqlStatementSource="insert into [dbo].[ML_STProcessLog] (SubPeriod, PeriodEndDate)&#xA;values ( ?, ? );&#xA;&#xA;update [dbo].[ML_STProcessLog]&#xA;set DateProcessed = getdate()&#xA;where SubPeriod = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SundayDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Closed Stores"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{021222FF-0D42-4BE7-97F8-72E3D2EAE7A4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Closed Stores"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7EF635DA-8CF6-4EDB-B863-15CE4CD13E27}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="truncate table missedrestaurants" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D42AAFCD-0BC5-4A89-89DC-E572F42C3EC7}"
+      DTS:From="Package\Get Time Period Values"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Clear out any pre-existing data for the sub period" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3014B9C1-0652-4797-96C2-9336D6CEDB5A}"
+      DTS:From="Package\Clear out any pre-existing data for the sub period"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Create Temp Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{73295A02-175D-41FA-9B96-B7FFA23500B4}"
+      DTS:From="Package\Create Temp Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Get the missing data list" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{B2B09438-3F94-4790-B89E-106C610E0250}"
+      DTS:From="Package\Get the missing data list"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncate Closed Stores" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D749C8A3-AC38-46C6-B57D-60172ABBBF98}"
+      DTS:From="Package\Delete data showing no problems"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Record processing in ML_STProcessLog" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{E14569BC-ECDD-49FF-A8E4-A2F73BEDECD4}"
+      DTS:From="Package\Truncate Closed Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Load Closed Stores" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{6AA55C3C-AF92-4F1B-A1BE-22CFAB74FE18}"
+      DTS:From="Package\Load Closed Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Flag Closed Stores" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{143A7232-42B6-4CB3-9FB5-AB3CFE737742}"
+      DTS:From="Package\Flag Closed Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Delete data showing no problems" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="342,42"
+          Id="Package\Clear out any pre-existing data for the sub period"
+          TopLeft="56.1666666666667,132.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Create Temp Tables"
+          TopLeft="134.666666666667,202.5" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\Delete data showing no problems"
+          TopLeft="120.166666666667,572.5" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Get the missing data list"
+          TopLeft="125.166666666667,268.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Get Time Period Values"
+          TopLeft="125.666666666667,53.4999999999999" />
+        <NodeLayout
+          Size="288,42"
+          Id="Package\Record processing in ML_STProcessLog"
+          TopLeft="104.166666666667,652.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="227.166666666667,95.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="227.666666666667,174.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="228.666666666667,244.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24"
+              Start="0,0"
+              End="0,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="248.666666666667,614.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Truncate Closed Stores"
+          TopLeft="141,349" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Flag Closed Stores"
+          TopLeft="159,495" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Load Closed Stores"
+          TopLeft="158,427" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="232.583333333333,310.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.5"
+              Start="0,0"
+              End="0,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="239.75,391">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="243.25,469">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="246.083333333333,537">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.5"
+              Start="0,0"
+              End="0,28">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get the missing data list">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults"
+          TopLeft="5.50000000000001,107.1" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Get the missing data list\Get ST table data"
+          TopLeft="46.3,5.49999999999995" />
+        <EdgeLayout
+          Id="Package\Get the missing data list.Paths[ADO NET Source Output]"
+          TopLeft="132.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get the missing data list\Get ST table data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get the missing data list\ML_ST_WeeklyDataCheckResults">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Closed Stores">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Load Closed Stores\OLE DB Source"
+          TopLeft="136,36" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load Closed Stores\OLE DB Destination"
+          TopLeft="125,130" />
+        <EdgeLayout
+          Id="Package\Load Closed Stores.Paths[OLE DB Source Output]"
+          TopLeft="211.75,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Closed Stores\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Closed Stores\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

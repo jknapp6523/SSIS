@@ -1,0 +1,1403 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/5/2013 11:37:44 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{AA01505F-DC9A-40AF-AF01-C054506397A6}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LaborData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{8A9272DB-EF14-441D-824B-F14FA9532DAD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{94544666-0801-4582-85EE-718AAC96FD62}"
+      DTS:ObjectName="HQ-FINSQL-01.DailySalesReport.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=DailySalesReport;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqsTtXOlYhUqQ6fHLEu5q4AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABDGLh/C4zVNPB5NRxxil33AAAAAASAAACgAAAAEAAAAD8BxOBYn4BCPuSr01k3oVgoAAAAB98bbDgOy2vw4Y83jqUBbXy85LF8kJAlMjfvUECECeOWyJhh1ZGcqRQAAAAzv+/vMjEin4tzifX97OGbMe1XmQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Move Data to PROD"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A61E4D22-EC40-4DB5-BDE3-45282818DFC8}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Data to PROD"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Move Data to PROD\Daily Labor Register"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Daily Labor Register"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DailyLaborRegister]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move Data to PROD\Daily Labor Register.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbDate"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].Columns[TotalLaborCost]"
+                      cachedDataType="cy"
+                      cachedName="TotalLaborCost"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[TotalLaborCost]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[TotalLaborCost]" />
+                    <inputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].Columns[OTHours]"
+                      cachedDataType="numeric"
+                      cachedName="OTHours"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[OTHours]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[OTHours]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbDate"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[TotalLaborCost]"
+                      dataType="cy"
+                      name="TotalLaborCost" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input].ExternalColumns[OTHours]"
+                      dataType="numeric"
+                      name="OTHours"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Move Data to PROD\Daily Labor Register.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move Data to PROD\Daily Labor Register.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Register.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move Data to PROD\Daily Labor Register.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Move Data to PROD\Daily Labor Staging"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Daily Labor Staging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[StagingDailyLaborRegister]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move Data to PROD\Daily Labor Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[TotalLaborCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[TotalLaborCost]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[TotalLaborCost]"
+                      name="TotalLaborCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[OTHours]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[OTHours]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[OTHours]"
+                      name="OTHours"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[InsertedBy]"
+                      length="50"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[InsertedBy]"
+                      name="InsertedBy"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[InsertedDate]"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[InsertedDate]"
+                      name="InsertedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbDate"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[TotalLaborCost]"
+                      dataType="cy"
+                      name="TotalLaborCost" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[OTHours]"
+                      dataType="numeric"
+                      name="OTHours"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InsertedBy" />
+                    <externalMetadataColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbDate"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[TotalLaborCost]"
+                      dataType="cy"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[TotalLaborCost]"
+                      name="TotalLaborCost" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[OTHours]"
+                      dataType="numeric"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[OTHours]"
+                      name="OTHours"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[InsertedBy]"
+                      name="InsertedBy" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[InsertedDate]"
+                      name="InsertedDate" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Move Data to PROD\Missing Only"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Missing Only"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT StoreID, DateOfBusiness
+FROM DailyLaborRegister
+WHERE DateOfBusiness &gt;= (GETDATE() - 7)</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT DISTINCT StoreID, DateOfBusiness
+FROM DailyLaborRegister
+WHERE DateOfBusiness &gt;= (GETDATE() - 7)) [refTable]
+where [refTable].[StoreID] = ? and [refTable].[DateOfBusiness] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="StoreID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateOfBusiness" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[StoreID]};#{Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[DateOfBusiness]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move Data to PROD\Missing Only.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Move Data to PROD\Missing Only.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Move Data to PROD\Missing Only.Inputs[Lookup Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[StoreID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">StoreID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Move Data to PROD\Missing Only.Inputs[Lookup Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbDate"
+                      cachedName="DateOfBusiness"
+                      lineageId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output].Columns[DateOfBusiness]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DateOfBusiness</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Move Data to PROD\Missing Only.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Move Data to PROD\Missing Only.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Move Data to PROD\Missing Only.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Move Data to PROD\Missing Only.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Move Data to PROD\Missing Only.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Move Data to PROD\Missing Only.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Missing Only.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move Data to PROD\Missing Only.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move Data to PROD\Missing Only.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move Data to PROD\Missing Only.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Move Data to PROD.Paths[Lookup No Match Output]"
+              endId="Package\Move Data to PROD\Daily Labor Register.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Move Data to PROD\Missing Only.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Move Data to PROD.Paths[OLE DB Source Output]"
+              endId="Package\Move Data to PROD\Missing Only.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Move Data to PROD\Daily Labor Staging.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Labor from Kronos to Staging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{EB170815-AF27-4C6D-976F-6F548B273B47}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Labor from Kronos to Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Move Labor from Kronos to Staging\OLE DB Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[StagingDailyLaborRegister]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbDate"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TotalLaborCost]"
+                      cachedDataType="cy"
+                      cachedName="TotalLaborCost"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalLaborCost]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalLaborCost]" />
+                    <inputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OTHours]"
+                      cachedDataType="numeric"
+                      cachedName="OTHours"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OTHours]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[OTHours]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbDate"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalLaborCost]"
+                      dataType="cy"
+                      name="TotalLaborCost" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OTHours]"
+                      dataType="numeric"
+                      name="OTHours"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InsertedBy" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Move Labor from Kronos to Staging\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @MaxMissedDate DATETIME
+-- Use '1900-01-01' so this won't error if no max(dateofbusiness)
+SELECT @MaxMissedDate = ISNULL(Max(DateOfBusiness),'1900-01-01') 
+FROM dbo.MissedRestaurants_StatusRpt
+Where Labor=0
+
+DECLARE @Result TABLE (
+	[StoreID] [int] NOT NULL,
+	[DateOfBusiness] [date] NOT NULL,
+	[TotalLaborCost] [money] NULL,
+	[OTHours] [decimal](10, 2) NOT NULL DEFAULT 0
+)
+
+INSERT INTO @Result (StoreID, DateofBusiness, TotalLaborCost)
+SELECT	CAST(a.laborlevelname5 AS INT) as StoreID, 
+		a.applydate , 
+		sum(a.wageamount) 
+FROM	[158.228.133.131].[tkcsdb].dbo.vp_totals a 
+WHERE	left(a.laborlevelname5,1) in ('1','2','3','4','5','6','7','8','9','0')  
+AND		a.applydate = @MaxMissedDate 
+AND		right(a.laborlevelname7,2) in ('31','32','17','72','24','73','71','22','15','11','21','22','74','12','78')  
+AND		a.paycodetype = 'p' 
+AND		a.paycodename in ('Regular Stores','Overtime Stores','Doubletime Stores','CA Meal Penalty','CA Split Shift','Shift Guarantee','Shift Guarantee NY')
+GROUP BY a.applydate, a.laborlevelname5 
+ORDER BY StoreID, applydate
+
+DECLARE @OTHours TABLE (
+	[StoreID] [int] NOT NULL,
+	[DateOfBusiness] [date] NOT NULL,
+	[OTHours] [decimal](10, 2) NULL
+)
+INSERT INTO @OTHours
+SELECT	CAST(a.laborlevelname5 AS INT) , 
+		a.applydate , 
+		round((sum(cast(timeinseconds as decimal (16,2))/3600)),2) 
+FROM	[158.228.133.131].[tkcsdb].dbo.vp_totals a 
+WHERE	left(a.laborlevelname5,1) in ('1','2','3','4','5','6','7','8','9','0')  
+AND		a.applydate = @MaxMissedDate
+AND		right(a.laborlevelname7,2) in ('31','32','17','72','24','73','71','22','15','11','21','22','74','12','78')  
+AND		a.paycodetype = 'p' 
+AND		a.paycodename in ('Regular Stores','CA Meal Penalty','CA Split Shift','Shift Guarantee','Shift Guarantee NY')
+GROUP BY a.applydate, a.laborlevelname5
+ORDER BY a.applydate, a.laborlevelname5
+
+UPDATE @Result
+SET [OTHours] = o.[OTHours]
+FROM @Result r
+INNER JOIN @OTHours o
+ON r.StoreID = o.StoreID
+AND r.DateOfBusiness = o.DateOfBusiness
+
+SELECT * FROM @Result
+ORDER BY StoreID, DateOfBusiness</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesReport.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalLaborCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalLaborCost]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalLaborCost]"
+                      name="TotalLaborCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[OTHours]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OTHours]"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[OTHours]"
+                      name="OTHours"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbDate"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalLaborCost]"
+                      dataType="cy"
+                      name="TotalLaborCost" />
+                    <externalMetadataColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OTHours]"
+                      dataType="numeric"
+                      name="OTHours"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbDate"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalLaborCost]"
+                      dataType="cy"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalLaborCost]"
+                      name="TotalLaborCost" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OTHours]"
+                      dataType="numeric"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OTHours]"
+                      name="OTHours"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Move Labor from Kronos to Staging.Paths[OLE DB Source Output]"
+              endId="Package\Move Labor from Kronos to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Move Labor from Kronos to Staging\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove Completed Stores"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{84756621-C6FA-48AF-9F7B-09B71B499EF3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove Completed Stores"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{94544666-0801-4582-85EE-718AAC96FD62}"
+          SQLTask:SqlStatementSource="EXEC [dbo].spDeleteCompletedStores" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{20B7F4D1-1EC9-4C62-B623-93F48AC412F6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{94544666-0801-4582-85EE-718AAC96FD62}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.StagingDailyLaborRegister" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Missed Stores"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{645A52BE-EFC9-4ACE-AF6C-7B7B79FF7BD8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Missed Stores"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{94544666-0801-4582-85EE-718AAC96FD62}"
+          SQLTask:SqlStatementSource="EXEC [dbo].spUpdateLaborStoresFromStaging" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{39C1DF69-D695-4CA7-9C2F-00F0B4A977B8}"
+      DTS:From="Package\TRUNCATE Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Move Labor from Kronos to Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{48E05D5E-ACCD-41D5-83C0-49077EB66970}"
+      DTS:From="Package\Move Labor from Kronos to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Move Data to PROD" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{B138DD8A-39F7-4FA1-B20A-27A6E94B4BB7}"
+      DTS:From="Package\Move Data to PROD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update Missed Stores" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{5C81ABA5-CB04-4962-ADA8-8E7BEDC73E96}"
+      DTS:From="Package\Update Missed Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Remove Completed Stores" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Move Data to PROD"
+          TopLeft="69.9722222222222,247" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\Move Labor from Kronos to Staging"
+          TopLeft="50,106" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Remove Completed Stores"
+          TopLeft="303.972222222222,239" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\TRUNCATE Staging"
+          TopLeft="76.4722222222222,22" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Update Missed Stores"
+          TopLeft="71.4722222222222,319" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="162.472222222222,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.5277777777778,42"
+              Start="0,0"
+              End="11.5277777777778,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="4,21" />
+                  <mssgle:LineSegment
+                    End="7.5277777777778,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.5277777777778,21"
+                    Point2="11.5277777777778,21"
+                    Point3="11.5277777777778,25" />
+                  <mssgle:LineSegment
+                    End="11.5277777777778,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="174,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.5277777777778,99"
+              Start="0,0"
+              End="-16.5277777777778,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.5"
+                    Point2="0,49.5"
+                    Point3="-4,49.5" />
+                  <mssgle:LineSegment
+                    End="-12.5277777777778,49.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.5277777777778,49.5"
+                    Point2="-16.5277777777778,49.5"
+                    Point3="-16.5277777777778,53.5" />
+                  <mssgle:LineSegment
+                    End="-16.5277777777778,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="159.972222222222,289">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="191.472222222222,319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="215,-38"
+              Start="0,0"
+              End="215,-30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-11.3986928104575" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-11.3986928104575"
+                    Point2="0,-15.3986928104575"
+                    Point3="4,-15.3986928104575" />
+                  <mssgle:LineSegment
+                    End="211,-15.3986928104575" />
+                  <mssgle:CubicBezierSegment
+                    Point1="211,-15.3986928104575"
+                    Point2="215,-15.3986928104575"
+                    Point3="215,-19.3986928104575" />
+                  <mssgle:LineSegment
+                    End="215,-30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Move Data to PROD">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Move Data to PROD\Daily Labor Staging"
+          TopLeft="80,31" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Move Data to PROD\Missing Only"
+          TopLeft="90,146" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Move Data to PROD\Daily Labor Register"
+          TopLeft="72,256" />
+        <EdgeLayout
+          Id="Package\Move Data to PROD.Paths[OLE DB Source Output]"
+          TopLeft="163,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Move Data to PROD.Paths[Lookup No Match Output]"
+          TopLeft="159.75,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-54.80638671875,25.4453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move Data to PROD\Daily Labor Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move Data to PROD\Missing Only">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move Data to PROD\Daily Labor Register">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Move Labor from Kronos to Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Move Labor from Kronos to Staging\OLE DB Source"
+          TopLeft="194,79" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Move Labor from Kronos to Staging\OLE DB Destination"
+          TopLeft="185,203" />
+        <EdgeLayout
+          Id="Package\Move Labor from Kronos to Staging.Paths[OLE DB Source Output]"
+          TopLeft="270.75,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move Labor from Kronos to Staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move Labor from Kronos to Staging\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

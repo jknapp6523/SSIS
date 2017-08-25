@@ -1,0 +1,844 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/21/2012 10:55:28 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNIGS2-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{AAD1D425-0EAD-4303-AE95-6774CB19468F}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SingleStoreINT001"
+  DTS:PackageType="5"
+  DTS:VersionBuild="84"
+  DTS:VersionGUID="{BB5137B5-8BEE-406B-A1E6-D8EEA9AC45D7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2497C209-11A5-47B5-B12F-ACA281D3B1E5}"
+      DTS:ObjectName="HQ-SQL-06.Radiant.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-06.corphq.rrgb.net;User ID=SSISUser;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB0EyCRDTAvQN55yYZStooxAAAAAASAAACgAAAAEAAAAHbBx/hqZcCJ9dJRE572SJ8oAAAA2M///HjLNJ3lwaxIHHHrxE7cj9pKNYlXm3OaeESh6iqacUP+dMfykxQAAADSuaTNB/oJOhhsE3cSwpRes8t0Mw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SSIS2012-01.AlohaInterfaces.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AE8FBDA5-E543-4C6F-B5EC-DDD9AA6D4B2B}"
+      DTS:ObjectName="HQ-SSIS2012-01.AlohaInterfaces.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SSIS2012-01;User ID=SSISUser;Initial Catalog=AlohaInterfaces;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SalesLedgerFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Aloha Sales Ledger Output File"
+      DTS:DTSID="{7E454F0A-803C-469A-AB2B-95C2F823FD6D}"
+      DTS:ObjectName="SalesLedgerFile">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePath001]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="M:\MessageHub\Aloha\INT001RegeneratedFiles\AlohaSalesLedger_0206_20151205094122.dat">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="18"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RecordType"
+              DTS:DTSID="{D5E7AD44-7CB8-4E96-93A6-D3682BB83922}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreId"
+              DTS:DTSID="{E99F3A9C-B6E1-4D41-8592-E38B311D15A9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateOfBusiness"
+              DTS:DTSID="{291CAA71-E179-49A4-8057-FF0C66499E93}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Type"
+              DTS:DTSID="{98791189-77C7-4DAA-8C1F-6B4D37B65BD1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TypeID"
+              DTS:DTSID="{6EF97562-8F33-4723-B55F-D90E00BEEC9D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{F720381A-5F91-4E8D-A913-3CEC1C6004AD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Tips"
+              DTS:DTSID="{42AC9827-8A01-4A7E-BB93-00BF51FF8621}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Timestamp"
+              DTS:DTSID="{EF151FDA-A563-424E-93D9-8719CFF53E86}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source"
+              DTS:DTSID="{28FA94EF-C8B7-4BAC-91CF-392D1934041C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ident"
+              DTS:DTSID="{33A17E19-4CD0-4EDA-8117-93C70F4E6CD5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CheckNumber"
+              DTS:DTSID="{419EAE74-AD37-46B9-9298-84327D2CE37C}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:Description="Date Of Business"
+      DTS:DTSID="{0F0D6664-6A34-465F-87D6-B179815B62F4}"
+      DTS:ObjectName="DateOfBusiness"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">9/21/2012</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="2"
+      DTS:Description="Restaurant"
+      DTS:DTSID="{C4475B3A-264A-4BCD-8396-81150BD39F05}"
+      DTS:ObjectName="Restaurant"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="2"
+        DTS:Name="ParameterValue">206</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{511552D6-8348-4A16-AA95-44F9ACF69AC0}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_DBTIMESTAMP) GETDATE()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">12/5/2015 9:41:22 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{638CC99B-6542-4845-8C5D-17D9CC32483A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLACE((DT_WSTR, 10)(DT_DBDATE) @[User::CurrentDateTime], &quot;-&quot;,&quot;&quot;) + REPLACE((DT_WSTR,10)(DT_DBTIME) @[User::CurrentDateTime] , &quot;:&quot;, &quot;&quot;  )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Date">
+      <DTS:VariableValue
+        DTS:DataType="8">20151205094122</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{95B2D3B9-A488-439E-8B55-07CF9BC21DF1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="DATEADD(&quot;day&quot;,DATEDIFF(&quot;day&quot;,(DT_DBTIMESTAMP)1,GETDATE()),(DT_DBTIMESTAMP)0)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateOfBusiness">
+      <DTS:VariableValue
+        DTS:DataType="7">12/4/2015</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4D11C41F-E839-4E71-BC5E-F9B94C2B2701}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;AlohaSalesLedger_&quot; +  @[User::StoreIDFourDigit] + &quot;_&quot; +  @[User::Date] + &quot;.dat&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName001">
+      <DTS:VariableValue
+        DTS:DataType="8">AlohaSalesLedger_0206_20151205094122.dat</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2D72A465-114E-4A18-BA5F-3EB967D533BF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;M:\\MessageHub\\Aloha\\INT001RegeneratedFiles\\AlohaSalesLedger_&quot; +  @[User::StoreIDFourDigit] + &quot;_&quot; +  @[User::Date] + &quot;.dat&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePath001">
+      <DTS:VariableValue
+        DTS:DataType="8">M:\MessageHub\Aloha\INT001RegeneratedFiles\AlohaSalesLedger_0206_20151205094122.dat</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D021D988-51C5-45C2-80E3-99F41362155D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{13791734-6A2C-4DAB-B566-669859B9284C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR,4)REPLICATE(&quot;0&quot;,((4) - LEN((DT_WSTR,4) @[$Package::Restaurant]  ))) + (DT_WSTR,4) @[$Package::Restaurant]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreIDFourDigit">
+      <DTS:VariableValue
+        DTS:DataType="8">0206</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sales Ledger Data Export"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B297DC62-E377-4B95-86BE-6A7B3A2DC3ED}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sales Ledger Data Export"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Sales Ledger Data Export.EventHandlers[OnVariableValueChanged]"
+          DTS:CreationName="OnVariableValueChanged"
+          DTS:DTSID="{F5CB92C0-BC74-4CF8-9603-A3C60837DC14}"
+          DTS:EventID="0"
+          DTS:EventName="OnVariableValueChanged"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{AAFDE056-A828-4A0A-911D-095ACEAA9FFA}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="INT001_spGetRestaurantDailyLedger"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec INT001_spGetRestaurantDailyLedger
+@StoreID=?,
+@DateOfBusiness = ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::GetStoreDailyTransactonData</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@DateOfBusiness:Input",{0F0D6664-95CB-465F-87D6-B179815B62F4};"@StoreID:Input",{C4475B3A-D9B5-4BCD-8396-81150BD39F05};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Source]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Source]"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Source]"
+                      name="Source"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      name="CheckNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[RecordType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[RecordType]"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[RecordType]"
+                      name="RecordType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      length="10"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Tips]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Tips]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Tips]"
+                      name="Tips"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Ident]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Ident]"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Ident]"
+                      name="Ident"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[TypeID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[TypeID]"
+                      length="10"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[TypeID]"
+                      name="TypeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Timestamp]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Timestamp]"
+                      name="Timestamp"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Source]"
+                      dataType="wstr"
+                      length="30"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[RecordType]"
+                      dataType="wstr"
+                      length="30"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="10"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="cy"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Tips]"
+                      dataType="cy"
+                      name="Tips" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Ident]"
+                      dataType="wstr"
+                      length="30"
+                      name="Ident" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[TypeID]"
+                      dataType="wstr"
+                      length="10"
+                      name="TypeID" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                      dataType="wstr"
+                      length="30"
+                      name="Timestamp" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[RecordType]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[RecordType]"
+                      name="RecordType" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      name="Type" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[TypeID]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[TypeID]"
+                      name="TypeID" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="cy"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Tips]"
+                      dataType="cy"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Tips]"
+                      name="Tips" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Timestamp]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Timestamp]"
+                      name="Timestamp" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Source]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Source]"
+                      name="Source" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Ident]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[Ident]"
+                      name="Ident" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      name="CheckNumber" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Sales Ledger Data Export\Sales Ledger Extract File"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Sales Ledger Extract File">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SalesLedgerFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[SalesLedgerFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[Timestamp]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Timestamp"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Timestamp]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Timestamp]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[Source]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Source]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Source]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[CheckNumber]"
+                      cachedDataType="i4"
+                      cachedName="CheckNumber"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[CheckNumber]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[RecordType]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="RecordType"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[RecordType]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[RecordType]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[StoreId]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[Type]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Type"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Type]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Type]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[TypeID]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="TypeID"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[TypeID]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[TypeID]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[Amount]"
+                      cachedDataType="cy"
+                      cachedName="Amount"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[Tips]"
+                      cachedDataType="cy"
+                      cachedName="Tips"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Tips]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Tips]" />
+                    <inputColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].Columns[Ident]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Ident"
+                      externalMetadataColumnId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Ident]"
+                      lineageId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output].Columns[Ident]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[StoreId]"
+                      dataType="i4"
+                      name="StoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Type]"
+                      dataType="i4"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[TypeID]"
+                      dataType="i4"
+                      name="TypeID" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      dataType="cy"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Tips]"
+                      dataType="cy"
+                      name="Tips" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Timestamp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[Ident]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Ident" />
+                    <externalMetadataColumn
+                      refId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Sales Ledger Data Export.Paths[OLE DB Source Output]"
+              endId="Package\Sales Ledger Data Export\Sales Ledger Extract File.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Sales Ledger Data Export"
+          TopLeft="59,37" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sales Ledger Data Export">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Sales Ledger Data Export\Sales Ledger Extract File"
+          TopLeft="352,302" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger"
+          TopLeft="318,72" />
+        <EdgeLayout
+          Id="Package\Sales Ledger Data Export.Paths[OLE DB Source Output]"
+          TopLeft="447.5,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,188"
+              Start="0,0"
+              End="0,180.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,180.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sales Ledger Data Export\INT001_spGetRestaurantDailyLedger">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

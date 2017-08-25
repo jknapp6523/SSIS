@@ -1,0 +1,2157 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/9/2013 5:26:06 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{E1D1E812-190D-4E49-8260-EF59FFA52BFC}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RefreshSalesMixData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{13D79EFB-3EB5-480A-83F7-E12942E8BE36}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.ML.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{89D6936E-15AE-4260-AAED-3A1F4BB9E882}"
+      DTS:ObjectName="HQ-FINSQL-01.ML.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=ML;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABnzvmXY7PGbJZIXi8RPYJ+AAAAAASAAACgAAAAEAAAAJYGmP64Z3jJaiUKNmizd1AoAAAAD8m1LJL72rh9pGnjUkGpQUIGbqlM2hSZUsdpJ3JJYRlKZOfVYcwmbxQAAADCS+RZFCuSJyQGNPGrxs57vKBHoQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+      DTS:ObjectName="HQ-FINSQL-01.SalesMixCube.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=SalesMixCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB29azK05Hvc6agpab2RZ94AAAAAASAAACgAAAAEAAAAJVRs7XxWIH1apbHZnDpF4coAAAA14EoGCE799mVRyO5ltw/m62jIp6WSt5U33V0ucUFbp80i0+VaFGy5xQAAABDjTpiy893RHhnrO+jJyvZ00iHww</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D937FB1F-6E70-4194-8009-4B6D70CCDEC0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateOfBusiness">
+      <DTS:VariableValue
+        DTS:DataType="7">12/9/2013 8:32:59 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A3CFCCE-D798-4B15-9EE3-57B79BAB3197}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot; EXEC [dbo].[spDeleteFourSubPeriods] &quot; +  (DT_WSTR, 4) @[User::LoadingSubPeriod]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeleteSQL">
+      <DTS:VariableValue
+        DTS:DataType="8"> EXEC [dbo].[spDeleteFourSubPeriods] -4</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{80A62D33-B473-4D5E-8D25-70462BF0EEB0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DistinctFusionStoresDates">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A0177EAB-6425-409F-BAC7-3686D2D611F1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT DISTINCT StoreID, SalesDate&#xA;FROM [dbo].[FusionSalesMixArchive]&#xA;WHERE SalesDate &gt;= '&quot; +  @[User::LoadingDateSTR] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DistinctFusionStoresDatesSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT DISTINCT StoreID, SalesDate
+FROM [dbo].[FusionSalesMixArchive]
+WHERE SalesDate &gt;= '2013-12-09'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A9ED55BE-5394-4973-A939-9FF28B4FFFBF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT [SalesDate]&#xA;      ,[MenuItemID]&#xA;      ,[SellingPrice]&#xA;      ,[QuantitySold]&#xA;      ,[StoreID]&#xA;      ,[MenuItemCost]&#xA;      ,[SubPeriod]&#xA;  FROM [dbo].[FusionSalesMixArchive]&#xA;  WHERE [SalesDate] &gt;= '&quot; +  @[User::LoadingDateSTR] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FusionArchiveDataLoadSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT [SalesDate]
+      ,[MenuItemID]
+      ,[SellingPrice]
+      ,[QuantitySold]
+      ,[StoreID]
+      ,[MenuItemCost]
+      ,[SubPeriod]
+  FROM [dbo].[FusionSalesMixArchive]
+  WHERE [SalesDate] &gt;= '2013-12-09'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{863C80D8-8676-4835-BAD5-25D643C80EBF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT SalesMixDate&#xA;FROM TimePeriods&#xA;WHERE DayNumber = 1&#xA;AND Subperiod = &quot;  +  (DT_WSTR, 4) @[User::LoadingSubPeriod]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="GetFirstDateOfPeriodSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT SalesMixDate
+FROM TimePeriods
+WHERE DayNumber = 1
+AND Subperiod = -4</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1D1855F2-D0B6-4408-A3D1-0A15466E966C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LatestLoadedSubPeriod">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A027272-FD3D-4DA0-A542-0157F149B89D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadingDate">
+      <DTS:VariableValue
+        DTS:DataType="7">12/9/2013 8:08:29 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{30F9E7A9-6F35-498B-A13A-B639AF4E8808}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 10) (DT_DBDATE) @[User::LoadingDate]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadingDateSTR">
+      <DTS:VariableValue
+        DTS:DataType="8">2013-12-09</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0C23173E-6229-431B-8A97-9440868DC05B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::LatestLoadedSubPeriod] - 4"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadingSubPeriod">
+      <DTS:VariableValue
+        DTS:DataType="3">-4</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40AD843D-80D7-4147-B2A7-6555830E4649}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot; EXEC spSalesMixCost &quot; +  (DT_WSTR, 4) @[User::LoadingSubPeriod]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadSQL">
+      <DTS:VariableValue
+        DTS:DataType="8"> EXEC spSalesMixCost -4</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E5CDF505-D041-49E9-9BDF-29C7725C1B6D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete last 4 SubPeriods from Prod"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9F89FA15-E2B0-4063-B699-B70E8D250D58}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete last 4 SubPeriods from Prod"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::DeleteSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get First Date for SubPeriod"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4846DBB5-B1A7-4A1C-9F35-551011A5C2AF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get First Date for SubPeriod"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::GetFirstDateOfPeriodSQL"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::LoadingDate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Fusion Stores and Dates"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5A421BBC-FECA-4210-A6B1-A6F88A479545}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Fusion Stores and Dates"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::DistinctFusionStoresDatesSQL"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::DistinctFusionStoresDates" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Latest Loaded Subperiod"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F5A46714-B5DF-4E12-BF1C-DFCA0432E107}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Latest Loaded Subperiod"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+          SQLTask:SqlStatementSource="SELECT SubPeriod = 852"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::LatestLoadedSubPeriod" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load 4 SubPeriods to Staging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{492FDB13-C57A-4B98-ACE3-D423236746FE}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load 4 SubPeriods to Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ML Sales Mix Staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MenuLinkSalesMixStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="MenuItemID"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].Columns[SubPeriod#]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod#"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SubPeriod#]" />
+                    <inputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].Columns[SalesMixDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesMixDate"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SalesMixDate]" />
+                    <inputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].Columns[TotalNumberSold]"
+                      cachedDataType="r8"
+                      cachedName="TotalNumberSold"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[TotalNumberSold]" />
+                    <inputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].Columns[SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="SellingPrice"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SellingPrice]" />
+                    <inputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].Columns[SumOfPortionCost]"
+                      cachedDataType="r8"
+                      cachedName="SumOfPortionCost"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SumOfPortionCost]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SumOfPortionCost]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesMixDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      dataType="r8"
+                      name="TotalNumberSold" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input].ExternalColumns[SumOfPortionCost]"
+                      dataType="r8"
+                      name="SumOfPortionCost" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MLHQ SalesMix"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::LoadSQL</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.ML.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.ML.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="15"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="30"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SubPeriod#]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod#]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SubPeriod#]"
+                      name="SubPeriod#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SalesMixDate]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SalesMixDate]"
+                      name="SalesMixDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[TotalNumberSold]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[TotalNumberSold]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[TotalNumberSold]"
+                      name="TotalNumberSold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SumOfPortionCost]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SumOfPortionCost]"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].Columns[SumOfPortionCost]"
+                      name="SumOfPortionCost"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesMixDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[TotalNumberSold]"
+                      dataType="r8"
+                      name="TotalNumberSold" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output].ExternalColumns[SumOfPortionCost]"
+                      dataType="r8"
+                      name="SumOfPortionCost" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SubPeriod#]"
+                      dataType="i4"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SubPeriod#]"
+                      name="SubPeriod#" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SalesMixDate]"
+                      name="SalesMixDate" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[TotalNumberSold]"
+                      dataType="r8"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[TotalNumberSold]"
+                      name="TotalNumberSold" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SumOfPortionCost]"
+                      dataType="r8"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[SumOfPortionCost]"
+                      name="SumOfPortionCost" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load 4 SubPeriods to Staging.Paths[OLE DB Source Output]"
+              endId="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Fusion Data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{919A62E4-C5C5-4C67-8CD4-47F515F8FE58}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Fusion Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Fusion Data\Fusion SalesMix Archive"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Fusion SalesMix Archive"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::FusionArchiveDataLoadSQL</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fusion Data\Fusion SalesMix Archive.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="10"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[QuantitySold]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[QuantitySold]"
+                      name="QuantitySold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="3"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      name="SubPeriod"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[QuantitySold]"
+                      dataType="i2"
+                      name="QuantitySold" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      dataType="numeric"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      name="SalesDate" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[QuantitySold]"
+                      name="QuantitySold" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      name="SubPeriod" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fusion Data\Sales Mix Cost"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Sales Mix Cost"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SalesMixCost]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fusion Data\Sales Mix Cost.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MenuItemID"
+                      externalMetadataColumnId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="SellingPrice"
+                      externalMetadataColumnId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SellingPrice]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[SubPeriod]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod"
+                      externalMetadataColumnId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SubPeriod]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[SalesDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesDate"
+                      externalMetadataColumnId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[SalesDate]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[QuantitySold]"
+                      cachedDataType="i2"
+                      cachedName="QuantitySold"
+                      externalMetadataColumnId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[QuantitySold]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[MenuItemCost]"
+                      cachedDataType="numeric"
+                      cachedName="MenuItemCost"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SumOfPortionCost]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output].Columns[MenuItemCost]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesMixDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      dataType="r8"
+                      name="TotalNumberSold" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SumOfPortionCost]"
+                      dataType="r8"
+                      name="SumOfPortionCost" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\Sales Mix Cost.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Fusion Data.Paths[OLE DB Source Output]"
+              endId="Package\Load Fusion Data\Sales Mix Cost.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Fusion Data\Fusion SalesMix Archive.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Staging to Prod"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7955544B-5209-45D6-AC6B-67DFB7B330F0}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Staging to Prod"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Move Staging to Prod\Menulink Sales Mix Staging"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Menulink Sales Mix Staging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MenuLinkSalesMixStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="4"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="10"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SubPeriod#]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod#]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SubPeriod#]"
+                      name="SubPeriod#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesMixDate]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SalesMixDate]"
+                      name="SalesMixDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[TotalNumberSold]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[TotalNumberSold]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[TotalNumberSold]"
+                      name="TotalNumberSold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SumOfPortionCost]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SumOfPortionCost]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SumOfPortionCost]"
+                      name="SumOfPortionCost"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesMixDate" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[TotalNumberSold]"
+                      dataType="r8"
+                      name="TotalNumberSold" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].ExternalColumns[SumOfPortionCost]"
+                      dataType="r8"
+                      name="SumOfPortionCost" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SubPeriod#]"
+                      dataType="i4"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SubPeriod#]"
+                      name="SubPeriod#" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SalesMixDate]"
+                      name="SalesMixDate" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[TotalNumberSold]"
+                      dataType="r8"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[TotalNumberSold]"
+                      name="TotalNumberSold" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SumOfPortionCost]"
+                      dataType="r8"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[SumOfPortionCost]"
+                      name="SumOfPortionCost" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Move Staging to Prod\Sales Mix Cost"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Sales Mix Cost"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SalesMixCost]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move Staging to Prod\Sales Mix Cost.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MenuItemID"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[SubPeriod#]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod#"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SubPeriod#]" />
+                    <inputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[SalesMixDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesMixDate"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SalesMixDate]" />
+                    <inputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[TotalNumberSold]"
+                      cachedDataType="r8"
+                      cachedName="TotalNumberSold"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[TotalNumberSold]" />
+                    <inputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="SellingPrice"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]" />
+                    <inputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].Columns[SumOfPortionCost]"
+                      cachedDataType="r8"
+                      cachedName="SumOfPortionCost"
+                      externalMetadataColumnId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SumOfPortionCost]"
+                      lineageId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output].Columns[SumOfPortionCost]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesMixDate" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      dataType="r8"
+                      name="TotalNumberSold" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input].ExternalColumns[SumOfPortionCost]"
+                      dataType="r8"
+                      name="SumOfPortionCost" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Move Staging to Prod\Sales Mix Cost.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move Staging to Prod\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move Staging to Prod\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move Staging to Prod\Sales Mix Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Move Staging to Prod.Paths[OLE DB Source Output]"
+              endId="Package\Move Staging to Prod\Sales Mix Cost.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Move Staging to Prod\Menulink Sales Mix Staging.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove Menulink Duplicates"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{E6ACA038-0AA1-42AC-BE1C-383B10C90072}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove Menulink Duplicates">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{A0F985A4-0AA5-4CB6-8EF3-361A83DE2E0E}"
+        DTS:ObjectName="{A0F985A4-0AA5-4CB6-8EF3-361A83DE2E0E}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::DistinctFusionStoresDates" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Remove Menulink Duplicates\Execute SQL Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B7635F94-68DF-4642-85AB-BA388E33B51A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+              SQLTask:SqlStatementSource="EXEC [dbo].spDeleteMenulinkDuplicates @StoreID=?, @DateOfBusiness=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StoreID"
+                SQLTask:DtsVariableName="User::StoreID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="3" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@DateOfBusiness"
+                SQLTask:DtsVariableName="User::DateOfBusiness"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="30" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{AEAD5690-D123-4BE3-B757-854C4FB7E06D}"
+          DTS:ObjectName="{AEAD5690-D123-4BE3-B757-854C4FB7E06D}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::StoreID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{37D14A31-5A6A-42BD-A338-43727E562B4A}"
+          DTS:ObjectName="{37D14A31-5A6A-42BD-A338-43727E562B4A}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::DateOfBusiness" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{48BC5246-7F10-4869-AAC6-2DCADF283951}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE MenuLinkSalesMixStaging" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{34B9EC14-A5C6-45C1-ABCB-486DF86884C1}"
+      DTS:From="Package\Truncate Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Latest Loaded Subperiod" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D25C44AA-D1B2-4654-9F5C-D55170C3080B}"
+      DTS:From="Package\Get Latest Loaded Subperiod"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load 4 SubPeriods to Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{3F0F33E3-0188-4F7A-A969-4A902850FEF4}"
+      DTS:From="Package\Load 4 SubPeriods to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Delete last 4 SubPeriods from Prod" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{6ADE3830-C9A8-431B-BADB-0C0A77CA6628}"
+      DTS:From="Package\Delete last 4 SubPeriods from Prod"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Move Staging to Prod" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{0ED31B91-9150-4E2D-A9D1-74FB879124C4}"
+      DTS:From="Package\Move Staging to Prod"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Get First Date for SubPeriod" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{08BF3923-B728-4C21-B9E9-A77230E83096}"
+      DTS:From="Package\Get First Date for SubPeriod"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Get Fusion Stores and Dates" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{664FED79-003C-4036-AE2E-B139B53528BE}"
+      DTS:From="Package\Get Fusion Stores and Dates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Remove Menulink Duplicates" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{B70FBEAE-B65E-4447-A59A-4EF1F81A38EC}"
+      DTS:From="Package\Remove Menulink Duplicates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Load Fusion Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Delete last 4 SubPeriods from Prod"
+          TopLeft="17,292" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Get First Date for SubPeriod"
+          TopLeft="37,477" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Get Fusion Stores and Dates"
+          TopLeft="394,480" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Get Latest Loaded Subperiod"
+          TopLeft="29,115" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Load 4 SubPeriods to Staging"
+          TopLeft="33,208" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Load Fusion Data"
+          TopLeft="430,119" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Move Staging to Prod"
+          TopLeft="50,385" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Remove Menulink Duplicates\Execute SQL Task"
+          TopLeft="50,32" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="277,125"
+          Size="277,168"
+          Id="Package\Remove Menulink Duplicates"
+          TopLeft="370,244" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Truncate Staging"
+          TopLeft="55,24" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="136.5,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="140,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="141,250">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="140.25,334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="142.25,427">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="250,499.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="144,0"
+              Start="0,0"
+              End="136.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="136.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="505,480">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-68"
+              Start="0,0"
+              End="0,-60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="510,244">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-83"
+              Start="0,0"
+              End="0,-75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load 4 SubPeriods to Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix"
+          TopLeft="105,55" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging"
+          TopLeft="94,202" />
+        <EdgeLayout
+          Id="Package\Load 4 SubPeriods to Staging.Paths[OLE DB Source Output]"
+          TopLeft="182.75,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,105"
+              Start="0,0"
+              End="0,97.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,97.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load 4 SubPeriods to Staging\ML Sales Mix Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load 4 SubPeriods to Staging\MLHQ SalesMix">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Fusion Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Load Fusion Data\Sales Mix Cost"
+          TopLeft="220,182" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Load Fusion Data\Fusion SalesMix Archive"
+          TopLeft="201,65" />
+        <EdgeLayout
+          Id="Package\Load Fusion Data.Paths[OLE DB Source Output]"
+          TopLeft="295.75,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fusion Data\Fusion SalesMix Archive">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fusion Data\Sales Mix Cost">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Move Staging to Prod">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Move Staging to Prod\Sales Mix Cost"
+          TopLeft="125,184" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Move Staging to Prod\Menulink Sales Mix Staging"
+          TopLeft="99,56" />
+        <EdgeLayout
+          Id="Package\Move Staging to Prod.Paths[OLE DB Source Output]"
+          TopLeft="201,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move Staging to Prod\Menulink Sales Mix Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move Staging to Prod\Sales Mix Cost">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

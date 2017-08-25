@@ -1,0 +1,183 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/3/2017 4:10:23 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-SSIS2012-1"
+  DTS:CreatorName="DEV01\dconolle_dev"
+  DTS:DTSID="{43F4D90D-1A5D-4026-90F1-E73A429CB722}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NBOSendEmail"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{04F0064C-ED4C-4B91-B423-393013C4AD30}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{4B675253-D553-4335-A2BB-A928AA80AF47}"
+      DTS:ObjectName="SMTP">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SMTP_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="EmailBody"
+      DTS:ConfigurationVariable="\Package.Variables[User::EmailBodyFromParent].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{244D1CEF-FED4-483F-B839-6635244039D4}"
+      DTS:ObjectName="EmailBodyFromParent" />
+    <DTS:Configuration
+      DTS:ConfigurationString="EmailDistro"
+      DTS:ConfigurationVariable="\Package.Variables[User::EmailDistroFromParent].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{E8E96969-597F-472C-9905-7A31DAF849AA}"
+      DTS:ObjectName="EmailDistroFromParent" />
+    <DTS:Configuration
+      DTS:ConfigurationString="EmailFrom"
+      DTS:ConfigurationVariable="\Package.Variables[User::EmailFromFromParent].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{16DA99E5-E0CD-4DCD-9004-25FD5D0BF5F2}"
+      DTS:ObjectName="EmailFromFromParent" />
+    <DTS:Configuration
+      DTS:ConfigurationString="EmailSubject"
+      DTS:ConfigurationVariable="\Package.Variables[User::EmailSubjectFromParent].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{45A015CD-E800-4FC9-9D4D-11740393B7CB}"
+      DTS:ObjectName="EmailSubjectFromParent" />
+    <DTS:Configuration
+      DTS:ConfigurationString="EmailPriority"
+      DTS:ConfigurationVariable="\Package.Variables[User::EmailPriorityFromParent].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{04A46F70-DEEF-40D9-A1A7-6CA3D5229588}"
+      DTS:ObjectName="EmailPriorityFromParent" />
+    <DTS:Configuration
+      DTS:ConfigurationString="EmailAttachment"
+      DTS:ConfigurationVariable="\Package.Variables[User::EmailAttachmentFromParent].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{EB7817F1-7627-41F2-9F10-7CBCC1982C61}"
+      DTS:ObjectName="EmailAttachmentFromParent" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7287EAED-504B-4B94-B171-54C78227F3D7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailAttachmentFromParent">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A4E29B34-A04E-4C03-81B0-776BFB45992E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailBodyFromParent">
+      <DTS:VariableValue
+        DTS:DataType="8">Placeholder</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2084BB5C-2F60-4ED3-BC8F-50BC6D7DBCC5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailDistroFromParent">
+      <DTS:VariableValue
+        DTS:DataType="8">Placeholder@Placeholder.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8FB52935-A6C6-484D-A62C-1170F4808112}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailFromFromParent">
+      <DTS:VariableValue
+        DTS:DataType="8">Placeholder@Placeholder.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F9FDD220-E969-4E98-844C-A6AC8E353703}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailPriorityFromParent">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{765E27C3-8BA4-42AD-A28B-C707851D8546}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailSubjectFromParent">
+      <DTS:VariableValue
+        DTS:DataType="8">Placeholder</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{4D04DDD8-33DC-4F6B-A781-265BFC536D12}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FileAttachments">@[User::EmailAttachmentFromParent]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="FromLine">@[User::EmailFromFromParent]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="MessageSource">@[User::EmailBodyFromParent]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Priority">@[User::EmailPriorityFromParent]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Subject">@[User::EmailSubjectFromParent]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::EmailDistroFromParent]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{4B675253-D553-4335-A2BB-A928AA80AF47}"
+          SendMailTask:From="Placeholder@Placeholder.com"
+          SendMailTask:To="Placeholder@Placeholder.com"
+          SendMailTask:Subject="Placeholder"
+          SendMailTask:Priority="0"
+          SendMailTask:MessageSource="Placeholder" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Send Mail Task"
+          TopLeft="29,27" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

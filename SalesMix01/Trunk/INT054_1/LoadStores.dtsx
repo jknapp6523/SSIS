@@ -1,0 +1,692 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/20/2013 9:21:09 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{435FC45B-659D-4CED-BD91-9188A7127B84}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadStores"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{70470A0D-E128-46CF-93EF-BB880A9A46F7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.DW.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FC6453DC-C5A5-4D2A-BF6B-CAEA0704E98C}"
+      DTS:ObjectName="HQ-FINSQL-01.DW.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=DW;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAA31ZaV9zfBF0DGq7Zi71faAAAAAASAAACgAAAAEAAAAO/0obQv6CxiLw2IYJ2M7PMoAAAA/UQ+jYzg45uhQ7STtyjaNcOpe1NE083qFHGTBLK766FOqNXH15c7ehQAAADmu5yQzZqUdE9cn0uuo1DMtD5ayQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BB617545-E1FC-4E34-81A2-35C05FFFFF78}"
+      DTS:ObjectName="HQ-FINSQL-01.SalesMixCube.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=SalesMixCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAiiXPRD55cb/I1LFBFw7eCAAAAAASAAACgAAAAEAAAAGTBvrX+lnssVnotQubpqCQoAAAAtdnZsoBjvOZcAGhkEhuUSdmPPwzTIszYs5gPbS5+yb6LPgG4NchsyBQAAADDtftk1N7ME3EvMWgepAgYGRGvNA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Reload Stores"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{549A012B-0723-4C3C-866B-92186C79535D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reload Stores"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Reload Stores\MLAddOn"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MLAddOn"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[StoreList]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reload Stores\MLAddOn.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[StoreName]"
+                      length="128"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[StoreName]"
+                      name="StoreName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[StoreNum]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[StoreNum]"
+                      length="3"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[StoreNum]"
+                      name="StoreNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[DateOfOpen]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[DateOfOpen]"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[DateOfOpen]"
+                      name="DateOfOpen"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      name="StoreName" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[CubeCategoryID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="CubeCategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[StoreNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="StoreNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[DateOfOpen]"
+                      dataType="dbTimeStamp"
+                      name="DateOfOpen" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[export]"
+                      dataType="i4"
+                      name="export" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Company]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="Company" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[ADI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="ADI" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Pod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Pod" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[RVP]"
+                      dataType="i4"
+                      name="RVP" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[SrROD]"
+                      dataType="i4"
+                      name="SrROD" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[RKM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="RKM" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[SalesTier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="SalesTier" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Alias]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Alias" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[PYCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="PYCategory" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Q5Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="Q5Category" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[NROSales]"
+                      dataType="i4"
+                      name="NROSales" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[NRO_FC]"
+                      dataType="i4"
+                      name="NRO_FC" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Flag]"
+                      dataType="i4"
+                      name="Flag" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[MenuTier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="MenuTier" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[WebName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="WebName" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[BankInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="35"
+                      name="BankInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[CashLink]"
+                      dataType="i4"
+                      name="CashLink" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[GeoArea]"
+                      dataType="i4"
+                      name="GeoArea" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[DateClosedPlusOne]"
+                      dataType="dbTimeStamp"
+                      name="DateClosedPlusOne" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Timezone_id]"
+                      dataType="i4"
+                      name="Timezone_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Menu_Pricing_Tier]"
+                      dataType="i4"
+                      name="Menu_Pricing_Tier" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Bev_MenuPrice_Tier]"
+                      dataType="i4"
+                      name="Bev_MenuPrice_Tier" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Happy_Hour]"
+                      dataType="i4"
+                      name="Happy_Hour" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[AcquiredDate]"
+                      dataType="dbTimeStamp"
+                      name="AcquiredDate" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[Merged]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Merged" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[RegionID]"
+                      dataType="i4"
+                      name="RegionID" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].ExternalColumns[DivisionID]"
+                      dataType="i4"
+                      name="DivisionID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[StoreName]"
+                      name="StoreName" />
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[StoreNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[StoreNum]"
+                      name="StoreNum" />
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[DateOfOpen]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[DateOfOpen]"
+                      name="DateOfOpen" />
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reload Stores\Stores"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Stores"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stores]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reload Stores\Stores.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].Columns[StoreName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="128"
+                      cachedName="StoreName"
+                      externalMetadataColumnId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[StoreName]" />
+                    <inputColumn
+                      refId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].Columns[DateOfOpen]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfOpen"
+                      externalMetadataColumnId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[DateOfOpen]"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[DateOfOpen]" />
+                    <inputColumn
+                      refId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].Columns[StoreNum]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="StoreNum"
+                      externalMetadataColumnId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output].Columns[StoreNum]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="StoreName" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[DateOfOpen]"
+                      dataType="dbTimeStamp"
+                      name="DateOfOpen" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reload Stores\Stores.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reload Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reload Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reload Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reload Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Reload Stores.Paths[OLE DB Source Output]"
+              endId="Package\Reload Stores\Stores.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Reload Stores\MLAddOn.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stores"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7962FDBB-320A-4A44-949A-8CEE9A062896}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stores"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB617545-E1FC-4E34-81A2-35C05FFFFF78}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[Stores]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A7A6E733-3796-481A-BD07-1293B5739DDE}"
+      DTS:From="Package\Truncate Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Reload Stores" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Reload Stores"
+          TopLeft="124,189" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Truncate Stores"
+          TopLeft="122,90" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="198.5,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Reload Stores">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Reload Stores\MLAddOn"
+          TopLeft="162,54" />
+        <NodeLayout
+          Size="111,42"
+          Id="Package\Reload Stores\Stores"
+          TopLeft="169,180" />
+        <EdgeLayout
+          Id="Package\Reload Stores.Paths[OLE DB Source Output]"
+          TopLeft="224.75,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84"
+              Start="0,0"
+              End="0,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reload Stores\MLAddOn">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reload Stores\Stores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

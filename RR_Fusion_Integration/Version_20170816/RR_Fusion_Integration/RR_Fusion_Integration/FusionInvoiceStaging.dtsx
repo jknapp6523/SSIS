@@ -1,0 +1,2345 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/10/2017 11:56:26 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="PC162067"
+  DTS:CreatorName="CTS\599190"
+  DTS:DTSID="{D6183F1E-BB1F-48FE-A121-AFE4686EDAD0}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FusionInvoiceStaging"
+  DTS:PackageType="5"
+  DTS:VersionBuild="91"
+  DTS:VersionGUID="{5D382A2F-8A92-495F-A066-D0B4EDB2C8C6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP_Con]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0ECD48FF-6024-486D-99E0-427F4CACD803}"
+      DTS:ObjectName="SMTP_Con">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SMTPConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source_File_Con]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{21DDD124-EE96-4DE1-8C98-B770F9B9B677}"
+      DTS:ObjectName="Source_File_Con">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FIS_Inbox] +  @[User::FISFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\RRI\Fusion\Inbox\FusionInvoiceStaging\Fusion Vendor Invoices.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_NUM"
+              DTS:DTSID="{9AED6571-DED8-4720-984A-C678F38D50A0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="VENDOR_SITE_ID"
+              DTS:DTSID="{E0428255-C8DF-411D-B12B-56F8D21327DB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_ID"
+              DTS:DTSID="{F4451574-4E79-47C2-9932-F254B15053B3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="VENDORNUM"
+              DTS:DTSID="{63F4801C-34B8-4893-8DC5-523B44D16F8D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLServerDB_Con]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E0274165-749E-42DC-86BF-0C13897926A8}"
+      DTS:ObjectName="SQLServerDB_Con">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SQLServerDB_Con]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=PC162067\SQLEXPRESS;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLServerDB_Cronus_Con]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{04F177DC-BD3E-4961-80CF-F7E4791D4EC8}"
+      DTS:ObjectName="SQLServerDB_Cronus_Con">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SQLServerDB_Cronus_Con]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=PC162067\SQLEXPRESS;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{1BDFDA39-CDBB-4E53-9CA5-FFEEEAFBCE08}"
+      DTS:ObjectName="EmailFrom">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Fusion_SSIS_Support@redrobin.com</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{11DC6AB1-E261-44FF-A0BC-A9749C4467F0}"
+      DTS:ObjectName="EmailToError">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">FusionIntegration_SSIS@redrobin.com</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{7DF40365-E524-44D6-9590-FA1D88300946}"
+      DTS:ObjectName="EmailToSuccess">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">FusionIntegration_SSIS@redrobin.com</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2DEA5D8C-09D3-4029-8F31-87E529E9F6AA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9925337E-CAE4-42EA-A1D2-766231B4E32E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FISFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Fusion Vendor Invoices.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8BB1AFD8-3AD9-4096-97DE-E2F5C6B684BD}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::NetworkFilePath] + &quot;Archive\\FusionInvoiceStaging\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIS_Archive">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\RRI\Fusion\Archive\FusionInvoiceStaging\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C14C973A-5398-4913-BABA-085FD6C23049}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::NetworkFilePath] + &quot;Error\\FusionInvoiceStaging\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIS_Error">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\RRI\Fusion\Error\FusionInvoiceStaging\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{25828FF9-D08C-4B55-9BCA-222C9D7B6B6E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIS_FileNameFormat">
+      <DTS:VariableValue
+        DTS:DataType="8">XXRRI_FUSION_VENDOR_INVOICES</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D1870B21-044B-4921-9901-7BB1ECEB4379}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::NetworkFilePath] + &quot;Inbox\\FusionInvoiceStaging\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIS_Inbox">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\RRI\Fusion\Inbox\FusionInvoiceStaging\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2B610C62-08FF-447D-96EC-79A8CC7F75DE}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FIS_Inbox]+ @[User::FISFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIS_Inbox_FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\RRI\Fusion\Inbox\FusionInvoiceStaging\Fusion Vendor Invoices.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3BB8CD6E-7267-4A7A-8183-1B15029953C0}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::NetworkFilePath] + &quot;Outbox\\FusionInvoiceStaging\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIS_Outbox">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\RRI\Fusion\Outbox\FusionInvoiceStaging\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{15216028-1502-4968-A03C-1EF85D0BD485}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsNetworkPathExists">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40D9935E-BAB9-43FD-B1A6-AE0617E6C1CF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsSourceFilesExists">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8BD8F337-83CC-474C-859D-85E7F29BA5C5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountSuccess">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Check Source File Exists"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{FB60E6EE-9501-4524-90C0-15FBDC7D3692}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Check Source File Exists"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_bffa0c26f13d4d14a8aa2612d3f95ab5"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::FIS_FileNameFormat,User::FIS_Inbox"
+          ReadWriteVariables="User::IsNetworkPathExists,User::IsSourceFilesExists">
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_8dd7853f47854635b2cc62d2bf76adca")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("CTS")]
+[assembly: AssemblyProduct("ST_8dd7853f47854635b2cc62d2bf76adca")]
+[assembly: AssemblyCopyright("Copyright @ CTS 2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+using System.IO;
+#endregion
+
+namespace ST_8dd7853f47854635b2cc62d2bf76adca
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+		public void Main()
+		{
+            //string FileName = string.Empty;
+            //string DestFile = string.Empty;
+            string NetworkInboxPath = Dts.Variables["User::FIS_Inbox"].Value.ToString();
+            string FileNameForamt = Dts.Variables["User::FIS_FileNameFormat"].Value.ToString();
+           
+            if (System.IO.Directory.Exists(NetworkInboxPath))
+            {
+
+                Dts.Variables["User::IsNetworkPathExists"].Value = true;
+
+                string[] files = System.IO.Directory.GetFiles(NetworkInboxPath, FileNameForamt + "*.csv", System.IO.SearchOption.TopDirectoryOnly);
+
+                if (files.Length > 0)
+                {
+                    Dts.Variables["User::IsSourceFilesExists"].Value = true;
+                }
+                else
+                {
+                    Dts.Variables["User::IsSourceFilesExists"].Value = false;
+                }
+
+            }
+
+            else
+            {
+                Dts.Variables["User::IsNetworkPathExists"].Value = false;
+            }
+
+			Dts.TaskResult = (int)ScriptResults.Success;
+		}
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ST_bffa0c26f13d4d14a8aa2612d3f95ab5.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{C4BF16CC-7091-4325-A830-503040114354}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>ST_8dd7853f47854635b2cc62d2bf76adca</RootNamespace><AssemblyName>ST_bffa0c26f13d4d14a8aa2612d3f95ab5</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile><Compile Include="ScriptMain.cs"><SubType>Code</SubType></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" /><Host Name="ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>ST_8dd7853f47854635b2cc62d2bf76adca</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>ST_8dd7853f47854635b2cc62d2bf76adca</msb:DisplayName>
+		<msb:ProjectId>{C4656DAE-D356-473F-B7D2-874406E86718}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_bffa0c26f13d4d14a8aa2612d3f95ab5.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_8dd7853f47854635b2cc62d2bf76adca.Properties.Settings.get_Default():ST_8dd7853f47854635b2cc62d2bf76adca.Properties.Sett" +
+    "ings")]
+
+namespace ST_8dd7853f47854635b2cc62d2bf76adca.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_8dd7853f47854635b2cc62d2bf76adca.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_8dd7853f47854635b2cc62d2bf76adca.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_8dd7853f47854635b2cc62d2bf76adca.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_8dd7853f47854635b2cc62d2bf76adca.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_8dd7853f47854635b2cc62d2bf76adca.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_bffa0c26f13d4d14a8aa2612d3f95ab5.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIfYyFgAAAAAAAAAAOAAAiELAQsAABIAAAAIAAAAAAAALjAA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAANQvAABXAAAAAEAAADgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAANBAAAAAgAAAAEgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAADgEAAAAQAAAAAYAAAAUAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAQ
+MAAAAAAAAEgAAAACAAUAgCIAAFQNAAABAAAAAAAAAMghAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
+AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
+BoADAAAEKh4CKBQAAAoqABMwAwDyAAAAAgAAEQIoFgAACm8XAAAKcnMAAHBvGAAACm8ZAAAKbxoA
+AAoKAigWAAAKbxcAAApykwAAcG8YAAAKbxkAAApvGgAACgsGKBsAAAosfQIoFgAACm8XAAAKcsUA
+AHBvGAAACheMHwAAAW8cAAAKBgdy+QAAcCgdAAAKFigeAAAKDAiOaRYxIgIoFgAACm8XAAAKcgUB
+AHBvGAAACheMHwAAAW8cAAAKK0ICKBYAAApvFwAACnIFAQBwbxgAAAoWjB8AAAFvHAAACisgAigW
+AAAKbxcAAApyxQAAcG8YAAAKFowfAAABbxwAAAoCKBYAAAoWbx8AAAoqHgIoIAAACioAAAAAAAC0
+AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGli
+LCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVj
+NTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAA
+AFBBRFBBRFC0AAAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAA8AMAACN+AABc
+BAAAJAYAACNTdHJpbmdzAAAAAIAKAAA8AQAAI1VTALwLAAAQAAAAI0dVSUQAAADMCwAAiAEAACNC
+bG9iAAAAAAAAAAIAAAFXHaIBCQMAAAD6JTMAFgAAAQAAACEAAAAFAAAABgAAAAkAAAABAAAAIAAA
+AAIAAAAPAAAAAgAAAAIAAAADAAAABAAAAAEAAAAEAAAAAQAAAAEAAAAAAAoAAQAAAAAABgDBALoA
+CgDdAMgADgA9ARQBBgBZAboABgBvAV4BBgCgAYsBBgBXAj0CBgCCAnACBgCZAnACBgC2AnACBgDV
+AnACBgDuAnACBgAHA3ACBgAiA3ACBgA9A3ACBgBWA3ACBgCPA28DBgCvA28DBgAEBPEDBgAhBLoA
+BgAmBLoABgBKBHACCgB2BGAECgCPBGAEBgCkBG8DDgDGBBQBDgDoBBQBEgBBBSEFEgBZBSEFBgCI
+BX4FBgCZBboABgCrBboABgC5BX4FAAAAAAEAAAAAAAEAAQAAABAAMgA8AAUAAQABAAABEABrADwA
+CQADAAUAAQAQAHQAfwANAAQACAADAQAAowAAABEABAAKABEAfwETABEArAEXABEA9gE5AAYGHwJH
+AFaAJwJKAFaALwJKAFAgAAAAAIMYvAEbAAEAWCAAAAAAkwjCAR8AAQCRIAAAAACTCNYBJAABAJgg
+AAAAAJMI4gEpAAEAoCAAAAAAlggGAj0AAgCzIAAAAACGGLwBGwACAKcgAAAAAJEYvwSJAAIAvCAA
+AAAAhgAaAhsAAgC6IQAAAACGGLwBGwACAAAAAQA3AjkAvAFYAEEAvAFYAEkAvAFYAFEAvAFYAFkA
+vAFYAGEAvAFYAGkAvAFYAHEAvAFYAHkAvAFYAIEAvAFYAIkAvAFdAJEAvAEbAJkAvAEbAAkAvAEb
+AKEAOARiAKEAUwRpACkAvAFuALkAvAF6AMkAvAEbABEAvAEbANEAvAEbABkA+gSNANkASwWSAOEA
+YgWXAOkAawWdAAkAdQWhAPEAkgWlAOkAoQWqAAEBsgWvAPEAxgW1ANkAzwVdABkAvAEbAAgAFABO
+AAgAGABTACkAkwCAAC4AGwA3AS4AIwA3AS4AYwBpAS4ACwDGAC4AEwAOAS4AMwAOAS4AKwA9AS4A
+OwBGAS4AQwA3AS4AWwBgAUMAawBTAEkAkwCAAGEAmwBTAIMAqwBTAHUAvwACAAEAAwADAAAAbwEv
+AAAA7gE0AAAAEgJCAAIAAgADAAIAAwAFAAEABAAFAAIABQAHAASAAAABAAAAixjvUAAAAAAAAM0D
+AAAEAAAAAAAAAAAAAAABALEAAAAAAAQAAAAAAAAAAAAAAAEAugAAAAAACwAAAAAAAAAAAAAACgD1
+AAAAAAALAAAAAAAAAAAAAAAKAAIFAAAAAAAAAAABAAAA3gUAAAUABAAAAAAAADxNb2R1bGU+AFNU
+X2JmZmEwYzI2ZjEzZDRkMTRhOGFhMjYxMmQzZjk1YWI1LmRsbABSZXNvdXJjZXMAU1RfOGRkNzg1
+M2Y0Nzg1NDYzNWIyY2M2MmQyYmY3NmFkY2EuUHJvcGVydGllcwBTZXR0aW5ncwBTY3JpcHRNYWlu
+AFNUXzhkZDc4NTNmNDc4NTQ2MzViMmNjNjJkMmJmNzZhZGNhAFNjcmlwdFJlc3VsdHMAbXNjb3Js
+aWIAU3lzdGVtAE9iamVjdABTeXN0ZW0uQ29uZmlndXJhdGlvbgBBcHBsaWNhdGlvblNldHRpbmdz
+QmFzZQBNaWNyb3NvZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9zb2Z0LlNxbFNlcnZlci5E
+dHMuVGFza3MuU2NyaXB0VGFzawBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJhc2UARW51bQBTeXN0
+ZW0uUmVzb3VyY2VzAFJlc291cmNlTWFuYWdlcgByZXNvdXJjZU1hbgBTeXN0ZW0uR2xvYmFsaXph
+dGlvbgBDdWx0dXJlSW5mbwByZXNvdXJjZUN1bHR1cmUALmN0b3IAZ2V0X1Jlc291cmNlTWFuYWdl
+cgBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQBDdWx0dXJlAGRlZmF1bHRJbnN0YW5jZQBnZXRfRGVm
+YXVsdABEZWZhdWx0AE1haW4AdmFsdWVfXwBTdWNjZXNzAEZhaWx1cmUAdmFsdWUAU3lzdGVtLlJ1
+bnRpbWUuVmVyc2lvbmluZwBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAU3lzdGVtLlJlZmxlY3Rp
+b24AQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAEFz
+c2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1dGUAQXNz
+ZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAEFzc2VtYmx5
+VHJhZGVtYXJrQXR0cmlidXRlAEFzc2VtYmx5Q3VsdHVyZUF0dHJpYnV0ZQBBc3NlbWJseVZlcnNp
+b25BdHRyaWJ1dGUAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBDb21waWxhdGlvblJl
+bGF4YXRpb25zQXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFNUX2JmZmEw
+YzI2ZjEzZDRkMTRhOGFhMjYxMmQzZjk1YWI1AFN5c3RlbS5EaWFnbm9zdGljcwBEZWJ1Z2dlck5v
+blVzZXJDb2RlQXR0cmlidXRlAFR5cGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5k
+bGUAQXNzZW1ibHkAZ2V0X0Fzc2VtYmx5AFN5c3RlbS5Db21wb25lbnRNb2RlbABFZGl0b3JCcm93
+c2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRy
+aWJ1dGUALmNjdG9yAFNTSVNTY3JpcHRUYXNrRW50cnlQb2ludEF0dHJpYnV0ZQBTY3JpcHRPYmpl
+Y3RNb2RlbABnZXRfRHRzAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuTWFuYWdlZERUUwBNaWNyb3NvZnQu
+U3FsU2VydmVyLkR0cy5SdW50aW1lAFZhcmlhYmxlcwBnZXRfVmFyaWFibGVzAFZhcmlhYmxlAGdl
+dF9JdGVtAGdldF9WYWx1ZQBUb1N0cmluZwBTeXN0ZW0uSU8ARGlyZWN0b3J5AEV4aXN0cwBCb29s
+ZWFuAHNldF9WYWx1ZQBTdHJpbmcAQ29uY2F0AFNlYXJjaE9wdGlvbgBHZXRGaWxlcwBzZXRfVGFz
+a1Jlc3VsdABTVF84ZGQ3ODUzZjQ3ODU0NjM1YjJjYzYyZDJiZjc2YWRjYS5Qcm9wZXJ0aWVzLlJl
+c291cmNlcy5yZXNvdXJjZXMAAAAAAHFTAFQAXwA4AGQAZAA3ADgANQAzAGYANAA3ADgANQA0ADYA
+MwA1AGIAMgBjAGMANgAyAGQAMgBiAGYANwA2AGEAZABjAGEALgBQAHIAbwBwAGUAcgB0AGkAZQBz
+AC4AUgBlAHMAbwB1AHIAYwBlAHMAAB9VAHMAZQByADoAOgBGAEkAUwBfAEkAbgBiAG8AeAAAMVUA
+cwBlAHIAOgA6AEYASQBTAF8ARgBpAGwAZQBOAGEAbQBlAEYAbwByAG0AYQB0AAAzVQBzAGUAcgA6
+ADoASQBzAE4AZQB0AHcAbwByAGsAUABhAHQAaABFAHgAaQBzAHQAcwAACyoALgBjAHMAdgAAM1UA
+cwBlAHIAOgA6AEkAcwBTAG8AdQByAGMAZQBGAGkAbABlAHMARQB4AGkAcwB0AHMAAAAAAGdcLx+I
+BnpEgYBBzm5loAIACLd6XFYZNOCJCImEXc2AgMyRAwYSFQMGEhkDIAABBAAAEhUEAAASGQUAAQES
+GQQIABIVBAgAEhkDBhIMBAAAEgwECAASDAIGCAMGERQEAAAAAAQBAAAABCABAQ4EIAEBCAYAARJR
+EVUEIAASWQYgAgEOElkEBwESFQUgAQERYQgBAAIAAAAAAAMAAAEEIAASbQQgABJxBSABEnUcAyAA
+HAMgAA4EAAECDgQgAQEcBQACDg4OCQADHQ4ODhGAhQYHAw4OHQ5HAQAaLk5FVEZyYW1ld29yayxW
+ZXJzaW9uPXY0LjABAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQoAQAj
+U1RfOGRkNzg1M2Y0Nzg1NDYzNWIyY2M2MmQyYmY3NmFkY2EAAAUBAAAAAAgBAANDVFMAABkBABRD
+b3B5cmlnaHQgQCBDVFMgMjAxNgAACAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhy
+b3dzAfwvAAAAAAAAAAAAAB4wAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMAAAAAAAAAAAAAAA
+AAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
+AEgAAABYQAAA4AMAAAAAAAAAAAAA4AM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
+AAAAAL0E7/4AAAEAAAABAO9QixgAAAEA71CLGD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
+bgAAAAAAAACwBEADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAABwDAAABADAAMAAw
+ADAAMAA0AGIAMAAAACgABAABAEMAbwBtAHAAYQBuAHkATgBhAG0AZQAAAAAAQwBUAFMAAABwACQA
+AQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBUAF8AOABkAGQANwA4ADUAMwBm
+ADQANwA4ADUANAA2ADMANQBiADIAYwBjADYAMgBkADIAYgBmADcANgBhAGQAYwBhAAAAQAAPAAEA
+RgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMgA4ADMALgAyADAANwAxADkAAAAA
+AHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AYgBmAGYAYQAwAGMAMgA2AGYA
+MQAzAGQANABkADEANABhADgAYQBhADIANgAxADIAZAAzAGYAOQA1AGEAYgA1AC4AZABsAGwAAABQ
+ABUAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAgAEAA
+IABDAFQAUwAgADIAMAAxADYAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBt
+AGUAAABTAFQAXwBiAGYAZgBhADAAYwAyADYAZgAxADMAZAA0AGQAMQA0AGEAOABhAGEAMgA2ADEA
+MgBkADMAZgA5ADUAYQBiADUALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAA
+AAAAUwBUAF8AOABkAGQANwA4ADUAMwBmADQANwA4ADUANAA2ADMANQBiADIAYwBjADYAMgBkADIA
+YgBmADcANgBhAGQAYwBhAAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAu
+ADAALgA2ADIAOAAzAC4AMgAwADcAMQA5AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUA
+cgBzAGkAbwBuAAAAMQAuADAALgA2ADIAOAAzAC4AMgAwADcAMQA5AAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAADAwAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{0A6FB2B0-097F-4526-B6A4-2DDD8C16DD81}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{94EE9F1F-3B25-4B68-BBB3-9A99FF932310}"
+        DTS:ObjectName="{94EE9F1F-3B25-4B68-BBB3-9A99FF932310}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::FIS_Inbox]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="D:\RRI\Fusion\Inbox\FusionInvoiceStaging\" />
+            <FEFEProperty
+              FileSpec="XXRRI_FUSION_VENDOR_INVOICES*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Archive Source File"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{AF3A8E4F-DEF8-4192-A9BB-C9A1753C42BD}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Archive Source File"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::FIS_Inbox_FileName"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::FIS_Archive"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:DelayValidation="True"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{D173215D-F898-47D7-9E61-29BF6C231F0F}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fusion Invoice Staging">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging\Audit End"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{DD4DE85D-1DEF-4B4A-83FB-FF9C73F03D10}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Audit End"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E0274165-749E-42DC-86BF-0C13897926A8}"
+                  SQLTask:SqlStatementSource="DECLARE @AuditID INT&#xA;SET @AuditID = ?&#xA;&#xA;UPDATE [Fusion].[SSISAuditLogStaging]&#xA;SET UpdatedDate = GETDATE(),&#xA; RowsSentToOutputFile1=?, &#xA; Status = 1&#xA;WHERE AuditID = @AuditID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::AuditID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::RowCountSuccess"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging\Audit Start"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{1F11978C-734B-4FC9-8551-35622C35459A}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Audit Start"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E0274165-749E-42DC-86BF-0C13897926A8}"
+                  SQLTask:SqlStatementSource="DECLARE @AuditID INT&#xA;INSERT INTO [Fusion].[SSISAuditLogStaging]([InterfaceName],[FileName],[Status],[InsertedDate],[InsertedBy])&#xA;VALUES('FusionInvoiceStaging',?,0,GETDATE(),?)&#xA;SELECT @AuditID = @@IDENTITY&#xA;&#xA;SELECT ? = @AuditID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::AuditID"
+                    SQLTask:ParameterDirection="Output"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::FISFileName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::UserName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging"
+              DTS:CreationName="SSIS.Pipeline.3"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{8DA637A1-B769-4F16-9F2F-6BDEF657935C}"
+              DTS:ExecutableType="SSIS.Pipeline.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Extract FusionInvoiceStaging"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists"
+                      componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+                      contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                      description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                      name="Check_Row_Already_Exists"
+                      usesDispositions="true"
+                      version="6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the SQL statement that generates the lookup table."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[FusionInvoiceStaging]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                          expressionType="Notify"
+                          name="SqlCommandParam"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[FusionInvoiceStaging]) [refTable]
+where [refTable].[VendorSiteID] = ? and [refTable].[InvoiceNumber] = ? and [refTable].[VendorNumber] = ?</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of connection used to access the reference dataset."
+                          name="ConnectionType"
+                          typeConverter="LookupConnectionType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the cache type of the lookup table."
+                          name="CacheType"
+                          typeConverter="CacheType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                          name="NoMatchBehavior"
+                          typeConverter="LookupNoMatchBehavior">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                          name="NoMatchCachePercentage">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                          name="MaxMemoryUsage">25</property>
+                        <property
+                          dataType="System.Int64"
+                          description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                          name="MaxMemoryUsage64">25</property>
+                        <property
+                          dataType="System.String"
+                          description="Indicates whether to reference metadata in an XML format."
+                          name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VendorSiteID" dataType="DT_STR" length="150" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="VendorNumber" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="InvoiceNumber" dataType="DT_STR" length="150" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="InsertedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InsertedBy" dataType="DT_STR" length="35" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                          name="ParameterMap">#{Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDOR_SITE_ID]};#{Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[INVOICE_NUM]};#{Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDORNUM]};</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                          name="TreatDuplicateKeysAsError">false</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[SQLServerDB_Cronus_Con]"
+                          connectionManagerRefId="Package.ConnectionManagers[SQLServerDB_Cronus_Con]"
+                          description="Connection manager used to access lookup data."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input]"
+                          name="Lookup Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input].Columns[VENDOR_SITE_ID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="VENDOR_SITE_ID"
+                              cachedSortKeyPosition="1"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDOR_SITE_ID]">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Specifies the column in the reference table that a column joins."
+                                  name="JoinToReferenceColumn">VendorSiteID</property>
+                                <property
+                                  dataType="System.Null"
+                                  description="Specifies the column in the reference table from which a column is copied."
+                                  name="CopyFromReferenceColumn" />
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input].Columns[VENDORNUM]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="VENDORNUM"
+                              cachedSortKeyPosition="3"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDORNUM]">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Specifies the column in the reference table that a column joins."
+                                  name="JoinToReferenceColumn">VendorNumber</property>
+                                <property
+                                  dataType="System.Null"
+                                  description="Specifies the column in the reference table from which a column is copied."
+                                  name="CopyFromReferenceColumn" />
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input].Columns[INVOICE_NUM]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="INVOICE_NUM"
+                              cachedSortKeyPosition="2"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[INVOICE_NUM]">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Specifies the column in the reference table that a column joins."
+                                  name="JoinToReferenceColumn">InvoiceNumber</property>
+                                <property
+                                  dataType="System.Null"
+                                  description="Specifies the column in the reference table from which a column is copied."
+                                  name="CopyFromReferenceColumn" />
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup Match Output]"
+                          errorOrTruncationOperation="Lookup"
+                          exclusionGroup="1"
+                          name="Lookup Match Output"
+                          synchronousInputId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup No Match Output]"
+                          description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                          exclusionGroup="1"
+                          name="Lookup No Match Output"
+                          synchronousInputId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Lookup Error Output"
+                          synchronousInputId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination"
+                      componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="OLE DB Destination"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dbo].[FusionInvoiceStaging]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[SQLServerDB_Cronus_Con]"
+                          connectionManagerRefId="Package.ConnectionManagers[SQLServerDB_Cronus_Con]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VENDORNUM]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="VENDORNUM"
+                              cachedSortKeyPosition="3"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendorNumber]"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDORNUM]" />
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[INVOICE_NUM]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="INVOICE_NUM"
+                              cachedSortKeyPosition="2"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNumber]"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[INVOICE_NUM]" />
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VENDOR_SITE_ID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="VENDOR_SITE_ID"
+                              cachedSortKeyPosition="1"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendorSiteID]"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDOR_SITE_ID]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendorSiteID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="150"
+                              name="VendorSiteID" />
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendorNumber]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="VendorNumber" />
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNumber]"
+                              codePage="1252"
+                              dataType="str"
+                              length="150"
+                              name="InvoiceNumber" />
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                              dataType="dbTimeStamp"
+                              name="InsertedDate" />
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                              codePage="1252"
+                              dataType="str"
+                              length="35"
+                              name="InsertedBy" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Row_Count"
+                      componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+                      contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                      name="Row_Count">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable to hold the row count."
+                          name="VariableName">User::RowCountSuccess</property>
+                      </properties>
+                      <inputs>
+                        <input
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Row_Count.Inputs[Row Count Input 1]"
+                          hasSideEffects="true"
+                          name="Row Count Input 1">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Row_Count.Outputs[Row Count Output 1]"
+                          name="Row Count Output 1"
+                          synchronousInputId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Row_Count.Inputs[Row Count Input 1]">
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates"
+                      componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                      contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                      name="Sort_Delete_Duplicates"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                          name="EliminateDuplicates">true</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the maximum number of threads to use for sorting."
+                          expressionType="Notify"
+                          name="MaximumThreads">-1</property>
+                      </properties>
+                      <inputs>
+                        <input
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Inputs[Sort Input]"
+                          name="Sort Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Inputs[Sort Input].Columns[INVOICE_ID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="INVOICE_ID"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_ID]">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the comparison options for character data."
+                                  name="NewComparisonFlags">0</property>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the sort order of the column."
+                                  name="NewSortKeyPosition">0</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Inputs[Sort Input].Columns[VENDOR_SITE_ID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="VENDOR_SITE_ID"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDOR_SITE_ID]">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the comparison options for character data."
+                                  name="NewComparisonFlags">0</property>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the sort order of the column."
+                                  name="NewSortKeyPosition">1</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Inputs[Sort Input].Columns[INVOICE_NUM]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="INVOICE_NUM"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_NUM]">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the comparison options for character data."
+                                  name="NewComparisonFlags">0</property>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the sort order of the column."
+                                  name="NewSortKeyPosition">2</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Inputs[Sort Input].Columns[VENDORNUM]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="VENDORNUM"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDORNUM]">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the comparison options for character data."
+                                  name="NewComparisonFlags">0</property>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the sort order of the column."
+                                  name="NewSortKeyPosition">3</property>
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output]"
+                          isSorted="true"
+                          name="Sort Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[INVOICE_ID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[INVOICE_ID]"
+                              name="INVOICE_ID">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the lineage identifier of the input column that is associated with this output column."
+                                  name="SortColumnId">#{Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_ID]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDOR_SITE_ID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDOR_SITE_ID]"
+                              name="VENDOR_SITE_ID"
+                              sortKeyPosition="1">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the lineage identifier of the input column that is associated with this output column."
+                                  name="SortColumnId">#{Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDOR_SITE_ID]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[INVOICE_NUM]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[INVOICE_NUM]"
+                              name="INVOICE_NUM"
+                              sortKeyPosition="2">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the lineage identifier of the input column that is associated with this output column."
+                                  name="SortColumnId">#{Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_NUM]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDORNUM]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output].Columns[VENDORNUM]"
+                              name="VENDORNUM"
+                              sortKeyPosition="3">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the lineage identifier of the input column that is associated with this output column."
+                                  name="SortColumnId">#{Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDORNUM]}</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File"
+                      componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                      contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="Flat File Source"
+                      localeId="1033"
+                      name="Source File"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Specifies whether zero-length columns are treated as null."
+                          name="RetainNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                          name="FileNameColumnName"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Connections[FlatFileConnection]"
+                          connectionManagerID="Package.ConnectionManagers[Source_File_Con]"
+                          connectionManagerRefId="Package.ConnectionManagers[Source_File_Con]"
+                          name="FlatFileConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output]"
+                          name="Flat File Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_ID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[INVOICE_ID]"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_ID]"
+                              name="INVOICE_ID"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the data is in binary format."
+                                  name="UseBinaryFormat">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDOR_SITE_ID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[VENDOR_SITE_ID]"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDOR_SITE_ID]"
+                              name="VENDOR_SITE_ID"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the data is in binary format."
+                                  name="UseBinaryFormat">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_NUM]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[INVOICE_NUM]"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[INVOICE_NUM]"
+                              name="INVOICE_NUM"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the data is in binary format."
+                                  name="UseBinaryFormat">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDORNUM]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[VENDORNUM]"
+                              length="50"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].Columns[VENDORNUM]"
+                              name="VENDORNUM"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the data is in binary format."
+                                  name="UseBinaryFormat">false</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[INVOICE_ID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="INVOICE_ID" />
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[VENDOR_SITE_ID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="VENDOR_SITE_ID" />
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[INVOICE_NUM]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="INVOICE_NUM" />
+                            <externalMetadataColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output].ExternalColumns[VENDORNUM]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="VENDORNUM" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Error Output]"
+                          isErrorOut="true"
+                          name="Flat File Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                              codePage="65001"
+                              dataType="text"
+                              description="Flat File Source Error Output Column"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                              name="Flat File Source Error Output Column" />
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Flat File Source Output]"
+                      endId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Inputs[Sort Input]"
+                      name="Flat File Source Output"
+                      startId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File.Outputs[Flat File Source Output]" />
+                    <path
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Lookup No Match Output]"
+                      endId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Row_Count.Inputs[Row Count Input 1]"
+                      name="Lookup No Match Output"
+                      startId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Outputs[Lookup No Match Output]" />
+                    <path
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Row Count Output 1]"
+                      endId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      name="Row Count Output 1"
+                      startId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Row_Count.Outputs[Row Count Output 1]" />
+                    <path
+                      refId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Sort Output]"
+                      endId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists.Inputs[Lookup Input]"
+                      name="Sort Output"
+                      startId="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates.Outputs[Sort Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{E69977A4-578A-413C-8B31-0B1F52629AF8}"
+              DTS:From="Package\Foreach Loop Container\Fusion Invoice Staging\Audit Start"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{3236A261-4B9C-4CDC-886E-C297B6DCEB98}"
+              DTS:From="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Foreach Loop Container\Fusion Invoice Staging\Audit End" />
+          </DTS:PrecedenceConstraints>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{1B73B284-5A49-4F0B-9E51-50DEE9F35762}"
+              DTS:EventID="435967980"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{413E2438-EDDC-4D31-BC27-0C480A86E88B}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]\Audit Error"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{B881B914-F455-4E11-8EEF-34AA27AEF256}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Audit Error"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{04F177DC-BD3E-4961-80CF-F7E4791D4EC8}"
+                      SQLTask:SqlStatementSource="DECLARE @AuditID INT, @ErrorCode VARCHAR(100), @ErrorMessage VARCHAR(Max)&#xA;SELECT @AuditID = ?, @ErrorCode = Convert(varchar, ?), @ErrorMessage = ?&#xA;&#xA;&#xA;UPDATE Fusion.SSISAuditLogStaging&#xA;SET Status = 2,&#xA;UpdatedDate = GETDATE(),&#xA;ErrorMessage = @ErrorCode + ':' + @ErrorMessage,&#xA;FileName = ? &#xA;WHERE AuditID = @AuditID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::AuditID"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="3"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="System::ErrorCode"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="2"
+                        SQLTask:DtsVariableName="System::ErrorDescription"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="3"
+                        SQLTask:DtsVariableName="User::FISFileName"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]\Send Error Email"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Send Mail Task"
+                  DTS:DTSID="{06E0A17F-8238-4F93-9151-C1D818EE1702}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Send Error Email"
+                  DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="FromLine">@[$Package::EmailFrom]</DTS:PropertyExpression>
+                  <DTS:PropertyExpression
+                    DTS:Name="MessageSource">"Hi Team, \n\n " + @[System::PackageName]  + " is failed with below error to process: \n\n" + @[System::ErrorDescription]</DTS:PropertyExpression>
+                  <DTS:PropertyExpression
+                    DTS:Name="Subject">@[System::PackageName] + ": Data Load failed to process in "+ @[$Project::Environment]+" environment."</DTS:PropertyExpression>
+                  <DTS:PropertyExpression
+                    DTS:Name="ToLine">@[$Package::EmailToError]</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SendMailTask:SendMailTaskData
+                      SendMailTask:SMTPServer="{0ECD48FF-6024-486D-99E0-427F4CACD803}"
+                      SendMailTask:From="Fusion_SSIS_Support@redrobin.com"
+                      SendMailTask:To="FusionIntegration_SSIS@redrobin.com"
+                      SendMailTask:Subject="FusionInvoiceStaging: Data Load failed to process in Dev environment."
+                      SendMailTask:MessageSource="Hi Team, &#xA;&#xA; FusionInvoiceStaging is failed with below error to process: &#xA;&#xA;" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+              <DTS:PrecedenceConstraints>
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{D18669F2-E535-4330-9DFD-4B99B3861EE7}"
+                  DTS:From="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]\Audit Error"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint"
+                  DTS:To="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]\Send Error Email" />
+              </DTS:PrecedenceConstraints>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Move to Error Folder"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{161C05F4-BB69-4493-A189-A524D76CE072}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move to Error Folder"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="User::FIS_Inbox_FileName"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::FIS_Error"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{62723F40-7AB4-4BA0-A8FB-A78E0B11ACAF}"
+          DTS:From="Package\Foreach Loop Container\Fusion Invoice Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Archive Source File" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{AFB4EB88-E77F-457B-867C-AD0108B52122}"
+          DTS:From="Package\Foreach Loop Container\Fusion Invoice Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container\Move to Error Folder"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{295A7531-9372-4E11-BEF0-456CDA2FD619}"
+          DTS:ObjectName="{295A7531-9372-4E11-BEF0-456CDA2FD619}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FISFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Success Notification"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{EADD56C8-70B1-4CE3-A9EF-BCB772791248}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Success Notification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FromLine">@[$Package::EmailFrom]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="MessageSource">"Hi Team, \n\n " + 
+"FusionInvoiceStaging has processed the file \""+ @[User::FISFileName]  +"\" successfully.Please find the details below: "+
+"\n\n FusionInvoiceStaging successfully and processed "  +  (DT_STR, 50, 1252) (@[User::RowCountSuccess]) + " rows"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Subject">"FusionInvoiceStaging: Data load processed sucessfully in "+ @[$Project::Environment] +" environment."</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[$Package::EmailToSuccess]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0ECD48FF-6024-486D-99E0-427F4CACD803}"
+          SendMailTask:From="Fusion_SSIS_Support@redrobin.com"
+          SendMailTask:To="FusionIntegration_SSIS@redrobin.com"
+          SendMailTask:Subject="FusionInvoiceStaging: Data load processed sucessfully in Dev environment."
+          SendMailTask:MessageSource="Hi Team, &#xA;&#xA; FusionInvoiceStaging has processed the file &quot;Fusion Vendor Invoices.csv&quot; successfully.Please find the details below: &#xA;&#xA; FusionInvoiceStaging successfully and processed 0 rows" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4D2FFD83-43E7-4B58-BECA-86407B27B2DA}"
+      DTS:EvalOp="3"
+      DTS:Expression="(@[User::IsSourceFilesExists] ==True )&amp;&amp;(@[User::IsNetworkPathExists]== True)"
+      DTS:From="Package\Check Source File Exists"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B4FC713-7E8A-4F2D-B2B2-8CB78F5A6A98}"
+      DTS:From="Package\Foreach Loop Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Success Notification" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Check Source File Exists"
+          TopLeft="131,5.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Foreach Loop Container\Archive Source File"
+          TopLeft="5.50000000000006,415.5" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Audit End"
+          TopLeft="51,209.5" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Audit Start"
+          TopLeft="48.5,5.5" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging"
+          TopLeft="5.50000000000003,107.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging.PrecedenceConstraints[Constraint]"
+          TopLeft="114,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging.PrecedenceConstraints[Constraint 1]"
+          TopLeft="114,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="228,307"
+          Size="228,350"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging"
+          TopLeft="211.5,5.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Foreach Loop Container\Move to Error Folder"
+          TopLeft="236.5,415.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="288.833333333333,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-198.333333333333,60"
+              Start="0,0"
+              End="-198.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2508710801394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2508710801394"
+                    Point2="0,24.2508710801394"
+                    Point3="-4,24.2508710801394" />
+                  <mssgle:LineSegment
+                    End="-194.333333333333,24.2508710801394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-194.333333333333,24.2508710801394"
+                    Point2="-198.333333333333,24.2508710801394"
+                    Point3="-198.333333333333,28.2508710801394" />
+                  <mssgle:LineSegment
+                    End="-198.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="362.166666666667,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36.6666666666666,60"
+              Start="0,0"
+              End="-36.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2508710801394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2508710801394"
+                    Point2="0,24.2508710801394"
+                    Point3="-4,24.2508710801394" />
+                  <mssgle:LineSegment
+                    End="-32.6666666666666,24.2508710801394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32.6666666666666,24.2508710801394"
+                    Point2="-36.6666666666666,24.2508710801394"
+                    Point3="-36.6666666666666,28.2508710801394" />
+                  <mssgle:LineSegment
+                    End="-36.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-33.5746809895833,29.2508710801394,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="445,513"
+          Size="445,556"
+          Id="Package\Foreach Loop Container"
+          TopLeft="5.50000000000006,107.5" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Success Notification"
+          TopLeft="141,723.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="228,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="228,663.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]\Audit Error"
+          TopLeft="18.5,5.5" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError]\Send Error Email"
+          TopLeft="5.50000000000001,107.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="84.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination"
+          TopLeft="23.5,413.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Sort_Delete_Duplicates"
+          TopLeft="15,107.5" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Row_Count"
+          TopLeft="42.5,311.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Source File"
+          TopLeft="44,5.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Lookup No Match Output]"
+          TopLeft="110,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,20.4453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Flat File Source Output]"
+          TopLeft="110,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Sort Output]"
+          TopLeft="110,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging.Paths[Row Count Output 1]"
+          TopLeft="110,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Fusion Invoice Staging\Extract FusionInvoiceStaging\Check_Row_Already_Exists">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FusionInvoiceStaging]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

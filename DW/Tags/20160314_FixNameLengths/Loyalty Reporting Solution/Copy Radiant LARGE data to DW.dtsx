@@ -1,0 +1,2598 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/2/2013 10:34:43 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="IMONCIVAIS-L7"
+  DTS:CreatorName="CORPHQ\IMoncivais"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{9730DB83-343B-41D2-8DD5-C70968E724C6}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="Copy Radiant LARGE data to DW-staging"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{69D2ADBD-6BA0-4352-8580-3C76B1AA4566}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{70D65628-543A-4CA1-8167-1DD9333D3B29}"
+      DTS:ObjectName="HQ-FINSQL-01.DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=DW;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAApRHgoQFn50ebZPTiKObeAwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAHvI4JZpxfYI7VW/z1/4YSAAAAAASAAACgAAAAEAAAAPQrZdis1Hp2mW691i2Ii8ooAAAAwwC4svvoxHpLF1fceFzNbFiJvIFHa0F01FgDeQ+Q0+N7wYGt+MHleBQAAADmpYxf9C2s3zD36RxSlL60ltZlzQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C0D07EB1-8964-4B96-A8E8-229DB88A442A}"
+      DTS:ObjectName="HQ-SQL-06.Radiant">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-06;User ID=SSISUser;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAApRHgoQFn50ebZPTiKObeAwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABDiyKNWjsgyUe59mUyQzevAAAAAASAAACgAAAAEAAAABLVrWa90mYBBKDJX1qKaHIoAAAAPHCSJpZZCN0k8EqDTYe4d5wRkNKayj7265ZcQvHIhv8WboGkrKApCxQAAAAp/k4imBgldyvKQZva/DV2sOI00g</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{40B3A907-2FA2-4037-90FA-29573698AF5B}"
+      DTS:ObjectName="SMTP">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=True;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy Radiant Large"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{F959E27A-A530-4185-9230-EADF2EF6BACE}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Radiant Large"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - DpvHstCheckSummary"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DpvHstCheckSummary]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[UniqueID]"
+                      cachedDataType="i8"
+                      cachedName="UniqueID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[UniqueID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[UniqueID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[FKStoreID]"
+                      cachedDataType="i4"
+                      cachedName="FKStoreID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKStoreID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[FKEmployeeNumber]"
+                      cachedDataType="i4"
+                      cachedName="FKEmployeeNumber"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKEmployeeNumber]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKEmployeeNumber]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[CheckID]"
+                      cachedDataType="i4"
+                      cachedName="CheckID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[TableDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="TableDescription"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TableDescription]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TableDescription]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[Comps]"
+                      cachedDataType="r8"
+                      cachedName="Comps"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Comps]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Comps]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[GuestCount]"
+                      cachedDataType="numeric"
+                      cachedName="GuestCount"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[GuestCount]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[GuestCount]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[ItemCount]"
+                      cachedDataType="i4"
+                      cachedName="ItemCount"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemCount]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ItemCount]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[ItemSales]"
+                      cachedDataType="r8"
+                      cachedName="ItemSales"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ItemSales]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[ModeCharge]"
+                      cachedDataType="r8"
+                      cachedName="ModeCharge"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ModeCharge]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ModeCharge]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[Promos]"
+                      cachedDataType="r8"
+                      cachedName="Promos"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Promos]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Promos]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[Payment]"
+                      cachedDataType="r8"
+                      cachedName="Payment"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Payment]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Payment]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[SurCharge]"
+                      cachedDataType="r8"
+                      cachedName="SurCharge"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[SurCharge]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[SurCharge]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[Tax]"
+                      cachedDataType="r8"
+                      cachedName="Tax"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Tax]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Tax]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[OpenTime]"
+                      cachedDataType="i2"
+                      cachedName="OpenTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[OpenTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[OpenTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[FirstOrderTime]"
+                      cachedDataType="i2"
+                      cachedName="FirstOrderTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FirstOrderTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FirstOrderTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[LastOrderTime]"
+                      cachedDataType="i2"
+                      cachedName="LastOrderTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[LastOrderTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastOrderTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[CloseTime]"
+                      cachedDataType="i2"
+                      cachedName="CloseTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CloseTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CloseTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[ActualCloseTime]"
+                      cachedDataType="i2"
+                      cachedName="ActualCloseTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ActualCloseTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ActualCloseTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[CheckCloseTime]"
+                      cachedDataType="i2"
+                      cachedName="CheckCloseTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCloseTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckCloseTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[CheckTime]"
+                      cachedDataType="i2"
+                      cachedName="CheckTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[FKDayPartID]"
+                      cachedDataType="i4"
+                      cachedName="FKDayPartID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKDayPartID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKDayPartID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[FKRevenueID]"
+                      cachedDataType="i4"
+                      cachedName="FKRevenueID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKRevenueID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKRevenueID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[NetSales]"
+                      cachedDataType="r8"
+                      cachedName="NetSales"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[NetSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[NetSales]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[TaxExemptAmt]"
+                      cachedDataType="r8"
+                      cachedName="TaxExemptAmt"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TaxExemptAmt]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TaxExemptAmt]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[LastPaymentTime]"
+                      cachedDataType="i2"
+                      cachedName="LastPaymentTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[LastPaymentTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastPaymentTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[SeatTime]"
+                      cachedDataType="i2"
+                      cachedName="SeatTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[SeatTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[SeatTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[LastBumpTime]"
+                      cachedDataType="i2"
+                      cachedName="LastBumpTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[LastBumpTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastBumpTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[AdditionalCharges]"
+                      cachedDataType="r8"
+                      cachedName="AdditionalCharges"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[AdditionalCharges]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[AdditionalCharges]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[GSTTax]"
+                      cachedDataType="r8"
+                      cachedName="GSTTax"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[GSTTax]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[GSTTax]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[FKOccasionID]"
+                      cachedDataType="i4"
+                      cachedName="FKOccasionID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKOccasionID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKOccasionID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[ImportID]"
+                      cachedDataType="guid"
+                      cachedName="ImportID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ImportID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ImportID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[ImportCheckSum]"
+                      cachedDataType="i8"
+                      cachedName="ImportCheckSum"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ImportCheckSum]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ImportCheckSum]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[DateTimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateTimeStamp"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[DateTimeStamp]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[DateTimeStamp]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[TippableSales]"
+                      cachedDataType="r8"
+                      cachedName="TippableSales"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TippableSales]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[TippableChargeSales]"
+                      cachedDataType="r8"
+                      cachedName="TippableChargeSales"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableChargeSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TippableChargeSales]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].Columns[CheckCounter]"
+                      cachedDataType="i4"
+                      cachedName="CheckCounter"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCounter]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckCounter]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[UniqueID]"
+                      dataType="i8"
+                      name="UniqueID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKEmployeeNumber]"
+                      dataType="i4"
+                      name="FKEmployeeNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckID]"
+                      dataType="i4"
+                      name="CheckID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TableDescription]"
+                      dataType="wstr"
+                      length="16"
+                      name="TableDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Comps]"
+                      dataType="r8"
+                      name="Comps" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[GuestCount]"
+                      dataType="numeric"
+                      name="GuestCount"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemCount]"
+                      dataType="i4"
+                      name="ItemCount" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemSales]"
+                      dataType="r8"
+                      name="ItemSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ModeCharge]"
+                      dataType="r8"
+                      name="ModeCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Promos]"
+                      dataType="r8"
+                      name="Promos" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Payment]"
+                      dataType="r8"
+                      name="Payment" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[SurCharge]"
+                      dataType="r8"
+                      name="SurCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[Tax]"
+                      dataType="r8"
+                      name="Tax" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[OpenTime]"
+                      dataType="i2"
+                      name="OpenTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FirstOrderTime]"
+                      dataType="i2"
+                      name="FirstOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[LastOrderTime]"
+                      dataType="i2"
+                      name="LastOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CloseTime]"
+                      dataType="i2"
+                      name="CloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ActualCloseTime]"
+                      dataType="i2"
+                      name="ActualCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCloseTime]"
+                      dataType="i2"
+                      name="CheckCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckTime]"
+                      dataType="i2"
+                      name="CheckTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKDayPartID]"
+                      dataType="i4"
+                      name="FKDayPartID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKRevenueID]"
+                      dataType="i4"
+                      name="FKRevenueID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[NetSales]"
+                      dataType="r8"
+                      name="NetSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TaxExemptAmt]"
+                      dataType="r8"
+                      name="TaxExemptAmt" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[LastPaymentTime]"
+                      dataType="i2"
+                      name="LastPaymentTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[SeatTime]"
+                      dataType="i2"
+                      name="SeatTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[LastBumpTime]"
+                      dataType="i2"
+                      name="LastBumpTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[AdditionalCharges]"
+                      dataType="r8"
+                      name="AdditionalCharges" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[GSTTax]"
+                      dataType="r8"
+                      name="GSTTax" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[FKOccasionID]"
+                      dataType="i4"
+                      name="FKOccasionID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ImportID]"
+                      dataType="guid"
+                      name="ImportID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[ImportCheckSum]"
+                      dataType="i8"
+                      name="ImportCheckSum" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="DateTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableSales]"
+                      dataType="r8"
+                      name="TippableSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableChargeSales]"
+                      dataType="r8"
+                      name="TippableChargeSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCounter]"
+                      dataType="i4"
+                      name="CheckCounter" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - HstvbofqAssignment"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqAssignment]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[HstvbofqAssignmentID]"
+                      cachedDataType="i4"
+                      cachedName="HstvbofqAssignmentID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[HstvbofqAssignmentID]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[HstvbofqAssignmentID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[FKvbofqMemberAccountID]"
+                      cachedDataType="i4"
+                      cachedName="FKvbofqMemberAccountID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[FKvbofqMemberAccountID]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[FKvbofqMemberAccountID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[FKStoreID]"
+                      cachedDataType="i4"
+                      cachedName="FKStoreID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[FKStoreID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[CheckNumber]"
+                      cachedDataType="i4"
+                      cachedName="CheckNumber"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[CheckNumber]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[AssignmentIndex]"
+                      cachedDataType="i4"
+                      cachedName="AssignmentIndex"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[AssignmentIndex]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[AssignmentIndex]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[Status]"
+                      cachedDataType="i4"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[AssignmentDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="AssignmentDateTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[AssignmentDateTime]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[AssignmentDateTime]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].Columns[ActivityDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ActivityDateTime"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[ActivityDateTime]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[ActivityDateTime]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[HstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="HstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      name="FKvbofqMemberAccountID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[AssignmentIndex]"
+                      dataType="i4"
+                      name="AssignmentIndex" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[Status]"
+                      dataType="i4"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[AssignmentDateTime]"
+                      dataType="dbTimeStamp"
+                      name="AssignmentDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination 1 - HstvbofqCheck"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqCheck]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[HstvbofqCheckID]"
+                      cachedDataType="i8"
+                      cachedName="HstvbofqCheckID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[HstvbofqCheckID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[HstvbofqCheckID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[FKHstvbofqAssignmentID]"
+                      cachedDataType="i4"
+                      cachedName="FKHstvbofqAssignmentID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKHstvbofqAssignmentID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[FKStoreID]"
+                      cachedDataType="i4"
+                      cachedName="FKStoreID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKStoreID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[CheckNumber]"
+                      cachedDataType="i4"
+                      cachedName="CheckNumber"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[CheckNumber]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[MagstripeData]"
+                      cachedDataType="bool"
+                      cachedName="MagstripeData"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[MagstripeData]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[MagstripeData]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[FKDayPartID]"
+                      cachedDataType="i4"
+                      cachedName="FKDayPartID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKDayPartID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKDayPartID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[FKRevCenterID]"
+                      cachedDataType="i4"
+                      cachedName="FKRevCenterID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKRevCenterID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKRevCenterID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[FKEmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="FKEmployeeID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKEmployeeID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKEmployeeID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[EmployeeName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="EmployeeName"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[EmployeeName]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[EmployeeName]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[FKCurrencyID]"
+                      cachedDataType="i4"
+                      cachedName="FKCurrencyID"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKCurrencyID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKCurrencyID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].Columns[CheckTotal]"
+                      cachedDataType="r8"
+                      cachedName="CheckTotal"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[CheckTotal]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[CheckTotal]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[HstvbofqCheckID]"
+                      dataType="i8"
+                      name="HstvbofqCheckID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="FKHstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[MagstripeData]"
+                      dataType="bool"
+                      name="MagstripeData" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKDayPartID]"
+                      dataType="i4"
+                      name="FKDayPartID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKRevCenterID]"
+                      dataType="i4"
+                      name="FKRevCenterID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKEmployeeID]"
+                      dataType="i4"
+                      name="FKEmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[EmployeeName]"
+                      dataType="wstr"
+                      length="50"
+                      name="EmployeeName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[FKCurrencyID]"
+                      dataType="i4"
+                      name="FKCurrencyID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input].ExternalColumns[CheckTotal]"
+                      dataType="r8"
+                      name="CheckTotal" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source - DpvHstCheckSummary"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DpvHstCheckSummary]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[UniqueID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[UniqueID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[UniqueID]"
+                      name="UniqueID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                      name="FKStoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKEmployeeNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKEmployeeNumber]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKEmployeeNumber]"
+                      name="FKEmployeeNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckID]"
+                      name="CheckID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TableDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TableDescription]"
+                      length="16"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TableDescription]"
+                      name="TableDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Comps]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Comps]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Comps]"
+                      name="Comps"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[GuestCount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[GuestCount]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[GuestCount]"
+                      name="GuestCount"
+                      precision="12"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ItemCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ItemCount]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ItemCount]"
+                      name="ItemCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ItemSales]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ItemSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ItemSales]"
+                      name="ItemSales"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ModeCharge]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ModeCharge]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ModeCharge]"
+                      name="ModeCharge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Promos]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Promos]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Promos]"
+                      name="Promos"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Payment]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Payment]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Payment]"
+                      name="Payment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[SurCharge]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[SurCharge]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[SurCharge]"
+                      name="SurCharge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Tax]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Tax]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[Tax]"
+                      name="Tax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[OpenTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[OpenTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[OpenTime]"
+                      name="OpenTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FirstOrderTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FirstOrderTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FirstOrderTime]"
+                      name="FirstOrderTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastOrderTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[LastOrderTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastOrderTime]"
+                      name="LastOrderTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CloseTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CloseTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CloseTime]"
+                      name="CloseTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ActualCloseTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ActualCloseTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ActualCloseTime]"
+                      name="ActualCloseTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckCloseTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckCloseTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckCloseTime]"
+                      name="CheckCloseTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckTime]"
+                      name="CheckTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKDayPartID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKDayPartID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKDayPartID]"
+                      name="FKDayPartID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKRevenueID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKRevenueID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKRevenueID]"
+                      name="FKRevenueID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[NetSales]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[NetSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[NetSales]"
+                      name="NetSales"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TaxExemptAmt]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TaxExemptAmt]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TaxExemptAmt]"
+                      name="TaxExemptAmt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastPaymentTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[LastPaymentTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastPaymentTime]"
+                      name="LastPaymentTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[SeatTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[SeatTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[SeatTime]"
+                      name="SeatTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastBumpTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[LastBumpTime]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[LastBumpTime]"
+                      name="LastBumpTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[AdditionalCharges]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[AdditionalCharges]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[AdditionalCharges]"
+                      name="AdditionalCharges"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[GSTTax]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[GSTTax]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[GSTTax]"
+                      name="GSTTax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKOccasionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKOccasionID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[FKOccasionID]"
+                      name="FKOccasionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ImportID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ImportID]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ImportID]"
+                      name="ImportID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ImportCheckSum]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ImportCheckSum]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[ImportCheckSum]"
+                      name="ImportCheckSum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[DateTimeStamp]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[DateTimeStamp]"
+                      name="DateTimeStamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TippableSales]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TippableSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TippableSales]"
+                      name="TippableSales"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TippableChargeSales]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TippableChargeSales]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[TippableChargeSales]"
+                      name="TippableChargeSales"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckCounter]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckCounter]"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].Columns[CheckCounter]"
+                      name="CheckCounter"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[UniqueID]"
+                      dataType="i8"
+                      name="UniqueID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKEmployeeNumber]"
+                      dataType="i4"
+                      name="FKEmployeeNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckID]"
+                      dataType="i4"
+                      name="CheckID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TableDescription]"
+                      dataType="wstr"
+                      length="16"
+                      name="TableDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Comps]"
+                      dataType="r8"
+                      name="Comps" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[GuestCount]"
+                      dataType="numeric"
+                      name="GuestCount"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ItemCount]"
+                      dataType="i4"
+                      name="ItemCount" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ItemSales]"
+                      dataType="r8"
+                      name="ItemSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ModeCharge]"
+                      dataType="r8"
+                      name="ModeCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Promos]"
+                      dataType="r8"
+                      name="Promos" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Payment]"
+                      dataType="r8"
+                      name="Payment" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[SurCharge]"
+                      dataType="r8"
+                      name="SurCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[Tax]"
+                      dataType="r8"
+                      name="Tax" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[OpenTime]"
+                      dataType="i2"
+                      name="OpenTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FirstOrderTime]"
+                      dataType="i2"
+                      name="FirstOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[LastOrderTime]"
+                      dataType="i2"
+                      name="LastOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CloseTime]"
+                      dataType="i2"
+                      name="CloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ActualCloseTime]"
+                      dataType="i2"
+                      name="ActualCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckCloseTime]"
+                      dataType="i2"
+                      name="CheckCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckTime]"
+                      dataType="i2"
+                      name="CheckTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKDayPartID]"
+                      dataType="i4"
+                      name="FKDayPartID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKRevenueID]"
+                      dataType="i4"
+                      name="FKRevenueID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[NetSales]"
+                      dataType="r8"
+                      name="NetSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TaxExemptAmt]"
+                      dataType="r8"
+                      name="TaxExemptAmt" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[LastPaymentTime]"
+                      dataType="i2"
+                      name="LastPaymentTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[SeatTime]"
+                      dataType="i2"
+                      name="SeatTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[LastBumpTime]"
+                      dataType="i2"
+                      name="LastBumpTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[AdditionalCharges]"
+                      dataType="r8"
+                      name="AdditionalCharges" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[GSTTax]"
+                      dataType="r8"
+                      name="GSTTax" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[FKOccasionID]"
+                      dataType="i4"
+                      name="FKOccasionID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ImportID]"
+                      dataType="guid"
+                      name="ImportID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[ImportCheckSum]"
+                      dataType="i8"
+                      name="ImportCheckSum" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="DateTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TippableSales]"
+                      dataType="r8"
+                      name="TippableSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[TippableChargeSales]"
+                      dataType="r8"
+                      name="TippableChargeSales" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output].ExternalColumns[CheckCounter]"
+                      dataType="i4"
+                      name="CheckCounter" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[UniqueID]"
+                      dataType="i8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[UniqueID]"
+                      name="UniqueID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                      name="FKStoreID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKEmployeeNumber]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKEmployeeNumber]"
+                      name="FKEmployeeNumber" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckID]"
+                      name="CheckID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TableDescription]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TableDescription]"
+                      name="TableDescription" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Comps]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Comps]"
+                      name="Comps" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[GuestCount]"
+                      dataType="numeric"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[GuestCount]"
+                      name="GuestCount"
+                      precision="12"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ItemCount]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ItemCount]"
+                      name="ItemCount" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ItemSales]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ItemSales]"
+                      name="ItemSales" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ModeCharge]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ModeCharge]"
+                      name="ModeCharge" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Promos]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Promos]"
+                      name="Promos" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Payment]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Payment]"
+                      name="Payment" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[SurCharge]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[SurCharge]"
+                      name="SurCharge" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Tax]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[Tax]"
+                      name="Tax" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[OpenTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[OpenTime]"
+                      name="OpenTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FirstOrderTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FirstOrderTime]"
+                      name="FirstOrderTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[LastOrderTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[LastOrderTime]"
+                      name="LastOrderTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CloseTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CloseTime]"
+                      name="CloseTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ActualCloseTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ActualCloseTime]"
+                      name="ActualCloseTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckCloseTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckCloseTime]"
+                      name="CheckCloseTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckTime]"
+                      name="CheckTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKDayPartID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKDayPartID]"
+                      name="FKDayPartID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKRevenueID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKRevenueID]"
+                      name="FKRevenueID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[NetSales]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[NetSales]"
+                      name="NetSales" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TaxExemptAmt]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TaxExemptAmt]"
+                      name="TaxExemptAmt" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[LastPaymentTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[LastPaymentTime]"
+                      name="LastPaymentTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[SeatTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[SeatTime]"
+                      name="SeatTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[LastBumpTime]"
+                      dataType="i2"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[LastBumpTime]"
+                      name="LastBumpTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[AdditionalCharges]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[AdditionalCharges]"
+                      name="AdditionalCharges" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[GSTTax]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[GSTTax]"
+                      name="GSTTax" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKOccasionID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[FKOccasionID]"
+                      name="FKOccasionID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ImportID]"
+                      dataType="guid"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ImportID]"
+                      name="ImportID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ImportCheckSum]"
+                      dataType="i8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ImportCheckSum]"
+                      name="ImportCheckSum" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[DateTimeStamp]"
+                      name="DateTimeStamp" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TippableSales]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TippableSales]"
+                      name="TippableSales" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TippableChargeSales]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[TippableChargeSales]"
+                      name="TippableChargeSales" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckCounter]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[CheckCounter]"
+                      name="CheckCounter" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Radiant Large\Source - HstvbofqAssignment"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source - HstvbofqAssignment"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqAssignment]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[HstvbofqAssignmentID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[HstvbofqAssignmentID]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[HstvbofqAssignmentID]"
+                      name="HstvbofqAssignmentID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqMemberAccountID]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[FKvbofqMemberAccountID]"
+                      name="FKvbofqMemberAccountID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                      name="FKStoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      name="CheckNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[AssignmentIndex]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[AssignmentIndex]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[AssignmentIndex]"
+                      name="AssignmentIndex"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[Status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[AssignmentDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[AssignmentDateTime]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[AssignmentDateTime]"
+                      name="AssignmentDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[ActivityDateTime]"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].Columns[ActivityDateTime]"
+                      name="ActivityDateTime"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[HstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="HstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      name="FKvbofqMemberAccountID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[AssignmentIndex]"
+                      dataType="i4"
+                      name="AssignmentIndex" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      dataType="i4"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[AssignmentDateTime]"
+                      dataType="dbTimeStamp"
+                      name="AssignmentDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[HstvbofqAssignmentID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[HstvbofqAssignmentID]"
+                      name="HstvbofqAssignmentID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[FKvbofqMemberAccountID]"
+                      name="FKvbofqMemberAccountID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                      name="FKStoreID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      name="CheckNumber" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[AssignmentIndex]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[AssignmentIndex]"
+                      name="AssignmentIndex" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[AssignmentDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[AssignmentDateTime]"
+                      name="AssignmentDateTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[ActivityDateTime]"
+                      name="ActivityDateTime" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source 1 - HstvbofqCheck"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqCheck]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[HstvbofqCheckID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[HstvbofqCheckID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[HstvbofqCheckID]"
+                      name="HstvbofqCheckID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqAssignmentID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]"
+                      name="FKHstvbofqAssignmentID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                      name="FKStoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      name="CheckNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[MagstripeData]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[MagstripeData]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[MagstripeData]"
+                      name="MagstripeData"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKDayPartID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKDayPartID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKDayPartID]"
+                      name="FKDayPartID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKRevCenterID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKRevCenterID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKRevCenterID]"
+                      name="FKRevCenterID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKEmployeeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKEmployeeID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKEmployeeID]"
+                      name="FKEmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[EmployeeName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[EmployeeName]"
+                      length="50"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[EmployeeName]"
+                      name="EmployeeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKCurrencyID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKCurrencyID]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[FKCurrencyID]"
+                      name="FKCurrencyID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[CheckTotal]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[CheckTotal]"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].Columns[CheckTotal]"
+                      name="CheckTotal"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[HstvbofqCheckID]"
+                      dataType="i8"
+                      name="HstvbofqCheckID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="FKHstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[MagstripeData]"
+                      dataType="bool"
+                      name="MagstripeData" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKDayPartID]"
+                      dataType="i4"
+                      name="FKDayPartID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKRevCenterID]"
+                      dataType="i4"
+                      name="FKRevCenterID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKEmployeeID]"
+                      dataType="i4"
+                      name="FKEmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[EmployeeName]"
+                      dataType="wstr"
+                      length="50"
+                      name="EmployeeName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[FKCurrencyID]"
+                      dataType="i4"
+                      name="FKCurrencyID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output].ExternalColumns[CheckTotal]"
+                      dataType="r8"
+                      name="CheckTotal" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[HstvbofqCheckID]"
+                      dataType="i8"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[HstvbofqCheckID]"
+                      name="HstvbofqCheckID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqAssignmentID]"
+                      name="FKHstvbofqAssignmentID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                      name="FKStoreID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      name="CheckNumber" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[MagstripeData]"
+                      dataType="bool"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[MagstripeData]"
+                      name="MagstripeData" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKDayPartID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKDayPartID]"
+                      name="FKDayPartID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKRevCenterID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKRevCenterID]"
+                      name="FKRevCenterID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKEmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKEmployeeID]"
+                      name="FKEmployeeID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[EmployeeName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[EmployeeName]"
+                      name="EmployeeName" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKCurrencyID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[FKCurrencyID]"
+                      name="FKCurrencyID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[CheckTotal]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[CheckTotal]"
+                      name="CheckTotal" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy Radiant Large.Paths[OLE DB Source Output2]"
+              endId="Package\Copy Radiant Large\Destination - HstvbofqAssignment.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Radiant Large\Source - HstvbofqAssignment.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Copy Radiant Large.Paths[OLE DB Source Output1]"
+              endId="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Radiant Large\Source 1 - HstvbofqCheck.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Copy Radiant Large.Paths[OLE DB Source Output]"
+              endId="Package\Copy Radiant Large\Destination - DpvHstCheckSummary.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Radiant Large\Source - DpvHstCheckSummary.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prep Radiant Large"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DTSID="{5778A30B-2D45-4FA6-91A9-9BD8656F7602}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prep Radiant Large"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{70D65628-543A-4CA1-8167-1DD9333D3B29}"
+          SQLTask:SqlStatementSource="&#xA;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&#xA;Use DW&#xA;go&#xA;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[HstvbofqAssignment]'))&#xA;DROP TABLE [dbo].[HstvbofqAssignment]&#xA;go&#xA;&#xA;CREATE TABLE [dbo].[HstvbofqAssignment](&#xA; [HstvbofqAssignmentID] [int] NULL,&#xA; [FKvbofqMemberAccountID] [int] NULL,&#xA; [DateOfBusiness] [smalldatetime] NULL,&#xA; [FKStoreID] [int] NULL,&#xA; [CheckNumber] [int] NULL,&#xA; [AssignmentIndex] [int] NULL,&#xA; [Status] [int] NULL,&#xA; [AssignmentDateTime] [datetime] NULL,&#xA; [ActivityDateTime] [datetime] NULL&#xA;) ON [PRIMARY]&#xA;&#xA;GO&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[HstvbofqCheck]'))&#xA;DROP TABLE [dbo].[HstvbofqCheck]&#xA;go&#xA;&#xA;CREATE TABLE [dbo].[HstvbofqCheck](&#xA; [HstvbofqCheckID] [bigint] NULL,&#xA; [FKHstvbofqAssignmentID] [int] NULL,&#xA; [DateOfBusiness] [smalldatetime] NULL,&#xA; [FKStoreID] [int] NULL,&#xA; [CheckNumber] [int] NULL,&#xA; [MagstripeData] [bit] NULL,&#xA; [FKDayPartID] [int] NULL,&#xA; [FKRevCenterID] [int] NULL,&#xA; [FKEmployeeID] [int] NULL,&#xA; [EmployeeName] [nvarchar](50) NULL,&#xA; [FKCurrencyID] [int] NULL,&#xA; [CheckTotal] [float] NULL&#xA;) ON [PRIMARY]&#xA;&#xA;GO&#xA;&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[DpvHstCheckSummary]'))&#xA;DROP TABLE [dbo].[DpvHstCheckSummary]&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[DpvHstCheckSummary] (&#xA;[UniqueID] bigint NULL,&#xA;[DateOfBusiness] smalldatetime NULL,&#xA;[FKStoreID] int NULL,&#xA;[FKEmployeeNumber] int NULL,&#xA;[CheckID] int NULL,&#xA;[TableDescription] nvarchar(16) NULL,&#xA;[Comps] float NULL,&#xA;[GuestCount] decimal(12,4) NULL,&#xA;[ItemCount] int NULL,&#xA;[ItemSales] float NULL,&#xA;[ModeCharge] float NULL,&#xA;[Promos] float NULL,&#xA;[Payment] float NULL,&#xA;[SurCharge] float NULL,&#xA;[Tax] float NULL,&#xA;[OpenTime] smallint NULL,&#xA;[FirstOrderTime] smallint NULL,&#xA;[LastOrderTime] smallint NULL,&#xA;[CloseTime] smallint NULL,&#xA;[ActualCloseTime] smallint NULL,&#xA;[CheckCloseTime] smallint NULL,&#xA;[CheckTime] smallint NULL,&#xA;[FKDayPartID] int NULL,&#xA;[FKRevenueID] int NULL,&#xA;[NetSales] float NULL,&#xA;[TaxExemptAmt] float NULL,&#xA;[LastPaymentTime] smallint NULL,&#xA;[SeatTime] smallint NULL,&#xA;[LastBumpTime] smallint NULL,&#xA;[AdditionalCharges] float NULL,&#xA;[GSTTax] float NULL,&#xA;[FKOccasionID] int NULL,&#xA;[ImportID] uniqueidentifier NULL,&#xA;[ImportCheckSum] bigint NULL,&#xA;[DateTimeStamp] datetime NULL,&#xA;[TippableSales] float NULL,&#xA;[TippableChargeSales] float NULL,&#xA;[CheckCounter] int NULL&#xA;)&#xA;GO&#xA;&#xA;&#xA;&#xA;--&#x9;------imp&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{564DFEF6-4C40-4701-829F-3D1622DE3012\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{564DFEF6-4C40-4701-829F-3D1622DE3012}"
+      DTS:From="Package\Prep Radiant Large"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{564DFEF6-4C40-4701-829F-3D1622DE3012}"
+      DTS:To="Package\Copy Radiant Large" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Copy Radiant Large"
+          TopLeft="57.3333333333333,107.6" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Prep Radiant Large"
+          TopLeft="58.3333333333333,32.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{564DFEF6-4C40-4701-829F-3D1622DE3012\}]"
+          TopLeft="143.333333333333,74.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.1"
+              Start="0,0"
+              End="0,25.6">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy Radiant Large">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck"
+          TopLeft="5.5,107.5" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Copy Radiant Large\Destination - HstvbofqAssignment"
+          TopLeft="289,107.5" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Copy Radiant Large\Source - HstvbofqAssignment"
+          TopLeft="299.5,5.5" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Copy Radiant Large\Destination - DpvHstCheckSummary"
+          TopLeft="590.5,118.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Copy Radiant Large\Source - DpvHstCheckSummary"
+          TopLeft="601,16.5" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Copy Radiant Large\Source 1 - HstvbofqCheck"
+          TopLeft="16,5.5" />
+        <EdgeLayout
+          Id="Package\Copy Radiant Large.Paths[OLE DB Source Output2]"
+          TopLeft="409,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Copy Radiant Large.Paths[OLE DB Source Output1]"
+          TopLeft="117,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Copy Radiant Large.Paths[OLE DB Source Output]"
+          TopLeft="715.5,58.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant Large\Destination 1 - HstvbofqCheck">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant Large\Destination - HstvbofqAssignment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant Large\Source - HstvbofqAssignment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant Large\Destination - DpvHstCheckSummary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant Large\Source - DpvHstCheckSummary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant Large\Source 1 - HstvbofqCheck">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

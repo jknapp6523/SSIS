@@ -1,0 +1,901 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2014 10:57:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="LSELLITTO-L72"
+  DTS:CreatorName="CORPHQ\lsellitto"
+  DTS:DTSID="{6D1B9D59-1884-4540-A34D-A3E78F280EE0}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="OrderRate"
+  DTS:PackageType="5"
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{86AE28F9-61D3-463E-B459-FC76467399F9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Anaplan Flat File Export]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Export file location for daily transactions"
+      DTS:DTSID="{4540910E-1462-43A3-B2E0-CA96D295743F}"
+      DTS:ObjectName="Anaplan Flat File Export">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory] +  @[User::ExportFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-ssis2012-01\MessageHub\Anaplan\Outbox\OrderRate_20170606132313.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Account"
+              DTS:DTSID="{13B0E917-89AB-4B5D-919D-C88D18BF3056}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant"
+              DTS:DTSID="{11C93A1C-42FA-4B7A-986B-AA5CD3DF82DD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateOfBusiness"
+              DTS:DTSID="{04E53CB8-DA4C-4A62-B62A-B101E72A3F2C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WeekInfo"
+              DTS:DTSID="{2E5E506B-13EF-4F99-B815-240650CBFED5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="16"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{5077A257-58BA-43C5-9A7C-FDBF37DD3B88}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{FDE696D9-86FA-46D1-B4F2-AD1136A7876A}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=True;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F6EA58B7-26EC-4789-9D11-D019565AFEC5}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;OrderRate_&quot; + REPLACE((DT_WSTR, 200)(DT_DBDATE)GETUTCDATE(),&quot;-&quot;,&quot;&quot;)  + REPLACE((DT_WSTR, 8)(DT_DBTIME) @[System::StartTime] ,&quot;:&quot;,&quot;&quot;) &#xA; + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExportFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">OrderRate_20170606132313.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F7D6B9C5-9F75-406B-A4B3-884775D65305}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValidateRecordCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Count Result Set Records"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Count Result Set Records"
+      DTS:DTSID="{C8ABD475-EE9B-4142-AA0E-601C9A36C70A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Count Result Set Records"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DECLARE @StartDate DATETIME&#xA;&#x9;&#x9;&#x9; ,@EndDate DATETIME&#xA;&#xA;&#x9;SET @StartDate = DATEADD(wk, -3, DATEADD(wk, DATEDIFF(wk, 0, CURRENT_TIMESTAMP), 0)) &#xA;&#x9;SET @EndDate = DATEADD(dd, 0, DATEADD(dd, DATEDIFF(dd, 0, CURRENT_TIMESTAMP), 0))&#xA;&#xA;SELECT COUNT(Account) Cnt&#xA;FROM dbo.OrderRate&#xA;WHERE DateOfBusiness &gt;= @StartDate&#xA;&#x9;AND DateOfBusiness &lt; @EndDate&#xA;&#x9;AND Restaurant IN (SELECT DISTINCT Restaurant&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; FROM dbo.Hierarchy)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Cnt"
+            SQLTask:DtsVariableName="User::ValidateRecordCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete data for the current period plus two periods prior"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data for the current period plus two periods prior"
+      DTS:DTSID="{8CCA9CC1-F743-4E8C-A540-33DFCDEE008B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete data for the current period plus two periods prior"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.OrderRate&#xA;WHERE DateOfBusiness &gt;= DATEADD(wk, -3, DATEADD(wk, DATEDIFF(wk, 0, CURRENT_TIMESTAMP), 0)) " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Data Older Than 13 Months"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data older than 13 months"
+      DTS:DTSID="{DDC24A27-4CDB-4AF0-9B1B-092B2264A979}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Data Older Than 13 Months"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.OrderRate&#xA;WHERE DateOfBusiness &lt;= DATEADD(mm, -25, DATEADD(mm, DATEDIFF(mm, 0, CURRENT_TIMESTAMP), 0))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate recent OrderRate data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Populate recent OrderRate data"
+      DTS:DTSID="{307EEB31-5743-4227-8ADA-873EFF1F9498}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate recent OrderRate data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AE3FA1B0-F02D-40BC-A424-D4A438C442A1}"
+          SQLTask:SqlStatementSource="DECLARE @StartDate DATETIME, @EndDate DATETIME&#xA;SET @StartDate = DATEADD(wk, -3, DATEADD(wk, DATEDIFF(wk, 0, CURRENT_TIMESTAMP), 0)) &#xA;SET @EndDate = DATEADD(dd, 0, DATEADD(dd, DATEDIFF(dd, 0, CURRENT_TIMESTAMP), 0))&#xA;&#xA;DECLARE @Hierarchy TABLE (StoreID INT, Company VARCHAR(100), OpenDate DATETIME, UNIQUE CLUSTERED (StoreID, Company))&#xA;INSERT INTO @Hierarchy&#xA;SELECT Restaurant, Company, OpenDate&#xA;FROM [HQ-FinSQL-01].AnaplanScorecardBudget.dbo.Hierarchy&#xA;WHERE Company IN ('RRGB','RRBW') &#xA;&#xA;--Get date info on when restaurants were closed during timeframe&#xA;DECLARE @ClosedDates TABLE (StoreID INT, FirstDateClosed DATETIME, LastDateClosed DATETIME, UNIQUE CLUSTERED (StoreID, FirstDateClosed,LastDateClosed))&#xA;INSERT INTO @ClosedDates&#xA;SELECT DISTINCT [StoreID]&#xA;      ,[FirstDateClosed]&#xA;      ,[LastDateClosed]&#xA;  FROM [HQ-FinSQL-01].[Interfaces].[Aloha].[ClosedRestaurants]&#xA;  order by StoreID, FirstDateClosed desc&#xA;&#xA;SELECT FKStoreId, DateOfBusiness, FKItemId, COUNT(FKItemId) AS Amount INTO #Temp &#xA;FROM dbo.dpvHstGndItem &#xA;WHERE DateOfBusiness &gt;= @StartDate AND DateOfBusiness &lt; @EndDate&#xA;     AND DiscPric &gt; 0&#xA;     AND (ParentID = 0&#xA;&#x9; OR FKItemId IN  (5751,5796))&#xA;GROUP BY FKStoreId, DateOfBusiness, FKItemId&#xA;&#xA;&#xA;--Get Appetizer, Dessert and Beverage counts&#xA;--Find all dbo.dpvHstGndItem ParentID's and their descriptions&#xA;SELECT CASE &#xA;&#x9;&#x9;&#x9;WHEN REPLACE(ci.CategoryItemId, '*', '') = 672 --Reporting Appts - Appetizers Sold&#xA;&#x9;&#x9;&#x9;&#x9;THEN 'Appetizers Sold'&#xA;&#x9;&#x9;&#x9;WHEN REPLACE(ci.CategoryItemId, '*', '') = 671 --Reporting Desserts - Desserts Sold&#xA;&#x9;&#x9;&#x9;&#x9;THEN 'Desserts Sold'&#xA;&#x9;&#x9;&#x9;WHEN REPLACE(ci.CategoryItemId, '*', '') = 670 --Report Bev Ordr Rate - Beverages Sold&#xA;&#x9;&#x9;&#x9;&#x9;THEN 'Beverages Sold'&#xA;&#x9;&#x9;END Account&#xA;, gi.FKStoreId Restaurant&#xA;, gi.DateOfBusiness&#xA;, '' WeekInfo --,'Week ' + CONVERT(VARCHAR(2), c.FiscalWeekNumOfYear) + ' FY' +  SUBSTRING(CONVERT(VARCHAR(4), c.FiscalYear), 3, 2) WeekInfo&#xA;, SUM(gi.Amount) AS Amount&#xA;, 0 SortOrder --Not used in this metric&#xA;INTO #OrderRate&#xA;FROM #Temp (NOLOCK) gi &#xA;INNER JOIN @Hierarchy h&#xA;ON gi.FKStoreID = h.StoreID&#xA;LEFT JOIN dbo.Item i &#xA;ON gi.FKItemid = i.ItemID &#xA;LEFT JOIN dbo.CategoryItem (NOLOCK) ci&#xA;ON i.ItemId = ci.FKItemId&#xA;WHERE gi.DateOfBusiness &gt;= h.OpenDate&#xA;AND ci.CategoryItemId IN (672, 671, 670) --(906, 919, 802, 670, 671, 672)&#xA;/*&#xA;&#x9;670&#x9;Report Bev Ordr Rate - Beverages Sold&#xA;&#x9;671&#x9;Reporting Desserts - Desserts Sold&#xA;&#x9;672&#x9;Reporting Appts - Appetizers Sold&#xA;&#x9;802&#x9;Bevs-For Bev PPA&#xA;&#x9;906&#x9;Appetizers - Appetizers Desserts Sold&#xA;&#x9;919&#x9;Dessert Category&#xA;*/&#xA;GROUP BY ci.CategoryItemId&#xA;,gi.FKStoreID&#xA;,gi.DateOfBusiness&#xA;&#xA;-- Remove data from when restaurant was closed&#xA;DELETE r&#xA;FROM #OrderRate r&#xA;JOIN @ClosedDates c&#xA;ON r.Restaurant = c.StoreID&#xA;WHERE r.DateOfBusiness &gt;= c.FirstDateClosed&#xA;AND r.DateofBusiness &lt;= c.LastDateClosed&#xA;&#xA;&#xA;INSERT INTO [HQ-FinSQL-01].AnaplanScorecardBudget.dbo.OrderRate&#xA;SELECT * FROM #OrderRate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Select Output Data for Text File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7EB6E143-C98B-4311-AE52-6EEDA7976209}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Select Output Data for Text File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Select Output Data for Text File\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Anaplan Flat File Export]"
+                  connectionManagerRefId="Package.ConnectionManagers[Anaplan Flat File Export]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Account]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="16"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Select Output Data for Text File\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[OrderRate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @StartDate DATETIME
+			 ,@EndDate DATETIME
+	SET @StartDate = DATEADD(wk, -3, DATEADD(wk, DATEDIFF(wk, 0, CURRENT_TIMESTAMP), 0)) 
+	SET @EndDate = DATEADD(dd, 0, DATEADD(dd, DATEDIFF(dd, 0, CURRENT_TIMESTAMP), 0))
+
+SELECT Account
+			,Restaurant
+			,DateOfBusiness
+			,WeekInfo
+			,Amount
+FROM dbo.OrderRate
+WHERE DateOfBusiness &gt;= @StartDate
+	AND DateOfBusiness &lt; @EndDate
+	AND Restaurant IN (SELECT DISTINCT Restaurant
+										 FROM dbo.Hierarchy)
+ORDER BY Restaurant
+				,DateOfBusiness
+				,Account</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      precision="16"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="numeric"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+              endId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{5C0D4AAE-51B6-4ECD-86CB-518CAFD27E00}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{FDE696D9-86FA-46D1-B4F2-AD1136A7876A}"
+          SendMailTask:From="itdatasupport@redrobin.com"
+          SendMailTask:To="itsupportservices@redrobin.com"
+          SendMailTask:Subject="Anaplan Order Rate Count Is Zero" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update WeekInfo Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Update WeekInfo Data"
+      DTS:DTSID="{D6C02007-22F7-4F03-A53D-1C2353503A69}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update WeekInfo Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DECLARE @StartDate DATETIME&#xA;&#x9;&#x9;&#x9; ,@EndDate DATETIME&#xA;&#x9;SET @StartDate = DATEADD(wk, -3, DATEADD(wk, DATEDIFF(wk, 0, CURRENT_TIMESTAMP), 0)) &#xA;&#x9;SET @EndDate = DATEADD(dd, 0, DATEADD(dd, DATEDIFF(dd, 0, CURRENT_TIMESTAMP), 0))&#xA;&#xA;UPDATE dbo.OrderRate&#xA;&#x9;SET WeekInfo = 'Week ' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CONVERT(VARCHAR(2), FiscalWeekNumOfYear) + ' FY' +  &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SUBSTRING(CONVERT(VARCHAR(4), FiscalYear), 3, 2) &#xA;&#x9;FROM Staging.dbo.vwCalendarShort&#xA;&#x9;WHERE DateOfBusiness = FullDate&#xA;&#x9;&#x9;AND DateOfBusiness &gt;= @StartDate&#xA;&#x9;AND DateOfBusiness &lt; @EndDate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0FA1236B-F8BB-4325-A4CF-CF7DFBD5D911}"
+      DTS:From="Package\Delete Data Older Than 13 Months"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Delete data for the current period plus two periods prior" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FBC28624-D6D6-4AB9-9132-090924616C30}"
+      DTS:From="Package\Delete data for the current period plus two periods prior"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Populate recent OrderRate data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{A1D77FC2-4D20-4EC1-9B13-B522C60A44A2}"
+      DTS:From="Package\Populate recent OrderRate data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update WeekInfo Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{E3668B26-FBCC-4EA3-BC34-FCC8ECA0E115}"
+      DTS:From="Package\Update WeekInfo Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Count Result Set Records" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{2E0F15EB-044B-44BC-B401-ED763F902D4B}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount &gt;= 1"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Select Output Data for Text File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{530C166F-039B-457D-87EF-EB65F0442A56}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount == 0"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Send Mail Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Count Result Set Records"
+          TopLeft="227.203555555556,457" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Delete data for the current period plus two periods prior"
+          TopLeft="233.203555555556,137" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Delete Data Older Than 13 Months"
+          TopLeft="233.203555555556,72" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Populate recent OrderRate data"
+          TopLeft="233.203555555556,205" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Select Output Data for Text File"
+          TopLeft="128.004444444445,528" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Send Mail Task"
+          TopLeft="375,526" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Update WeekInfo Data"
+          TopLeft="262.203555555556,378" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="366.203555555556,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="366.203555555556,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19,26"
+              Start="0,0"
+              End="-19,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="-4,13" />
+                  <mssgle:LineSegment
+                    End="-15,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15,13"
+                    Point2="-19,13"
+                    Point3="-19,17" />
+                  <mssgle:LineSegment
+                    End="-19,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="347.203555555556,247">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,131"
+              Start="0,0"
+              End="9.5,123.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.5"
+                    Point2="0,65.5"
+                    Point3="4,65.5" />
+                  <mssgle:LineSegment
+                    End="5.5,65.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,65.5"
+                    Point2="9.5,65.5"
+                    Point3="9.5,69.5" />
+                  <mssgle:LineSegment
+                    End="9.5,123.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="358.453555555556,420">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="317.203555555556,499">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-80.699111111111,29"
+              Start="0,0"
+              End="-80.699111111111,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.70403587443951" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.70403587443951"
+                    Point2="0,11.7040358744395"
+                    Point3="-4,11.7040358744395" />
+                  <mssgle:LineSegment
+                    End="-76.699111111111,11.7040358744395" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-76.699111111111,11.7040358744395"
+                    Point2="-80.699111111111,11.7040358744395"
+                    Point3="-80.699111111111,15.7040358744395" />
+                  <mssgle:LineSegment
+                    End="-80.699111111111,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.3495555555555,16.7040358744395,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="403.203555555556,499">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.296444444444,27"
+              Start="0,0"
+              End="80.296444444444,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.8968609865471" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.8968609865471"
+                    Point2="0,10.8968609865471"
+                    Point3="4,10.8968609865471" />
+                  <mssgle:LineSegment
+                    End="76.296444444444,10.8968609865471" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.296444444444,10.8968609865471"
+                    Point2="80.296444444444,10.8968609865471"
+                    Point3="80.296444444444,14.8968609865471" />
+                  <mssgle:LineSegment
+                    End="80.296444444444,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="32.148222222222,15.8968609865471,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Select Output Data for Text File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Select Output Data for Text File\OLE DB Source"
+          TopLeft="192.25,54.75" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Select Output Data for Text File\Flat File Destination"
+          TopLeft="185,129" />
+        <EdgeLayout
+          Id="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+          TopLeft="270.125,96.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.25"
+              Start="0,0"
+              End="0,24.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Select Output Data for Text File\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

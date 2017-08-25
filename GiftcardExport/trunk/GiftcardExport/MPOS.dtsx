@@ -1,0 +1,2099 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/12/2016 8:01:44 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-FINSQL-01"
+  DTS:CreatorName="DEV01\tmaul"
+  DTS:DTSID="{F2E477BA-BA4D-4B84-B33E-CC88B036A859}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="MPOS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{6AA141CF-342F-4AB7-A72F-8065C5D0B773}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MPOSExport]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{02C4DA20-408F-479A-AC8E-9E35AD1DB157}"
+      DTS:ObjectName="MPOSExport">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectoryMPOS] + "MPOS"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-nas\report\GiftCard\MPOS\MPOS">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="499"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 0"
+              DTS:DTSID="{132E45E4-0BAE-4BA3-BC95-AE9C885C4217}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MPOSMaster]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{D8669ED8-E71D-47BF-B8C0-778279844338}"
+      DTS:ObjectName="MPOSMaster">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ImportFlatFileDirectoryMPOS] + "MPOS_Master.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-SSIS2012-01\MessageHub\GiftCard\MPOS_Master.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreID"
+              DTS:DTSID="{C7A292EC-19F1-43A4-AA6F-8B29FB3C88E4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreName"
+              DTS:DTSID="{69774458-16A1-47F2-A9B5-7B76DC0C9AD7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Address"
+              DTS:DTSID="{59664BA9-A123-417F-983B-081276BD2CAE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="City"
+              DTS:DTSID="{CF02D9E8-6958-4C7D-9E33-BCE87BB7E8CB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="State"
+              DTS:DTSID="{2B6B5F66-DB19-4C28-80F6-EC49760C5F70}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Zip"
+              DTS:DTSID="{AF054679-B124-4A72-92D8-9D60070428B9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Country"
+              DTS:DTSID="{899AD8D0-7944-4B32-8A9F-3EB14FF0AE56}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Contact"
+              DTS:DTSID="{A48237F9-9E03-4578-82FC-005EDB38B92B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Phone"
+              DTS:DTSID="{094734DA-27B1-4723-A41A-54121D7A8DE6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Contact2"
+              DTS:DTSID="{C8E35100-1C58-4755-82AC-3C0D5FD46374}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Phone2"
+              DTS:DTSID="{605DF667-9C96-499B-9710-ACB773DE0563}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FDMS"
+              DTS:DTSID="{3B38DA30-CD8B-4144-8812-862785000649}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LocGrp"
+              DTS:DTSID="{F2E7C5BA-11A1-416C-ACF4-FDFAC2C54FD1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LocGrp2"
+              DTS:DTSID="{7CA4773D-6D8C-4FF7-B7CC-47358E3122A6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RuleNum"
+              DTS:DTSID="{EE64ECD2-336F-4FF0-9A93-A56308A4E507}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RuleExp"
+              DTS:DTSID="{CC82457E-AD89-4AFE-94A2-C366C74262D3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Provence"
+              DTS:DTSID="{32B9017E-DC6C-4396-A79A-F00449FAD530}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="17"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BankNum"
+              DTS:DTSID="{10288489-3584-497A-AF93-648CEFF16DA2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RouteNum"
+              DTS:DTSID="{C0E204BE-4681-489F-AF09-F2BF43D46CCC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BankName"
+              DTS:DTSID="{8AB65487-F86A-49AE-BF59-05472352DA0E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BankAddress"
+              DTS:DTSID="{8662B1F0-D151-4675-A9F1-4BBCB88E42EC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BankCity"
+              DTS:DTSID="{1DC5728C-DA2A-49BB-A5E4-CF13A8253207}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BankState"
+              DTS:DTSID="{44BF8F03-1D89-4C20-A488-1E6A04E45B8D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BankZip"
+              DTS:DTSID="{74B34334-8AC0-47BA-AD1C-E30656F90316}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BankBranch"
+              DTS:DTSID="{88984390-04B0-4B65-ADE3-E2C9BE0EBF39}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="11"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AchID"
+              DTS:DTSID="{380BC349-F054-4F7F-BDE7-B8C6280F6678}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Final Export"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F48235D3-C908-4231-B0CD-37251616D45A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Final Export"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A4E75388-4817-4121-84E5-4DFD19DD7E9E}"
+          SQLTask:SqlStatementSource="EXEC dbo.uspMPOSExport" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\MPOS Export File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{43F89262-70E8-41D9-A4F3-1FD083E08ABC}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="MPOS Export File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\MPOS Export File\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\MPOS Export File\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MPOSExport]"
+                  connectionManagerRefId="Package.ConnectionManagers[MPOSExport]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\MPOS Export File\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\MPOS Export File\Flat File Destination.Inputs[Flat File Destination Input].Columns[StoreData]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="499"
+                      cachedName="StoreData"
+                      externalMetadataColumnId="Package\MPOS Export File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Column 0]"
+                      lineageId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Output].Columns[StoreData]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\MPOS Export File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Column 0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="499"
+                      name="Column 0" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\MPOS Export File\MPOS Export Table"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MPOS Export Table"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MPOSMasterExport]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXEC dbo.uspMPOSExportSelect</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\MPOS Export File\MPOS Export Table.Connections[OleDbConnection]"
+                  connectionManagerID="{A4E75388-4817-4121-84E5-4DFD19DD7E9E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HQ-FinSQL-01 Giftcard SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Output].Columns[StoreData]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Output].ExternalColumns[StoreData]"
+                      length="499"
+                      lineageId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Output].Columns[StoreData]"
+                      name="StoreData"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Output].ExternalColumns[StoreData]"
+                      codePage="1252"
+                      dataType="str"
+                      length="499"
+                      name="StoreData" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Error Output].Columns[StoreData]"
+                      codePage="1252"
+                      dataType="str"
+                      length="499"
+                      lineageId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Error Output].Columns[StoreData]"
+                      name="StoreData" />
+                    <outputColumn
+                      refId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\MPOS Export File.Paths[OLE DB Source Output]"
+              endId="Package\MPOS Export File\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\MPOS Export File\MPOS Export Table.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\MPOS Export Table Insert"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{28CB87F4-4CBD-4CB4-8FA5-A4ADA2616D55}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="MPOS Export Table Insert"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A4E75388-4817-4121-84E5-4DFD19DD7E9E}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_MPOSMasterInsert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\MPOS Staging Table Insert"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{74D28A3D-5CEE-4029-8B1E-84B5C07A46CB}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="MPOS Staging Table Insert"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\MPOS Staging Table Insert\Flat File Source"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\MPOS Staging Table Insert\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MPOSMaster]"
+                  connectionManagerRefId="Package.ConnectionManagers[MPOSMaster]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[StoreName]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[StoreName]"
+                      name="StoreName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Address]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[State]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Zip]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Zip]"
+                      name="Zip"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Contact]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Contact]"
+                      name="Contact"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Contact2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact2]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Contact2]"
+                      name="Contact2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Phone2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Phone2]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Phone2]"
+                      name="Phone2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[FDMS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FDMS]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[FDMS]"
+                      name="FDMS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[LocGrp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LocGrp]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[LocGrp]"
+                      name="LocGrp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[LocGrp2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LocGrp2]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[LocGrp2]"
+                      name="LocGrp2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RuleNum]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RuleNum]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RuleNum]"
+                      name="RuleNum"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RuleExp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RuleExp]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RuleExp]"
+                      name="RuleExp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Provence]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Provence]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Provence]"
+                      name="Provence"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankNum]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankNum]"
+                      length="17"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankNum]"
+                      name="BankNum"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RouteNum]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RouteNum]"
+                      length="9"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RouteNum]"
+                      name="RouteNum"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankName]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankName]"
+                      name="BankName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankAddress]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankAddress]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankAddress]"
+                      name="BankAddress"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankCity]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankCity]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankCity]"
+                      name="BankCity"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankState]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankState]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankState]"
+                      name="BankState"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankZip]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankZip]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankZip]"
+                      name="BankZip"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankBranch]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankBranch]"
+                      length="50"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankBranch]"
+                      name="BankBranch"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[AchID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AchID]"
+                      length="11"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[AchID]"
+                      name="AchID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="StoreName" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Contact" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Contact2" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Phone2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Phone2" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FDMS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="FDMS" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LocGrp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LocGrp" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LocGrp2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LocGrp2" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RuleNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RuleNum" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RuleExp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RuleExp" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Provence]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Provence" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      name="BankNum" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RouteNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="RouteNum" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankName" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankAddress]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankAddress" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankCity" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankState]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankState" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankZip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankZip" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BankBranch]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankBranch" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AchID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="AchID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\MPOS Staging Table Insert\MPOSMasterStaging"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="MPOSMasterStaging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MPOSMasterStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Connections[OleDbConnection]"
+                  connectionManagerID="{A4E75388-4817-4121-84E5-4DFD19DD7E9E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HQ-FinSQL-01 Giftcard SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[StoreName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="StoreName"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[StoreName]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Address]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[State]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Zip]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Zip"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Zip]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Zip]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Contact]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Contact"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Contact]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Contact]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Phone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Contact2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Contact2"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Contact2]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Contact2]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Phone2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Phone2"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Phone2]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Phone2]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[FDMS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="FDMS"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[FDMS]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[FDMS]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[LocGrp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LocGrp"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[LocGrp]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[LocGrp]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[LocGrp2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LocGrp2"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[LocGrp2]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[LocGrp2]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[RuleNum]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RuleNum"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[RuleNum]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RuleNum]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[RuleExp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RuleExp"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[RuleExp]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RuleExp]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[Provence]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Provence"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Provence]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[Provence]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[BankNum]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="17"
+                      cachedName="BankNum"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankNum]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankNum]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[RouteNum]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="RouteNum"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[RouteNum]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[RouteNum]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[BankName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BankName"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankName]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankName]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[BankAddress]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BankAddress"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankAddress]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankAddress]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[BankCity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BankCity"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankCity]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankCity]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[BankState]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BankState"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankState]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankState]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[BankZip]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BankZip"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankZip]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankZip]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[BankBranch]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BankBranch"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankBranch]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[BankBranch]" />
+                    <inputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].Columns[AchID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="AchID"
+                      externalMetadataColumnId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[ACHID]"
+                      lineageId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output].Columns[AchID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="StoreName" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Contact]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Contact" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Contact2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Contact2" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Phone2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Phone2" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[FDMS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="FDMS" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[LocGrp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LocGrp" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[LocGrp2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LocGrp2" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[RuleNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RuleNum" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[RuleExp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RuleExp" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[Provence]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Provence" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      name="BankNum" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[RouteNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="RouteNum" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankName" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankAddress]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankAddress" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankCity" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankState]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankState" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankZip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankZip" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[BankBranch]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BankBranch" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[ACHID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="ACHID" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                    <externalMetadataColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="InsertedBy" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\MPOS Staging Table Insert.Paths[Flat File Source Output]"
+              endId="Package\MPOS Staging Table Insert\MPOSMasterStaging.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\MPOS Staging Table Insert\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E139ED79-5F80-4A85-A6D9-936CD38C2C38}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A4E75388-4817-4121-84E5-4DFD19DD7E9E}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.MPOSMasterStaging" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{40E9BF33-A33E-4724-9E93-4F4CB09F108C}"
+      DTS:From="Package\Truncate Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\MPOS Staging Table Insert" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BEAB7968-2581-402D-A3B4-C6CFB806B3BA}"
+      DTS:From="Package\MPOS Staging Table Insert"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\MPOS Export Table Insert" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7EFD48AA-538D-47DA-A5E4-51864505DA9F}"
+      DTS:From="Package\MPOS Export Table Insert"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load Final Export" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{97941B2A-BC37-4443-97CD-A171E950AB8C}"
+      DTS:From="Package\Load Final Export"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\MPOS Export File" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Load Final Export"
+          TopLeft="717.4,404.25" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\MPOS Export File"
+          TopLeft="717.4,489" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\MPOS Export Table Insert"
+          TopLeft="717.4,319.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\MPOS Staging Table Insert"
+          TopLeft="717.4,234.75" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Truncate Staging"
+          TopLeft="717.4,150" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="820.9,192">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.75"
+              Start="0,0"
+              End="0,35.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="820.9,276.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.75"
+              Start="0,0"
+              End="0,35.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="820.9,361.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.75"
+              Start="0,0"
+              End="0,35.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="820.9,446.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.75"
+              Start="0,0"
+              End="0,35.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\MPOS Export File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\MPOS Export File\Flat File Destination"
+          TopLeft="642,273" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\MPOS Export File\MPOS Export Table"
+          TopLeft="638,156" />
+        <EdgeLayout
+          Id="Package\MPOS Export File.Paths[OLE DB Source Output]"
+          TopLeft="726.25,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\MPOS Export File\MPOS Export Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\MPOS Staging Table Insert">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\MPOS Staging Table Insert\MPOSMasterStaging"
+          TopLeft="489,226" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\MPOS Staging Table Insert\Flat File Source"
+          TopLeft="493,125" />
+        <EdgeLayout
+          Id="Package\MPOS Staging Table Insert.Paths[Flat File Source Output]"
+          TopLeft="573,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\MPOS Staging Table Insert\MPOSMasterStaging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

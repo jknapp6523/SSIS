@@ -1,0 +1,347 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/22/2016 7:19:31 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="TMAUL-SP4"
+  DTS:CreatorName="CORPHQ\TMaul"
+  DTS:DTSID="{3362F860-A33B-4720-86F6-541AB8BACBD7}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DB_Move"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{8EAE4BCE-55F3-4D8A-92C2-C4A551A79393}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FinSQL-01.SSISUser]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+      DTS:ObjectName="HQ-FinSQL-01.SSISUser">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=HQ-FinSQL-01;UseWindowsAuthentication=False;UserName=SSISUser;">
+          <PassWord
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqsTtXOlYhUqQ6fHLEu5q4AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACmMSC1OmQm6lsmQRWVybxjAAAAAASAAACgAAAAEAAAAI3NcKO+ldGtsbpS+KAmU3EoAAAAmZeU0L/hTXQhxK8Y7+S3YRZ8/vvWXyyhlkh+zrme+Nd31aqMTlcZ3hQAAAB5TRyppv3ZVjKzoOBfW5maEGIPwQ</PassWord>
+        </SMOServerConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SSIS2012-01.SSISUser]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+      DTS:ObjectName="HQ-SSIS2012-01.SSISUser">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=HQ-SSIS2012-01;UseWindowsAuthentication=False;UserName=SSISUser;">
+          <PassWord
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqsTtXOlYhUqQ6fHLEu5q4AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAHaPq0sIcP3rNY1XGWkYinAAAAAASAAACgAAAAEAAAANkbDZfWiK+9pfsLO2eL2w8oAAAAxwYRsV9E1xyxfkwp/s1dm9oivPGhAxODrI2sm62SRu12v2DgW/r/ZxQAAADPYh7nG6UyOMoMJAVXevV3p+EvyQ</PassWord>
+        </SMOServerConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy AlohaInterfaces to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{D42EAB86-B036-4CC0-A257-0007263D7DD9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy AlohaInterfaces to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="AlohaInterfaces"
+          DestinationDatabase="AlohaInterfaces"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy ItemFallOut to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{51553C92-58B9-40A8-9EA1-78E5B80B0DB0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy ItemFallOut to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="ItemFallOut"
+          DestinationDatabase="ItemFallOut"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy MenuLinkInterfaces to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{D7B1154D-89CB-44FA-AB3D-792DAB0B6BDF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy MenuLinkInterfaces to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="MenuLinkInterfaces"
+          DestinationDatabase="MenuLinkInterfaces"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy OrderRatesInterface to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{57A4AB96-9C4F-4B29-A85C-4462F2CB8373}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy OrderRatesInterface to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="OrderRatesInterface"
+          DestinationDatabase="OrderRatesInterface"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy PromosCompsVoidsInterface to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{CA06F3A2-0B46-4890-B257-D7BAAB990A83}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy PromosCompsVoidsInterface to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="PromosCompsVoidsInterface"
+          DestinationDatabase="PromosCompsVoidsInterface"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy TipsInterface to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{464463BB-DE4B-4F35-B3EC-5B2AEDF16CF4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy TipsInterface to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="TipsInterface"
+          DestinationDatabase="TipsInterface"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy UOMConversion to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{58921D90-E7D0-40C5-8855-9DC7BE7190D1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy UOMConversion to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="UOMConversion"
+          DestinationDatabase="UOMConversion"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy WatsonInterfaces to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{FE0FBA95-1016-4852-8CEC-963DEB7D1D0A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy WatsonInterfaces to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{5FE0C836-6F86-45AB-B79E-6BD423C6E2D3}"
+          DestinationConnection="{B1D0AA01-9254-43BF-AF91-39887DDE74F3}"
+          SourceDatabase="WatsonInterfaces"
+          DestinationDatabase="WatsonInterfaces"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy AlohaInterfaces to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,76" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy ItemFallOut to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,277" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy MenuLinkInterfaces to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,478" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy OrderRatesInterface to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,143" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy PromosCompsVoidsInterface to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,344" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy TipsInterface to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,545" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy UOMConversion to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,210" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Copy WatsonInterfaces to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,411" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

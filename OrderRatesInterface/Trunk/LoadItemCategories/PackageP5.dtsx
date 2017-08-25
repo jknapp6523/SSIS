@@ -1,0 +1,517 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/20/2013 7:52:43 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{44427EFA-50AF-479A-87A4-142E5FF0EE06}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PackageP5"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{67D95C97-16D6-4F29-9479-32E9D6EDB5E9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.OrderRates.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{983DFAAF-2740-4BCB-9F11-FB076B67B1DF}"
+      DTS:ObjectName="HQ-FINSQL-01.OrderRates.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=OpsSales;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAA1+us1cr8SB516GHTa3+niAAAAAASAAACgAAAAEAAAAPhpo9ktvyaH+1mxCTH9L/0oAAAA8e0HsQ2cb+h+QwG/2XoUt21e0b/SUgZJ1Q44oC00hNHBfuzApXsv3RQAAACBwGHfT9TWz/k0xwzlO5JVfDwxLA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D1050E6F-F0DD-4430-A519-FCF28FCA53E4}"
+      DTS:ObjectName="HQ-SQL-06.Radiant.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-06;User ID=SSISUser;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD1QBwCrodOY61PHvjeqCDPAAAAAASAAACgAAAAEAAAAJ1vIre7dmdhc7dGKEZQjd4oAAAAcy4TxMifc9gb/BxmpImHRaTsTvZU5a23f0DL3CbAExsmGgkWAXZixRQAAAAKflOOIGsfMbl29D2ijteP7jJ4eA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{792F3EC9-0E91-4DD4-AC63-473C9CB2268F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select i.itemid, i.LongName, replace(c.Name, '*', '')  as [Category]&#xA;from Item i&#xA;inner join categoryitem ci on i.itemid = ci.fkitemid&#xA;inner join category c on ci.categoryitemid = c.categoryid&#xA;where c.CategoryID in (802,906,919)&#xA;order by c.name&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ItemCategoryQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">select i.itemid, i.LongName, replace(c.Name, '*', '')  as [Category]
+from Item i
+inner join categoryitem ci on i.itemid = ci.fkitemid
+inner join category c on ci.categoryitemid = c.categoryid
+where c.CategoryID in (802,906,919)
+order by c.name</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Item Categories from Aloha"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{776FF053-0512-4142-976F-481D7C38A6B5}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Item Categories from Aloha"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Item Categories from Aloha\Order Rates Database"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Order Rates Database"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ItemCategories]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Item Categories from Aloha\Order Rates Database.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.OrderRates.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.OrderRates.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].Columns[itemid]"
+                      cachedDataType="i4"
+                      cachedName="itemid"
+                      externalMetadataColumnId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].ExternalColumns[ItemID]"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[itemid]" />
+                    <inputColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].Columns[LongName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="26"
+                      cachedName="LongName"
+                      externalMetadataColumnId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].ExternalColumns[ItemName]"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[LongName]" />
+                    <inputColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="Category"
+                      externalMetadataColumnId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].ExternalColumns[ItemCategory]"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[Category]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].ExternalColumns[ItemID]"
+                      dataType="i4"
+                      name="ItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].ExternalColumns[ItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ItemName" />
+                    <externalMetadataColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input].ExternalColumns[ItemCategory]"
+                      dataType="wstr"
+                      length="50"
+                      name="ItemCategory" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Item Categories from Aloha\Order Rates Database.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Item Categories from Aloha\Order Rates Database.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Order Rates Database.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Item Categories from Aloha\Order Rates Database.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Item Categories from Aloha\Radiant"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Radiant"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::ItemCategoryQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Item Categories from Aloha\Radiant.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[itemid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].ExternalColumns[itemid]"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[itemid]"
+                      name="itemid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[LongName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].ExternalColumns[LongName]"
+                      length="26"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[LongName]"
+                      name="LongName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].ExternalColumns[Category]"
+                      length="25"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].ExternalColumns[itemid]"
+                      dataType="i4"
+                      name="itemid" />
+                    <externalMetadataColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].ExternalColumns[LongName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="26"
+                      name="LongName" />
+                    <externalMetadataColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="25"
+                      name="Category" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[itemid]"
+                      dataType="i4"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[itemid]"
+                      name="itemid" />
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[LongName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="26"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[LongName]"
+                      name="LongName" />
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[Category]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Item Categories from Aloha.Paths[OLE DB Source Output]"
+              endId="Package\Load Item Categories from Aloha\Order Rates Database.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Item Categories from Aloha\Radiant.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Categories Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{21D9B3A2-BA35-4A3D-8710-118D479819EA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Categories Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{983DFAAF-2740-4BCB-9F11-FB076B67B1DF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[ItemCategories]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7441FC67-27C1-4EA0-AFB9-0E99593570E7}"
+      DTS:From="Package\Truncate Categories Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Item Categories from Aloha" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="236,42"
+          Id="Package\Load Item Categories from Aloha"
+          TopLeft="103,126" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Truncate Categories Table"
+          TopLeft="116,16" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="219.5,58">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Item Categories from Aloha">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Load Item Categories from Aloha\Radiant"
+          TopLeft="166,43" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Load Item Categories from Aloha\Order Rates Database"
+          TopLeft="132,170" />
+        <EdgeLayout
+          Id="Package\Load Item Categories from Aloha.Paths[OLE DB Source Output]"
+          TopLeft="223.75,85">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85"
+              Start="0,0"
+              End="0,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Item Categories from Aloha\Order Rates Database">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Item Categories from Aloha\Radiant">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

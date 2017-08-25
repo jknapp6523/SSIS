@@ -1,0 +1,728 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/7/2017 10:21:28 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="PC162067"
+  DTS:CreatorName="CTS\599190"
+  DTS:DTSID="{7D147AFA-3E91-479E-BD3F-61A95B0531FF}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FintechReprocess"
+  DTS:PackageType="5"
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{5BBD495C-D68D-4E2D-910A-B7E28CEDA1F1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP_Con]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{24EA8054-9661-4EB9-8D76-911937665A71}"
+      DTS:ObjectName="SMTP_Con">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SMTPConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLServerDB_Con]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{42F61992-8DA4-40AA-BE0D-E5B01262DD31}"
+      DTS:ObjectName="SQLServerDB_Con">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SQLServerDB_Con]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FinSQL-01;User ID=SSISUser;Initial Catalog=Staging;Provider=SQLOLEDB.1;Persist Security Info=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtEfWnjuVI0qMDIs150yRsgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABVqC+VQZSOkcUBxhqPyaZSAAAAAASAAACgAAAAEAAAAPdF5ESCsRkpKVRAFobYUTcoAAAADTgNSyuL2r/qFLZrKfokzGjYfAlUhXb1euH/EabTyzBthLfgycfQtxQAAABPVJkV0iIpdxFmOhuQ0URLI7zybw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{57A49670-7ACC-42EF-A963-1622575B8EC0}"
+      DTS:ObjectName="EmailFrom">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Fusion_SSIS_Support@redrobin.com</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{AA61B254-6CCA-424A-A325-B01507148F5E}"
+      DTS:ObjectName="EmailToError">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">FusionIntegration_SSIS@redrobin.com</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{74620ABB-E009-463D-867B-B376F5B6FC00}"
+      DTS:ObjectName="EmailToSuccess">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">FusionIntegration_SSIS@redrobin.com</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{2DB7C9AA-8F47-4837-A7FC-0C2F05ABAD05}"
+      DTS:ObjectName="Filename">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{B250BFEA-DA40-41CB-AFA1-8E92BA5AE806}"
+      DTS:ObjectName="INVOICE_NUM">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{6287D453-23BF-469B-97A5-67D5ACB49494}"
+      DTS:ObjectName="PERIOD_NUM">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{56B3CDE5-663A-4017-A4D1-462A70B4C2C2}"
+      DTS:ObjectName="RESTAURANT_NUM">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{7AA7874C-5D4F-4A7C-8AD9-8241D1E44AF0}"
+      DTS:ObjectName="SUPPLIER_NUM">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{F3DA9C47-B4EA-4DA5-BE8C-7A1CC36F7245}"
+      DTS:ObjectName="WEEK_NUM">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A2245C20-4657-47B3-9C12-6E07C735C987}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C6F4F37A-AEE2-4816-AB06-D7BDBE5D88CC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InterfaceName">
+      <DTS:VariableValue
+        DTS:DataType="8">Fintech_Reprocess</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C18C355B-F638-4D61-9F25-BB476FA87FCC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LTRIM(RTRIM(@[$Package::Filename]))"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Filename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1465ACAB-2143-4B94-AEE9-5C575EB9644B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LTRIM(RTRIM(@[$Package::INVOICE_NUM]))"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_INVOICE_NUM">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CC1AB3A1-7645-4920-A665-8303F695D945}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_IsReprocess">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3A78F229-8DA8-4B40-9C86-AC55DCA6C31F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::PERIOD_NUM]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PERIOD_NUM">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B27AE5DE-5CC6-4EA9-88EB-A9BAB3BBFDD7}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LTRIM(RTRIM(@[$Package::RESTAURANT_NUM]))"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_RESTAURANT_NUM">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D6A11B33-47C8-450D-A347-98A8EA5A27D4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{76BBB805-EE55-429C-A669-7599A91F0D38}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LTRIM(RTRIM(@[$Package::SUPPLIER_NUM]))"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_SUPPLIER_NUM">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8A1489B6-3070-439A-A32A-0076344008C1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::WEEK_NUM]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_WEEK_NUM">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQ_Reprocess"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{85736F81-A475-4BC1-A81C-3147889A18DE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQ_Reprocess">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Reprocess\Audit End"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E673E531-19C5-4147-89EB-F4A0748E2265}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Audit End"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{42F61992-8DA4-40AA-BE0D-E5B01262DD31}"
+              SQLTask:SqlStatementSource="DECLARE @AuditID INT&#xA;SET @AuditID = ?&#xA;&#xA;UPDATE [Fusion].[SSISAuditLogStaging]&#xA;SET RowsSentToOutputFile1 = ?, --Rows updated&#xA; Status = 1,&#xA; UpdatedDate = GETDATE()&#xA;WHERE AuditID = @AuditID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::AuditID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_RowCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Reprocess\Audit Start"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E1BD5762-3329-47C0-A7A3-8160BD83A5B2}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Audit Start"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{42F61992-8DA4-40AA-BE0D-E5B01262DD31}"
+              SQLTask:SqlStatementSource="&#xA;DECLARE @AuditID INT&#xA;INSERT INTO Fusion.SSISAuditLogStaging(InterfaceName, Status)&#xA;VALUES(?, '0')&#xA;SELECT @AuditID = @@IDENTITY&#xA;&#xA;SELECT ? = @AuditID&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::InterfaceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::AuditID"
+                SQLTask:ParameterDirection="Output"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Reprocess\EST_Update_ProcessFlag"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="EST_Update_ProcessFlag"
+          DTS:DTSID="{76AF9554-98CD-4AF7-8E06-FB9470D8EF4B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST_Update_ProcessFlag"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{42F61992-8DA4-40AA-BE0D-E5B01262DD31}"
+              SQLTask:SqlStatementSource="DECLARE @Filename VARCHAR(100), @INVOICE_NUM VARCHAR(50), @RESTAURANT_NUM VARCHAR(10), @SUPPLIER_NUM VARCHAR(50), @PERIOD_NUM INT, @WEEK_NUM INT, @RCount INT&#xA;&#xA;SELECT @Filename = ?, @INVOICE_NUM = ?, @RESTAURANT_NUM = ?,  @SUPPLIER_NUM = ?, @PERIOD_NUM = ?, @WEEK_NUM = ?&#xA;&#xA;IF @Filename != ''&#xA;BEGIN&#xA;&#x9;UPDATE [Fusion].[MLFintechStaging]&#xA;&#x9;SET IS_PROCESSED = '0',&#xA;&#x9;UpdatedDate = getdate(),&#xA;&#x9;UpdatedBy = suser_sname()&#xA;&#x9;WHERE Filename = @Filename &#xA;&#x9;AND IS_PROCESSED = '1'&#xA;&#x9;&#xA;&#x9;SELECT @RCount = @@RowCount&#xA;END&#xA;ELSE&#xA;BEGIN &#xA;&#x9;UPDATE [Fusion].[MLFintechStaging]&#xA;&#x9;SET IS_PROCESSED = '0',&#xA;&#x9;UpdatedDate = getdate(),&#xA;&#x9;UpdatedBy = suser_sname()&#xA;&#x9;WHERE INVOICE_NUM = @INVOICE_NUM &#xA;&#x9;AND RESTAURANT_NUM = @RESTAURANT_NUM&#xA;&#x9;AND SUPPLIER_NUM = @SUPPLIER_NUM&#xA;&#x9;AND PERIOD_NUM = @PERIOD_NUM&#xA;&#x9;AND WEEK_NUM = @WEEK_NUM&#xA;&#x9;AND IS_PROCESSED = '1'&#xA;&#xA;&#x9;SELECT @RCount = @@RowCount&#xA;END&#xA;&#xA;SELECT ? = @RCount" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Filename"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="100" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_INVOICE_NUM"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="50" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::v_RESTAURANT_NUM"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="10" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::v_SUPPLIER_NUM"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="50" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::v_PERIOD_NUM"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::v_WEEK_NUM"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::v_RowCount"
+                SQLTask:ParameterDirection="Output"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Reprocess\ET_Check_If_Valid_Params"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{EADD3229-FA12-4A5D-89FD-D079937B1689}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ET_Check_If_Valid_Params"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::v_IsReprocess] = (@[User::v_Filename]==&quot;&quot;)?&#xA;(((@[User::v_INVOICE_NUM]==&quot;&quot;) || (@[User::v_RESTAURANT_NUM]==&quot;&quot;) || (@[User::v_SUPPLIER_NUM]==&quot;&quot;) || (@[User::v_PERIOD_NUM]==0 || (@[User::v_WEEK_NUM]==0)))?FALSE:TRUE)&#xA;:TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Reprocess\Success Notification"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:DelayValidation="True"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{4D3307BB-4F50-4CF8-9EDA-EBDF34CCECCF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Success Notification"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[$Package::EmailFrom]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::InterfaceName]  + " - Update Successful.\n\nThe details are as follows\n\nNUMBNER OF RECORDS UPDATED\t: " +  (DT_STR, 50, 1252)  @[User::v_RowCount]  + (( @[User::v_Filename] !="")?"\n\tFile Name: " +  @[User::v_Filename] : ("\n\tINVOICE_NUM: " +  @[User::v_INVOICE_NUM]  + "\n\tRESTAURANT_NUM: " +  @[User::v_RESTAURANT_NUM]   + "\n\tSUPPLIER_NUM: " +  @[User::v_SUPPLIER_NUM] + "\n\tPERIOD_NUM: " +  (DT_STR, 50, 1252) @[User::v_PERIOD_NUM] + "\n\tWEEK_NUM: " +  (DT_STR, 50, 1252) @[User::v_WEEK_NUM] ))</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::InterfaceName] + " - Update Successful"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[$Package::EmailToSuccess]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{24EA8054-9661-4EB9-8D76-911937665A71}"
+              SendMailTask:From="Fusion_SSIS_Support@redrobin.com"
+              SendMailTask:To="FusionIntegration_SSIS@redrobin.com"
+              SendMailTask:Subject="Fintech_Reprocess - Update Successful"
+              SendMailTask:MessageSource="Fintech_Reprocess - Update Successful.&#xA;&#xA;The details are as follows&#xA;&#xA;NUMBNER OF RECORDS UPDATED&#x9;: 0&#xA;&#x9;INVOICE_NUM: &#xA;&#x9;RESTAURANT_NUM: &#xA;&#x9;SUPPLIER_NUM: &#xA;&#x9;PERIOD_NUM: 0&#xA;&#x9;WEEK_NUM: 0" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{840CDEB9-A407-446F-AE2C-448FCC014FD0}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::v_IsReprocess]"
+          DTS:From="Package\SEQ_Reprocess\ET_Check_If_Valid_Params"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQ_Reprocess\EST_Update_ProcessFlag" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{CB7E4B08-611F-4161-95E1-AE827AE210F1}"
+          DTS:From="Package\SEQ_Reprocess\Audit Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQ_Reprocess\ET_Check_If_Valid_Params" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{7F8008F8-D76C-4602-A47A-6DC476205303}"
+          DTS:From="Package\SEQ_Reprocess\EST_Update_ProcessFlag"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\SEQ_Reprocess\Audit End" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{F8CFC9DB-AD5B-4E58-B829-9E1F0B6A7FF5}"
+          DTS:From="Package\SEQ_Reprocess\Audit End"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\SEQ_Reprocess\Success Notification" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{E33091C4-ED4B-4786-8C83-C7D91873FCB4}"
+      DTS:EventID="494132696"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{E7206B16-B9DB-4224-B15A-9F04C1A5D0D6}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Audit Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D10B2A88-D5F5-464C-9227-4DE4A52D7A3E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Audit Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{42F61992-8DA4-40AA-BE0D-E5B01262DD31}"
+              SQLTask:SqlStatementSource="DECLARE @AuditID INT, @ErrorCode VARCHAR(100), @ErrorMessage VARCHAR(Max)&#xA;SELECT @AuditID = ?, @ErrorCode = Convert(varchar, ?), @ErrorMessage = ?&#xA;&#xA;&#xA;UPDATE Fusion.SSISAuditLogStaging&#xA;SET Status = 2,&#xA;UpdatedDate = GETDATE(),&#xA;ErrorMessage = @ErrorCode + ':' + @ErrorMessage&#xA;WHERE AuditID = @AuditID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::AuditID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Send Error Email Notification"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{FF4046FF-2451-4504-BE6F-0B9219B45CC8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Error Email Notification"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[$Package::EmailFrom]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::InterfaceName]  + " - Update Failed.\n\nThe details are as follows\n\nNUMBNER OF RECORDS UPDATED\t: " +  (DT_STR, 50, 1252)  @[User::v_RowCount]  + (( @[User::v_Filename] !="")?"\n\tFile Name: " +  @[User::v_Filename] : ("\n\tINVOICE_NUM: " +  @[User::v_INVOICE_NUM]  + "\n\tRESTAURANT_NUM: " +  @[User::v_RESTAURANT_NUM]   + "\n\tSUPPLIER_NUM: " +  @[User::v_SUPPLIER_NUM] + "\n\tPERIOD_NUM: " +  (DT_STR, 50, 1252) @[User::v_PERIOD_NUM] + "\n\tWEEK_NUM: " +  (DT_STR, 50, 1252) @[User::v_WEEK_NUM] ))</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::InterfaceName] + " update error"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[$Package::EmailToError]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{24EA8054-9661-4EB9-8D76-911937665A71}"
+              SendMailTask:From="Fusion_SSIS_Support@redrobin.com"
+              SendMailTask:To="FusionIntegration_SSIS@redrobin.com"
+              SendMailTask:Subject="Fintech_Reprocess update error"
+              SendMailTask:MessageSource="Fintech_Reprocess - Update Failed.&#xA;&#xA;The details are as follows&#xA;&#xA;NUMBNER OF RECORDS UPDATED&#x9;: 0&#xA;&#x9;INVOICE_NUM: &#xA;&#x9;RESTAURANT_NUM: &#xA;&#x9;SUPPLIER_NUM: &#xA;&#x9;PERIOD_NUM: 0&#xA;&#x9;WEEK_NUM: 0" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E99193DC-7344-44E0-B3D6-E99BC3847BDD}"
+          DTS:From="Package.EventHandlers[OnError]\Audit Error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Send Error Email Notification" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="126,42"
+          Id="Package\SEQ_Reprocess\Audit End"
+          TopLeft="94.0000000000001,310.5" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\SEQ_Reprocess\Audit Start"
+          TopLeft="91.5,4.5" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\SEQ_Reprocess\EST_Update_ProcessFlag"
+          TopLeft="57.5,208.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\SEQ_Reprocess\ET_Check_If_Valid_Params"
+          TopLeft="52.5,106.5" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\SEQ_Reprocess\Success Notification"
+          TopLeft="70.0000000000001,412.5" />
+        <EdgeLayout
+          Id="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint]"
+          TopLeft="157,148.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint 1]"
+          TopLeft="157,46.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint 2]"
+          TopLeft="157,250.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQ_Reprocess.PrecedenceConstraints[Constraint 3]"
+          TopLeft="157,352.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="306,510"
+          Size="306,553"
+          Id="Package\SEQ_Reprocess"
+          TopLeft="5.50000000000006,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="132,42"
+          Id="Package.EventHandlers[OnError]\Audit Error"
+          TopLeft="102,60" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package.EventHandlers[OnError]\Send Error Email Notification"
+          TopLeft="63,137" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="169.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

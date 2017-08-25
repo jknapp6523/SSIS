@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/9/2015 9:17:36 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="IMONCIVAIS-L6"
+  DTS:CreatorName="CORPHQ\IMoncivais"
+  DTS:DTSID="{C239FE47-0DEF-4444-9FC1-BFEC00F03F17}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CopyStaging_ToDW-01"
+  DTS:PackageType="5"
+  DTS:VersionBuild="63"
+  DTS:VersionGUID="{448B4082-35B2-4C75-8D35-0320AE91E54F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-DW-01]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{6FF7CE4F-9416-410F-BA84-446EF06F75B7}"
+      DTS:ObjectName="HQ-DW-01">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=HQ-DW-01;UseWindowsAuthentication=False;UserName=SSISUser;">
+          <PassWord
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABVzPw8VMATh74v/UCNaTomAAAAAASAAACgAAAAEAAAAAMQbwj2UjjZck3PH6JEuCEoAAAAYn7RN+Bv6KFN5JBs6m9H6OYOP6J6/KE4Uhkpm9Drcz0WkB2dK+DPChQAAAAyhybU4W4GeN9EfUc+77xl3QwiYQ</PassWord>
+        </SMOServerConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-DW-01a]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C3ADC1E7-93DB-4350-B1BA-91EFA9C7EB46}"
+      DTS:ObjectName="HQ-DW-01a">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-DW-01;User ID=SSISUser;Initial Catalog=master;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACC5kZifO/4TfRimtyJpdQDAAAAAASAAACgAAAAEAAAAOK8aDZ6jAYgD040O5W1qmMoAAAAELyMoqI5fhLJrgy0GlnE1u8efjVISF9EvCJZ+a3EgHM66kMS4XgY3BQAAABKc8HdxLunb5J4YFJK0DS0B0DH5w</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{EB242B74-EB85-4D10-ADF2-842C1012C45D}"
+      DTS:ObjectName="HQ-FINSQL-01">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=HQ-FINSQL-01;UseWindowsAuthentication=False;UserName=SSASUser;">
+          <PassWord
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADPcojoMTZgqVPiwaAkHzGfAAAAAASAAACgAAAAEAAAAE4aFGQp0opfBZ+a9gOdq0MoAAAAtVCJ04xs76TGAtzQjYkeyPJQAd8mMcPTtQX3ORd20XcL0SJXaePlohQAAACdnjVk8gIWNElNihYAr8xTOSdFTg</PassWord>
+        </SMOServerConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy DW to HQ-DW-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{ad6c5d65-5874-467d-9214-f80cbe99c636}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy DW to HQ-DW-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{EB242B74-EB85-4D10-ADF2-842C1012C45D}"
+          DestinationConnection="{6FF7CE4F-9416-410F-BA84-446EF06F75B7}"
+          SourceDatabase="DW"
+          DestinationDatabase="DW"
+          CopyAllTables="True"
+          TablesList="39,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],23,[dbo].[BusinessClosure],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="7,14,[dbo].[Region],11,[dbo].[RVP],48,[dbo].[staging_RvpRegionRestaurantHierarchy_tab],17,[dbo].[StoreList],20,[dbo].[Time_Periods],23,[dbo].[vRestaurantInfo],23,[dbo].[vw_RRRhierarchy],"
+          StoredProceduresList="20,49,[dbo].[rpt_GetCheckAssignmentRoyalty_7day_counts],34,[dbo].[usp_Program_activities_All],44,[dbo].[usp_Program_activities_All_DateRange],36,[dbo].[usp_Program_activities_Level],46,[dbo].[usp_Program_activities_Level_DateRange],37,[dbo].[usp_Program_activities_Region],47,[dbo].[usp_Program_activities_Region_DateRange],35,[dbo].[usp_Program_activities_Rest],45,[dbo].[usp_Program_activities_Rest_DateRange],34,[dbo].[usp_Program_activities_RVP],44,[dbo].[usp_Program_activities_RVP_DateRange],41,[dbo].[usp_SLS_activities_DateRange_test],31,[dbo].[usp_SLS_activities_test],40,[dbo].[usp_TM_activities_DateRange_test],41,[dbo].[usp_TM_activities_DateRange_test1],49,[dbo].[usp_TM_activities_noDetail_DateRange_test],39,[dbo].[usp_TM_activities_noDetail_test],30,[dbo].[usp_TM_activities_test],36,[dbo].[usp_TM_Detail_DateRange_test],26,[dbo].[usp_TM_Detail_test],"
+          UserDefinedFunctionsList="3,27,[dbo].[ufn_SameDateYearAgo],30,[dbo].[ufn_StringToProperCase],22,[dbo].[UpperLowerCase],"
+          DropObjectsFirst="True"
+          IncludeExtendedProperties="True"
+          CopyData="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy Staging to HQ-DW-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{6BC934E8-6C0A-4867-90B5-8A5658F4CF2E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Staging to HQ-DW-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{EB242B74-EB85-4D10-ADF2-842C1012C45D}"
+          DestinationConnection="{6FF7CE4F-9416-410F-BA84-446EF06F75B7}"
+          SourceDatabase="Staging"
+          DestinationDatabase="Staging"
+          CopyAllTables="True"
+          TablesList="39,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],23,[dbo].[BusinessClosure],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="19,14,[dbo].[RH_POD],17,[dbo].[RH_Region],21,[dbo].[RH_restaurant],41,[dbo].[source_RegionalAlignmentSS_Div_vw],37,[dbo].[source_RegionalAlignmentSS_vw],20,[dbo].[Time_Periods],18,[dbo].[vwCalendar],25,[dbo].[vwCalendarDataSet],26,[dbo].[vwCalendarFiscalWk],21,[dbo].[vwCalendarNow],23,[dbo].[vwCalendarShort],28,[dbo].[vwRegionALLwfp_STATE],26,[dbo].[vwRegionALLwfp_wST],23,[dbo].[vwRestaurantSFC],15,[dbo].[vwStore],18,[dbo].[vwStoreALL],21,[dbo].[vwStoreALLwfp],25,[dbo].[vwStoreCategories],19,[dbo].[vwStoreRRBW],"
+          DropObjectsFirst="True"
+          IncludeExtendedProperties="True"
+          CopyData="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create DW"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{0bcd1314-283c-4524-b8d2-6d000df6f9d6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create DW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C3ADC1E7-93DB-4350-B1BA-91EFA9C7EB46}"
+          SQLTask:SqlStatementSource="&#xA;--&#x9;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='DW')&#xA;DROP DATABASE [DW]&#xA;GO&#xA;&#xA;CREATE DATABASE [DW] ON  PRIMARY &#xA;( NAME = N'DW', FILENAME = N'E:\DataUsr\DW.mdf' , &#xA;  SIZE = 256GB , MAXSIZE = 640GB, FILEGROWTH = 10% )&#xA;LOG ON &#xA;( NAME = N'DW_log', FILENAME = N'F:\DataLog\DW.ldf' , &#xA;  SIZE = 4GB , MAXSIZE = 256GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [DW]&#xA;GO&#xA;&#xA;&#x9;sp_changedbowner @loginame = 'sa'&#xA;&#x9;go&#xA;&#xA;&#xA;--&#x9;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;-- --------imp&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create Staging"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F6AF993D-A8D0-4639-B865-1E718CE1A6C7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C3ADC1E7-93DB-4350-B1BA-91EFA9C7EB46}"
+          SQLTask:SqlStatementSource="&#xA;--&#x9;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='Staging')&#xA;DROP DATABASE [Staging]&#xA;GO&#xA;&#xA;CREATE DATABASE [Staging] ON  PRIMARY &#xA;( NAME = N'MLAddOn', FILENAME = N'E:\DataUsr\Staging.mdf' , &#xA;  SIZE = 2GB , MAXSIZE = 4GB, FILEGROWTH = 10% )&#xA;LOG ON &#xA;( NAME = N'Staging_log', FILENAME = N'F:\DataLog\Staging_log.ldf' , &#xA;  SIZE = 1GB , MAXSIZE = 4GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [Staging]&#xA;GO&#xA;&#xA;&#x9;sp_changedbowner @loginame = 'sa'&#xA;&#x9;go&#xA;&#xA;&#xA;--&#x9;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;--&#x9;--------imp&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{375A2541-AB12-4D11-B97B-0566552A515E}"
+      DTS:From="Package\Copy Staging to HQ-DW-01"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Drop &amp; Create DW" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{96B85872-FD26-4CF2-AD30-673018FA251C}"
+      DTS:From="Package\Drop &amp; Create Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Copy Staging to HQ-DW-01" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{2c411108-0171-49d5-81e7-5ac1e43f4554}"
+      DTS:From="Package\Drop &amp; Create DW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1 1"
+      DTS:To="Package\Copy DW to HQ-DW-01" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,79"
+          Id="Package\Copy DW to HQ-DW-01"
+          TopLeft="386.875,155" />
+        <NodeLayout
+          Size="165,78"
+          Id="Package\Copy Staging to HQ-DW-01"
+          TopLeft="198.875,22" />
+        <NodeLayout
+          Size="130,78"
+          Id="Package\Drop &amp; Create DW"
+          TopLeft="212.375,155" />
+        <NodeLayout
+          Size="130,78"
+          Id="Package\Drop &amp; Create Staging"
+          TopLeft="24.375,22" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="279.375,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="154.375,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.5,0"
+              Start="0,0"
+              End="37,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1 1]"
+          TopLeft="342.375,194.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.5,0"
+              Start="0,0"
+              End="37,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

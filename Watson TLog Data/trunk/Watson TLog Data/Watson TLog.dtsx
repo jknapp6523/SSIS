@@ -1,0 +1,1653 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/5/2015 9:12:29 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DANNAN-L7"
+  DTS:CreatorName="CORPHQ\dannan"
+  DTS:DTSID="{18A6DA71-842A-43A4-8B44-5BED92B42B42}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Watson TLog"
+  DTS:PackageType="5"
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{DBCAC170-89C7-4AE0-B286-40E9FB157D01}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CleanMenuMix]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="CleanMenuMix"
+      DTS:DTSID="{0695E729-F11F-4FBB-A7C3-62EB2D03E8D2}"
+      DTS:ObjectName="CleanMenuMix">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory] + "CleanMenuMix.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\TLog\CleanMenuMix.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RR"
+              DTS:DTSID="{AD6D53B5-057D-4733-A537-CF21927DB342}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DOW"
+              DTS:DTSID="{53A29C53-1DAF-42FF-B6E7-B010A1D43A28}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DOWOrder"
+              DTS:DTSID="{1B42B354-76D2-4894-B7A3-87A39AD6B240}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Shift"
+              DTS:DTSID="{7E4F5472-10F5-46CE-B748-2385FD39A983}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Item"
+              DTS:DTSID="{782E8B58-8705-4BE0-A95A-84F9EEDBB9AE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MenuDesc"
+              DTS:DTSID="{6ACCA29E-8A29-432E-8A84-DBE8301E1D61}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Quantity"
+              DTS:DTSID="{83110200-7533-4D98-A111-FC1326FAE54A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RadiantStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AF8E58C3-5A1D-4AC6-9B9F-A62B4F2C89C9}"
+      DTS:ObjectName="RadiantStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=hq-sql-07;User ID=ssisuser;Initial Catalog=RadiantStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0PaxfnfqXk+7InMBaRU2IAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAqMyeIgotoJzfwanFbdwI7AAAAAASAAACgAAAAEAAAAPpzS9EFvWtFF8Q6JptnHnsoAAAAEVZOXDx3M4suyE4zAqGw92ODwjIw5Qzim8AMahxQGCASbEDabRAszhQAAABUk4nFFnau4I3gzTuh1wW/4GHkBg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RRVariables_csv]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Variables for Watson reports"
+      DTS:DTSID="{79360C10-5E0C-4EE6-932E-4986F2A5F1E4}"
+      DTS:ObjectName="RRVariables_csv">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory] + "RR_Variables.csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\TLog\RR_Variables.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RR"
+              DTS:DTSID="{49DFC786-E76F-4A85-98EF-CF5762C86964}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ST"
+              DTS:DTSID="{96CBF396-F5B2-46D4-9A16-5E9F4F28B1EA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RESTAURANT"
+              DTS:DTSID="{56609290-CE08-4929-99EE-C6896B5EC9A4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INSIDE TABLES"
+              DTS:DTSID="{B7DDF137-B9F2-470F-B2AA-63DD93399A48}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PATIO TABLES"
+              DTS:DTSID="{1BEE39A9-FABA-4BC9-9110-96E4C1CE0A2A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TOTAL TABLES"
+              DTS:DTSID="{86B857DE-4B06-4CB1-BC55-31B400613FF3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BAR STOOLS"
+              DTS:DTSID="{B18650FB-A954-4EB7-9F7A-F78B1D852EF8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FRYERS"
+              DTS:DTSID="{6BC7F3BC-56CB-42AF-9745-9F9B5DCBF691}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MICROWAVES"
+              DTS:DTSID="{0AE13642-2E8A-4BB7-80AA-6E89C5CD5CB5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DELIVERIES"
+              DTS:DTSID="{929261DF-7299-410E-B517-C7E68CA4D11D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ZIOSK MAINT "
+              DTS:DTSID="{8EF3E37F-1804-471A-8F90-7B8AB6F24445}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INSIDE SEATS"
+              DTS:DTSID="{DA0BFAE8-4C6C-47C6-871E-62A7B12BB6E3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OUTSIDE SEATS"
+              DTS:DTSID="{B210C2BF-6D82-49AD-A682-6D5EEA27608D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RRVariables_txt]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Variables for Watson reports"
+      DTS:DTSID="{C2FCB976-0B55-4520-85D7-8D50424278C6}"
+      DTS:ObjectName="RRVariables_txt">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ImportFlatFileDirectory] + "RR_Variables.txt"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\TLog\Import\RR_Variables.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RR"
+              DTS:DTSID="{2182F919-F512-4CE4-B634-33BC8980EA4A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ST"
+              DTS:DTSID="{C28B500E-4918-41C0-97A9-62FC52749211}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RESTAURANT"
+              DTS:DTSID="{433031CC-FA50-45EB-8736-C69A102321B7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INSIDE TABLES"
+              DTS:DTSID="{21D57D5C-5FF4-4CBD-AC1D-1F34A686A72C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PATIO TABLES"
+              DTS:DTSID="{5DAF0662-1BD9-4B45-B259-2EE95B03E80D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TOTAL TABLES"
+              DTS:DTSID="{512F2944-47AB-4C7C-B0B4-C856DFC666E0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BAR STOOLS"
+              DTS:DTSID="{3BB11E62-049F-49EC-8B96-0E3F586301EB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FRYERS"
+              DTS:DTSID="{F2E03D2A-BABC-4A1E-997D-BF563B1AADEA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MICROWAVES"
+              DTS:DTSID="{89D1E064-C506-46A6-A3A3-3EBD431B66B9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DELIVERIES"
+              DTS:DTSID="{08478E8C-1223-4218-B70B-164D016A2E0E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ZIOSK MAINT "
+              DTS:DTSID="{101CB5D7-D924-46E0-988B-50E8400864EC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INSIDE SEATS"
+              DTS:DTSID="{06440A70-66CA-4F54-8C48-EADC91FF5514}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OUTSIDE SEATS"
+              DTS:DTSID="{311439A8-8763-4349-AF55-93E00FA700F6}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clean Menu Mix"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ECD2A41E-E782-41E5-83E0-6AD78D695CF2}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean Menu Mix"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Clean Menu Mix\Clean Menu Mix"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Clean Menu Mix"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">rpt.uspCleanMenuMix</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@StartDate:Input",{5FC69C4E-69A6-4B90-97F1-21418B3BFD43};"@EndDate:Input",{8B1FD996-EBF3-4876-B520-D47EF4BB1E8B};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Clean Menu Mix\Clean Menu Mix.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RadiantStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[RadiantStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Item]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[Item]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Item]"
+                      name="Item"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[MenuDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[MenuDesc]"
+                      length="8000"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[MenuDesc]"
+                      name="MenuDesc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[RR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[RR]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[RR]"
+                      name="RR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[DOW]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[DOW]"
+                      length="30"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[DOW]"
+                      name="DOW"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[DOWOrder]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[DOWOrder]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[DOWOrder]"
+                      name="DOWOrder"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Shift]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[Shift]"
+                      length="2"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Shift]"
+                      name="Shift"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[Item]"
+                      dataType="i4"
+                      name="Item" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="r8"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[MenuDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="26"
+                      name="MenuDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[RR]"
+                      dataType="i4"
+                      name="RR" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[DOW]"
+                      dataType="wstr"
+                      length="30"
+                      name="DOW" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[DOWOrder]"
+                      dataType="i4"
+                      name="DOWOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].ExternalColumns[Shift]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Shift" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[RR]"
+                      dataType="i4"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[RR]"
+                      name="RR" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[DOW]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[DOW]"
+                      name="DOW" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[DOWOrder]"
+                      dataType="i4"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[DOWOrder]"
+                      name="DOWOrder" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[Shift]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[Shift]"
+                      name="Shift" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[Item]"
+                      dataType="i4"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[Item]"
+                      name="Item" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="r8"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[MenuDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="26"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[MenuDesc]"
+                      name="MenuDesc" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Clean Menu Mix\Clean Menu Mix Export"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Clean Menu Mix Export">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Clean Menu Mix\Clean Menu Mix Export.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CleanMenuMix]"
+                  connectionManagerRefId="Package.ConnectionManagers[CleanMenuMix]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].Columns[Item]"
+                      cachedDataType="i4"
+                      cachedName="Item"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[Item]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Item]" />
+                    <inputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].Columns[MenuDesc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="MenuDesc"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[MenuDesc]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[MenuDesc]" />
+                    <inputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].Columns[RR]"
+                      cachedDataType="i4"
+                      cachedName="RR"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[RR]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[RR]" />
+                    <inputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].Columns[DOW]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="DOW"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[DOW]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[DOW]" />
+                    <inputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].Columns[DOWOrder]"
+                      cachedDataType="i4"
+                      cachedName="DOWOrder"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[DOWOrder]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[DOWOrder]" />
+                    <inputColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].Columns[Shift]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Shift"
+                      externalMetadataColumnId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[Shift]"
+                      lineageId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output].Columns[Shift]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[Item]"
+                      dataType="i8"
+                      name="Item" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[Quantity]"
+                      dataType="i8"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[MenuDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[RR]"
+                      dataType="i4"
+                      name="RR" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[DOW]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DOW" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[DOWOrder]"
+                      dataType="i4"
+                      name="DOWOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input].ExternalColumns[Shift]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Shift" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Clean Menu Mix.Paths[OLE DB Source Output]"
+              endId="Package\Clean Menu Mix\Clean Menu Mix Export.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Clean Menu Mix\Clean Menu Mix.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy File to Import directory"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="File System Task"
+      DTS:DTSID="{7B1778CF-B3BA-4E21-8EF4-3FB9BA89F479}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy File to Import directory"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="{79360C10-5E0C-4EE6-932E-4986F2A5F1E4}"
+          TaskDestinationPath="{C2FCB976-0B55-4520-85D7-8D50424278C6}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import to refStoreDetailStaging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4BF78C01-4513-4840-A7D6-D8ADCE5B09CA}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import to refStoreDetailStaging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="refStoreDetailStaging Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[refStoreDetailStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RadiantStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[RadiantStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].Columns[RESTAURANT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="RESTAURANT"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[RESTAURANT]" />
+                    <inputColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].Columns[FRYERS]"
+                      cachedDataType="i4"
+                      cachedName="FRYERS"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Fryers]"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[FRYERS]" />
+                    <inputColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].Columns[RR]"
+                      cachedDataType="i4"
+                      cachedName="RR"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[RR]" />
+                    <inputColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].Columns[INSIDE SEATS]"
+                      cachedDataType="i4"
+                      cachedName="INSIDE SEATS"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[InsideSeats]"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[INSIDE SEATS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[InsideSeats]"
+                      dataType="i4"
+                      name="InsideSeats" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Fryers]"
+                      dataType="i4"
+                      name="Fryers" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InsertedBy" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      name="UpdatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="UpdatedBy" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import to refStoreDetailStaging\RR_Variables txt file"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="RR_Variables txt file"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RRVariables_txt]"
+                  connectionManagerRefId="Package.ConnectionManagers[RRVariables_txt]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[RR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[RR]"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[RR]"
+                      name="RR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[ST]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[ST]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[ST]"
+                      name="ST"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[RESTAURANT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[RESTAURANT]"
+                      length="100"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[RESTAURANT]"
+                      name="RESTAURANT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[INSIDE TABLES]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[INSIDE TABLES]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[INSIDE TABLES]"
+                      name="INSIDE TABLES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[PATIO TABLES]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[PATIO TABLES]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[PATIO TABLES]"
+                      name="PATIO TABLES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[TOTAL TABLES]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[TOTAL TABLES]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[TOTAL TABLES]"
+                      name="TOTAL TABLES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[BAR STOOLS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[BAR STOOLS]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[BAR STOOLS]"
+                      name="BAR STOOLS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[FRYERS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[FRYERS]"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[FRYERS]"
+                      name="FRYERS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[MICROWAVES]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[MICROWAVES]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[MICROWAVES]"
+                      name="MICROWAVES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[DELIVERIES]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[DELIVERIES]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[DELIVERIES]"
+                      name="DELIVERIES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[ZIOSK MAINT ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[ZIOSK MAINT ]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[ZIOSK MAINT ]"
+                      name="ZIOSK MAINT "
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[INSIDE SEATS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[INSIDE SEATS]"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[INSIDE SEATS]"
+                      name="INSIDE SEATS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[OUTSIDE SEATS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[OUTSIDE SEATS]"
+                      length="50"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].Columns[OUTSIDE SEATS]"
+                      name="OUTSIDE SEATS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[RR]"
+                      dataType="i4"
+                      name="RR" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[ST]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ST" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[RESTAURANT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="RESTAURANT" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[INSIDE TABLES]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="INSIDE TABLES" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[PATIO TABLES]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PATIO TABLES" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[TOTAL TABLES]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TOTAL TABLES" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[BAR STOOLS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BAR STOOLS" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[FRYERS]"
+                      dataType="i4"
+                      name="FRYERS" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[MICROWAVES]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MICROWAVES" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[DELIVERIES]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DELIVERIES" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[ZIOSK MAINT ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ZIOSK MAINT " />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[INSIDE SEATS]"
+                      dataType="i4"
+                      name="INSIDE SEATS" />
+                    <externalMetadataColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output].ExternalColumns[OUTSIDE SEATS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OUTSIDE SEATS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import to refStoreDetailStaging.Paths[Flat File Source Output]"
+              endId="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Import to refStoreDetailStaging\RR_Variables txt file.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Staging to refStoreDetail"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7B4517B4-4637-4D35-99F4-D1655AF77C07}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Staging to refStoreDetail"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AF8E58C3-5A1D-4AC6-9B9F-A62B4F2C89C9}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[refStoreDetail]&#xA;(&#xA;&#x9;[StoreID],&#xA;&#x9;[InsideSeats],&#xA;&#x9;[Fryers],&#xA;&#x9;[Restaurant]&#xA;)&#xA;&#x9;  SELECT&#xA;&#x9;&#x9;  s.StoreID,&#xA;&#x9;&#x9;  s.InsideSeats,&#xA;&#x9;&#x9;  s.Fryers,&#xA;&#x9;&#x9;  s.Restaurant&#xA;&#x9;  FROM  dbo.refStoreDetailStaging AS s&#xA;&#x9;  WHERE s.StoreID IS NOT NULL&#xA;&#x9;&#x9;   AND ISNUMERIC(s.StoreID) = 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E2C2EB68-42A4-4100-9968-9D9DDB74BF03}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AF8E58C3-5A1D-4AC6-9B9F-A62B4F2C89C9}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.refStoreDetailStaging&#xA;TRUNCATE TABLE dbo.refStoreDetail" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BC735491-E3EE-4504-AE60-E2ECD7FD79E4}"
+      DTS:From="Package\Truncate Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy File to Import directory" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5180FC0B-4E32-4B26-9E22-31E301BA2CA0}"
+      DTS:From="Package\Copy File to Import directory"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Import to refStoreDetailStaging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5956A7D3-D494-4FA2-A9F1-5C628F6D7676}"
+      DTS:From="Package\Import to refStoreDetailStaging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Staging to refStoreDetail" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Clean Menu Mix"
+          TopLeft="129.91,55" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Copy File to Import directory"
+          TopLeft="129.91,262" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Import to refStoreDetailStaging"
+          TopLeft="129.91,357" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Staging to refStoreDetail"
+          TopLeft="129.91,452" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Truncate Tables"
+          TopLeft="129.91,167" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="243.41,209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="243.41,304">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="243.41,399">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Clean Menu Mix">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Clean Menu Mix\Clean Menu Mix Export"
+          TopLeft="22.5,97" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Clean Menu Mix\Clean Menu Mix"
+          TopLeft="21.5,10" />
+        <EdgeLayout
+          Id="Package\Clean Menu Mix.Paths[OLE DB Source Output]"
+          TopLeft="115.5,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Clean Menu Mix\Clean Menu Mix">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import to refStoreDetailStaging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Import to refStoreDetailStaging\RR_Variables txt file"
+          TopLeft="191,104" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table"
+          TopLeft="194,216" />
+        <EdgeLayout
+          Id="Package\Import to refStoreDetailStaging.Paths[Flat File Source Output]"
+          TopLeft="296.5,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import to refStoreDetailStaging\refStoreDetailStaging Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

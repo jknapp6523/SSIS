@@ -1,0 +1,610 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/11/2016 7:49:07 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="SJEPSEN-L7"
+  DTS:CreatorName="CORPHQ\SJepsen"
+  DTS:DTSID="{D2D81C20-EF6F-4AED-8BA7-78ECD88152AA}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadSalesToFusionHstSummaryStage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{F7F8101F-87AE-4B72-A728-49E0C9C84340}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Insert SalesToFusionHstSummaryStage"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{974FFB01-0B2A-4D15-93D2-DB68ECE13541}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert SalesToFusionHstSummaryStage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="RadiantStaging Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+		ss.DateOfBusiness,
+		ss.FKStoreId,
+		sm.GLAccount,
+          sm.GLDescription,
+		sm.DebitCreditMultiplier,
+		SUM((ss.Amount * sm.Multiplier) * sm.DebitCreditMultiplier) AS Amount
+	FROM  Radiant.dbo.dpvHstSalesSummary AS ss
+	INNER JOIN dbo.AlohaToFusionSalesMapping AS sm
+		 ON ss.Type = sm.Type
+		    AND (ss.TypeId = sm.TypeID
+			    OR sm.TypeID = 0)
+	WHERE ss.DateOfBusiness &gt;= DATEADD(DAY,-?,CURRENT_TIMESTAMP)
+		 AND ((sm.Positive = 0)
+			 OR (sm.Positive = 1
+				AND ss.Amount &gt; 0)
+			 OR (sm.Positive = -1
+				AND ss.Amount &lt; 0))
+		 AND ForBalancing &lt;&gt; 1
+		 AND DebitCreditMultiplier IS NOT NULL
+	GROUP BY
+		ss.DateOfBusiness,
+		ss.FKStoreId,
+		sm.ForBalancing,
+		sm.BalanceElement,
+		sm.GLAccount,
+		sm.GLDescription,
+		sm.DebitCreditMultiplier</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{960C0A49-374B-4BDC-BFB5-1A346E238017};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Connections[OleDbConnection]"
+                  connectionManagerID="{7FD84F80-2C79-437B-B51E-117F61036934}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AlohaRadiantStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[FKStoreId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[FKStoreId]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[FKStoreId]"
+                      name="FKStoreId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[GLAccount]"
+                      length="5"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[GLAccount]"
+                      name="GLAccount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[GLDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[GLDescription]"
+                      length="50"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[GLDescription]"
+                      name="GLDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[DebitCreditMultiplier]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[DebitCreditMultiplier]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[DebitCreditMultiplier]"
+                      name="DebitCreditMultiplier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[FKStoreId]"
+                      dataType="i4"
+                      name="FKStoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="GLAccount" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[GLDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GLDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[DebitCreditMultiplier]"
+                      dataType="i2"
+                      name="DebitCreditMultiplier" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="r8"
+                      name="Amount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[FKStoreId]"
+                      dataType="i4"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[FKStoreId]"
+                      name="FKStoreId" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[GLAccount]"
+                      name="GLAccount" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[GLDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[GLDescription]"
+                      name="GLDescription" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[DebitCreditMultiplier]"
+                      dataType="i2"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[DebitCreditMultiplier]"
+                      name="DebitCreditMultiplier" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="r8"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="SalesToFusionHstSummaryStage Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SalesToFusionHstSummaryStage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{C5A4B7E6-4CEF-4928-8372-B15D2E171C2E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWStage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].Columns[GLAccount]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="GLAccount"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLAccount]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[GLAccount]" />
+                    <inputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].Columns[GLDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="GLDescription"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLDescription]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[GLDescription]" />
+                    <inputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].Columns[DebitCreditMultiplier]"
+                      cachedDataType="i2"
+                      cachedName="DebitCreditMultiplier"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[DebitCreditMultiplier]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[DebitCreditMultiplier]" />
+                    <inputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].Columns[Amount]"
+                      cachedDataType="r8"
+                      cachedName="Amount"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].Columns[FKStoreId]"
+                      cachedDataType="i4"
+                      cachedName="FKStoreId"
+                      externalMetadataColumnId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreId]"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output].Columns[FKStoreId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreId]"
+                      dataType="i4"
+                      name="StoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLAccount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="GLAccount" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[GLDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GLDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[DebitCreditMultiplier]"
+                      dataType="i2"
+                      name="DebitCreditMultiplier" />
+                    <externalMetadataColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Insert SalesToFusionHstSummaryStage.Paths[OLE DB Source Output]"
+              endId="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate SalesToFusionHstSummaryStage"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1ABB18B4-9EBD-4645-98FF-FF2BFE95EBC0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate SalesToFusionHstSummaryStage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C5A4B7E6-4CEF-4928-8372-B15D2E171C2E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.SalesToFusionHstSummaryStage;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3CA78BF3-F458-4E24-9AA3-3B7A2CB33BAB}"
+      DTS:From="Package\Truncate SalesToFusionHstSummaryStage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Insert SalesToFusionHstSummaryStage" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Insert SalesToFusionHstSummaryStage"
+          TopLeft="122,164" />
+        <NodeLayout
+          Size="280,42"
+          Id="Package\Truncate SalesToFusionHstSummaryStage"
+          TopLeft="124,64" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="264,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9,58"
+              Start="0,0"
+              End="-9,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="-4,29" />
+                  <mssgle:LineSegment
+                    End="-5,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5,29"
+                    Point2="-9,29"
+                    Point3="-9,33" />
+                  <mssgle:LineSegment
+                    End="-9,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Insert SalesToFusionHstSummaryStage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source"
+          TopLeft="93,110" />
+        <NodeLayout
+          Size="291,42"
+          Id="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination"
+          TopLeft="96,217" />
+        <EdgeLayout
+          Id="Package\Insert SalesToFusionHstSummaryStage.Paths[OLE DB Source Output]"
+          TopLeft="186.5,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,65"
+              Start="0,0"
+              End="55,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="4,32.5" />
+                  <mssgle:LineSegment
+                    End="51,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51,32.5"
+                    Point2="55,32.5"
+                    Point3="55,36.5" />
+                  <mssgle:LineSegment
+                    End="55,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert SalesToFusionHstSummaryStage\RadiantStaging Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert SalesToFusionHstSummaryStage\SalesToFusionHstSummaryStage Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

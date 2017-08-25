@@ -1,0 +1,1825 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/25/2017 3:17:42 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-MDM-01"
+  DTS:CreatorName="DEV01\dev_rbarker"
+  DTS:DTSID="{281FBF6D-139E-44D0-AE74-89A1F23A4F29}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadWorkdayEmployee"
+  DTS:PackageType="5"
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{A6DE488C-1253-4F33-9434-15698F7E0A63}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Log File]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{6419619E-C0F5-447D-8C54-EE7029DC7B4C}"
+      DTS:ObjectName="Log File">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="FixedWidth"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\MDM Inbound Files\log.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="7"
+              DTS:MaximumWidth="7"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Warning"
+              DTS:DTSID="{5DBBB403-29B4-41A5-89A9-2C56622C7FD9}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Workday Employee CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{BCCB269F-0F7B-4D8F-B820-65A52360E835}"
+      DTS:ObjectName="Workday Employee CSV">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::folder] +  @[$Package::file]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\MDM Inbound Files\MDM_Employee.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TMID"
+              DTS:DTSID="{D5F3C046-E0F7-4F80-AE38-61882B6D8E81}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Full Name"
+              DTS:DTSID="{8A25FC84-576E-4EBB-AEC2-8609401538C6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Legal First Name"
+              DTS:DTSID="{4C286BB6-D063-4482-82F3-13758FA79A9B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Legal Middle Name"
+              DTS:DTSID="{1594A780-16EB-4ED6-B571-32062635570E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Legal Last Name"
+              DTS:DTSID="{2E4A9783-E790-47C2-A101-C0EDA4774194}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Preferred First Name"
+              DTS:DTSID="{9608D4B3-DFE3-4F97-9D3B-94E3E6DC6558}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Preferred Middle Name"
+              DTS:DTSID="{C04F65F8-E246-4C72-B391-DE4826FD9F0B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Preferred Last Name"
+              DTS:DTSID="{C5599C72-DC3B-4E7E-9265-BD0CE4B92A72}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Email"
+              DTS:DTSID="{141F161E-ABE2-47C0-A99A-34E4ED54E8F4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Phone"
+              DTS:DTSID="{E5CD07FE-12B3-41DF-AC71-C67C63AF4753}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Title"
+              DTS:DTSID="{075CBF26-5187-4895-BB3B-E242AA0468C0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Location Department Name"
+              DTS:DTSID="{2FED576E-A9A4-4436-B92D-2DC1A390E043}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Location Department ID"
+              DTS:DTSID="{F018C36C-6E48-4B5D-8B70-4D6D3E3AF60F}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{3FC93C8F-9604-41D8-A83D-A47C09BAD5DC}"
+      DTS:ObjectName="file">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">MDM_Employee.csv</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3055E84C-2E57-4FC8-A5D7-EE83917B3D86}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::PackageName]  + (DT_WSTR,29)(DT_DBDATE)GETDATE()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchTag">
+      <DTS:VariableValue
+        DTS:DataType="8">LoadWorkdayEmployee2017-08-07</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Check File Availability"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{47BC0953-E1B9-4BED-BCD6-FE9DEFA53B7A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Check File Availability"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="MaximumErrorCount">1</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_af0213501f014b958842a75aea36e8ed"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="$Package::file,$Project::folder">
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_af0213501f014b958842a75aea36e8ed")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_af0213501f014b958842a75aea36e8ed")]
+[assembly: AssemblyCopyright("Copyright @  2017")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="ST_af0213501f014b958842a75aea36e8ed.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD9E3DBC-072A-42F9-BBB3-9BE16DF6A8E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_af0213501f014b958842a75aea36e8ed</RootNamespace>
+    <AssemblyName>ST_af0213501f014b958842a75aea36e8ed</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using System.IO;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_af0213501f014b958842a75aea36e8ed
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+		public void Main()
+		{
+			// TODO: Add your code here
+
+            string folder = Dts.Variables["$Project::folder"].Value.ToString();     //@"C:\temp\";
+            string file = Dts.Variables["$Package::file"].Value.ToString();         //"a.txt";
+            string fullPath = string.Format("{0}\\{1}", folder, file);
+
+            //Dts.Variables["User::fileExists"].Value = File.Exists(fullPath); 
+            if (File.Exists(fullPath))
+            {
+                Dts.TaskResult = (int)ScriptResults.Success;
+            }
+            else
+            {
+                Dts.TaskResult = (int)ScriptResults.Failure;
+            }
+		}
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:ProjectId>{7BDB36D3-1C19-4D18-A865-67F3638415D8}</msb:ProjectId>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_af0213501f014b958842a75aea36e8ed</msb:CodeName>
+		<msb:DisplayName>ST_af0213501f014b958842a75aea36e8ed</msb:DisplayName>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_af0213501f014b958842a75aea36e8ed.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Settings.get_Default():ST_af0213501f014b958842a75aea36e8ed.Properties.Sett" +
+    "ings")]
+
+namespace ST_af0213501f014b958842a75aea36e8ed.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_af0213501f014b958842a75aea36e8ed.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_af0213501f014b958842a75aea36e8ed.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_af0213501f014b958842a75aea36e8ed.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDANMIUVkAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAni4A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFAuAABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAApA4AAAAgAAAAEAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACA
+LgAAAAAAAEgAAAACAAUA+CEAAFgMAAABAAAAAAAAAEAhAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
+AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
+BoADAAAEKh4CKBQAAAoqABMwAwBvAAAAAgAAEQIoFgAACm8XAAAKcnMAAHBvGAAACm8ZAAAKbxoA
+AAoKAigWAAAKbxcAAApylQAAcG8YAAAKbxkAAApvGgAACgtyswAAcAYHKBsAAAoMCCgcAAAKLA0C
+KBYAAAoWbx0AAAoqAigWAAAKF28dAAAKKh4CKB4AAAoqALQAAADOyu++AQAAAJEAAABsU3lzdGVt
+LlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3Vs
+dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNv
+dXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pCAQABAAAA
+AAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAADYAwAAI34AAEQEAADQBQAAI1N0cmluZ3MAAAAAFAoA
+AMQAAAAjVVMA2AoAABAAAAAjR1VJRAAAAOgKAABwAQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAwAA
+APolMwAWAAABAAAAHwAAAAUAAAAGAAAACQAAAAEAAAAeAAAAAgAAAA8AAAACAAAAAgAAAAMAAAAE
+AAAAAQAAAAQAAAABAAAAAQAAAAAACgABAAAAAAAGAMEAugAKAN0AyAAOAD0BFAEGAFkBugAGAG8B
+XgEGAKABiwEGAFcCPQIGAIICcAIGAJkCcAIGALYCcAIGANUCcAIGAO4CcAIGAAcDcAIGACIDcAIG
+AD0DcAIGAFYDcAIGAI8DbwMGAK8DbwMGAOADzQMGAP0DugAGAAIEugAGACYEcAIKAFIEPAQKAGsE
+PAQGAIAEbwMOAKIEFAEOAMQEFAESAB0F/QQSADUF/QQGAFoFugAGAHIFaAUAAAAAAQAAAAAAAQAB
+AAAAEAAyADwABQABAAEAAAEQAGsAPAAJAAMABQABABAAdAB/AA0ABAAIAAMBAACjAAAAEQAEAAoA
+EQB/ARMAEQCsARcAEQD2ATkABgYfAkcAVoAnAkoAVoAvAkoAUCAAAAAAgxi8ARsAAQBYIAAAAACT
+CMIBHwABAJEgAAAAAJMI1gEkAAEAmCAAAAAAkwjiASkAAQCgIAAAAACWCAYCPQACALMgAAAAAIYY
+vAEbAAIApyAAAAAAkRibBIkAAgC8IAAAAACGABoCGwACADchAAAAAIYYvAEbAAIAAAABADcCOQC8
+AVgAQQC8AVgASQC8AVgAUQC8AVgAWQC8AVgAYQC8AVgAaQC8AVgAcQC8AVgAeQC8AVgAgQC8AVgA
+iQC8AV0AkQC8ARsAmQC8ARsACQC8ARsAoQAUBGIAoQAvBGkAKQC8AW4AuQC8AXoAyQC8ARsAEQC8
+ARsA0QC8ARsAGQDWBI0A2QAnBZIA4QA+BZcA6QBHBZ0ACQBRBaEA8QBhBaUA+QB3BawA2QB+BV0A
+GQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgAbACgBLgAjACgBLgBjAE4BLgALALcALgATAP8ALgAz
+AP8ALgArACgBLgA7AC4BLgBDACgBLgBbAEUBQwBrAFMASQCTAIAAYQCbAFMAgwCrAFMAdQCxAAIA
+AQADAAMAAABvAS8AAADuATQAAAASAkIAAgACAAMAAgADAAUAAQAEAAUAAgAFAAcABIAAAAEAAADy
+GPErAAAAAAAAfwAAAAQAAAAAAAAAAAAAAAEAsQAAAAAABAAAAAAAAAAAAAAAAQC6AAAAAAALAAAA
+AAAAAAAAAAAKAPUAAAAAAAsAAAAAAAAAAAAAAAoA3gQAAAAAAAAAAAEAAACNBQAABQAEAAAAAAAA
+PE1vZHVsZT4AU1RfYWYwMjEzNTAxZjAxNGI5NTg4NDJhNzVhZWEzNmU4ZWQuZGxsAFJlc291cmNl
+cwBTVF9hZjAyMTM1MDFmMDE0Yjk1ODg0MmE3NWFlYTM2ZThlZC5Qcm9wZXJ0aWVzAFNldHRpbmdz
+AFNjcmlwdE1haW4AU1RfYWYwMjEzNTAxZjAxNGI5NTg4NDJhNzVhZWEzNmU4ZWQAU2NyaXB0UmVz
+dWx0cwBtc2NvcmxpYgBTeXN0ZW0AT2JqZWN0AFN5c3RlbS5Db25maWd1cmF0aW9uAEFwcGxpY2F0
+aW9uU2V0dGluZ3NCYXNlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQu
+U3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFz
+ZQBFbnVtAFN5c3RlbS5SZXNvdXJjZXMAUmVzb3VyY2VNYW5hZ2VyAHJlc291cmNlTWFuAFN5c3Rl
+bS5HbG9iYWxpemF0aW9uAEN1bHR1cmVJbmZvAHJlc291cmNlQ3VsdHVyZQAuY3RvcgBnZXRfUmVz
+b3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAEN1bHR1cmUAZGVmYXVsdEluc3Rh
+bmNlAGdldF9EZWZhdWx0AERlZmF1bHQATWFpbgB2YWx1ZV9fAFN1Y2Nlc3MARmFpbHVyZQB2YWx1
+ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBTeXN0
+ZW0uUmVmbGVjdGlvbgBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25B
+dHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0
+dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1
+dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNzZW1ibHlDdWx0dXJlQXR0cmlidXRlAEFz
+c2VtYmx5VmVyc2lvbkF0dHJpYnV0ZQBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAENv
+bXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1
+dGUAU3lzdGVtLkRpYWdub3N0aWNzAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUAVHlwZQBS
+dW50aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBBc3NlbWJseQBnZXRfQXNzZW1ibHkA
+U3lzdGVtLkNvbXBvbmVudE1vZGVsAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93
+c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQAuY2N0b3IAU1NJU1NjcmlwdFRh
+c2tFbnRyeVBvaW50QXR0cmlidXRlAFNjcmlwdE9iamVjdE1vZGVsAGdldF9EdHMATWljcm9zb2Z0
+LlNxbFNlcnZlci5NYW5hZ2VkRFRTAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVmFy
+aWFibGVzAGdldF9WYXJpYWJsZXMAVmFyaWFibGUAZ2V0X0l0ZW0AZ2V0X1ZhbHVlAFRvU3RyaW5n
+AFN0cmluZwBGb3JtYXQAU3lzdGVtLklPAEZpbGUARXhpc3RzAHNldF9UYXNrUmVzdWx0AFNUX2Fm
+MDIxMzUwMWYwMTRiOTU4ODQyYTc1YWVhMzZlOGVkLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291
+cmNlcwAAcVMAVABfAGEAZgAwADIAMQAzADUAMAAxAGYAMAAxADQAYgA5ADUAOAA4ADQAMgBhADcA
+NQBhAGUAYQAzADYAZQA4AGUAZAAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBj
+AGUAcwAAISQAUAByAG8AagBlAGMAdAA6ADoAZgBvAGwAZABlAHIAAB0kAFAAYQBjAGsAYQBnAGUA
+OgA6AGYAaQBsAGUAAA97ADAAfQBcAHsAMQB9AAAAXOR1DB6DkEmiM5i5DI2xIQAIt3pcVhk04IkI
+iYRdzYCAzJEDBhIVAwYSGQMgAAEEAAASFQQAABIZBQABARIZBAgAEhUECAASGQMGEgwEAAASDAQI
+ABIMAgYIAwYRFAQAAAAABAEAAAAEIAEBDgQgAQEIBgABElERVQQgABJZBiACAQ4SWQQHARIVBSAB
+ARFhCAEAAgAAAAAAAwAAAQQgABJtBCAAEnEFIAESdRwDIAAcAyAADgYAAw4OHBwEAAECDgUHAw4O
+DkcBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQ
+Lk5FVCBGcmFtZXdvcmsgNCgBACNTVF9hZjAyMTM1MDFmMDE0Yjk1ODg0MmE3NWFlYTM2ZThlZAAA
+BQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDE3AAAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNl
+cHRpb25UaHJvd3MBAAAAeC4AAAAAAAAAAAAAji4AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAu
+AAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
+AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
+AAAAAAC9BO/+AAABAAAAAQDxK/IYAAABAPEr8hg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
+AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
+MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
+AF8AYQBmADAAMgAxADMANQAwADEAZgAwADEANABiADkANQA4ADgANAAyAGEANwA1AGEAZQBhADMA
+NgBlADgAZQBkAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMwA4
+ADYALgAxADEAMgA0ADkAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+YQBmADAAMgAxADMANQAwADEAZgAwADEANABiADkANQA4ADgANAAyAGEANwA1AGEAZQBhADMANgBl
+ADgAZQBkAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
+cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADcAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
+AGwAZQBuAGEAbQBlAAAAUwBUAF8AYQBmADAAMgAxADMANQAwADEAZgAwADEANABiADkANQA4ADgA
+NAAyAGEANwA1AGEAZQBhADMANgBlADgAZQBkAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
+AE4AYQBtAGUAAAAAAFMAVABfAGEAZgAwADIAMQAzADUAMAAxAGYAMAAxADQAYgA5ADUAOAA4ADQA
+MgBhADcANQBhAGUAYQAzADYAZQA4AGUAZAAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4ANgAzADgANgAuADEAMQAyADQAOQAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAzADgANgAuADEAMQAyADQAOQAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAACgPgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Employee to Maestro"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Load Employee Using Integrator"
+      DTS:DTSID="{d6cd38f6-a532-4cd3-9b75-7596f5e46d5b}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Employee to Maestro"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">"-N:FromStagingToMaestroEmployee -T:Upsert"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files\Profisee\Master Data Maestro Integrator\3.2.1\IntegratorCLU.exe"
+          Arguments="-N:FromStagingToMaestroEmployee -T:Upsert"
+          WorkingDirectory="C:\Program Files\Profisee\Master Data Maestro Integrator\3.2.1"
+          WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Workday Employee"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3D2ACEB8-152B-4C63-8D48-865D4586DDE1}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Workday Employee"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Workday Employee\Load to Employee Staging Table"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load to Employee Staging Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_Workday_Employee]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Workday Employee\Load to Employee Staging Table.Connections[OleDbConnection]"
+                  connectionManagerID="{8EFA440D-6BA4-44B2-8549-0638C4EA2295}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDM Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Email]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Title]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Title"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Title]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Location Department Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Location Department Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Location-Department Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Location Department Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Location Department ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Location Department ID"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Location-Department Id]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Location Department ID]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[TMID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TMID"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[TMID]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Full Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Full Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Full Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Legal First Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Legal First Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[First Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal First Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Legal Middle Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Legal Middle Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Middle Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal Middle Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Legal Last Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Legal Last Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Last Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal Last Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Preferred First Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Preferred First Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Preferred First Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred First Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Preferred Middle Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Preferred Middle Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Preferred Middle Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred Middle Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].Columns[Preferred Last Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Preferred Last Name"
+                      externalMetadataColumnId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Preferred Last Name]"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred Last Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                      dataType="wstr"
+                      length="250"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="250"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="100"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="20"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                      dataType="wstr"
+                      length="200"
+                      name="Title" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[First Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="First Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Middle Name]"
+                      dataType="wstr"
+                      length="200"
+                      name="Middle Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Last Name]"
+                      dataType="wstr"
+                      length="200"
+                      name="Last Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Location-Department Id]"
+                      dataType="wstr"
+                      length="100"
+                      name="Location-Department Id" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Location-Department Name]"
+                      dataType="wstr"
+                      length="200"
+                      name="Location-Department Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Preferred First Name]"
+                      dataType="wstr"
+                      length="200"
+                      name="Preferred First Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Preferred Middle Name]"
+                      dataType="wstr"
+                      length="200"
+                      name="Preferred Middle Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Preferred Last Name]"
+                      dataType="wstr"
+                      length="200"
+                      name="Preferred Last Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ExternalEmployeeIndicator]"
+                      dataType="wstr"
+                      length="250"
+                      name="ExternalEmployeeIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[CreateTime]"
+                      dataType="dbTimeStamp"
+                      name="CreateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      dataType="wstr"
+                      length="250"
+                      name="SourceSystem" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Workday Employee\Load to Employee Staging Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Employee\Load to Employee Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Load to Employee Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Employee\Load to Employee Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Workday Employee\Read from Employee CSV"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Read from Employee CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Workday Employee\Read from Employee CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Workday Employee CSV]"
+                  connectionManagerRefId="Package.ConnectionManagers[Workday Employee CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Email]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      length="20"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Title]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Title]"
+                      name="Title"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Location Department Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Location Department Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Location Department Name]"
+                      name="Location Department Name"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Location Department ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Location Department ID]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Location Department ID]"
+                      name="Location Department ID"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[TMID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[TMID]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[TMID]"
+                      name="TMID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Full Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Full Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Full Name]"
+                      name="Full Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal First Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Legal First Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal First Name]"
+                      name="Legal First Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal Middle Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Legal Middle Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal Middle Name]"
+                      name="Legal Middle Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal Last Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Legal Last Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Legal Last Name]"
+                      name="Legal Last Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred First Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Preferred First Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred First Name]"
+                      name="Preferred First Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred Middle Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Preferred Middle Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred Middle Name]"
+                      name="Preferred Middle Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred Last Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Preferred Last Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].Columns[Preferred Last Name]"
+                      name="Preferred Last Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="50"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="20"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Title]"
+                      dataType="wstr"
+                      length="100"
+                      name="Title" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Location Department Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Location Department Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Location Department ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Location Department ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[TMID]"
+                      dataType="wstr"
+                      length="50"
+                      name="TMID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Full Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Full Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Legal First Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Legal First Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Legal Middle Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Legal Middle Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Legal Last Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Legal Last Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Preferred First Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Preferred First Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Preferred Middle Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Preferred Middle Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output].ExternalColumns[Preferred Last Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Preferred Last Name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Workday Employee.Paths[Flat File Source Output]"
+              endId="Package\Load Workday Employee\Load to Employee Staging Table.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Load Workday Employee\Read from Employee CSV.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Business Rules"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Run Maestro Business Rules"
+      DTS:DTSID="{E55E0252-8911-4ACB-864A-FD39E55389F5}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Business Rules"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">@[$Project::MaestroServer] + " /VALIDATEENTITY /MODEL:\" " + @[$Project::MaestroModel] +  "\" /ENTITY:\"Employee\" /VERSION:\"" + @[$Project::MaestroModelVersion]  + "\""</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files\Profisee\Master Data Maestro Utilities\5.1.2\Profisee.MasterDataMaestro.Utilities.exe"
+          Arguments="/URL:net.tcp://dev1-maestro-01.dev01.net/maestro/service.svc/tcp /VALIDATEENTITY /MODEL:&quot; RR Data Model&quot; /ENTITY:&quot;Employee&quot; /VERSION:&quot;Version_1&quot;"
+          WorkingDirectory="C:\Program Files\Profisee\Master Data Maestro Utilities\5.1.2"
+          SuccessValue="1"
+          WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F5924010-FBD7-4788-BBE2-3E731FE99E54}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8EFA440D-6BA4-44B2-8549-0638C4EA2295}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [MDMStaging].[dbo].[STG_Workday_Employee]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C229A901-2416-4C29-A1AA-60C8410070E8}"
+      DTS:From="Package\Load Workday Employee"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Employee to Maestro" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{2CAB7BC7-491C-4051-8F38-43371EE580A9}"
+      DTS:From="Package\Check File Availability"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncate Staging Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{DF265186-8EDE-4663-B4BC-9B6872D34179}"
+      DTS:From="Package\Truncate Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load Workday Employee" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{04801F93-6F0A-4F25-8F3F-93536C8B7D8C}"
+      DTS:From="Package\Load Employee to Maestro"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Run Business Rules" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Check File Availability"
+          TopLeft="17.5,5.5" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Load Employee to Maestro"
+          TopLeft="12.5000000000001,303.5" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Load Workday Employee"
+          TopLeft="10,209.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Run Business Rules"
+          TopLeft="22.5,413.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Truncate Staging Table"
+          TopLeft="13.5,107.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="112,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="108.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="108.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="112,345.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Workday Employee">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Load Workday Employee\Read from Employee CSV"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\Load Workday Employee\Load to Employee Staging Table"
+          TopLeft="58,191" />
+        <EdgeLayout
+          Id="Package\Load Workday Employee.Paths[Flat File Source Output]"
+          TopLeft="106,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="68.5,143.5"
+              Start="0,0"
+              End="68.5,136">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,67.75"
+                    Point2="0,71.75"
+                    Point3="4,71.75" />
+                  <mssgle:LineSegment
+                    End="64.5,71.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="64.5,71.75"
+                    Point2="68.5,71.75"
+                    Point3="68.5,75.75" />
+                  <mssgle:LineSegment
+                    End="68.5,136" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Workday Employee\Load to Employee Staging Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

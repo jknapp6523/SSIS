@@ -1,0 +1,2892 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/14/2013 1:21:38 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MSMITH-L7"
+  DTS:CreatorName="CORPHQ\msmith"
+  DTS:DTSID="{87306624-E16B-4168-84FC-D38FE7B7B1CE}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TipsDataLoaderByDateRange"
+  DTS:PackageType="5"
+  DTS:VersionBuild="63"
+  DTS:VersionGUID="{45B8BE89-21F3-4333-95A1-3C2A6745869C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CRONUS\cronussql2000]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{875CE99A-EA50-4D37-9BD4-C82CFB91F87A}"
+      DTS:ObjectName="CRONUS\cronussql2000">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CRONUS\cronussql2000;Initial Catalog=MLAddOn;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-TipsDataLoader-{875CE99A-EA50-4D37-9BD4-C82CFB91F87A}CRONUS\cronussql2000;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cronus\cronussql2000.MLAddOn]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E7292B34-4ABF-4517-8737-9877051CDE13}"
+      DTS:ObjectName="cronus\cronussql2000.MLAddOn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=cronus\cronussql2000;Initial Catalog=MLAddOn;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-TipsDataLoaderByDateRange-{E7292B34-4ABF-4517-8737-9877051CDE13}cronus\cronussql2000.MLAddOn;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1BD28F0C-E9EA-4207-8A80-1E57E8D17011}"
+      DTS:ObjectName="HQ-SQL-06.Radiant">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-06;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MSMITH-L7\MSMITH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D4061219-E16F-412B-AE24-7A4D488FDEED}"
+      DTS:ObjectName="MSMITH-L7\MSMITH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=MSMITH-L8;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E620DB38-8D54-466B-95CF-87158C9C07C8}"
+      DTS:ObjectName="MSMITH-L7\MSMITH.Tips">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=MSMITH-L8;Initial Catalog=Tips;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{51E86222-A488-4E9D-A602-C88D78AE0DB8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BeginDate">
+      <DTS:VariableValue
+        DTS:DataType="7">9/1/2012</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{726B713B-2D0C-439C-85B6-F71DBB7C5551}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Date">
+      <DTS:VariableValue
+        DTS:DataType="7">5/1/2012</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{61AFB970-C65D-4710-85C0-64CC0F26B5F8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Dates">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1121002F-0613-49A3-80F8-3CA37248BA68}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EOD">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EDB8C77-106E-436B-860F-271454DF66B4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Restaurant">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{49063F03-C780-4227-8019-83A07DD8E4D9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Restaurants">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{39C149BD-188B-4537-94BB-9734BBFE587A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT top 1 [DateOfBusiness]&#xA;&#x9;,[FKStoreID]&#xA;&#x9;,(SELECT sum([Amount])&#xA;&#x9;&#x9;FROM [Radiant].[dbo].[dpvHstSalesSummary]&#xA;&#x9;&#x9;WHERE [Type] = 81&#xA;&#x9;&#x9;AND FKStoreId = &quot; + (DT_WSTR, 4) @[User::Restaurant] +&#xA;&#x9;&#x9;&quot; AND DateOfBusiness = &quot; + &quot;'&quot; +(DT_WSTR, 10) @[User::Yesterday] + &quot;'&quot; +&#xA;&#x9;&#x9;&quot; GROUP BY DateOfBusiness, FKStoreID) &#xA;AS TippableSales&#xA;&#x9;,(SELECT sum([Amount])&#xA;&#x9;&#x9;FROM [Radiant].[dbo].[dpvHstSalesSummary]&#xA;&#x9;&#x9;WHERE [Type] = 34&#xA;&#x9;&#x9;AND FKStoreId = &quot; + (DT_WSTR, 4) @[User::Restaurant] +&#xA;&#x9;&#x9;&quot; AND DateOfBusiness = &quot; + &quot;'&quot; + (DT_WSTR, 10) @[User::Yesterday] + &quot;'&quot; +&#xA;&#x9;&#x9;&quot; GROUP BY DateOfBusiness, FKStoreID) &#xA;AS Autogratuity&#xA;&#x9;,(SELECT sum([Amount])&#xA;&#x9;&#x9;FROM [Radiant].[dbo].[dpvHstSalesSummary]&#xA;&#x9;&#x9;WHERE [Type] = 2&#xA;&#x9;&#x9;AND FKStoreId = &quot; + (DT_WSTR, 4) @[User::Restaurant] +&#xA;&#x9;&#x9;&quot; AND DateOfBusiness = &quot; + &quot;'&quot; + (DT_WSTR, 10) @[User::Yesterday] + &quot;'&quot; +&#xA;&#x9;&#x9;&quot; GROUP BY DateOfBusiness, FKStoreID) &#xA;AS SalesTax&#xA;FROM [Radiant].[dbo].[dpvHstSalesSummary]&#xA;WHERE FKStoreID = &quot; + (DT_WSTR, 4) @[User::Restaurant] +&#xA;&quot; AND DateOfBusiness = &quot;+ &quot;'&quot; + (DT_WSTR, 10) @[User::Yesterday] + &quot;'&quot; +&#xA;&quot; GROUP BY [DateOfBusiness],[FKStoreID],[Type]&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SalesDateQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT top 1 [DateOfBusiness]
+	,[FKStoreID]
+	,(SELECT sum([Amount])
+		FROM [Radiant].[dbo].[dpvHstSalesSummary]
+		WHERE [Type] = 81
+		AND FKStoreId = 0 AND DateOfBusiness = '12/31/2012' GROUP BY DateOfBusiness, FKStoreID) 
+AS TippableSales
+	,(SELECT sum([Amount])
+		FROM [Radiant].[dbo].[dpvHstSalesSummary]
+		WHERE [Type] = 34
+		AND FKStoreId = 0 AND DateOfBusiness = '12/31/2012' GROUP BY DateOfBusiness, FKStoreID) 
+AS Autogratuity
+	,(SELECT sum([Amount])
+		FROM [Radiant].[dbo].[dpvHstSalesSummary]
+		WHERE [Type] = 2
+		AND FKStoreId = 0 AND DateOfBusiness = '12/31/2012' GROUP BY DateOfBusiness, FKStoreID) 
+AS SalesTax
+FROM [Radiant].[dbo].[dpvHstSalesSummary]
+WHERE FKStoreID = 0 AND DateOfBusiness = '12/31/2012' GROUP BY [DateOfBusiness],[FKStoreID],[Type]</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5C0102EC-728D-49D0-AB19-F65516B3B6FC}"
+      DTS:Expression="DATEADD(&quot;day&quot;,DATEDIFF(&quot;day&quot;,(DT_DBTIMESTAMP)1,GETDATE()),(DT_DBTIMESTAMP)0)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Yesterday">
+      <DTS:VariableValue
+        DTS:DataType="7">12/31/2012</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load data per date"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{DF73AAD6-C80C-4CEA-BC66-D3E7DA3D765B}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load data per date">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{5AF54F43-5557-48FC-B8FE-E1CEFDF9A009}"
+        DTS:ObjectName="{5AF54F43-5557-48FC-B8FE-E1CEFDF9A009}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::Dates" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load data per date\Load data per restaurant"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{67D80AB3-FBEC-42E2-BB2B-67C22F026C28}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load data per restaurant">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+            DTS:DTSID="{C4F7561F-1F6E-4F77-89B3-517930680A1E}"
+            DTS:ObjectName="{C4F7561F-1F6E-4F77-89B3-517930680A1E}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::Restaurants" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Load data per date\Load data per restaurant\Stage Sales Data"
+              DTS:CreationName="SSIS.Pipeline.3"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{108793B8-BC98-428F-9952-D1FFBFF4CD03}"
+              DTS:ExecutableType="SSIS.Pipeline.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Stage Sales Data"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table"
+                      componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="Load SalesStaging Table"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dbo].[SalesStaging]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">true</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                          connectionManagerRefId="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="DateOfBusiness"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].Columns[FKStoreID]"
+                              cachedDataType="i4"
+                              cachedName="FKStoreID"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantID]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[FKStoreID]" />
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].Columns[TippableSales]"
+                              cachedDataType="r8"
+                              cachedName="TippableSales"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[TippableSales]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[TippableSales]" />
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].Columns[SalesTax]"
+                              cachedDataType="r8"
+                              cachedName="SalesTax"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[SalesTax]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[SalesTax]" />
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].Columns[Autogratuity]"
+                              cachedDataType="r8"
+                              cachedName="Autogratuity"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[AutoGratuity]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[Autogratuity]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              name="DateOfBusiness" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantID]"
+                              dataType="i4"
+                              name="RestaurantID" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[TippableSales]"
+                              dataType="cy"
+                              name="TippableSales" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[AutoGratuity]"
+                              dataType="cy"
+                              name="AutoGratuity" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[SalesTax]"
+                              dataType="cy"
+                              name="SalesTax" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup"
+                      componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+                      contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                      description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                      name="Lookup"
+                      usesDispositions="true"
+                      version="6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the SQL statement that generates the lookup table."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                          expressionType="Notify"
+                          name="SqlCommandParam"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of connection used to access the reference dataset."
+                          name="ConnectionType"
+                          typeConverter="LookupConnectionType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the cache type of the lookup table."
+                          name="CacheType"
+                          typeConverter="CacheType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                          name="NoMatchBehavior"
+                          typeConverter="LookupNoMatchBehavior">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                          name="NoMatchCachePercentage">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                          name="MaxMemoryUsage">25</property>
+                        <property
+                          dataType="System.Int64"
+                          description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                          name="MaxMemoryUsage64">25</property>
+                        <property
+                          dataType="System.String"
+                          description="Indicates whether to reference metadata in an XML format."
+                          name="ReferenceMetadataXml"></property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                          name="ParameterMap"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                          name="TreatDuplicateKeysAsError">false</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Connections[OleDbConnection]"
+                          description="Connection manager used to access lookup data."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Inputs[Lookup Input]"
+                          name="Lookup Input">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Outputs[Lookup Match Output]"
+                          errorOrTruncationOperation="Lookup"
+                          errorRowDisposition="FailComponent"
+                          exclusionGroup="1"
+                          name="Lookup Match Output"
+                          synchronousInputId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Inputs[Lookup Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Outputs[Lookup No Match Output]"
+                          description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                          exclusionGroup="1"
+                          name="Lookup No Match Output"
+                          synchronousInputId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Inputs[Lookup Input]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Outputs[Lookup Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Lookup Error Output"
+                          synchronousInputId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Inputs[Lookup Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data"
+                      componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                      contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                      description="OLE DB Source"
+                      name="Sales Data"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Exec [dbo].[uspCollectSalesData]
+@Restaurant = ?,
+@DateOfBusiness = ?</property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable">User::SalesDateQuery</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="The mappings between the parameters in the SQL command and variables."
+                          name="ParameterMapping">"@Restaurant:Input",{4EDB8C77-106E-436B-860F-271454DF66B4};"@DateOfBusiness:Input",{726B713B-2D0C-439C-85B6-F71DBB7C5551};</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                          connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output]"
+                          name="OLE DB Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                              name="DateOfBusiness"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                              name="FKStoreID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[TippableSales]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[TippableSales]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[TippableSales]"
+                              name="TippableSales"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[Autogratuity]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[Autogratuity]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[Autogratuity]"
+                              name="Autogratuity"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[SalesTax]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[SalesTax]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].Columns[SalesTax]"
+                              name="SalesTax"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              name="DateOfBusiness" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                              dataType="i4"
+                              name="FKStoreID" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[TippableSales]"
+                              dataType="r8"
+                              name="TippableSales" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[Autogratuity]"
+                              dataType="r8"
+                              name="Autogratuity" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output].ExternalColumns[SalesTax]"
+                              dataType="r8"
+                              name="SalesTax" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output]"
+                          isErrorOut="true"
+                          name="OLE DB Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                              name="DateOfBusiness" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                              name="FKStoreID" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[TippableSales]"
+                              dataType="r8"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[TippableSales]"
+                              name="TippableSales" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[Autogratuity]"
+                              dataType="r8"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[Autogratuity]"
+                              name="Autogratuity" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[SalesTax]"
+                              dataType="r8"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[SalesTax]"
+                              name="SalesTax" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Load data per date\Load data per restaurant\Stage Sales Data.Paths[OLE DB Source Output]"
+                      endId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table.Inputs[OLE DB Destination Input]"
+                      name="OLE DB Source Output"
+                      startId="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data.Outputs[OLE DB Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Load data per date\Load data per restaurant\Stage Tender Data"
+              DTS:CreationName="SSIS.Pipeline.3"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{68565312-AFAC-4CB6-AD08-6DF4600044AA}"
+              DTS:ExecutableType="SSIS.Pipeline.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Stage Tender Data"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination"
+                      componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="OLE DB Destination"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dbo].[TenderStaging]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                          connectionManagerRefId="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="DateOfBusiness"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FKStoreId]"
+                              cachedDataType="i4"
+                              cachedName="FKStoreId"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantID]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[FKStoreId]" />
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Total]"
+                              cachedDataType="r8"
+                              cachedName="Total"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalCharge]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[Total]" />
+                            <inputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Tip]"
+                              cachedDataType="r8"
+                              cachedName="Tip"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChargedTip]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[Tip]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              name="DateOfBusiness" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantID]"
+                              dataType="i4"
+                              name="RestaurantID" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalCharge]"
+                              dataType="cy"
+                              name="TotalCharge" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChargedTip]"
+                              dataType="cy"
+                              name="ChargedTip" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips"
+                      componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                      contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                      description="OLE DB Source"
+                      name="Tender and Tips"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXEC [dbo].[uspCollectTenderData]
+@Restaurant = ?,
+@DateOfBusiness = ?</property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="The mappings between the parameters in the SQL command and variables."
+                          name="ParameterMapping">"@Restaurant:Input",{4EDB8C77-106E-436B-860F-271454DF66B4};"@DateOfBusiness:Input",{726B713B-2D0C-439C-85B6-F71DBB7C5551};</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                          connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output]"
+                          name="OLE DB Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                              name="DateOfBusiness"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[FKStoreId]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[FKStoreId]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[FKStoreId]"
+                              name="FKStoreId"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[Total]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[Total]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[Total]"
+                              name="Total"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[Tip]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[Tip]"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].Columns[Tip]"
+                              name="Tip"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              name="DateOfBusiness" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[FKStoreId]"
+                              dataType="i4"
+                              name="FKStoreId" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[Total]"
+                              dataType="r8"
+                              name="Total" />
+                            <externalMetadataColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output].ExternalColumns[Tip]"
+                              dataType="r8"
+                              name="Tip" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output]"
+                          isErrorOut="true"
+                          name="OLE DB Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                              name="DateOfBusiness" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[FKStoreId]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[FKStoreId]"
+                              name="FKStoreId" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[Total]"
+                              dataType="r8"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[Total]"
+                              name="Total" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[Tip]"
+                              dataType="r8"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[Tip]"
+                              name="Tip" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Load data per date\Load data per restaurant\Stage Tender Data.Paths[OLE DB Source Output]"
+                      endId="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      name="OLE DB Source Output"
+                      startId="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips.Outputs[OLE DB Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Load data per date\Load data per restaurant.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{C2E4D858-CB58-4CEA-8EB0-586903DB0403}"
+              DTS:From="Package\Load data per date\Load data per restaurant\Stage Sales Data"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Load data per date\Load data per restaurant\Stage Tender Data" />
+          </DTS:PrecedenceConstraints>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{AC7903BD-AA47-43CE-838B-CFCC48507D66}"
+              DTS:ObjectName="{AC7903BD-AA47-43CE-838B-CFCC48507D66}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::Restaurant" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E59F7383-232E-41E7-AF53-965041DB2659}"
+          DTS:ObjectName="{E59F7383-232E-41E7-AF53-965041DB2659}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::Date" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load TipsData"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9A236E6A-25C4-4B4F-84FF-7CF1163C4859}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load TipsData"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load TipsData\Merge Join"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[RestaurantID]"
+                      cachedDataType="i4"
+                      cachedName="RestaurantID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[RestaurantID]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[TippableSales]"
+                      cachedDataType="cy"
+                      cachedName="TippableSales"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[TippableSales]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[AutoGratuity]"
+                      cachedDataType="cy"
+                      cachedName="AutoGratuity"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[AutoGratuity]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[SalesTax]"
+                      cachedDataType="cy"
+                      cachedName="SalesTax"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[SalesTax]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input].Columns[RestaurantID]"
+                      cachedDataType="i4"
+                      cachedName="RestaurantID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[RestaurantID]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input].Columns[TotalCharge]"
+                      cachedDataType="cy"
+                      cachedName="TotalCharge"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[TotalCharge]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input].Columns[ChargedTip]"
+                      cachedDataType="cy"
+                      cachedName="ChargedTip"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[ChargedTip]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[DateOfBusiness]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[RestaurantID]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[RestaurantID]"
+                      name="RestaurantID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[RestaurantID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[TippableSales]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[TippableSales]"
+                      name="TippableSales">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[TippableSales]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[TotalCharge]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[TotalCharge]"
+                      name="TotalCharge">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input].Columns[TotalCharge]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[AutoGratuity]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[AutoGratuity]"
+                      name="AutoGratuity">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[AutoGratuity]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[ChargedTip]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[ChargedTip]"
+                      name="ChargedTip">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input].Columns[ChargedTip]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[SalesTax]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[SalesTax]"
+                      name="SalesTax">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input].Columns[SalesTax]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load TipsData\Sales Stage Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Sales Stage Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SalesStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load TipsData\Sales Stage Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                  connectionManagerRefId="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[RestaurantID]"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]"
+                      name="RestaurantID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[TippableSales]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[TippableSales]"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[TippableSales]"
+                      name="TippableSales"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[AutoGratuity]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[AutoGratuity]"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[AutoGratuity]"
+                      name="AutoGratuity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[SalesTax]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[SalesTax]"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[SalesTax]"
+                      name="SalesTax"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[RestaurantID]"
+                      dataType="i4"
+                      name="RestaurantID" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[TippableSales]"
+                      dataType="cy"
+                      name="TippableSales" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[AutoGratuity]"
+                      dataType="cy"
+                      name="AutoGratuity" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].ExternalColumns[SalesTax]"
+                      dataType="cy"
+                      name="SalesTax" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[RestaurantID]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[RestaurantID]"
+                      name="RestaurantID" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[TippableSales]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[TippableSales]"
+                      name="TippableSales" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[AutoGratuity]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[AutoGratuity]"
+                      name="AutoGratuity" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[SalesTax]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[SalesTax]"
+                      name="SalesTax" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load TipsData\Sort SS"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort SS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load TipsData\Sort SS.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort SS.Inputs[Sort Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort SS.Inputs[Sort Input].Columns[RestaurantID]"
+                      cachedDataType="i4"
+                      cachedName="RestaurantID"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort SS.Inputs[Sort Input].Columns[TippableSales]"
+                      cachedDataType="cy"
+                      cachedName="TippableSales"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[TippableSales]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort SS.Inputs[Sort Input].Columns[AutoGratuity]"
+                      cachedDataType="cy"
+                      cachedName="AutoGratuity"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[AutoGratuity]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort SS.Inputs[Sort Input].Columns[SalesTax]"
+                      cachedDataType="cy"
+                      cachedName="SalesTax"
+                      lineageId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[SalesTax]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load TipsData\Sort SS.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[RestaurantID]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[RestaurantID]"
+                      name="RestaurantID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[TippableSales]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[TippableSales]"
+                      name="TippableSales">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[TippableSales]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[AutoGratuity]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[AutoGratuity]"
+                      name="AutoGratuity">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[AutoGratuity]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[SalesTax]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sort SS.Outputs[Sort Output].Columns[SalesTax]"
+                      name="SalesTax">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output].Columns[SalesTax]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load TipsData\Sort TS"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort TS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load TipsData\Sort TS.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort TS.Inputs[Sort Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort TS.Inputs[Sort Input].Columns[RestaurantID]"
+                      cachedDataType="i4"
+                      cachedName="RestaurantID"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort TS.Inputs[Sort Input].Columns[TotalCharge]"
+                      cachedDataType="cy"
+                      cachedName="TotalCharge"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[TotalCharge]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load TipsData\Sort TS.Inputs[Sort Input].Columns[ChargedTip]"
+                      cachedDataType="cy"
+                      cachedName="ChargedTip"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[ChargedTip]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load TipsData\Sort TS.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[RestaurantID]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[RestaurantID]"
+                      name="RestaurantID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[TotalCharge]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[TotalCharge]"
+                      name="TotalCharge">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[TotalCharge]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[ChargedTip]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Sort TS.Outputs[Sort Output].Columns[ChargedTip]"
+                      name="ChargedTip">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[ChargedTip]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load TipsData\Tender Stage Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Tender Stage Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TenderStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load TipsData\Tender Stage Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                  connectionManagerRefId="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[RestaurantID]"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[RestaurantID]"
+                      name="RestaurantID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[TotalCharge]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[TotalCharge]"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[TotalCharge]"
+                      name="TotalCharge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[ChargedTip]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[ChargedTip]"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].Columns[ChargedTip]"
+                      name="ChargedTip"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[RestaurantID]"
+                      dataType="i4"
+                      name="RestaurantID" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[TotalCharge]"
+                      dataType="cy"
+                      name="TotalCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output].ExternalColumns[ChargedTip]"
+                      dataType="cy"
+                      name="ChargedTip" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[RestaurantID]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[RestaurantID]"
+                      name="RestaurantID" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[TotalCharge]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[TotalCharge]"
+                      name="TotalCharge" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[ChargedTip]"
+                      dataType="cy"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[ChargedTip]"
+                      name="ChargedTip" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load TipsData\Tips Data"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Tips Data"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TipsData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load TipsData\Tips Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                  connectionManagerRefId="Package.ConnectionManagers[MSMITH-L7\MSMITH.Tips]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].Columns[RestaurantID]"
+                      cachedDataType="i4"
+                      cachedName="RestaurantID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantID]"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[RestaurantID]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].Columns[TippableSales]"
+                      cachedDataType="cy"
+                      cachedName="TippableSales"
+                      externalMetadataColumnId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[TippableSales]"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[TippableSales]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].Columns[TotalCharge]"
+                      cachedDataType="cy"
+                      cachedName="TotalCharge"
+                      externalMetadataColumnId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[TotalCharge]"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[TotalCharge]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].Columns[AutoGratuity]"
+                      cachedDataType="cy"
+                      cachedName="AutoGratuity"
+                      externalMetadataColumnId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[AutoGratuity]"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[AutoGratuity]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].Columns[ChargedTip]"
+                      cachedDataType="cy"
+                      cachedName="ChargedTip"
+                      externalMetadataColumnId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[ChargedTip]"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[ChargedTip]" />
+                    <inputColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].Columns[SalesTax]"
+                      cachedDataType="cy"
+                      cachedName="SalesTax"
+                      externalMetadataColumnId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[SalesTax]"
+                      lineageId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output].Columns[SalesTax]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantID]"
+                      dataType="i4"
+                      name="RestaurantID" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[TippableSales]"
+                      dataType="cy"
+                      name="TippableSales" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[TotalCharge]"
+                      dataType="cy"
+                      name="TotalCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[AutoGratuity]"
+                      dataType="cy"
+                      name="AutoGratuity" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[ChargedTip]"
+                      dataType="cy"
+                      name="ChargedTip" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[SalesTax]"
+                      dataType="cy"
+                      name="SalesTax" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[ChargedSale]"
+                      dataType="cy"
+                      name="ChargedSale" />
+                    <externalMetadataColumn
+                      refId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input].ExternalColumns[TotalTips]"
+                      dataType="cy"
+                      name="TotalTips" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load TipsData\Tips Data.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load TipsData\Tips Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Tips Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load TipsData\Tips Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load TipsData\Tips Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load TipsData.Paths[Merge Join Output]"
+              endId="Package\Load TipsData\Tips Data.Inputs[OLE DB Destination Input]"
+              name="Merge Join Output"
+              startId="Package\Load TipsData\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Load TipsData.Paths[OLE DB Source Output1]"
+              endId="Package\Load TipsData\Sort SS.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load TipsData\Sales Stage Data.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load TipsData.Paths[OLE DB Source Output]"
+              endId="Package\Load TipsData\Sort TS.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load TipsData\Tender Stage Data.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load TipsData.Paths[Sort Output1]"
+              endId="Package\Load TipsData\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Load TipsData\Sort SS.Outputs[Sort Output]" />
+            <path
+              refId="Package\Load TipsData.Paths[Sort Output]"
+              endId="Package\Load TipsData\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Load TipsData\Sort TS.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Retrieve List of Dates"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Get a list of Dates to process"
+      DTS:DTSID="{72F30E85-6E2A-426C-9B5D-330B545F14D9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Retrieve List of Dates"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E7292B34-4ABF-4517-8737-9877051CDE13}"
+          SQLTask:SqlStatementSource="SELECT [salesmixdate]&#xA;FROM [MLAddOn].[dbo].[Time_Periods]&#xA;WHERE salesmixdate BETWEEN ? and ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Dates" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BeginDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::Yesterday"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Retrieve List of Open Restaurants"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D00BC54A-63E1-404B-BFA0-9EA48CEBC354}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Retrieve List of Open Restaurants"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{875CE99A-EA50-4D37-9BD4-C82CFB91F87A}"
+          SQLTask:SqlStatementSource="SELECT cast([StoreNum] as int) &#xA;FROM Storelist&#xA;WHERE Category IN ('O','N','F')&#xA;OR (DateOfOpen &lt;= ? AND (DateClosedPlusOne &gt; ? OR DateClosedPlusOne is NULL))&#xA;order by storenum"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Restaurants" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="Yesterday"
+            SQLTask:DtsVariableName="User::Date"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="Yesterday"
+            SQLTask:DtsVariableName="User::Date"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Sales Stage"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{212D4EA9-7CF4-405E-B9DF-B0220CFBA2BE}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Sales Stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D4061219-E16F-412B-AE24-7A4D488FDEED}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [Tips].[dbo].[SalesStaging]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Tender Stage"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FB6EBE7A-8E21-4A98-8EE2-DF28B3EFF538}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Tender Stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D4061219-E16F-412B-AE24-7A4D488FDEED}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [Tips].[dbo].[TenderStaging]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Zero null monetary values"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CD5FFEE8-03FC-4CF5-9813-6943061BF34E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Zero null monetary values"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E620DB38-8D54-466B-95CF-87158C9C07C8}"
+          SQLTask:SqlStatementSource="UPDATE [Tips].[dbo].[SalesStaging]&#xA;SET Autogratuity = 0&#xA;WHERE Autogratuity is NULL&#xA;&#xA;UPDATE [Tips].[dbo].[SalesStaging]&#xA;SET SalesTax = 0&#xA;WHERE SalesTax is NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{AD4D0C52-3E13-4C9F-9CCE-5E9EA94A92E1}"
+      DTS:From="Package\Retrieve List of Open Restaurants"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Sales Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E514215-5512-40C8-A971-F80D0BCAD545}"
+      DTS:From="Package\Truncate Sales Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncate Tender Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A5B0AB1-93C4-484B-9485-16BBB268D1C7}"
+      DTS:From="Package\Retrieve List of Dates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Retrieve List of Open Restaurants" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{FEF677D3-F49D-417B-8504-FE986EEB7276}"
+      DTS:From="Package\Truncate Tender Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load data per date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{64FE5000-62B9-430A-9507-4663655E667F}"
+      DTS:From="Package\Zero null monetary values"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Load TipsData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{ECCC8179-2759-413A-908B-9121B38F7AD3}"
+      DTS:From="Package\Load data per date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Zero null monetary values" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Load data per date\Load data per restaurant\Stage Sales Data"
+          TopLeft="153,57" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Load data per date\Load data per restaurant\Stage Tender Data"
+          TopLeft="151,133" />
+        <EdgeLayout
+          Id="Package\Load data per date\Load data per restaurant.PrecedenceConstraints[Constraint]"
+          TopLeft="234,99">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="452,283"
+          Size="452,326"
+          Id="Package\Load data per date\Load data per restaurant"
+          TopLeft="62,21" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="567,402"
+          Size="567,445"
+          Id="Package\Load data per date"
+          TopLeft="169,294" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Load TipsData"
+          TopLeft="384,851" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Retrieve List of Dates"
+          TopLeft="359,6" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Retrieve List of Open Restaurants"
+          TopLeft="329,71" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Truncate Sales Stage"
+          TopLeft="358,140" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Truncate Tender Stage"
+          TopLeft="353,210" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Zero null monetary values"
+          TopLeft="373,786" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="447.75,113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="448,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="448.5,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="450.5,252">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="456,828">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="453.75,739">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load data per date\Load data per restaurant\Stage Sales Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table"
+          TopLeft="50,164" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data"
+          TopLeft="76,48" />
+        <EdgeLayout
+          Id="Package\Load data per date\Load data per restaurant\Stage Sales Data.Paths[OLE DB Source Output]"
+          TopLeft="144.25,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74"
+              Start="0,0"
+              End="0,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Load data per date\Load data per restaurant\Stage Sales Data\Lookup"
+          TopLeft="338,130" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load data per date\Load data per restaurant\Stage Sales Data\Load SalesStaging Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load data per date\Load data per restaurant\Stage Sales Data\Sales Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load data per date\Load data per restaurant\Stage Tender Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips"
+          TopLeft="42,18" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination"
+          TopLeft="38,123" />
+        <EdgeLayout
+          Id="Package\Load data per date\Load data per restaurant\Stage Tender Data.Paths[OLE DB Source Output]"
+          TopLeft="122.25,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load data per date\Load data per restaurant\Stage Tender Data\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load data per date\Load data per restaurant\Stage Tender Data\Tender and Tips">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load TipsData">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Load TipsData\Tender Stage Data"
+          TopLeft="272,29" />
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Load TipsData\Sort SS"
+          TopLeft="55,103" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\Load TipsData\Tips Data"
+          TopLeft="163,277" />
+        <NodeLayout
+          Size="115,42"
+          Id="Package\Load TipsData\Sort TS"
+          TopLeft="299,105" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Load TipsData\Sales Stage Data"
+          TopLeft="35,27" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Load TipsData\Merge Join"
+          TopLeft="165,189" />
+        <EdgeLayout
+          Id="Package\Load TipsData.Paths[Sort Output]"
+          TopLeft="356.5,147">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-126,42"
+              Start="0,0"
+              End="-126,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="-4,21" />
+                  <mssgle:LineSegment
+                    End="-122,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-122,21"
+                    Point2="-126,21"
+                    Point3="-126,25" />
+                  <mssgle:LineSegment
+                    End="-126,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load TipsData.Paths[Sort Output1]"
+          TopLeft="112,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98,44"
+              Start="0,0"
+              End="98,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0814479638009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.0814479638009"
+                    Point2="0,26.0814479638009"
+                    Point3="4,26.0814479638009" />
+                  <mssgle:LineSegment
+                    End="94,26.0814479638009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94,26.0814479638009"
+                    Point2="98,26.0814479638009"
+                    Point3="98,30.0814479638009" />
+                  <mssgle:LineSegment
+                    End="98,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load TipsData.Paths[OLE DB Source Output]"
+          TopLeft="356.25,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load TipsData.Paths[OLE DB Source Output1]"
+          TopLeft="113.5,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load TipsData.Paths[Merge Join Output]"
+          TopLeft="228,231">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load TipsData\Tender Stage Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load TipsData\Tips Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load TipsData\Sales Stage Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

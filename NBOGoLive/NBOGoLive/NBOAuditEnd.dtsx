@@ -1,0 +1,2403 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/27/2017 10:38:12 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-SSIS2012-1"
+  DTS:CreatorName="DEV01\dconolle_dev"
+  DTS:DTSID="{2736DC02-0A37-498F-8A60-64367687E7ED}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NBOAuditEnd"
+  DTS:PackageType="5"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{B914CC45-8237-462E-8C3F-C2C05C000ABC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NBOInterfaceStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{26717F80-93FC-4F63-B852-772F18273408}"
+      DTS:ObjectName="NBOInterfaceStaging">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::NBOInterfaceStaging_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-SQL-NBO;User ID=SSISUser;Initial Catalog=DataMartStaging;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSISmsdb]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1FBF06A6-01B9-488E-9162-3CB6E13C62B7}"
+      DTS:ObjectName="SSISmsdb">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=msdb;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CF04A888-12BC-445A-927C-3905B24CECFD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DC2E3F50-DB85-4AA0-896E-145C5C64E8C5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JobName">
+      <DTS:VariableValue
+        DTS:DataType="8">NBOGoLiveInitialPricingInvoices</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6D46C1F0-B61B-4D14-8C74-D0B5A9725018}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SessionStatus">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute audit uspEndSession"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{16F6BB37-C818-4C1A-96EF-6BCB00022ADA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute audit uspEndSession"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26717F80-93FC-4F63-B852-772F18273408}"
+          SQLTask:SqlStatementSource="EXECUTE audit.uspEndSession ?, ?; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SessionStatus"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Extract sysjob Tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{7C94C910-3515-4466-A72D-3EC16A000F0F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract sysjob Tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Extract sysjob Tables\sysjobhistory"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{11CDAF14-0C6A-4539-98B9-23D4FD7E0F24}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="sysjobhistory"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add Auditing Columns"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          name="AuditKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::AuditKey]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::AuditKey]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          name="ExecutionID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          name="SSISExecutionServer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::MachineName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::MachineName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          name="PackageID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          name="PackageName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageName]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="audit sysjobhistory"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[audit].[sysjobhistory]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[instance_id]"
+                          cachedDataType="i4"
+                          cachedName="instance_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[instance_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[instance_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[job_id]"
+                          cachedDataType="guid"
+                          cachedName="job_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[job_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[job_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[step_id]"
+                          cachedDataType="i4"
+                          cachedName="step_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[step_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[step_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[step_name]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="step_name"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[step_name]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[step_name]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[sql_message_id]"
+                          cachedDataType="i4"
+                          cachedName="sql_message_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[sql_message_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[sql_message_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[sql_severity]"
+                          cachedDataType="i4"
+                          cachedName="sql_severity"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[sql_severity]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[sql_severity]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[message]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="message"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[message]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[message]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[run_status]"
+                          cachedDataType="i4"
+                          cachedName="run_status"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_status]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_status]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[run_date]"
+                          cachedDataType="i4"
+                          cachedName="run_date"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_date]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_date]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[run_time]"
+                          cachedDataType="i4"
+                          cachedName="run_time"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_time]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_time]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[run_duration]"
+                          cachedDataType="i4"
+                          cachedName="run_duration"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_duration]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_duration]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[operator_id_emailed]"
+                          cachedDataType="i4"
+                          cachedName="operator_id_emailed"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[operator_id_emailed]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_emailed]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[operator_id_netsent]"
+                          cachedDataType="i4"
+                          cachedName="operator_id_netsent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[operator_id_netsent]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_netsent]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[operator_id_paged]"
+                          cachedDataType="i4"
+                          cachedName="operator_id_paged"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[operator_id_paged]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_paged]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[retries_attempted]"
+                          cachedDataType="i4"
+                          cachedName="retries_attempted"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[retries_attempted]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[retries_attempted]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[server]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="server"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[server]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[server]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[AuditKey]"
+                          cachedDataType="i4"
+                          cachedName="AuditKey"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[ExecutionID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ExecutionID"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[SSISExecutionServer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SSISExecutionServer"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[PackageID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageID"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageName"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[instance_id]"
+                          dataType="i4"
+                          name="instance_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[job_id]"
+                          dataType="guid"
+                          name="job_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[step_id]"
+                          dataType="i4"
+                          name="step_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[step_name]"
+                          dataType="wstr"
+                          length="128"
+                          name="step_name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[sql_message_id]"
+                          dataType="i4"
+                          name="sql_message_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[sql_severity]"
+                          dataType="i4"
+                          name="sql_severity" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[message]"
+                          dataType="wstr"
+                          length="4000"
+                          name="message" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_status]"
+                          dataType="i4"
+                          name="run_status" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_date]"
+                          dataType="i4"
+                          name="run_date" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_time]"
+                          dataType="i4"
+                          name="run_time" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[run_duration]"
+                          dataType="i4"
+                          name="run_duration" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[operator_id_emailed]"
+                          dataType="i4"
+                          name="operator_id_emailed" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[operator_id_netsent]"
+                          dataType="i4"
+                          name="operator_id_netsent" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[operator_id_paged]"
+                          dataType="i4"
+                          name="operator_id_paged" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[retries_attempted]"
+                          dataType="i4"
+                          name="retries_attempted" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[server]"
+                          dataType="wstr"
+                          length="128"
+                          name="server" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          dataType="i4"
+                          name="AuditKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSISExecutionServer" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SSISmsdb sysjobhistory"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.instance_id, a.job_id, a.step_id, a.step_name, a.sql_message_id, a.sql_severity, a.[message], 
+	a.run_status, a.run_date, a.run_time, a.run_duration, a.operator_id_emailed, a.operator_id_netsent, 
+	a.operator_id_paged, a.retries_attempted, a.[server]
+FROM msdb.dbo.sysjobhistory a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SSISmsdb]"
+                      connectionManagerRefId="Package.ConnectionManagers[SSISmsdb]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[instance_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[instance_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[instance_id]"
+                          name="instance_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[job_id]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[job_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[job_id]"
+                          name="job_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[step_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[step_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[step_id]"
+                          name="step_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[step_name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[step_name]"
+                          length="128"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[step_name]"
+                          name="step_name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[sql_message_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[sql_message_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[sql_message_id]"
+                          name="sql_message_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[sql_severity]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[sql_severity]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[sql_severity]"
+                          name="sql_severity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[message]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[message]"
+                          length="4000"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[message]"
+                          name="message"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_status]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_status]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_status]"
+                          name="run_status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_date]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_date]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_date]"
+                          name="run_date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_time]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_time]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_time]"
+                          name="run_time"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_duration]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_duration]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[run_duration]"
+                          name="run_duration"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_emailed]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[operator_id_emailed]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_emailed]"
+                          name="operator_id_emailed"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_netsent]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[operator_id_netsent]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_netsent]"
+                          name="operator_id_netsent"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_paged]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[operator_id_paged]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[operator_id_paged]"
+                          name="operator_id_paged"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[retries_attempted]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[retries_attempted]"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[retries_attempted]"
+                          name="retries_attempted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[server]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[server]"
+                          length="128"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].Columns[server]"
+                          name="server"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[instance_id]"
+                          dataType="i4"
+                          name="instance_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[job_id]"
+                          dataType="guid"
+                          name="job_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[step_id]"
+                          dataType="i4"
+                          name="step_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[step_name]"
+                          dataType="wstr"
+                          length="128"
+                          name="step_name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[sql_message_id]"
+                          dataType="i4"
+                          name="sql_message_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[sql_severity]"
+                          dataType="i4"
+                          name="sql_severity" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[message]"
+                          dataType="wstr"
+                          length="4000"
+                          name="message" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_status]"
+                          dataType="i4"
+                          name="run_status" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_date]"
+                          dataType="i4"
+                          name="run_date" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_time]"
+                          dataType="i4"
+                          name="run_time" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[run_duration]"
+                          dataType="i4"
+                          name="run_duration" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[operator_id_emailed]"
+                          dataType="i4"
+                          name="operator_id_emailed" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[operator_id_netsent]"
+                          dataType="i4"
+                          name="operator_id_netsent" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[operator_id_paged]"
+                          dataType="i4"
+                          name="operator_id_paged" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[retries_attempted]"
+                          dataType="i4"
+                          name="retries_attempted" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output].ExternalColumns[server]"
+                          dataType="wstr"
+                          length="128"
+                          name="server" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[instance_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[instance_id]"
+                          name="instance_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[job_id]"
+                          dataType="guid"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[job_id]"
+                          name="job_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[step_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[step_id]"
+                          name="step_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[step_name]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[step_name]"
+                          name="step_name" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[sql_message_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[sql_message_id]"
+                          name="sql_message_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[sql_severity]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[sql_severity]"
+                          name="sql_severity" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[message]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[message]"
+                          name="message" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_status]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_status]"
+                          name="run_status" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_date]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_date]"
+                          name="run_date" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_time]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_time]"
+                          name="run_time" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_duration]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[run_duration]"
+                          name="run_duration" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[operator_id_emailed]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[operator_id_emailed]"
+                          name="operator_id_emailed" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[operator_id_netsent]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[operator_id_netsent]"
+                          name="operator_id_netsent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[operator_id_paged]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[operator_id_paged]"
+                          name="operator_id_paged" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[retries_attempted]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[retries_attempted]"
+                          name="retries_attempted" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[server]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[server]"
+                          name="server" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract sysjob Tables\sysjobhistory.Paths[Derived Column Output]"
+                  endId="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract sysjob Tables\sysjobhistory.Paths[OLE DB Source Output]"
+                  endId="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract sysjob Tables\sysjobs"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:DelayValidation="True"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{FEDFA1F8-590A-47C1-A908-F7740AF0FD6C}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="sysjobs"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add Auditing Columns"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          name="AuditKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::AuditKey]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::AuditKey]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          name="ExecutionID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          name="SSISExecutionServer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::MachineName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::MachineName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          name="PackageID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          name="PackageName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageName]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="audit sysjobs"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[audit].[sysjobs]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[job_id]"
+                          cachedDataType="guid"
+                          cachedName="job_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[job_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[job_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[originating_server_id]"
+                          cachedDataType="i4"
+                          cachedName="originating_server_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[originating_server_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[originating_server_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[name]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[name]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[enabled]"
+                          cachedDataType="ui1"
+                          cachedName="enabled"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[enabled]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[enabled]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[description]"
+                          cachedDataType="wstr"
+                          cachedLength="512"
+                          cachedName="description"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[description]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[description]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[start_step_id]"
+                          cachedDataType="i4"
+                          cachedName="start_step_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[start_step_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[start_step_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[category_id]"
+                          cachedDataType="i4"
+                          cachedName="category_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[category_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[category_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[owner_sid]"
+                          cachedDataType="bytes"
+                          cachedLength="85"
+                          cachedName="owner_sid"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[owner_sid]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[owner_sid]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[notify_level_eventlog]"
+                          cachedDataType="i4"
+                          cachedName="notify_level_eventlog"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_eventlog]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_eventlog]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[notify_level_email]"
+                          cachedDataType="i4"
+                          cachedName="notify_level_email"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_email]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_email]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[notify_level_netsend]"
+                          cachedDataType="i4"
+                          cachedName="notify_level_netsend"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_netsend]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_netsend]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[notify_level_page]"
+                          cachedDataType="i4"
+                          cachedName="notify_level_page"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_page]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_page]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[notify_email_operator_id]"
+                          cachedDataType="i4"
+                          cachedName="notify_email_operator_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_email_operator_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_email_operator_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[notify_netsend_operator_id]"
+                          cachedDataType="i4"
+                          cachedName="notify_netsend_operator_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_netsend_operator_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_netsend_operator_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[notify_page_operator_id]"
+                          cachedDataType="i4"
+                          cachedName="notify_page_operator_id"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_page_operator_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_page_operator_id]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[delete_level]"
+                          cachedDataType="i4"
+                          cachedName="delete_level"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[delete_level]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[delete_level]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[date_created]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="date_created"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[date_created]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[date_created]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[date_modified]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="date_modified"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[date_modified]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[date_modified]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[version_number]"
+                          cachedDataType="i4"
+                          cachedName="version_number"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[version_number]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[version_number]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[AuditKey]"
+                          cachedDataType="i4"
+                          cachedName="AuditKey"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[ExecutionID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ExecutionID"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[SSISExecutionServer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SSISExecutionServer"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[PackageID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageID"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]" />
+                        <inputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageName"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[job_id]"
+                          dataType="guid"
+                          name="job_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[originating_server_id]"
+                          dataType="i4"
+                          name="originating_server_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="128"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[enabled]"
+                          dataType="ui1"
+                          name="enabled" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[description]"
+                          dataType="wstr"
+                          length="512"
+                          name="description" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[start_step_id]"
+                          dataType="i4"
+                          name="start_step_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[category_id]"
+                          dataType="i4"
+                          name="category_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[owner_sid]"
+                          dataType="bytes"
+                          length="85"
+                          name="owner_sid" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_eventlog]"
+                          dataType="i4"
+                          name="notify_level_eventlog" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_email]"
+                          dataType="i4"
+                          name="notify_level_email" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_netsend]"
+                          dataType="i4"
+                          name="notify_level_netsend" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_level_page]"
+                          dataType="i4"
+                          name="notify_level_page" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_email_operator_id]"
+                          dataType="i4"
+                          name="notify_email_operator_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_netsend_operator_id]"
+                          dataType="i4"
+                          name="notify_netsend_operator_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[notify_page_operator_id]"
+                          dataType="i4"
+                          name="notify_page_operator_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[delete_level]"
+                          dataType="i4"
+                          name="delete_level" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[date_created]"
+                          dataType="dbTimeStamp"
+                          name="date_created" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[date_modified]"
+                          dataType="dbTimeStamp"
+                          name="date_modified" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[version_number]"
+                          dataType="i4"
+                          name="version_number" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          dataType="i4"
+                          name="AuditKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSISExecutionServer" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SSISmsdb sysjobs"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.job_id, a.originating_server_id, a.name, a.[enabled], a.[description], 
+	a.start_step_id, a.category_id, a.owner_sid, a.notify_level_eventlog, a.notify_level_email, 
+	a.notify_level_netsend, a.notify_level_page, a.notify_email_operator_id, a.notify_netsend_operator_id, 
+	a.notify_page_operator_id, a.delete_level, a.date_created, a.date_modified, a.version_number
+FROM msdb.dbo.sysjobs a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SSISmsdb]"
+                      connectionManagerRefId="Package.ConnectionManagers[SSISmsdb]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[job_id]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[job_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[job_id]"
+                          name="job_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[originating_server_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[originating_server_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[originating_server_id]"
+                          name="originating_server_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                          length="128"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[enabled]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[enabled]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[enabled]"
+                          name="enabled"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[description]"
+                          length="512"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[description]"
+                          name="description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[start_step_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[start_step_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[start_step_id]"
+                          name="start_step_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[category_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[category_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[category_id]"
+                          name="category_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[owner_sid]"
+                          dataType="bytes"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[owner_sid]"
+                          length="85"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[owner_sid]"
+                          name="owner_sid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_eventlog]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_eventlog]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_eventlog]"
+                          name="notify_level_eventlog"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_email]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_email]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_email]"
+                          name="notify_level_email"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_netsend]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_netsend]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_netsend]"
+                          name="notify_level_netsend"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_page]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_page]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_level_page]"
+                          name="notify_level_page"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_email_operator_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_email_operator_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_email_operator_id]"
+                          name="notify_email_operator_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_netsend_operator_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_netsend_operator_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_netsend_operator_id]"
+                          name="notify_netsend_operator_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_page_operator_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_page_operator_id]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[notify_page_operator_id]"
+                          name="notify_page_operator_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[delete_level]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[delete_level]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[delete_level]"
+                          name="delete_level"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[date_created]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[date_created]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[date_created]"
+                          name="date_created"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[date_modified]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[date_modified]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[date_modified]"
+                          name="date_modified"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[version_number]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[version_number]"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].Columns[version_number]"
+                          name="version_number"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[job_id]"
+                          dataType="guid"
+                          name="job_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[originating_server_id]"
+                          dataType="i4"
+                          name="originating_server_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="128"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[enabled]"
+                          dataType="ui1"
+                          name="enabled" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[description]"
+                          dataType="wstr"
+                          length="512"
+                          name="description" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[start_step_id]"
+                          dataType="i4"
+                          name="start_step_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[category_id]"
+                          dataType="i4"
+                          name="category_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[owner_sid]"
+                          dataType="bytes"
+                          length="85"
+                          name="owner_sid" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_eventlog]"
+                          dataType="i4"
+                          name="notify_level_eventlog" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_email]"
+                          dataType="i4"
+                          name="notify_level_email" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_netsend]"
+                          dataType="i4"
+                          name="notify_level_netsend" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_level_page]"
+                          dataType="i4"
+                          name="notify_level_page" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_email_operator_id]"
+                          dataType="i4"
+                          name="notify_email_operator_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_netsend_operator_id]"
+                          dataType="i4"
+                          name="notify_netsend_operator_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[notify_page_operator_id]"
+                          dataType="i4"
+                          name="notify_page_operator_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[delete_level]"
+                          dataType="i4"
+                          name="delete_level" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[date_created]"
+                          dataType="dbTimeStamp"
+                          name="date_created" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[date_modified]"
+                          dataType="dbTimeStamp"
+                          name="date_modified" />
+                        <externalMetadataColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output].ExternalColumns[version_number]"
+                          dataType="i4"
+                          name="version_number" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[job_id]"
+                          dataType="guid"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[job_id]"
+                          name="job_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[originating_server_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[originating_server_id]"
+                          name="originating_server_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[name]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[enabled]"
+                          dataType="ui1"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[enabled]"
+                          name="enabled" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[description]"
+                          dataType="wstr"
+                          length="512"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[description]"
+                          name="description" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[start_step_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[start_step_id]"
+                          name="start_step_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[category_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[category_id]"
+                          name="category_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[owner_sid]"
+                          dataType="bytes"
+                          length="85"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[owner_sid]"
+                          name="owner_sid" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_eventlog]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_eventlog]"
+                          name="notify_level_eventlog" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_email]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_email]"
+                          name="notify_level_email" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_netsend]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_netsend]"
+                          name="notify_level_netsend" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_page]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_level_page]"
+                          name="notify_level_page" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_email_operator_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_email_operator_id]"
+                          name="notify_email_operator_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_netsend_operator_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_netsend_operator_id]"
+                          name="notify_netsend_operator_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_page_operator_id]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[notify_page_operator_id]"
+                          name="notify_page_operator_id" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[delete_level]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[delete_level]"
+                          name="delete_level" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[date_created]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[date_created]"
+                          name="date_created" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[date_modified]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[date_modified]"
+                          name="date_modified" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[version_number]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[version_number]"
+                          name="version_number" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract sysjob Tables\sysjobs.Paths[Derived Column Output]"
+                  endId="Package\Extract sysjob Tables\sysjobs\audit sysjobs.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract sysjob Tables\sysjobs.Paths[OLE DB Source Output]"
+                  endId="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get AuditKey"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{02DA4F94-6C59-4A65-BD54-382D54122EE3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get AuditKey"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26717F80-93FC-4F63-B852-772F18273408}"
+          SQLTask:SqlStatementSource="SELECT MAX(a.AuditKey) AS AuditKey &#xA;FROM audit.Session a &#xA;WHERE a.JobName = ? AND &#xA;    a.IsCurrentSession = 1; "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::AuditKey" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::JobName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE audit sysjob Tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{043C0BA7-9ACD-420A-AF7D-82068F2C2498}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE audit sysjob Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26717F80-93FC-4F63-B852-772F18273408}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE audit.sysjobs; &#xA;TRUNCATE TABLE audit.sysjobhistory; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2B002F50-B4A7-4F85-97BF-2A2FFDE549AF}"
+      DTS:From="Package\TRUNCATE audit sysjob Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get AuditKey" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0BB8DA7D-91ED-4565-99D2-E92710951C94}"
+      DTS:From="Package\Extract sysjob Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Execute audit uspEndSession" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F7E41EC-F46D-4488-B10E-832C6AE35777}"
+      DTS:From="Package\Get AuditKey"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Extract sysjob Tables" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Execute audit uspEndSession"
+          TopLeft="15.5,386" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Extract sysjob Tables\sysjobhistory"
+          TopLeft="40,87" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Extract sysjob Tables\sysjobs"
+          TopLeft="41,19" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="226,158"
+          Size="226,201"
+          Id="Package\Extract sysjob Tables"
+          TopLeft="15.5,158" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Get AuditKey"
+          TopLeft="15.5,89" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\TRUNCATE audit sysjob Tables"
+          TopLeft="15.5,20" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="128.5,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="128.5,359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="128.5,131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract sysjob Tables\sysjobhistory">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory"
+          TopLeft="24,22" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory"
+          TopLeft="24,208" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Extract sysjob Tables\sysjobhistory\Add Auditing Columns"
+          TopLeft="24,115" />
+        <EdgeLayout
+          Id="Package\Extract sysjob Tables\sysjobhistory.Paths[OLE DB Source Output]"
+          TopLeft="120.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract sysjob Tables\sysjobhistory.Paths[Derived Column Output]"
+          TopLeft="120.5,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract sysjob Tables\sysjobhistory\SSISmsdb sysjobhistory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract sysjob Tables\sysjobhistory\audit sysjobhistory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Extract sysjob Tables\sysjobs">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs"
+          TopLeft="39.333333333333,28" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract sysjob Tables\sysjobs\audit sysjobs"
+          TopLeft="39.333333333333,217" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract sysjob Tables\sysjobs\Add Auditing Columns"
+          TopLeft="39.333333333333,122.5" />
+        <EdgeLayout
+          Id="Package\Extract sysjob Tables\sysjobs.Paths[Derived Column Output]"
+          TopLeft="131.833333333333,164.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.5"
+              Start="0,0"
+              End="0,45">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract sysjob Tables\sysjobs.Paths[OLE DB Source Output]"
+          TopLeft="131.833333333333,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.5"
+              Start="0,0"
+              End="0,45">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract sysjob Tables\sysjobs\SSISmsdb sysjobs">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract sysjob Tables\sysjobs\audit sysjobs">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1394 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/24/2017 3:00:13 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-SSIS2012-1"
+  DTS:CreatorName="DEV01\dconolle_dev"
+  DTS:DTSID="{751D0444-266F-41B4-BC28-F833EB5079F1}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NBOUOMMismatch"
+  DTS:PackageType="5"
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{CA3E9A94-25E9-4BFF-9D4D-FE04F6884D04}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DummyInvoiceUOMMismatch]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{8AC5E0C2-F031-40C3-8914-92ECD07C52E6}"
+      DTS:ObjectName="DummyInvoiceUOMMismatch">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FileOutput]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\dev1-ssis2012-01\MessageHub\NBOGoLive\InvoiceUOMMistmatch\Outbox\File.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="VendorItemCode"
+              DTS:DTSID="{742A389D-3A03-4189-8BB8-4CC4DAF347BC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemName"
+              DTS:DTSID="{CAFEEEEB-BEBF-4111-971A-45ACAB1551A9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UOM_MLHQ"
+              DTS:DTSID="{9B7D21AF-C39B-4479-94E8-A3F138A0F595}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UOM_NBO"
+              DTS:DTSID="{7A52025F-E31D-4146-B77E-D4DA2C7365DB}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NBOInterfaceStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3F03977A-227A-4DA2-A89F-4D89C2C7ECE7}"
+      DTS:ObjectName="NBOInterfaceStaging">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::NBOInterfaceStaging_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-SQL-NBO;User ID=SSISUser;Initial Catalog=DataMartStaging;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A8E19EDF-5F26-4F7D-A0A6-FA015C113D80}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A128D1B6-232F-46D8-A7B2-333A66383EDD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailAttachment">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DC7A8168-67BA-4F29-BC4D-43F6D68962B1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailBody">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EE4FD521-4A15-46F3-9460-2F73D2695454}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailDistro">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F17913D4-0A62-402C-9890-255E69265088}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailFrom">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EE0BF00-E805-4FEF-B986-6E99CD9C2D94}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailPriority">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E9001EBD-C5E7-4002-BD4D-136F332A9399}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailSubject">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C3E9AD2C-18C3-4CC9-838E-25CF9BFCC9FE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileOutput">
+      <DTS:VariableValue
+        DTS:DataType="8">\\dev1-ssis2012-01\MessageHub\NBOGoLive\InvoiceUOMMistmatch\Outbox\File.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0FA304AE-8598-4B50-A888-51DAA0324510}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FolderArchive">
+      <DTS:VariableValue
+        DTS:DataType="8">\\dev1-ssis2012-01\MessageHub\NBOGoLive\InvoiceUOMMistmatch\Archive</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E5B3DB88-DD1F-4FEC-872F-3390DE25C852}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FolderOutput">
+      <DTS:VariableValue
+        DTS:DataType="8">\\dev1-ssis2012-01\MessageHub\NBOGoLive\InvoiceUOMMistmatch\Outbox</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AF13957D-667B-486F-9073-11A3C5C5A4C0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JobName">
+      <DTS:VariableValue
+        DTS:DataType="8">NBOGoLiveInitialPricingInvoices</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BD0CCA38-8FE1-4214-B959-D5D384438508}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsOutput">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear Output Folder"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="File System Task"
+      DTS:DTSID="{B1FF0DFD-CFF0-4664-8D21-5E55E677A33F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Output Folder"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="DeleteDirectoryContent"
+          TaskSourcePath="User::FolderOutput"
+          TaskIsSourceVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\End Package Audit"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{214B1E59-950A-4073-B25C-F27960BC833A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End Package Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3F03977A-227A-4DA2-A89F-4D89C2C7ECE7}"
+          SQLTask:SqlStatementSource="DECLARE @AuditKey INT &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;DECLARE @RowsOutput INT&#xA;DECLARE @FileOutput VARCHAR(4000)  &#xA;&#xA;SET @AuditKey = ? &#xA;SET @PackageName = ? &#xA;SET @RowsOutput = ? &#xA;SET @FileOutput = ? &#xA;&#xA;IF @RowsOutput = 0 &#xA;&#x9;SET @FileOutput = '' &#xA;&#xA;EXECUTE audit.uspEndPackage @AuditKey, @PackageName, '', @FileOutput, '', @RowsOutput, 0, 0; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowsOutput"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::FileOutput"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{264B5C45-4CE7-4463-A9C8-90ADC9F1C533}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3F03977A-227A-4DA2-A89F-4D89C2C7ECE7}"
+          SQLTask:SqlStatementSource="DECLARE @AuditKey INT &#xA;SET @AuditKey = ? &#xA;&#xA;SELECT COUNT(1) AS RowsOutput&#xA;FROM (&#xA;&#x9;SELECT DISTINCT aa.VendorItemCode, aa.ItemName, aa.UOM_MLHQ, aa.UOM_NBO &#xA;&#x9;FROM dbo.PricingInvoiceDetail aa &#xA;&#x9;LEFT JOIN dbo.PricingUOMMapping bb ON &#xA;&#x9;&#x9;aa.VendorItemCode = bb.VendorItemCode &#xA;&#x9;WHERE&#xA;&#x9;&#x9;aa.AuditKey = @AuditKey AND &#xA;&#x9;&#x9;COALESCE(aa.UOM_NBO, 'UNKNOWN1') &lt;&gt; COALESCE(bb.UOM_NBO_MAPPING, aa.UOM_MLHQ, 'UNKNOWN2')&#xA;&#x9;) a "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::RowsOutput" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Variables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{743F00C5-14D9-46C5-B360-39FE07993150}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Variables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3F03977A-227A-4DA2-A89F-4D89C2C7ECE7}"
+          SQLTask:SqlStatementSource="---------------------------------------------------------------------------------------------------&#xA;-- INITIALIZE &#xA;--------------------------------------------------------------------------------------------------- &#xA;&#xA;--DECLARE AND SET&#xA;DECLARE @JobName NVARCHAR(256) &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;&#xA;DECLARE @AuditKey INT &#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;DECLARE @FolderOutput VARCHAR(4000) &#xA;DECLARE @FolderArchive VARCHAR(4000) &#xA;&#xA;DECLARE @FileTimestamp VARCHAR(4000) &#xA;&#xA;SET @JobName = ?  &#xA;SET @PackageName = ?  &#xA;&#xA;SET @AuditKey = (&#xA;&#x9;SELECT MAX(a.AuditKey) AS AuditKey &#xA;&#x9;FROM audit.Session a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.JobName = @JobName AND &#xA;&#x9;&#x9;a.IsCurrentSession = 1) &#xA;&#xA;SET @FileTimestamp = CONVERT(VARCHAR(4000), GETDATE(), 120) &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, '-', '') &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, ' ', '') &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, ':', '') &#xA;&#xA;SET @FolderOutput = ( &#xA;&#x9;SELECT a.ConfiguredValue &#xA;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.ConfigurationFilter = 'Folder ' + @PackageName + ' Output') &#xA;&#xA;SET @FolderArchive = ( &#xA;&#x9;SELECT a.ConfiguredValue&#xA;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.ConfigurationFilter = 'Folder ' + @PackageName + ' Archive') &#xA;&#xA;SET @FileOutput = @FolderOutput &#xA;&#xA;IF RIGHT(@FileOutput, 1) &lt;&gt; '\' &#xA;&#x9;SET @FileOutput = @FileOutput + '\'&#xA;&#xA;SET @FileOutput = @FileOutput + 'DummyInvoiceUOMMismatch_' + @FileTimestamp + '.csv'&#xA;&#xA;  &#xA;---------------------------------------------------------------------------------------------------&#xA;-- TERMINATE&#xA;---------------------------------------------------------------------------------------------------&#xA;&#xA;--RETURN &#xA;SELECT @AuditKey AS AuditKey, @FileOutput AS FileOutput, @FolderOutput AS FolderOutput, &#xA;&#x9;@FolderArchive AS FolderArchive"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::AuditKey" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::FileOutput" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::FolderOutput" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="3"
+            SQLTask:DtsVariableName="User::FolderArchive" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::JobName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Rows Exist Actions"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B458FF9D-9C70-486B-8F79-0883C3E53BEB}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Rows Exist Actions">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Copy to Archive"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{B28E4086-EB37-4A17-8894-960C5EE766E7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Copy to Archive"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskSourcePath="User::FileOutput"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::FolderArchive"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Create File"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{EEC7BB01-C10D-4A64-B63B-A91C698C3DAA}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create File"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File"
+                  componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="DummyInvoiceUOMMismatch File">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DummyInvoiceUOMMismatch]"
+                      connectionManagerRefId="Package.ConnectionManagers[DummyInvoiceUOMMismatch]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].Columns[VendorItemCode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="VendorItemCode"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[VendorItemCode]"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[VendorItemCode]" />
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].Columns[ItemName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ItemName"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[ItemName]"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[ItemName]" />
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].Columns[UOM_MLHQ]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="UOM_MLHQ"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[UOM_MLHQ]"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[UOM_MLHQ]" />
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].Columns[UOM_NBO]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="UOM_NBO"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[UOM_NBO]"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[UOM_NBO]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[VendorItemCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="VendorItemCode" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[ItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ItemName" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[UOM_MLHQ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="UOM_MLHQ" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input].ExternalColumns[UOM_NBO]"
+                          dataType="wstr"
+                          length="50"
+                          name="UOM_NBO" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="PricingInvoiceDetail"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @AuditKey INT 
+SET @AuditKey = ?  
+
+SELECT DISTINCT a.VendorItemCode, a.ItemName, a.UOM_MLHQ, a.UOM_NBO 
+FROM dbo.PricingInvoiceDetail a 
+LEFT JOIN dbo.PricingUOMMapping b ON 
+	a.VendorItemCode = b.VendorItemCode 
+WHERE
+	a.AuditKey = @AuditKey AND 
+	COALESCE(a.UOM_NBO, 'UNKNOWN1') &lt;&gt; COALESCE(b.UOM_NBO_MAPPING, a.UOM_MLHQ, 'UNKNOWN2')</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{A8E19EDF-5F26-4F7D-A0A6-FA015C113D80};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[VendorItemCode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[VendorItemCode]"
+                          length="50"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[VendorItemCode]"
+                          name="VendorItemCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[ItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[ItemName]"
+                          length="255"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[ItemName]"
+                          name="ItemName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_MLHQ]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[UOM_MLHQ]"
+                          length="25"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_MLHQ]"
+                          name="UOM_MLHQ"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_NBO]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[UOM_NBO]"
+                          length="50"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_NBO]"
+                          name="UOM_NBO"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[VendorItemCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="VendorItemCode" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[ItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ItemName" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[UOM_MLHQ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="UOM_MLHQ" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].ExternalColumns[UOM_NBO]"
+                          dataType="wstr"
+                          length="50"
+                          name="UOM_NBO" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[VendorItemCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[VendorItemCode]"
+                          name="VendorItemCode" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[ItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[ItemName]"
+                          name="ItemName" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[UOM_MLHQ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[UOM_MLHQ]"
+                          name="UOM_MLHQ" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[UOM_NBO]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[UOM_NBO]"
+                          name="UOM_NBO" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Rows Exist Actions\Create File\Sort"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                  name="Sort"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Rows Exist Actions\Create File\Sort.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Inputs[Sort Input].Columns[VendorItemCode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="VendorItemCode"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[VendorItemCode]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Inputs[Sort Input].Columns[ItemName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ItemName"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[ItemName]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Inputs[Sort Input].Columns[UOM_MLHQ]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="UOM_MLHQ"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_MLHQ]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Inputs[Sort Input].Columns[UOM_NBO]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="UOM_NBO"
+                          lineageId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_NBO]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[VendorItemCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[VendorItemCode]"
+                          name="VendorItemCode"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[VendorItemCode]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[ItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[ItemName]"
+                          name="ItemName">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[ItemName]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[UOM_MLHQ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[UOM_MLHQ]"
+                          name="UOM_MLHQ">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_MLHQ]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[UOM_NBO]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output].Columns[UOM_NBO]"
+                          name="UOM_NBO">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output].Columns[UOM_NBO]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Rows Exist Actions\Create File.Paths[OLE DB Source Output]"
+                  endId="Package\Rows Exist Actions\Create File\Sort.Inputs[Sort Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Rows Exist Actions\Create File\PricingInvoiceDetail.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Rows Exist Actions\Create File.Paths[Sort Output]"
+                  endId="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File.Inputs[Flat File Destination Input]"
+                  name="Sort Output"
+                  startId="Package\Rows Exist Actions\Create File\Sort.Outputs[Sort Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Dummy"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D08BD45C-3983-4430-828E-75F8FE5207D4}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Dummy"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3F03977A-227A-4DA2-A89F-4D89C2C7ECE7}"
+              SQLTask:SqlStatementSource="SELECT 0 " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Execute NBOSendEmail"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{BDD4C1B8-3D0B-4C8F-A181-4912AA064464}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute NBOSendEmail"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>NBOGoLiveSendEmail.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Get Email Values"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{876677DF-A067-4810-A03C-A02A1D4C9874}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Email Values"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3F03977A-227A-4DA2-A89F-4D89C2C7ECE7}"
+              SQLTask:SqlStatementSource="--DECLARE AND SET &#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;DECLARE @PackageName VARCHAR(256) &#xA;&#xA;DECLARE @EmailAttachment VARCHAR(4000) &#xA;DECLARE @EmailBody VARCHAR(4000) &#xA;DECLARE @EmailDistro VARCHAR(4000) &#xA;DECLARE @EmailFrom VARCHAR(4000) &#xA;DECLARE @EmailSubject VARCHAR(4000) &#xA;&#xA;SET @FileOutput = ? &#xA;SET @PackageName = ? &#xA;&#xA;SET @EmailAttachment = @FileOutput &#xA;&#xA;SET @EmailDistro = ( &#xA;&#x9;SELECT a.ConfiguredValue&#xA;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.ConfigurationFilter = 'Notification ' + @PackageName) &#xA;&#xA;SET @EmailBody = 'One or more Items produced in the Initial Pricing Invoices (Dummy Vendor Invoices) ' + &#xA;&#x9;'has a UOM mismatch between ML and NBO.  It is possible that pricing will be incorrect for these items.  ' + &#xA;&#x9;'Please review the attached filed for details.' + CHAR(10) + CHAR(10) + &#xA;&#x9;'If the UOM mismatch is expected, please have the mapped UOM added to DataMartStaging.PricingUOMMapping ' + &#xA;&#x9;'so the item no longer shows on this report.'&#xA;&#xA;SET @EmailFrom = 'Fusion_SSIS_Support@redrobin.com' &#xA;&#xA;SET @EmailSubject = 'Initial Pricing UOM Mismatches'&#xA;&#xA;&#xA;--RETURN &#xA;SELECT @EmailAttachment AS EmailAttachment, @EmailBody AS EmailBody, @EmailDistro AS EmailDistro, &#xA; @EmailFrom AS EmailFrom, 1 AS EmailPriority, @EmailSubject AS EmailSubject "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::EmailAttachment" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::EmailBody" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::EmailDistro" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="3"
+                SQLTask:DtsVariableName="User::EmailFrom" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="4"
+                SQLTask:DtsVariableName="User::EmailPriority" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="5"
+                SQLTask:DtsVariableName="User::EmailSubject" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::FileOutput"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0C874607-6497-4867-A698-F6EEE7B66BDB}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::RowsOutput] &gt; 0"
+          DTS:From="Package\Rows Exist Actions\Dummy"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Rows Exist Actions\Create File" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{4E14EA62-6BAF-45D6-A954-F2AFFEB7EA68}"
+          DTS:From="Package\Rows Exist Actions\Create File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Rows Exist Actions\Copy to Archive" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{D8428E44-AA94-424A-8F56-4DD4DF5B5DBF}"
+          DTS:From="Package\Rows Exist Actions\Copy to Archive"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Rows Exist Actions\Get Email Values" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{685BC5B7-C61C-4534-8BFC-A54235C2CFD3}"
+          DTS:From="Package\Rows Exist Actions\Get Email Values"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Rows Exist Actions\Execute NBOSendEmail" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Package Audit"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{531CC4D0-72B3-4414-9367-68ECEAC36CA8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Package Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3F03977A-227A-4DA2-A89F-4D89C2C7ECE7}"
+          SQLTask:SqlStatementSource="--DECLARE AND SET &#xA;DECLARE @AuditKey INT &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;&#xA;SET @AuditKey = ? &#xA;SET @PackageName = ? &#xA;&#xA;EXECUTE audit.uspStartPackage @AuditKey, @PackageName, ''; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C24D5E86-62B9-4DDE-B9F2-D77DF6C84BEC}"
+      DTS:From="Package\Get Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Start Package Audit" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DA695968-2F9A-4F75-9171-8ACED2DE4D41}"
+      DTS:From="Package\Start Package Audit"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Get Counts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{A5BF023C-C8E1-4AC9-BE44-EC716045D27B}"
+      DTS:From="Package\Get Counts"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Clear Output Folder" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9226B57E-8FCD-4382-8309-3146DEC30C78}"
+      DTS:From="Package\Rows Exist Actions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\End Package Audit" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{4A115221-6B2C-4D31-99B8-236D3DB88112}"
+      DTS:From="Package\Clear Output Folder"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Rows Exist Actions" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Get Variables"
+          TopLeft="30,28" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Start Package Audit"
+          TopLeft="349,28" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\End Package Audit"
+          TopLeft="30,708.388888888894" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="262,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87,0"
+              Start="0,0"
+              End="79.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Get Counts"
+          TopLeft="30,97.0972222222236" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="465,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-319,27.0972222222236"
+              Start="0,0"
+              End="-319,19.5972222222236">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.5486111111118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.5486111111118"
+                    Point2="0,13.5486111111118"
+                    Point3="-4,13.5486111111118" />
+                  <mssgle:LineSegment
+                    End="-315,13.5486111111118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-315,13.5486111111118"
+                    Point2="-319,13.5486111111118"
+                    Point3="-319,17.5486111111118" />
+                  <mssgle:LineSegment
+                    End="-319,19.5972222222236" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Dummy"
+          TopLeft="22.4285714285714,14.1428571428572" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Create File"
+          TopLeft="22.4285714285714,86.9821428571429" />
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint]"
+          TopLeft="117.928571428571,56.1428571428572">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.8392857142857"
+              Start="0,0"
+              End="0,23.3392857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3392857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,3.66964285714285,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Copy to Archive"
+          TopLeft="22.4285714285714,159.821428571429" />
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 1]"
+          TopLeft="117.928571428571,128.982142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.8392857142857"
+              Start="0,0"
+              End="0,23.3392857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3392857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Get Email Values"
+          TopLeft="22.4285714285714,232.660714285714" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Execute NBOSendEmail"
+          TopLeft="22.4285714285714,305.5" />
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 2]"
+          TopLeft="117.928571428571,201.821428571429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.8392857142857"
+              Start="0,0"
+              End="0,23.3392857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3392857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 3]"
+          TopLeft="117.928571428571,274.660714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.8392857142857"
+              Start="0,0"
+              End="0,23.3392857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3392857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="232,402"
+          Size="232,446"
+          Id="Package\Rows Exist Actions"
+          TopLeft="30,235.291666666671" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="146,681.291666666671">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.0972222222237"
+              Start="0,0"
+              End="0,19.5972222222237">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5972222222237" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Clear Output Folder"
+          TopLeft="30,166.194444444447" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="146,139.097222222224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.0972222222236"
+              Start="0,0"
+              End="0,19.5972222222236">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5972222222236" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="146,208.194444444447">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.0972222222236"
+              Start="0,0"
+              End="0,19.5972222222236">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5972222222236" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Rows Exist Actions\Create File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Rows Exist Actions\Create File\PricingInvoiceDetail"
+          TopLeft="30,20" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Rows Exist Actions\Create File\Sort"
+          TopLeft="30,99.5" />
+        <EdgeLayout
+          Id="Package\Rows Exist Actions\Create File.Paths[OLE DB Source Output]"
+          TopLeft="149,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.5"
+              Start="0,0"
+              End="0,30">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Rows Exist Actions\Create File\DummyInvoiceUOMMismatch File"
+          TopLeft="30,179" />
+        <EdgeLayout
+          Id="Package\Rows Exist Actions\Create File.Paths[Sort Output]"
+          TopLeft="149,141.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.5"
+              Start="0,0"
+              End="0,30">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Rows Exist Actions\Create File\PricingInvoiceDetail">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

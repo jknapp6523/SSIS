@@ -1,0 +1,2189 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/18/2013 12:59:34 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{3056F66D-54C6-4FB2-AA12-8CE2564BC045}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadFusionData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{3C32411B-8633-4D49-AAF9-9B16B472B897}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CF532DAD-A149-4AE0-8244-93DF467AD9CF}"
+      DTS:ObjectName="HQ-FINSQL-01.CognosIntegration">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=CognosIntegration;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAA/A8zhisQyohecn+M+1muLAAAAAASAAACgAAAAEAAAAGdgVhDoKv/VFX/OOPCnoWQoAAAAoUGss9DosiBFDOrzFQI/mLY1eyOEZOPMZxiMl2H2bol2ptWNDbDGRxQAAAB00AuDnG7kGSevnGmSTJnn3LgPUg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{97F76B3E-FA69-4B58-A7B5-25A065B2AC10}"
+      DTS:ObjectName="HQ-FINSQL-01.SalesMixCube">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=SalesMixCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACvrq5l4vqK6FoRI+nYsWIKAAAAAASAAACgAAAAEAAAAMJNvYUFkKLIjxV2VpttI+coAAAAoyV6dfEuuBHi9tCMXtprJO+En4xxYaWJxRbCsWeozhNgJYGX9fEhcRQAAACsQrKByGFptKplvGaSegLMQndaJg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{86528B6D-7B0F-4C44-8077-57A7DF409147}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeleteDate">
+      <DTS:VariableValue
+        DTS:DataType="7">3/18/2013 1:26:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{09337716-981A-41C4-9C74-5D35E629D8F4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeleteStore">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EFEBBF4F-BA63-49AD-8026-39AF7841ACAC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 4) @[User::DeleteStore]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeleteStoreStr">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{61497DBE-E81C-4A21-9202-0D009D2393B9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FusionStoresDates">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{51080B88-3769-46FA-888D-B0FB105B400D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select distinct salesdate, storeid from INT054Staging&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsToDelete">
+      <DTS:VariableValue
+        DTS:DataType="8">select distinct salesdate, storeid from INT054Staging</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Deletion Loop"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{B6149AAA-81EB-4467-AF7F-B7A1A3610068}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Deletion Loop">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{F3F20958-506C-4A2E-A10A-2A40B75ADDB6}"
+        DTS:ObjectName="{F3F20958-506C-4A2E-A10A-2A40B75ADDB6}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::FusionStoresDates" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Deletion Loop\Delete MenuLink Data"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C28939AC-3B8F-4ECB-938B-C4AD5915C8CE}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete MenuLink Data"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{97F76B3E-FA69-4B58-A7B5-25A065B2AC10}"
+              SQLTask:SqlStatementSource="EXEC spDeleteMenuLinkData ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@DateOfBusiness"
+                SQLTask:DtsVariableName="User::DeleteDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="30" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StoreNumber"
+                SQLTask:DtsVariableName="User::DeleteStoreStr"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="10" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0413B6D2-E27A-4554-812E-3D3623F653E3}"
+          DTS:ObjectName="{0413B6D2-E27A-4554-812E-3D3623F653E3}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::DeleteDate" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{52044CB7-42C6-4B04-BF5D-A6FA82EBF598}"
+          DTS:ObjectName="{52044CB7-42C6-4B04-BF5D-A6FA82EBF598}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::DeleteStore" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Fusion Stores and Dates"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3EC27198-BEEB-44C1-B4AB-981D8116BB86}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Fusion Stores and Dates"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DISTINCT Store Dates"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::RowsToDelete</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].Columns[salesdate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].ExternalColumns[salesdate]"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].Columns[salesdate]"
+                      name="salesdate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].Columns[storeid]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].ExternalColumns[storeid]"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].Columns[storeid]"
+                      name="storeid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].ExternalColumns[salesdate]"
+                      dataType="dbTimeStamp"
+                      name="salesdate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].ExternalColumns[storeid]"
+                      dataType="i2"
+                      name="storeid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[salesdate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[salesdate]"
+                      name="salesdate" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[storeid]"
+                      dataType="i2"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[storeid]"
+                      name="storeid" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Fusion Stores and Dates\Rows to Delete"
+              componentClassID="{C457FD7E-CE98-4C4B-AEFE-F3AE0044F181}"
+              contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+              name="Rows to Delete">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::FusionStoresDates</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Get Fusion Stores and Dates\Rows to Delete.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Fusion Stores and Dates\Rows to Delete.Inputs[Recordset Destination Input].Columns[salesdate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="salesdate"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].Columns[salesdate]" />
+                    <inputColumn
+                      refId="Package\Get Fusion Stores and Dates\Rows to Delete.Inputs[Recordset Destination Input].Columns[storeid]"
+                      cachedDataType="i2"
+                      cachedName="storeid"
+                      lineageId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output].Columns[storeid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Fusion Stores and Dates.Paths[OLE DB Source Output]"
+              endId="Package\Get Fusion Stores and Dates\Rows to Delete.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Fusion Stores and Dates\DISTINCT Store Dates.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Fusion Data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2A408F64-DB4A-4F8B-A530-97DF84881F42}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Fusion Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Fusion Data\3 Char Store"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="3 Char Store"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Fusion Data\3 Char Store.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\3 Char Store.Inputs[Derived Column Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="StoreID"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[StoreID]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLICATE]("0",3 - [LEN](#{Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[StoreID]})) + #{Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[StoreID]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLICATE("0",3 - LEN(StoreID)) + StoreID</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\3 Char Store.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load Fusion Data\3 Char Store.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fusion Data\3 Char Store.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load Fusion Data\3 Char Store.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\3 Char Store.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\3 Char Store.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\3 Char Store.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\3 Char Store.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fusion Data\Fusion SalesMix Staging"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Fusion SalesMix Staging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[INT054Staging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fusion Data\Fusion SalesMix Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="10"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[QuantitySold]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[QuantitySold]"
+                      name="QuantitySold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="3"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[QuantitySold]"
+                      dataType="i2"
+                      name="QuantitySold" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      dataType="numeric"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      name="SalesDate" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[QuantitySold]"
+                      name="QuantitySold" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fusion Data\FusionArchive"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FusionArchive"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FusionSalesMixArchive]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fusion Data\FusionArchive.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].Columns[SalesDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesDate"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[SalesDate]"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[SalesDate]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MenuItemID"
+                      externalMetadataColumnId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].Columns[SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="SellingPrice"
+                      externalMetadataColumnId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[SellingPrice]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].Columns[QuantitySold]"
+                      cachedDataType="i2"
+                      cachedName="QuantitySold"
+                      externalMetadataColumnId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[QuantitySold]"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[QuantitySold]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].Columns[MenuItemCost]"
+                      cachedDataType="numeric"
+                      cachedName="MenuItemCost"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCost]"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[MenuItemCost]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].Columns[subperiod]"
+                      cachedDataType="numeric"
+                      cachedName="subperiod"
+                      cachedPrecision="4"
+                      externalMetadataColumnId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[subperiod]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[QuantitySold]"
+                      dataType="i2"
+                      name="QuantitySold" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCost]"
+                      dataType="numeric"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\FusionArchive.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\FusionArchive.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\FusionArchive.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\FusionArchive.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fusion Data\Merge Join"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[SalesDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesDate"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[SalesDate]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MenuItemID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="SellingPrice"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[SellingPrice]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[QuantitySold]"
+                      cachedDataType="i2"
+                      cachedName="QuantitySold"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[QuantitySold]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="StoreID"
+                      cachedSortKeyPosition="5"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[MenuItemCost]"
+                      cachedDataType="numeric"
+                      cachedName="MenuItemCost"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      cachedSortKeyPosition="6"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[MenuItemCost]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Right Input].Columns[salesmixdate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="salesmixdate"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[salesmixdate]" />
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Right Input].Columns[subperiod]"
+                      cachedDataType="numeric"
+                      cachedName="subperiod"
+                      cachedPrecision="4"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[subperiod]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[SalesDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[MenuItemID]"
+                      name="MenuItemID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[MenuItemID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[SellingPrice]"
+                      name="SellingPrice">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[SellingPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[QuantitySold]"
+                      name="QuantitySold">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[QuantitySold]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[StoreID]"
+                      name="StoreID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[StoreID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input].Columns[MenuItemCost]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[subperiod]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output].Columns[subperiod]"
+                      name="subperiod"
+                      precision="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Fusion Data\Merge Join.Inputs[Merge Join Right Input].Columns[subperiod]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fusion Data\Sort"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Fusion Data\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort.Inputs[Sort Input].Columns[SalesDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesDate"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SalesDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort.Inputs[Sort Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MenuItemID"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort.Inputs[Sort Input].Columns[SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="SellingPrice"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort.Inputs[Sort Input].Columns[QuantitySold]"
+                      cachedDataType="i2"
+                      cachedName="QuantitySold"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[QuantitySold]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort.Inputs[Sort Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="StoreID"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[StoreID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort.Inputs[Sort Input].Columns[MenuItemCost]"
+                      cachedDataType="numeric"
+                      cachedName="MenuItemCost"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      lineageId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemCost]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SalesDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[QuantitySold]"
+                      name="QuantitySold"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[QuantitySold]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[StoreID]"
+                      name="StoreID"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[StoreID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Sort.Outputs[Sort Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output].Columns[MenuItemCost]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fusion Data\Sort Date"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort Date"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input].Columns[salesmixdate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="salesmixdate"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[salesmixdate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input].Columns[fiscalyear]"
+                      cachedDataType="numeric"
+                      cachedName="fiscalyear"
+                      cachedPrecision="4"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[fiscalyear]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input].Columns[quarter]"
+                      cachedDataType="numeric"
+                      cachedName="quarter"
+                      cachedPrecision="1"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[quarter]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input].Columns[period]"
+                      cachedDataType="numeric"
+                      cachedName="period"
+                      cachedPrecision="2"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[period]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input].Columns[subperiod]"
+                      cachedDataType="numeric"
+                      cachedName="subperiod"
+                      cachedPrecision="4"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[subperiod]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input].Columns[weeknumber]"
+                      cachedDataType="numeric"
+                      cachedName="weeknumber"
+                      cachedPrecision="2"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[weeknumber]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input].Columns[daynumber]"
+                      cachedDataType="numeric"
+                      cachedName="daynumber"
+                      cachedPrecision="1"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[daynumber]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[salesmixdate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[salesmixdate]"
+                      name="salesmixdate"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[salesmixdate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[fiscalyear]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[fiscalyear]"
+                      name="fiscalyear"
+                      precision="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[fiscalyear]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[quarter]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[quarter]"
+                      name="quarter"
+                      precision="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[quarter]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[period]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[period]"
+                      name="period"
+                      precision="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[period]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[subperiod]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[subperiod]"
+                      name="subperiod"
+                      precision="4"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[subperiod]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[weeknumber]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[weeknumber]"
+                      name="weeknumber"
+                      precision="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[weeknumber]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[daynumber]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output].Columns[daynumber]"
+                      name="daynumber"
+                      precision="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[daynumber]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fusion Data\Time Periods"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Time Periods"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TimePeriods]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fusion Data\Time Periods.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[salesmixdate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[salesmixdate]"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[salesmixdate]"
+                      name="salesmixdate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[fiscalyear]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[fiscalyear]"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[fiscalyear]"
+                      name="fiscalyear"
+                      precision="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[quarter]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[quarter]"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[quarter]"
+                      name="quarter"
+                      precision="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[period]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[period]"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[period]"
+                      name="period"
+                      precision="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[subperiod]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[subperiod]"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[subperiod]"
+                      name="subperiod"
+                      precision="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[weeknumber]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[weeknumber]"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[weeknumber]"
+                      name="weeknumber"
+                      precision="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[daynumber]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[daynumber]"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].Columns[daynumber]"
+                      name="daynumber"
+                      precision="1"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[salesmixdate]"
+                      dataType="dbTimeStamp"
+                      name="salesmixdate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[fiscalyear]"
+                      dataType="numeric"
+                      name="fiscalyear"
+                      precision="4" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[quarter]"
+                      dataType="numeric"
+                      name="quarter"
+                      precision="1" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[period]"
+                      dataType="numeric"
+                      name="period"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[subperiod]"
+                      dataType="numeric"
+                      name="subperiod"
+                      precision="4" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[weeknumber]"
+                      dataType="numeric"
+                      name="weeknumber"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output].ExternalColumns[daynumber]"
+                      dataType="numeric"
+                      name="daynumber"
+                      precision="1" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[salesmixdate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[salesmixdate]"
+                      name="salesmixdate" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[fiscalyear]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[fiscalyear]"
+                      name="fiscalyear"
+                      precision="4" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[quarter]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[quarter]"
+                      name="quarter"
+                      precision="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[period]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[period]"
+                      name="period"
+                      precision="2" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[subperiod]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[subperiod]"
+                      name="subperiod"
+                      precision="4" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[weeknumber]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[weeknumber]"
+                      name="weeknumber"
+                      precision="2" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[daynumber]"
+                      dataType="numeric"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[daynumber]"
+                      name="daynumber"
+                      precision="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Fusion Data.Paths[Derived Column Output]"
+              endId="Package\Load Fusion Data\FusionArchive.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load Fusion Data\3 Char Store.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load Fusion Data.Paths[Merge Join Output]"
+              endId="Package\Load Fusion Data\3 Char Store.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\Load Fusion Data\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Load Fusion Data.Paths[OLE DB Source Output1]"
+              endId="Package\Load Fusion Data\Sort Date.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Fusion Data\Time Periods.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Fusion Data.Paths[OLE DB Source Output]"
+              endId="Package\Load Fusion Data\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Fusion Data\Fusion SalesMix Staging.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Fusion Data.Paths[Sort Output1]"
+              endId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Load Fusion Data\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Load Fusion Data.Paths[Sort Output]"
+              endId="Package\Load Fusion Data\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Load Fusion Data\Sort Date.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2EFB10CF-5D3F-4557-BB6E-A9AC843B4CD7}"
+      DTS:From="Package\Get Fusion Stores and Dates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Deletion Loop" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BBC13EE4-89FE-441C-B65F-38E38E972DF8}"
+      DTS:From="Package\Deletion Loop"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Fusion Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Deletion Loop\Delete MenuLink Data"
+          TopLeft="48,26" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="266,128"
+          Size="266,171"
+          Id="Package\Deletion Loop"
+          TopLeft="108,177" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Get Fusion Stores and Dates"
+          TopLeft="128,54" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load Fusion Data"
+          TopLeft="165,420" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="238,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="243.5,348">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Fusion Stores and Dates">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Get Fusion Stores and Dates\Rows to Delete"
+          TopLeft="104,141" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Get Fusion Stores and Dates\DISTINCT Store Dates"
+          TopLeft="85,19" />
+        <EdgeLayout
+          Id="Package\Get Fusion Stores and Dates.Paths[OLE DB Source Output]"
+          TopLeft="178.5,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80"
+              Start="0,0"
+              End="0,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Fusion Stores and Dates\DISTINCT Store Dates">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Fusion Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Load Fusion Data\Merge Join"
+          TopLeft="380,230" />
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Load Fusion Data\Sort Date"
+          TopLeft="574,112" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Load Fusion Data\Sort"
+          TopLeft="201,112" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Load Fusion Data\Time Periods"
+          TopLeft="560,21" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Load Fusion Data\Fusion SalesMix Staging"
+          TopLeft="154,18" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Load Fusion Data\FusionArchive"
+          TopLeft="370,438" />
+        <EdgeLayout
+          Id="Package\Load Fusion Data.Paths[Sort Output1]"
+          TopLeft="254.5,154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="170.5,76"
+              Start="0,0"
+              End="170.5,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.0497737556561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.0497737556561"
+                    Point2="0,45.0497737556561"
+                    Point3="4,45.0497737556561" />
+                  <mssgle:LineSegment
+                    End="166.5,45.0497737556561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="166.5,45.0497737556561"
+                    Point2="170.5,45.0497737556561"
+                    Point3="170.5,49.0497737556561" />
+                  <mssgle:LineSegment
+                    End="170.5,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fusion Data.Paths[Sort Output]"
+          TopLeft="636,154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-170,76"
+              Start="0,0"
+              End="-170,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.0497737556561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.0497737556561"
+                    Point2="0,45.0497737556561"
+                    Point3="-4,45.0497737556561" />
+                  <mssgle:LineSegment
+                    End="-166,45.0497737556561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-166,45.0497737556561"
+                    Point2="-170,45.0497737556561"
+                    Point3="-170,49.0497737556561" />
+                  <mssgle:LineSegment
+                    End="-170,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fusion Data.Paths[OLE DB Source Output1]"
+          TopLeft="633.25,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fusion Data.Paths[OLE DB Source Output]"
+          TopLeft="252.75,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Load Fusion Data\3 Char Store"
+          TopLeft="373,307" />
+        <EdgeLayout
+          Id="Package\Load Fusion Data.Paths[Merge Join Output]"
+          TopLeft="444.25,272">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fusion Data.Paths[Derived Column Output]"
+          TopLeft="443,349">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fusion Data\Time Periods">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fusion Data\Fusion SalesMix Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fusion Data\FusionArchive">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

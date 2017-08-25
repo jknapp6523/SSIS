@@ -1,0 +1,2108 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/12/2013 9:57:37 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MSMITH-L8"
+  DTS:CreatorName="CORPHQ\msmith"
+  DTS:Description="Load flat files from Radiant"
+  DTS:DTSID="{14B42F8B-3089-4488-9BDA-2DCEE677F5F0}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="LoadCheckSumFlatFiles"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{267FA7E4-A507-47C3-881F-CD4189278EBB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{95CD9DB7-1FBC-4551-8DB2-B7CDC85711A9}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=hq-finsql-01;Initial Catalog=Tips;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{0CC61E86-BE8A-46DD-9C6A-529834CC8576}"
+      DTS:ObjectName="SourceConnectionFlatFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\msmith.CORPHQ\Downloads\rrd03-HstCheckSummary-20121231-20130106\HstCheckSummary.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UniqueID"
+              DTS:DTSID="{3EDD0726-252B-4E13-8D13-6A96F049EC9F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateOfBusiness"
+              DTS:DTSID="{4EE4928C-4253-4CB3-BB28-B65EC921E63B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FKStoreID"
+              DTS:DTSID="{51EAF2A0-8C11-4DB1-81AC-4147F0F83906}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FKEmployeeNumber"
+              DTS:DTSID="{ABB8B3D4-37AC-4DE4-8CAC-7F61DFFB3609}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CheckID"
+              DTS:DTSID="{34C9F3D6-E287-464B-A5F7-DAC123AEBF03}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="16"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TableDescription"
+              DTS:DTSID="{D3ED90AE-CD2D-4D98-8DA8-E7B6FA6D8A46}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Comps"
+              DTS:DTSID="{69412B7B-C7F0-46E5-B788-05EA027EA46C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="14"
+              DTS:DataScale="12"
+              DTS:TextQualified="True"
+              DTS:ObjectName="GuestCount"
+              DTS:DTSID="{F5BEEC64-C7F1-4B11-A2E1-FBCB01EB4067}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemCount"
+              DTS:DTSID="{8A320E4E-0BB2-4051-A1E3-8F1F1EE2E1F0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemSales"
+              DTS:DTSID="{C24F3CE7-A893-47C4-8DEB-250A9D7D5BA3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ModeCharge"
+              DTS:DTSID="{97E0D605-783D-4E70-B05D-CDF0E50FE1C9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Promos"
+              DTS:DTSID="{25A692FE-C725-4C29-AA88-01D25A0A31E4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Payment"
+              DTS:DTSID="{A55752E4-F49B-46AA-888C-4C2384B3BA8E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SurCharge"
+              DTS:DTSID="{977FFA52-BCC0-49AE-AFC6-C39FBDD250D4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Tax"
+              DTS:DTSID="{E870CFA3-D4AD-4CAD-A512-A266C501786A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OpenTime"
+              DTS:DTSID="{F42510DE-22D0-440B-8EB0-62A2FD4D2347}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FirstOrderTime"
+              DTS:DTSID="{F629F297-8B24-4151-B1E4-00ABF704A893}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LastOrderTime"
+              DTS:DTSID="{F4C797F8-F67D-4575-AF9C-498770731E4A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CloseTime"
+              DTS:DTSID="{3F2CE1F5-F14C-4D76-8370-49BAD2474455}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ActualCloseTime"
+              DTS:DTSID="{93086C47-B219-47C7-ACA2-83ECA58B1520}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CheckCloseTime"
+              DTS:DTSID="{2EF67B04-0EDD-4671-99FC-95A6A343B85D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CheckTime"
+              DTS:DTSID="{125AA213-3D4B-4DAA-96FF-F37657CF3D22}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FKDayPartID"
+              DTS:DTSID="{E22A118E-5C45-42F4-9E3F-E974DE4D65A4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FKRevenueID"
+              DTS:DTSID="{B3AFFAAC-8BD3-4EDA-B533-8FEEADD10025}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NetSales"
+              DTS:DTSID="{2C1CC419-0704-4E3B-8EA3-EE142079B100}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TaxExemptAmt"
+              DTS:DTSID="{52FE0A6A-CF8E-41E9-9FB9-BD6814C1384B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LastPaymentTime"
+              DTS:DTSID="{09E1E21F-4C61-4EC7-A34B-4316AE9B2FD1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SeatTime"
+              DTS:DTSID="{52AD8DB2-FE4B-4132-A9E5-4D706C4E4306}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LastBumpTime"
+              DTS:DTSID="{6386DF1C-7AFA-4629-944A-6CF4AF72DB71}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AdditionalCharges"
+              DTS:DTSID="{705C9D07-3514-431C-A698-16E74D87D8B8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="GSTTax"
+              DTS:DTSID="{903BDDD6-E367-4E6F-9223-5D63F94E6565}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FKOccasionID"
+              DTS:DTSID="{90A1427E-80E5-4ACE-8DAC-82DF5CB9C2AF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ImportID"
+              DTS:DTSID="{CB4D2676-6F54-4EB7-A46D-025AD148DF1F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ImportCheckSum"
+              DTS:DTSID="{DBF5A93C-8C51-42FD-81CA-94D6D725085D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateTimeStamp"
+              DTS:DTSID="{9EF80037-B5D2-4984-8678-13EC3F41CC08}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TippableSales"
+              DTS:DTSID="{D2275B38-843A-4F0B-BC95-380EBD626C40}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TippableChargeSales"
+              DTS:DTSID="{0C60C0A5-32AB-4B2D-8DAC-0081D7302623}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CheckCounter"
+              DTS:DTSID="{74CEC998-70A5-48EB-822E-A50A27176715}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{3DEEA200-8F07-4D0F-AEBF-320D92451E79}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Data Conversion 0 - 0"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 0 - 0"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[DateOfBusiness]"
+                      cachedDataType="date"
+                      cachedName="DateOfBusiness"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[GuestCount]"
+                      cachedDataType="decimal"
+                      cachedName="GuestCount"
+                      cachedScale="12"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[GuestCount]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[SurCharge]"
+                      cachedDataType="decimal"
+                      cachedName="SurCharge"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[SurCharge]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input].Columns[DateTimeStamp]"
+                      cachedDataType="date"
+                      cachedName="DateTimeStamp"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateTimeStamp]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateOfBusiness]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[GuestCount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[GuestCount]"
+                      name="GuestCount"
+                      precision="28"
+                      scale="12"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[GuestCount]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[SurCharge]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[SurCharge]"
+                      name="SurCharge"
+                      precision="28"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[SurCharge]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[DateTimeStamp]"
+                      name="DateTimeStamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateTimeStamp]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Destination - HstCheckSummary"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - HstCheckSummary"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dpvHstCheckSummary]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[UniqueID]"
+                      cachedDataType="i8"
+                      cachedName="UniqueID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[UniqueID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[UniqueID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[FKStoreID]"
+                      cachedDataType="i4"
+                      cachedName="FKStoreID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKStoreID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[FKEmployeeNumber]"
+                      cachedDataType="i4"
+                      cachedName="FKEmployeeNumber"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKEmployeeNumber]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKEmployeeNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[CheckID]"
+                      cachedDataType="i4"
+                      cachedName="CheckID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[TableDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="TableDescription"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TableDescription]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TableDescription]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[Comps]"
+                      cachedDataType="cy"
+                      cachedName="Comps"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Comps]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Comps]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[GuestCount]"
+                      cachedDataType="numeric"
+                      cachedName="GuestCount"
+                      cachedPrecision="28"
+                      cachedScale="12"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[GuestCount]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[GuestCount]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[ItemCount]"
+                      cachedDataType="i4"
+                      cachedName="ItemCount"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemCount]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ItemCount]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[ItemSales]"
+                      cachedDataType="cy"
+                      cachedName="ItemSales"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ItemSales]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[ModeCharge]"
+                      cachedDataType="cy"
+                      cachedName="ModeCharge"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ModeCharge]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ModeCharge]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[Promos]"
+                      cachedDataType="cy"
+                      cachedName="Promos"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Promos]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Promos]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[Payment]"
+                      cachedDataType="cy"
+                      cachedName="Payment"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Payment]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Payment]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[SurCharge]"
+                      cachedDataType="numeric"
+                      cachedName="SurCharge"
+                      cachedPrecision="28"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[SurCharge]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[SurCharge]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[Tax]"
+                      cachedDataType="cy"
+                      cachedName="Tax"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Tax]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Tax]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[OpenTime]"
+                      cachedDataType="i2"
+                      cachedName="OpenTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[OpenTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[OpenTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[FirstOrderTime]"
+                      cachedDataType="i2"
+                      cachedName="FirstOrderTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FirstOrderTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FirstOrderTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[LastOrderTime]"
+                      cachedDataType="i2"
+                      cachedName="LastOrderTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[LastOrderTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastOrderTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[CloseTime]"
+                      cachedDataType="i2"
+                      cachedName="CloseTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CloseTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CloseTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[ActualCloseTime]"
+                      cachedDataType="i2"
+                      cachedName="ActualCloseTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ActualCloseTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ActualCloseTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[CheckCloseTime]"
+                      cachedDataType="i2"
+                      cachedName="CheckCloseTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCloseTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckCloseTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[CheckTime]"
+                      cachedDataType="i2"
+                      cachedName="CheckTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[FKDayPartID]"
+                      cachedDataType="i4"
+                      cachedName="FKDayPartID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKDayPartID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKDayPartID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[FKRevenueID]"
+                      cachedDataType="i4"
+                      cachedName="FKRevenueID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKRevenueID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKRevenueID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[NetSales]"
+                      cachedDataType="cy"
+                      cachedName="NetSales"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[NetSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[NetSales]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[TaxExemptAmt]"
+                      cachedDataType="cy"
+                      cachedName="TaxExemptAmt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TaxExemptAmt]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TaxExemptAmt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[LastPaymentTime]"
+                      cachedDataType="i2"
+                      cachedName="LastPaymentTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[LastPaymentTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastPaymentTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[SeatTime]"
+                      cachedDataType="i2"
+                      cachedName="SeatTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[SeatTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[SeatTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[LastBumpTime]"
+                      cachedDataType="i2"
+                      cachedName="LastBumpTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[LastBumpTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastBumpTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[AdditionalCharges]"
+                      cachedDataType="cy"
+                      cachedName="AdditionalCharges"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[AdditionalCharges]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[AdditionalCharges]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[GSTTax]"
+                      cachedDataType="cy"
+                      cachedName="GSTTax"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[GSTTax]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[GSTTax]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[FKOccasionID]"
+                      cachedDataType="i4"
+                      cachedName="FKOccasionID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKOccasionID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKOccasionID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[ImportCheckSum]"
+                      cachedDataType="i8"
+                      cachedName="ImportCheckSum"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ImportCheckSum]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ImportCheckSum]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[DateTimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[DateTimeStamp]"
+                      lineageId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output].Columns[DateTimeStamp]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[TippableSales]"
+                      cachedDataType="cy"
+                      cachedName="TippableSales"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TippableSales]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[TippableChargeSales]"
+                      cachedDataType="cy"
+                      cachedName="TippableChargeSales"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableChargeSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TippableChargeSales]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].Columns[CheckCounter]"
+                      cachedDataType="i4"
+                      cachedName="CheckCounter"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCounter]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckCounter]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[UniqueID]"
+                      dataType="i8"
+                      name="UniqueID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKEmployeeNumber]"
+                      dataType="i4"
+                      name="FKEmployeeNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckID]"
+                      dataType="i4"
+                      name="CheckID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TableDescription]"
+                      dataType="wstr"
+                      length="16"
+                      name="TableDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Comps]"
+                      dataType="r8"
+                      name="Comps" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[GuestCount]"
+                      dataType="numeric"
+                      name="GuestCount"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemCount]"
+                      dataType="i4"
+                      name="ItemCount" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ItemSales]"
+                      dataType="r8"
+                      name="ItemSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ModeCharge]"
+                      dataType="r8"
+                      name="ModeCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Promos]"
+                      dataType="r8"
+                      name="Promos" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Payment]"
+                      dataType="r8"
+                      name="Payment" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[SurCharge]"
+                      dataType="r8"
+                      name="SurCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[Tax]"
+                      dataType="r8"
+                      name="Tax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[OpenTime]"
+                      dataType="i2"
+                      name="OpenTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FirstOrderTime]"
+                      dataType="i2"
+                      name="FirstOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[LastOrderTime]"
+                      dataType="i2"
+                      name="LastOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CloseTime]"
+                      dataType="i2"
+                      name="CloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ActualCloseTime]"
+                      dataType="i2"
+                      name="ActualCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCloseTime]"
+                      dataType="i2"
+                      name="CheckCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckTime]"
+                      dataType="i2"
+                      name="CheckTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKDayPartID]"
+                      dataType="i4"
+                      name="FKDayPartID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKRevenueID]"
+                      dataType="i4"
+                      name="FKRevenueID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[NetSales]"
+                      dataType="r8"
+                      name="NetSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TaxExemptAmt]"
+                      dataType="r8"
+                      name="TaxExemptAmt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[LastPaymentTime]"
+                      dataType="i2"
+                      name="LastPaymentTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[SeatTime]"
+                      dataType="i2"
+                      name="SeatTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[LastBumpTime]"
+                      dataType="i2"
+                      name="LastBumpTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[AdditionalCharges]"
+                      dataType="r8"
+                      name="AdditionalCharges" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[GSTTax]"
+                      dataType="r8"
+                      name="GSTTax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[FKOccasionID]"
+                      dataType="i4"
+                      name="FKOccasionID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[ImportCheckSum]"
+                      dataType="i8"
+                      name="ImportCheckSum" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="DateTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableSales]"
+                      dataType="r8"
+                      name="TippableSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[TippableChargeSales]"
+                      dataType="r8"
+                      name="TippableChargeSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input].ExternalColumns[CheckCounter]"
+                      dataType="i4"
+                      name="CheckCounter" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - HstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - HstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - HstCheckSummary.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Source - HstCheckSummary_txt"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[UniqueID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[UniqueID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[UniqueID]"
+                      name="UniqueID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateOfBusiness]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKStoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKStoreID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKStoreID]"
+                      name="FKStoreID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKEmployeeNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKEmployeeNumber]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKEmployeeNumber]"
+                      name="FKEmployeeNumber"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckID]"
+                      name="CheckID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TableDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TableDescription]"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TableDescription]"
+                      name="TableDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Comps]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Comps]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Comps]"
+                      name="Comps"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[GuestCount]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[GuestCount]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[GuestCount]"
+                      name="GuestCount"
+                      scale="12"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ItemCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ItemCount]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ItemCount]"
+                      name="ItemCount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ItemSales]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ItemSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ItemSales]"
+                      name="ItemSales"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ModeCharge]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ModeCharge]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ModeCharge]"
+                      name="ModeCharge"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Promos]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Promos]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Promos]"
+                      name="Promos"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Payment]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Payment]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Payment]"
+                      name="Payment"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[SurCharge]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[SurCharge]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[SurCharge]"
+                      name="SurCharge"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Tax]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Tax]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[Tax]"
+                      name="Tax"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[OpenTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[OpenTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[OpenTime]"
+                      name="OpenTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FirstOrderTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FirstOrderTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FirstOrderTime]"
+                      name="FirstOrderTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastOrderTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[LastOrderTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastOrderTime]"
+                      name="LastOrderTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CloseTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CloseTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CloseTime]"
+                      name="CloseTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ActualCloseTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ActualCloseTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ActualCloseTime]"
+                      name="ActualCloseTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckCloseTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckCloseTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckCloseTime]"
+                      name="CheckCloseTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckTime]"
+                      name="CheckTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKDayPartID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKDayPartID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKDayPartID]"
+                      name="FKDayPartID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKRevenueID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKRevenueID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKRevenueID]"
+                      name="FKRevenueID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[NetSales]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[NetSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[NetSales]"
+                      name="NetSales"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TaxExemptAmt]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TaxExemptAmt]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TaxExemptAmt]"
+                      name="TaxExemptAmt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastPaymentTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[LastPaymentTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastPaymentTime]"
+                      name="LastPaymentTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[SeatTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[SeatTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[SeatTime]"
+                      name="SeatTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastBumpTime]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[LastBumpTime]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[LastBumpTime]"
+                      name="LastBumpTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[AdditionalCharges]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[AdditionalCharges]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[AdditionalCharges]"
+                      name="AdditionalCharges"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[GSTTax]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[GSTTax]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[GSTTax]"
+                      name="GSTTax"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKOccasionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKOccasionID]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[FKOccasionID]"
+                      name="FKOccasionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ImportCheckSum]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ImportCheckSum]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ImportCheckSum]"
+                      name="ImportCheckSum"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateTimeStamp]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[DateTimeStamp]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[DateTimeStamp]"
+                      name="DateTimeStamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TippableSales]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TippableSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TippableSales]"
+                      name="TippableSales"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TippableChargeSales]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TippableChargeSales]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[TippableChargeSales]"
+                      name="TippableChargeSales"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckCounter]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckCounter]"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[CheckCounter]"
+                      name="CheckCounter"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ImportID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ImportID]"
+                      length="200"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].Columns[ImportID]"
+                      name="ImportID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[UniqueID]"
+                      dataType="i8"
+                      name="UniqueID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="date"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKStoreID]"
+                      dataType="i4"
+                      name="FKStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKEmployeeNumber]"
+                      dataType="i4"
+                      name="FKEmployeeNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckID]"
+                      dataType="i4"
+                      name="CheckID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TableDescription]"
+                      dataType="wstr"
+                      length="16"
+                      name="TableDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Comps]"
+                      dataType="cy"
+                      name="Comps" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[GuestCount]"
+                      dataType="decimal"
+                      name="GuestCount"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ItemCount]"
+                      dataType="i4"
+                      name="ItemCount" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ItemSales]"
+                      dataType="cy"
+                      name="ItemSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ModeCharge]"
+                      dataType="cy"
+                      name="ModeCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Promos]"
+                      dataType="cy"
+                      name="Promos" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Payment]"
+                      dataType="cy"
+                      name="Payment" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[SurCharge]"
+                      dataType="decimal"
+                      name="SurCharge" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[Tax]"
+                      dataType="cy"
+                      name="Tax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[OpenTime]"
+                      dataType="i2"
+                      name="OpenTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FirstOrderTime]"
+                      dataType="i2"
+                      name="FirstOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[LastOrderTime]"
+                      dataType="i2"
+                      name="LastOrderTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CloseTime]"
+                      dataType="i2"
+                      name="CloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ActualCloseTime]"
+                      dataType="i2"
+                      name="ActualCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckCloseTime]"
+                      dataType="i2"
+                      name="CheckCloseTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckTime]"
+                      dataType="i2"
+                      name="CheckTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKDayPartID]"
+                      dataType="i4"
+                      name="FKDayPartID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKRevenueID]"
+                      dataType="i4"
+                      name="FKRevenueID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[NetSales]"
+                      dataType="cy"
+                      name="NetSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TaxExemptAmt]"
+                      dataType="cy"
+                      name="TaxExemptAmt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[LastPaymentTime]"
+                      dataType="i2"
+                      name="LastPaymentTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[SeatTime]"
+                      dataType="i2"
+                      name="SeatTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[LastBumpTime]"
+                      dataType="i2"
+                      name="LastBumpTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[AdditionalCharges]"
+                      dataType="cy"
+                      name="AdditionalCharges" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[GSTTax]"
+                      dataType="cy"
+                      name="GSTTax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[FKOccasionID]"
+                      dataType="i4"
+                      name="FKOccasionID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ImportCheckSum]"
+                      dataType="i8"
+                      name="ImportCheckSum" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[DateTimeStamp]"
+                      dataType="date"
+                      name="DateTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TippableSales]"
+                      dataType="cy"
+                      name="TippableSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[TippableChargeSales]"
+                      dataType="cy"
+                      name="TippableChargeSales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[CheckCounter]"
+                      dataType="i4"
+                      name="CheckCounter" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output].ExternalColumns[ImportID]"
+                      dataType="wstr"
+                      length="200"
+                      name="ImportID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Data Conversion Output]"
+              endId="Package\Data Flow Task 1\Destination - HstCheckSummary.Inputs[Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Data Flow Task 1\Data Conversion 0 - 0.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+              endId="Package\Data Flow Task 1\Data Conversion 0 - 0.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task 1\Source - HstCheckSummary_txt.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data Flow Task 1"
+          TopLeft="20.5,107.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Data Flow Task 1\Source - HstCheckSummary_txt"
+          TopLeft="7.00000000000001,5.5" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Data Flow Task 1\Destination - HstCheckSummary"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Data Flow Task 1\Data Conversion 0 - 0"
+          TopLeft="30,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+          TopLeft="121,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[Data Conversion Output]"
+          TopLeft="121,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task 1\Destination - HstCheckSummary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

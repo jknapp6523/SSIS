@@ -1,0 +1,102 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/22/2016 7:19:31 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="TMAUL-SP4"
+  DTS:CreatorName="CORPHQ\TMaul"
+  DTS:DTSID="{011015C0-98CE-4B29-9F71-50213E65E49D}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DB_Move_AppSQLCore-1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{31ACAD1C-6E67-447A-A7E4-9077F5A3BF84}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-AppSQLCore-1.SSISUser]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{2AA37AE7-AC7B-43A9-80A7-D0EBF1E4BCD5}"
+      DTS:ObjectName="HQ-AppSQLCore-1.SSISUser">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=HQ-AppSQLCore-1;UseWindowsAuthentication=False;UserName=SSISUser;">
+          <PassWord
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqsTtXOlYhUqQ6fHLEu5q4AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAC4Rch/8kPsLOssAS4FSguAAAAAASAAACgAAAAEAAAAPAU5RlPYMnZLVfA9ua7vXEoAAAAmOKBjxMfG+Nusg7q2s2pMAcjHyd1+fNEcunAhjqzSEKd3G/huCiIXxQAAACFgttVIoez4Y7MNr0sn10tAlKsog</PassWord>
+        </SMOServerConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FinSQL-01.SSISUser]"
+      DTS:CreationName="SMOServer"
+      DTS:DTSID="{42B18FFF-0AB0-469D-BA01-637CA0117272}"
+      DTS:ObjectName="HQ-FinSQL-01.SSISUser">
+      <DTS:ObjectData>
+        <SMOServerConnectionManager
+          ConnectionString="SqlServerName=Dev1-FinSQL-01.dev01.net;UseWindowsAuthentication=False;UserName=SSISUser;">
+          <PassWord
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqsTtXOlYhUqQ6fHLEu5q4AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACL8pq0gnMEke4vMaAS/1ePAAAAAASAAACgAAAAEAAAAKZ1p9ZV1leV9QR+EtCmvKcoAAAAl+vDY/cVtmJdNaGrSsKy8RmzRgAUz5/gBEOkgZHkuSCZVoG5maYS+hQAAAAZVkfUdcPY8TKBe5tuP9dby/FIug</PassWord>
+        </SMOServerConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy ExceptionReporting to HQ-FINSQL-01"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Transfer SQL Server Objects Task"
+      DTS:DTSID="{F2415EF6-818A-4E2B-8DF6-FA4FFC4E9C6D}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.TransferSqlServerObjectsTask.TransferSqlServerObjectsTask, Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy ExceptionReporting to HQ-FINSQL-01"
+      DTS:TaskContact="Transfer Objects Task; Microsoft Corporation; SQL Server 2012; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <TransferSqlServerObjectsTaskData
+          SourceConnection="{2AA37AE7-AC7B-43A9-80A7-D0EBF1E4BCD5}"
+          DestinationConnection="{42B18FFF-0AB0-469D-BA01-637CA0117272}"
+          SourceDatabase="ExceptionReporting"
+          DestinationDatabase="ExceptionReporting"
+          CopyAllObjects="True"
+          TablesList="38,11,[dbo].[ADI],24,[dbo].[Bev_Menu_Pricing],24,[dbo].[BusinessClosures],21,[dbo].[CategoryOrder],20,[dbo].[CubeCategory],19,[dbo].[CubeRawUnit],18,[dbo].[CubeVendor],18,[dbo].[DayCompare],15,[dbo].[GeoArea],18,[dbo].[Happy_Hour],21,[dbo].[LaborStandard],21,[dbo].[LastYearSales],18,[dbo].[Menu_Items],22,[dbo].[Menu_Tier_Hist],26,[dbo].[MenuItemCategories],29,[dbo].[MenuShellPricing_Tier],11,[dbo].[Pod],27,[dbo].[QAStoreSystemStatus],14,[dbo].[Region],20,[dbo].[RestCategory],11,[dbo].[RKM],12,[dbo].[RRFP],11,[dbo].[RVP],23,[dbo].[Sales_Locations],17,[dbo].[SalesTier],13,[dbo].[SrROD],17,[dbo].[StateWage],23,[dbo].[StateWage_Audit],21,[dbo].[StateWageTemp],14,[dbo].[Status],17,[dbo].[StoreList],25,[dbo].[StoreSystemStatus],18,[dbo].[SubPeriods],20,[dbo].[syscobidfile],14,[dbo].[System],16,[dbo].[TempJoin],20,[dbo].[Time_Periods],16,[dbo].[Timezone],"
+          ViewsList="1,23,[dbo].[NIBOStoreListVW],"
+          DropObjectsFirst="True"
+          IncludeDependentObjects="True"
+          IncludeExtendedProperties="True"
+          CopyIndexes="True"
+          CopyTriggers="True"
+          CopyFullTextIndexes="True"
+          CopyPrimaryKeys="True"
+          CopyForeignKeys="True"
+          CopyAllDRIObjects="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="282,42"
+          Id="Package\Copy ExceptionReporting to HQ-FINSQL-01"
+          TopLeft="60.1249999999999,76" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

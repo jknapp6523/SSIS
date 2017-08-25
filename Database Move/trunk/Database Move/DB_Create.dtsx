@@ -1,0 +1,222 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/30/2016 6:43:24 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="TMAUL-SP4"
+  DTS:CreatorName="CORPHQ\TMaul"
+  DTS:DTSID="{5C612C16-71A8-4271-B26C-96A73ED0017D}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DB_Create"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{AF7013D1-A36F-4066-A0F5-966012CC3290}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+      DTS:ObjectName="HQ-FINSQL-01">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=master;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqsTtXOlYhUqQ6fHLEu5q4AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACpB9XYfJItUhacViAkPdwyAAAAAASAAACgAAAAEAAAALsQkGspXo9mSJmGTYd9rtMoAAAA6t+W5jD33QI6JK2dRkCR/XS63z2TgLk5YuZ918TjxT+Mi2FU/injyhQAAADSwN0Lvj2t5VCDP0DSnoHIrZtcSw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create AlohaInterfaces"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{276260a2-0785-4cea-a667-8ad607e768cb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create AlohaInterfaces"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='AlohaInterfaces')&#xA;DROP DATABASE [AlohaInterfaces]&#xA;GO&#xA;&#xA;CREATE DATABASE [AlohaInterfaces] ON  PRIMARY &#xA;( NAME = N'AlohaInterfaces', FILENAME = N'E:\DATA\AlohaInterfaces.mdf' , &#xA;  SIZE = 312512KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'AlohaInterfaces_log', FILENAME = N'F:\LOGS\AlohaInterfaces_log.ldf' , &#xA;  SIZE = 4672KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [AlohaInterfaces]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create ItemFallOut"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{fde8444d-4863-4158-b05e-ae6e4865b405}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create ItemFallOut"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='ItemFallOut')&#xA;DROP DATABASE [ItemFallOut]&#xA;GO&#xA;&#xA;CREATE DATABASE [ItemFallOut] ON  PRIMARY &#xA;( NAME = N'ItemFallOut', FILENAME = N'E:\DATA\ItemFallOut.mdf' , &#xA;  SIZE = 14848KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'ItemFallOut_log', FILENAME = N'F:\LOGS\ItemFallOut_log.ldf' , &#xA;  SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [ItemFallOut]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create MenuLinkInterfaces"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9873635b-1945-4325-b82c-ea77442601a9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create MenuLinkInterfaces"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='MenuLinkInterfaces')&#xA;DROP DATABASE [MenuLinkInterfaces]&#xA;GO&#xA;&#xA;CREATE DATABASE [MenuLinkInterfaces] ON  PRIMARY &#xA;( NAME = N'MenuLinkInterfaces', FILENAME = N'E:\DATA\MenuLinkInterfaces.mdf' , &#xA;  SIZE = 350016KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'MenuLinkInterfaces_log', FILENAME = N'F:\LOGS\MenuLinkInterfaces_log.ldf' , &#xA;  SIZE = 6720KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [MenuLinkInterfaces]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create OrderRatesInterface"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0fc51413-c1cf-4c5c-bf2e-41a83560fa54}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create OrderRatesInterface"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='OrderRatesInterface')&#xA;DROP DATABASE [OrderRatesInterface]&#xA;GO&#xA;&#xA;CREATE DATABASE [OrderRatesInterface] ON  PRIMARY &#xA;( NAME = N'OrderRatesInterface', FILENAME = N'E:\DATA\OrderRatesInterface.mdf' , &#xA;  SIZE = 11264KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'OrderRatesInterface_log', FILENAME = N'F:\LOGS\OrderRatesInterface_log.ldf' , &#xA;  SIZE = 38592KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [OrderRatesInterface]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create PromosCompsVoidsInterface"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{22a4c7f4-975f-4935-b6c0-91826e2e18bb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create PromosCompsVoidsInterface"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='PromosCompsVoidsInterface')&#xA;DROP DATABASE [PromosCompsVoidsInterface]&#xA;GO&#xA;&#xA;CREATE DATABASE [PromosCompsVoidsInterface] ON  PRIMARY &#xA;( NAME = N'PromosCompsVoidsInterface', FILENAME = N'E:\DATA\PromosCompsVoidsInterface.mdf' , &#xA;  SIZE = 36864KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'PromosCompsVoidsInterface_log', FILENAME = N'F:\LOGS\PromosCompsVoidsInterface_log.ldf' , &#xA;  SIZE = 7488KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [PromosCompsVoidsInterface]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create TipsInterface"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b7e89285-41eb-4d77-a6d4-f7a77433cb65}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create TipsInterface"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='TipsInterface')&#xA;DROP DATABASE [TipsInterface]&#xA;GO&#xA;&#xA;CREATE DATABASE [TipsInterface] ON  PRIMARY &#xA;( NAME = N'TipsInterface', FILENAME = N'E:\DATA\TipsInterface.mdf' , &#xA;  SIZE = 20480KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'TipsInterface_log', FILENAME = N'F:\LOGS\TipsInterface_log.ldf' , &#xA;  SIZE = 56640KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [TipsInterface]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create UOMConversion"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{81ac088a-505f-4756-adb2-0de53ba551ef}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create UOMConversion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='UOMConversion')&#xA;DROP DATABASE [UOMConversion]&#xA;GO&#xA;&#xA;CREATE DATABASE [UOMConversion] ON  PRIMARY &#xA;( NAME = N'UOMConversion', FILENAME = N'E:\DATA\UOMConversion.mdf' , &#xA;  SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'UOMConversion_log', FILENAME = N'F:\LOGS\UOMConversion_log.ldf' , &#xA;  SIZE = 5696KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [UOMConversion]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create WatsonInterfaces"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{66761a61-09a5-44ed-8dab-54b928f265f3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create WatsonInterfaces"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{891F690E-7D34-44DE-854B-583FFF4CC629}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='WatsonInterfaces')&#xA;DROP DATABASE [WatsonInterfaces]&#xA;GO&#xA;&#xA;CREATE DATABASE [WatsonInterfaces] ON  PRIMARY &#xA;( NAME = N'WatsonInterfaces', FILENAME = N'E:\DATA\WatsonInterfaces.mdf' , &#xA;  SIZE = 63488KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'WatsonInterfaces_log', FILENAME = N'F:\LOGS\WatsonInterfaces_log.ldf' , &#xA;  SIZE = 91392KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [WatsonInterfaces]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create AlohaInterfaces"
+          TopLeft="45.6249999999999,75" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create ItemFallOut"
+          TopLeft="45.6249999999999,261" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create MenuLinkInterfaces"
+          TopLeft="45.6249999999999,447" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create OrderRatesInterface"
+          TopLeft="45.6249999999999,137" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create PromosCompsVoidsInterface"
+          TopLeft="45.6249999999999,323" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create TipsInterface"
+          TopLeft="45.6249999999999,509" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create UOMConversion"
+          TopLeft="45.6249999999999,199" />
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Drop &amp; Create WatsonInterfaces"
+          TopLeft="45.6249999999999,385" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

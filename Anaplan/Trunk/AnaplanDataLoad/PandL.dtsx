@@ -1,0 +1,2506 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2014 10:57:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="LSELLITTO-L72"
+  DTS:CreatorName="CORPHQ\lsellitto"
+  DTS:DTSID="{DEC6EB38-9452-4545-8FBF-C95A7A0FC8C8}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PandL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="109"
+  DTS:VersionGUID="{0533DFCA-7F10-4B29-90D0-91B9499F53F5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{262F0200-109C-46A7-A919-305E61182A56}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory]  +  @[User::ExportFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-ssis2012-01\MessageHub\Anaplan\Outbox\PandL_20170605083901.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Account"
+              DTS:DTSID="{D8F70CBE-FB32-4289-914A-BAB55EDE8C8C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant"
+              DTS:DTSID="{8CDAB7D3-D4B9-4963-A452-D56F9C4C6A02}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WeekInfo"
+              DTS:DTSID="{DDF9BFBC-8266-4C12-A5CA-F5C496FE3814}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="131"
+              DTS:DataPrecision="16"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{7BE44626-6E14-4124-9857-9ECFDD46CFE6}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{035385C9-D756-469A-96C5-734C3A9AF35A}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=True;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{979B5DA5-7D07-4B6F-87C6-839ADFF96A46}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;PandL_&quot; + REPLACE((DT_WSTR, 200)(DT_DBDATE)GETUTCDATE(),&quot;-&quot;,&quot;&quot;)  + REPLACE((DT_WSTR, 8)(DT_DBTIME) @[System::StartTime] ,&quot;:&quot;,&quot;&quot;) &#xA; + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExportFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">PandL_20170605083901.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B1D5C40C-A551-422B-87F8-33B40A18A726}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SubPeriod">
+      <DTS:VariableValue
+        DTS:DataType="3">964</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{47B719F2-24A0-4384-BB87-CAC5A1C3322E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValidateRecordCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Assign SubPeriod to Variable"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{01A45ECD-5527-4570-B3BD-FA92DC07A67B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Assign SubPeriod to Variable"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9CC8C75B-D463-427E-829A-72FAE686E021}"
+          SQLTask:SqlStatementSource="SELECT&#xA;&#x9;MIN(SubPeriods) - 8 AS SubPeriod&#xA;FROM  [dbo].[vwCalendarShort]&#xA;WHERE Period IN&#xA;(&#xA;&#x9;SELECT&#xA;&#x9;&#x9;Period&#xA;&#x9;FROM  dbo.vwCalendarShort&#xA;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)&#xA;)&#xA;&#x9; AND FiscalYear IN&#xA;(&#xA;&#x9;SELECT&#xA;&#x9;&#x9;FiscalYear&#xA;&#x9;FROM  dbo.vwCalendarShort&#xA;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)&#xA;);"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SubPeriod"
+            SQLTask:DtsVariableName="User::SubPeriod" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy and Pivot P and L Detail data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Copy and Pivot P and L Detail data"
+      DTS:DTSID="{91389631-80CC-4F52-8250-78D97D6BC93B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy and Pivot P and L Detail data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="WITH MaxDateInWeek AS &#xA;       (SELECT cs.FiscalYear, cs.Period, cs.WeekNumInPeriod, MAX(cs.FullDate) AS FullDate&#xA;          FROM Staging.dbo.vwCalendarShort cs&#xA;       GROUP BY cs.FiscalYear, cs.Period, cs.WeekNumInPeriod)&#xA;INSERT INTO dbo.PAndL&#xA;SELECT Account&#xA;                     ,Restaurant&#xA;                     ,x.FiscalYear&#xA;                     ,x.Period&#xA;                     ,x.SubPeriod&#xA;                     ,CONVERT(INT, SUBSTRING(WeekNum, 5, 1)) WeekNum&#xA;                     ,'' WeekInfo&#xA;                     ,SUM(Amount) Amount&#xA;FROM&#xA;         (SELECT&#xA;               WeekNum&#xA;               ,Account&#xA;               ,Restaurant&#xA;               ,FiscalYear&#xA;               ,Period&#xA;               ,SubPeriod&#xA;               ,Amount&#xA;          FROM dbo.PandLDetail&#xA;          UNPIVOT (Amount&#xA;                    FOR WeekNum IN (Week1&#xA;                                   ,Week2&#xA;                                   ,Week3&#xA;                                   ,Week4&#xA;                                   ,Week5)) Amount) x&#xA;INNER JOIN MaxDateInWeek cs&#xA;       ON cs.FiscalYear = x.FiscalYear&#xA;       AND cs.Period = x.Period&#xA;       AND cs.WeekNumInPeriod = CAST(SUBSTRING(WeekNum, 5, 1) AS INT)&#xA;GROUP BY&#xA;     Account&#xA;     ,Restaurant&#xA;     ,x.FiscalYear&#xA;     ,x.Period&#xA;     ,x.WeekNum&#xA;     ,x.SubPeriod&#xA;ORDER BY&#xA;     Restaurant&#xA;     ,WeekInfo&#xA;     ,Account&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Count Result Set Records"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Count Result Set Records"
+      DTS:DTSID="{CE8BBC31-8816-4CF3-8039-9157E2BCCF0A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Count Result Set Records"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="SELECT COUNT(Account) Cnt&#xA;FROM dbo.PandL&#xA;WHERE SubPeriod &gt;= ?&#xA;     AND Restaurant IN (SELECT DISTINCT Restaurant&#xA;                        FROM dbo.Hierarchy)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Cnt"
+            SQLTask:DtsVariableName="User::ValidateRecordCount" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete data for the current period plus two periods prior"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data for the current period plus two periods prior"
+      DTS:DTSID="{6E44BC2A-F2EF-49FB-9CFC-A333816092C0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete data for the current period plus two periods prior"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.PandL&#xA;WHERE SubPeriod &gt;= ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Data Older Than 25 Months"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data older than 13 months"
+      DTS:DTSID="{46DDBBAD-5A53-40FD-8568-938379C5D43E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Data Older Than 25 Months"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.PandL&#xA;WHERE SubPeriod &lt;= (SELECT MIN(SubPeriods) -112 SubPeriod&#xA;                    FROM Staging.dbo.vwCalendarShort&#xA;                    WHERE Period IN (SELECT Period&#xA;                                     FROM Staging.dbo.vwCalendarShort&#xA;                                     WHERE CONVERT(VARCHAR(10), FullDate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120))&#xA;                                        AND FiscalYear IN (SELECT FiscalYear&#xA;                                                           FROM Staging.dbo.vwCalendarShort&#xA;                                                           WHERE CONVERT(VARCHAR(10), FullDate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate recent P and L data from MenuLink"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B32818D9-2110-4E18-8DDB-F3F8E80A52C4}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate recent P and L data from MenuLink"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Cronus Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT
+     s.CategoryId Account,
+     CONVERT(INT, s.StoreId) AS 'Restaurant',
+     s.FiscalYear,
+     s.ReportingPeriod# AS 'Period',
+     0 AS 'SubPeriod',
+     '' AS 'WeekInfo',
+     CASE WHEN ISNULL(w.WeekNumber, 6) = 1
+          THEN 0
+          ELSE s.AmountWeek1
+     END AS 'Week1',
+     CASE WHEN ISNULL(w.WeekNumber, 6) &lt;= 2
+          THEN 0
+          ELSE s.AmountWeek2
+     END AS 'Week2',
+     CASE WHEN ISNULL(w.WeekNumber, 6) &lt;= 3
+          THEN 0
+          ELSE s.AmountWeek3
+     END AS 'Week3',
+     CASE WHEN ISNULL(w.WeekNumber, 6) &lt;= 4
+          THEN 0
+          ELSE s.AmountWeek4
+     END AS 'Week4',
+     CASE WHEN ISNULL(w.WeekNumber, 6) &lt;= 5
+          THEN 0
+          ELSE s.AmountWeek5
+     END AS 'Week5'
+FROM dbo.ST_PandLCat s
+INNER JOIN MLAddOn.dbo.Time_Periods_BI v
+     ON  s.FiscalYear = v.FiscalYear
+     AND s.ReportingPeriod# = v.Period
+LEFT OUTER JOIN
+(
+	SELECT
+		p.ConfigurationValue AS [StoreID],
+          c.fiscalyear,
+		c.Period,
+		c.WeekNumber
+	FROM  MLAddOn.dbo.ProcessConfiguration AS p
+	INNER JOIN MLAddOn.dbo.Time_Periods_BI AS c
+		 ON p.EffectiveDate = c.salesmixdate
+	WHERE p.ConfigurationName = 'Cubes'
+		 AND p.ConfigurationCode = 'Exclusions'
+) AS w
+		 ON CONVERT(INT, s.StoreId) = w.StoreID
+           AND s.FiscalYear = w.fiscalyear
+           AND s.ReportingPeriod# = w.Period
+LEFT OUTER JOIN MLAddOn.dbo.ProcessConfiguration ex
+     ON ex.ConfigurationName = 'Cubes'
+     AND ex.ConfigurationCode = 'Exclusions'
+     AND CONVERT(INT, s.StoreId) = ex.ConfigurationValue
+     AND v.SalesMixDate BETWEEN ex.EffectiveDate AND ex.ObsoleteDate
+WHERE v.Subperiod &gt;= ?
+     AND CategoryID NOT IN (7750001 -- Ending Inventory - Balance Sheet account
+                           ,7750002 -- Cost calculation - not required
+                           ,7750009 -- NULL - not required
+                           ,7750006)  -- NULL - not required
+     AND ex.ConfigurationValue IS NULL
+ORDER BY s.FiscalYear,
+s.ReportingPeriod# , 
+ CONVERT(INT, s.StoreId);</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{B1D5C40C-A551-422B-87F8-33B40A18A726};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Connections[OleDbConnection]"
+                  connectionManagerID="{7e2df2b7-0420-4316-8960-8c87cbb6dee4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Cronus.MLHQ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      sortKeyPosition="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      name="FiscalYear"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      name="Period"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      name="SubPeriod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week1]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week1]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week1]"
+                      name="Week1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week2]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week2]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week2]"
+                      name="Week2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week3]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week3]"
+                      name="Week3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week4]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week4]"
+                      name="Week4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week5]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week5]"
+                      name="Week5"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      dataType="r8"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week1]"
+                      dataType="r8"
+                      name="Week1" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week2]"
+                      dataType="r8"
+                      name="Week2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week3]"
+                      dataType="r8"
+                      name="Week3" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week4]"
+                      dataType="r8"
+                      name="Week4" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Week5]"
+                      dataType="r8"
+                      name="Week5" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      name="FiscalYear" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      name="Period" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      name="SubPeriod" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week1]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week1]"
+                      name="Week1" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week2]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week2]"
+                      name="Week2" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week3]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week3]"
+                      name="Week3" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week4]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week4]"
+                      name="Week4" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week5]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Week5]"
+                      name="Week5" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert to PandLDetail"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PandLDetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Account]"
+                      cachedDataType="r8"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[FiscalYear]"
+                      cachedDataType="i4"
+                      cachedName="FiscalYear"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[FiscalYear]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Period]"
+                      cachedDataType="i4"
+                      cachedName="Period"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Period]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[SubPeriod]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[SubPeriod]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week1]"
+                      cachedDataType="r8"
+                      cachedName="Week1"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week1]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week1]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week2]"
+                      cachedDataType="r8"
+                      cachedName="Week2"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week2]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week2]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week3]"
+                      cachedDataType="r8"
+                      cachedName="Week3"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week3]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week3]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week4]"
+                      cachedDataType="r8"
+                      cachedName="Week4"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week4]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week4]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week5]"
+                      cachedDataType="r8"
+                      cachedName="Week5"
+                      externalMetadataColumnId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week5]"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Week5]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      dataType="i4"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week1]"
+                      dataType="numeric"
+                      name="Week1"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week2]"
+                      dataType="numeric"
+                      name="Week2"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week3]"
+                      dataType="numeric"
+                      name="Week3"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week4]"
+                      dataType="numeric"
+                      name="Week4"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week5]"
+                      dataType="numeric"
+                      name="Week5"
+                      precision="16"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Populate recent P and L data from MenuLink.Paths[OLE DB Source Output]"
+              endId="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Populate recent P and L data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate recent P and L data from NBO"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{cce7a25b-4690-4a00-9dac-a30db6ee2830}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate recent P and L data from NBO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Populate recent P and L data from NBO\Get NBO Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get NBO Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT
+	s.CategoryID AS            [Account],
+	CONVERT(INT, s.StoreId) AS [Restaurant],
+	s.FiscalYear,
+	s.ReportingPeriod# AS      [Period],
+	0 AS                       [SubPeriod],
+	'' AS                      [WeekInfo],
+	CASE WHEN ISNULL(w.[Week], 0) &gt;= 1
+          THEN 0
+          ELSE s.AmountWeek1
+     END AS           [Week1],
+	CASE WHEN ISNULL(w.[Week], 0) &gt;= 2
+          THEN 0
+          ELSE s.AmountWeek2
+     END AS           [Week2],
+	CASE WHEN ISNULL(w.[Week], 0) &gt;= 3
+          THEN 0
+          ELSE s.AmountWeek3
+     END AS           [Week3],
+	CASE WHEN ISNULL(w.[Week], 0) &gt;= 4
+          THEN 0
+          ELSE s.AmountWeek4
+     END AS           [Week4],
+	CASE WHEN ISNULL(w.[Week], 0) = 5
+          THEN 0
+          ELSE s.AmountWeek5
+     END AS           [Week5]
+FROM       DataMartStaging.dbo.vwPandLCat AS s
+INNER JOIN dbo.ST_CalendarSubperiods AS v
+		 ON s.FiscalYear = v.[Year]
+		    AND s.ReportingPeriod# = v.Period
+LEFT OUTER JOIN
+(
+	SELECT
+		p.ConfigurationValue AS [StoreID],
+          c.[Year],
+		c.Period,
+		c.[Week]
+	FROM  DataMartStaging.config.ProcessConfiguration AS p
+	INNER JOIN dbo.ST_CalendarSubperiods AS c
+		 ON p.ObsoleteDate BETWEEN c.StartDate AND c.EndDate
+	WHERE p.ConfigurationName = 'Cubes'
+		 AND p.ConfigurationCode = 'Exclusions'
+) AS w
+		 ON CONVERT(INT, s.StoreId) = w.StoreID
+           AND s.FiscalYear = w.[Year]
+           AND s.ReportingPeriod# = w.Period
+LEFT OUTER JOIN DataMartStaging.config.ProcessConfiguration AS ex
+		 ON ex.ConfigurationName = 'Cubes'
+		    AND ex.ConfigurationCode = 'Exclusions'
+		    AND CONVERT(INT, s.StoreId) = ex.ConfigurationValue
+		    AND v.EndDate BETWEEN ex.EffectiveDate AND ex.ObsoleteDate
+WHERE v.BusinessCalendarSubperiodNumber &gt;= ?
+	 AND ex.ConfigurationValue IS NULL
+ORDER BY
+	s.FiscalYear,
+	s.ReportingPeriod#,
+	CONVERT(INT, s.StoreId);</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{B1D5C40C-A551-422B-87F8-33B40A18A726};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent P and L data from NBO\Get NBO Data.Connections[OleDbConnection]"
+                  connectionManagerID="{4D01CF9F-8281-471D-A379-4EDFD3036BF9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DataMart SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      sortKeyPosition="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      name="FiscalYear"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      name="Period"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      name="SubPeriod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week1]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week1]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week1]"
+                      name="Week1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week2]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week2]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week2]"
+                      name="Week2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week3]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week3]"
+                      name="Week3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week4]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week4]"
+                      name="Week4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week5]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week5]"
+                      name="Week5"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      dataType="r8"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week1]"
+                      dataType="cy"
+                      name="Week1" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week2]"
+                      dataType="cy"
+                      name="Week2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week3]"
+                      dataType="cy"
+                      name="Week3" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week4]"
+                      dataType="cy"
+                      name="Week4" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Week5]"
+                      dataType="cy"
+                      name="Week5" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      name="FiscalYear" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      name="Period" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      name="SubPeriod" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week1]"
+                      dataType="cy"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week1]"
+                      name="Week1" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week2]"
+                      dataType="cy"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week2]"
+                      name="Week2" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week3]"
+                      dataType="cy"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week3]"
+                      name="Week3" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week4]"
+                      dataType="cy"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week4]"
+                      name="Week4" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week5]"
+                      dataType="cy"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Week5]"
+                      name="Week5" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert to PandLDetail"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PandLDetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Account]"
+                      cachedDataType="r8"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[FiscalYear]"
+                      cachedDataType="i4"
+                      cachedName="FiscalYear"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[FiscalYear]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Period]"
+                      cachedDataType="i4"
+                      cachedName="Period"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Period]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[SubPeriod]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[SubPeriod]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week1]"
+                      cachedDataType="r8"
+                      cachedName="Week1"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week1]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week1]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week2]"
+                      cachedDataType="r8"
+                      cachedName="Week2"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week2]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week2]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week3]"
+                      cachedDataType="r8"
+                      cachedName="Week3"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week3]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week3]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week4]"
+                      cachedDataType="r8"
+                      cachedName="Week4"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week4]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week4]" />
+                    <inputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].Columns[Week5]"
+                      cachedDataType="r8"
+                      cachedName="Week5"
+                      externalMetadataColumnId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week5]"
+                      lineageId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Week5]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      dataType="i4"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week1]"
+                      dataType="numeric"
+                      name="Week1"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week2]"
+                      dataType="numeric"
+                      name="Week2"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week3]"
+                      dataType="numeric"
+                      name="Week3"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week4]"
+                      dataType="numeric"
+                      name="Week4"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input].ExternalColumns[Week5]"
+                      dataType="numeric"
+                      name="Week5"
+                      precision="16"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Populate recent P and L data from NBO.Paths[OLE DB Source Output]"
+              endId="Package\Populate recent P and L data from NBO\Insert to PandLDetail.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Populate recent P and L data from NBO\Get NBO Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Select Output Data for Text File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E156FC75-1D98-42FD-8F77-E0B4BACDB3C3}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Select Output Data for Text File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Select Output Data for Text File\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Account]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="16"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Select Output Data for Text File\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PandL]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+     Account
+     ,Restaurant
+     ,WeekInfo
+     ,Amount
+FROM dbo.PandL
+WHERE Amount &lt;&gt; 0
+     AND SubPeriod &gt;= ?
+     AND Restaurant IN (SELECT DISTINCT Restaurant
+                        FROM dbo.Hierarchy)
+ORDER BY
+     Restaurant
+     ,WeekInfo
+     ,Account</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{B1D5C40C-A551-422B-87F8-33B40A18A726};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      precision="16"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      dataType="i4"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="numeric"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount"
+                      precision="16"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+              endId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{DA67686B-947C-48BA-91BE-F134EEA82178}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[$Project::SendEmailTo]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{035385C9-D756-469A-96C5-734C3A9AF35A}"
+          SendMailTask:From="itdatasupport@redrobin.com"
+          SendMailTask:To="itsupportservices@redrobin.com"
+          SendMailTask:Subject="Anaplan PandL Record Count Is Zero" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate PandLDetail table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="PandLDetail is a temp table and must be truncated prior to run"
+      DTS:DTSID="{5E1D41AA-02F2-44E4-B382-04DB7EC2059F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate PandLDetail table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.PandLDetail" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Account Code Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Update Account Code Data with Fusion Account mapping"
+      DTS:DTSID="{38083F74-899F-473D-B5FB-D36F4CE732A1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Account Code Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="UPDATE dbo.PandL&#xA;&#x9;SET PandL.Account = a.FusionAccountCode &#xA;&#x9;FROM Staging.dbo.xrefAccountCodesMLJDEFusion a&#xA;&#x9;WHERE PandL.Account = a.MenuLinkAccountCode&#xA;&#x9;&#x9;AND SubPeriod &gt;= ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update to delete unncecssary data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Update to delete unncecssary data"
+      DTS:DTSID="{2CCD2AD0-1950-4547-8537-E860AC746847}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update to delete unncecssary data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.PandL&#xA;&#x9;WHERE Amount = 0&#xA;&#x9;&#x9;AND WeekNum = 5" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update WeekInfo Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Update WeekInfo Data"
+      DTS:DTSID="{3F01E997-F82E-4528-94A1-FD4BA5705B62}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update WeekInfo Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="UPDATE dbo.PandL&#xA;&#x9;SET WeekInfo = 'Week ' + CONVERT(VARCHAR(2), v.FiscalWeekNumOfYear) +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;' FY' + SUBSTRING(CONVERT(VARCHAR(4), v.FiscalYear),3,2)&#xA;&#x9;,SubPeriod = v.SubPeriods&#xA;&#x9;FROM Staging.dbo.vwCalendarShort v&#xA;&#x9;WHERE PandL.FiscalYear = v.FiscalYear&#xA;&#x9;&#x9;AND PandL.Period = v.Period&#xA;&#x9;&#x9;AND PandL.WeekNum = v.WeekNumInPeriod&#xA;&#x9;&#x9;AND PandL.SubPeriod = 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1D8F93E6-2A44-4904-A18D-44661A5A912B}"
+      DTS:From="Package\Delete Data Older Than 25 Months"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Delete data for the current period plus two periods prior" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{854E4842-8E4C-42B7-B486-A479503C9AA3}"
+      DTS:From="Package\Delete data for the current period plus two periods prior"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Populate recent P and L data from MenuLink" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{EAC5B467-9EAD-49B4-84C6-4FF11C3A794F}"
+      DTS:From="Package\Assign SubPeriod to Variable"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Truncate PandLDetail table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{38EBD4FE-377D-48FB-B4BB-3F7A766B89AE}"
+      DTS:From="Package\Populate recent P and L data from NBO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Copy and Pivot P and L Detail data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C7E275EA-0C43-4FB7-A94C-6532D35FD906}"
+      DTS:From="Package\Populate recent P and L data from MenuLink"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Populate recent P and L data from NBO" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{3C91643A-84E1-4867-B87C-0975BB98B74C}"
+      DTS:From="Package\Update Account Code Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Count Result Set Records" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{966E1B53-3E6C-4CFE-9EB2-CBF4B67019AD}"
+      DTS:From="Package\Truncate PandLDetail table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Delete Data Older Than 25 Months" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{1806A455-D76C-46B9-AF19-BE0E0159A1A0}"
+      DTS:From="Package\Copy and Pivot P and L Detail data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Update to delete unncecssary data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{E1582CD3-61BC-40C6-B8D1-6822CB3179D5}"
+      DTS:From="Package\Update to delete unncecssary data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Update WeekInfo Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{A900DDD3-0E4B-4020-AB71-388972FAE790}"
+      DTS:From="Package\Update WeekInfo Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Update Account Code Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{DCCDBB84-3A70-47F0-8D3E-7DB5273EAB3B}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount &gt;= 1"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Select Output Data for Text File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{6B40FCB7-7FB5-4295-A3D5-E48AA7B2804A}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount == 0"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Send Mail Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Assign SubPeriod to Variable"
+          TopLeft="66,29" />
+        <NodeLayout
+          Size="242,42"
+          Id="Package\Copy and Pivot P and L Detail data"
+          TopLeft="212.840740740741,500" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Count Result Set Records"
+          TopLeft="380.316666666667,191" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Delete data for the current period plus two periods prior"
+          TopLeft="57.8407407407409,267.5" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Delete Data Older Than 25 Months"
+          TopLeft="57.8407407407409,196.25" />
+        <NodeLayout
+          Size="291,42"
+          Id="Package\Populate recent P and L data from MenuLink"
+          TopLeft="38.8407407407409,339.75" />
+        <NodeLayout
+          Size="265,42"
+          Id="Package\Populate recent P and L data from NBO"
+          TopLeft="44.8407407407409,419" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Select Output Data for Text File"
+          TopLeft="328.088888888889,114" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Send Mail Task"
+          TopLeft="508,114" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Truncate PandLDetail table"
+          TopLeft="57.8407407407409,125" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Update Account Code Data"
+          TopLeft="380.316666666667,263" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Update to delete unncecssary data"
+          TopLeft="380.316666666667,405" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Update WeekInfo Data"
+          TopLeft="380.316666666667,330" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="180.340740740741,238.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.25"
+              Start="0,0"
+              End="0,21.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="182.340740740741,309.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.25"
+              Start="0,0"
+              End="0,22.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="177.17037037037,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="177.340740740741,461">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="117.5,39"
+              Start="0,0"
+              End="117.5,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.2463054187192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.2463054187192"
+                    Point2="0,23.2463054187192"
+                    Point3="4,23.2463054187192" />
+                  <mssgle:LineSegment
+                    End="113.5,23.2463054187192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113.5,23.2463054187192"
+                    Point2="117.5,23.2463054187192"
+                    Point3="117.5,27.2463054187192" />
+                  <mssgle:LineSegment
+                    End="117.5,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="180.840740740741,381.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.25"
+              Start="0,0"
+              End="0,29.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="502.816666666667,263">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-30"
+              Start="0,0"
+              End="0,-22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="180.340740740741,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.25"
+              Start="0,0"
+              End="0,21.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="372.840740740741,500">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="129.975925925926,-53"
+              Start="0,0"
+              End="129.975925925926,-45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-17.4088669950739" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-17.4088669950739"
+                    Point2="0,-21.4088669950739"
+                    Point3="4,-21.4088669950739" />
+                  <mssgle:LineSegment
+                    End="125.975925925926,-21.4088669950739" />
+                  <mssgle:CubicBezierSegment
+                    Point1="125.975925925926,-21.4088669950739"
+                    Point2="129.975925925926,-21.4088669950739"
+                    Point3="129.975925925926,-25.4088669950739" />
+                  <mssgle:LineSegment
+                    End="129.975925925926,-45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="502.816666666667,405">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-33"
+              Start="0,0"
+              End="0,-25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="502.816666666667,330">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-25"
+              Start="0,0"
+              End="0,-17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="463.316666666667,191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-50.7277777777778,-35"
+              Start="0,0"
+              End="-50.7277777777778,-27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-10.1362530413625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-10.1362530413625"
+                    Point2="0,-14.1362530413625"
+                    Point3="-4,-14.1362530413625" />
+                  <mssgle:LineSegment
+                    End="-46.7277777777778,-14.1362530413625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.7277777777778,-14.1362530413625"
+                    Point2="-50.7277777777778,-14.1362530413625"
+                    Point3="-50.7277777777778,-18.1362530413625" />
+                  <mssgle:LineSegment
+                    End="-50.7277777777778,-27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-33.3638888888889,-9.13625304136249,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="542.316666666667,191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.1833333333333,-35"
+              Start="0,0"
+              End="50.1833333333333,-27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-10.1362530413625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-10.1362530413625"
+                    Point2="0,-14.1362530413625"
+                    Point3="4,-14.1362530413625" />
+                  <mssgle:LineSegment
+                    End="46.1833333333333,-14.1362530413625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.1833333333333,-14.1362530413625"
+                    Point2="50.1833333333333,-14.1362530413625"
+                    Point3="50.1833333333333,-18.1362530413625" />
+                  <mssgle:LineSegment
+                    End="50.1833333333333,-27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="17.0916666666666,-9.13625304136249,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Populate recent P and L data from MenuLink">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Populate recent P and L data from MenuLink\Get Cronus Data"
+          TopLeft="181,90" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail"
+          TopLeft="290,276" />
+        <EdgeLayout
+          Id="Package\Populate recent P and L data from MenuLink.Paths[OLE DB Source Output]"
+          TopLeft="259.5,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="120.5,144"
+              Start="0,0"
+              End="120.5,136.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,68"
+                    Point2="0,72"
+                    Point3="4,72" />
+                  <mssgle:LineSegment
+                    End="116.5,72" />
+                  <mssgle:CubicBezierSegment
+                    Point1="116.5,72"
+                    Point2="120.5,72"
+                    Point3="120.5,76" />
+                  <mssgle:LineSegment
+                    End="120.5,136.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent P and L data from MenuLink\Get Cronus Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent P and L data from MenuLink\Insert to PandLDetail">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Populate recent P and L data from NBO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Populate recent P and L data from NBO\Get NBO Data"
+          TopLeft="181,90" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Populate recent P and L data from NBO\Insert to PandLDetail"
+          TopLeft="290,276" />
+        <EdgeLayout
+          Id="Package\Populate recent P and L data from NBO.Paths[OLE DB Source Output]"
+          TopLeft="253.5,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="126.5,144"
+              Start="0,0"
+              End="126.5,136.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,68"
+                    Point2="0,72"
+                    Point3="4,72" />
+                  <mssgle:LineSegment
+                    End="122.5,72" />
+                  <mssgle:CubicBezierSegment
+                    Point1="122.5,72"
+                    Point2="126.5,72"
+                    Point3="126.5,76" />
+                  <mssgle:LineSegment
+                    End="126.5,136.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent P and L data from NBO\Get NBO Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Select Output Data for Text File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Select Output Data for Text File\Flat File Destination"
+          TopLeft="187,133" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Select Output Data for Text File\OLE DB Source"
+          TopLeft="183.75,65" />
+        <EdgeLayout
+          Id="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+          TopLeft="272.375,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Select Output Data for Text File\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

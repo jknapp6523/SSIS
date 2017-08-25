@@ -1,0 +1,2924 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/27/2017 3:59:09 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-MDM-01"
+  DTS:CreatorName="DEV01\dev_rbarker"
+  DTS:DTSID="{4DFCD6EF-6189-458F-BA82-A39D71F2FFBB}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadWorkdayRestaurant"
+  DTS:PackageType="5"
+  DTS:VersionBuild="123"
+  DTS:VersionGUID="{924B2FB2-D47B-4E19-9EE0-113BF995AD95}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat Workday Restaurant CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{CB4B5E5A-8B02-4F11-8A8A-B85D2041370B}"
+      DTS:ObjectName="Flat Workday Restaurant CSV">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::folder] +  @[$Package::file]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\MDM Inbound Files\MDM_Restaurant.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Country"
+              DTS:DTSID="{A743019F-7FAA-4A9B-9B19-5EBA09E75079}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant Number"
+              DTS:DTSID="{FB8F4C02-3042-40E0-91C4-7A19B6B8C621}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant Name"
+              DTS:DTSID="{F06604FB-6365-425F-BF9B-5A91CB304940}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="General Manager Name"
+              DTS:DTSID="{A98AC21E-5913-46DE-A14F-C1783A29F777}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="General Manager ID"
+              DTS:DTSID="{FEA34545-9F05-441D-9FE7-7F402746153C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Region ID"
+              DTS:DTSID="{A5BED618-91E2-4E13-B47A-C0A2B99100DB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Address 1"
+              DTS:DTSID="{192D12A1-81A0-4DFC-8EAD-B2F7A623FB31}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Address 2"
+              DTS:DTSID="{F1C370DA-F2DA-4BDC-9DF5-BD14C82B5352}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="City"
+              DTS:DTSID="{C968FF75-E995-48BD-B8CB-67209EAD0CCA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="State"
+              DTS:DTSID="{75119B82-87A9-4B8C-860B-A1F09CE1BACE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Postal Code"
+              DTS:DTSID="{3DEE5B41-DE53-41A9-8172-4678C4C49882}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Phone"
+              DTS:DTSID="{687C9F73-F648-461A-9688-185D8ACEC7D9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Time Zone"
+              DTS:DTSID="{1A1AA4F6-0C2A-4854-A4E0-63EC679767A7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Time Zone ID"
+              DTS:DTSID="{53BECAE1-8EC7-4EDF-A29C-FBFBA74BA641}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Hours of Operation"
+              DTS:DTSID="{D5DB08ED-86CE-4E32-ADF2-3C03A313A740}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Seating Capacity"
+              DTS:DTSID="{62D3FA4D-98B4-4F66-B374-F40412F0A104}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Square Footage"
+              DTS:DTSID="{985DEC8E-98E8-4836-93A9-D4DC72723C26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Prototype"
+              DTS:DTSID="{AB06F509-FE72-462B-8736-70A38F980EC2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant Opening Date"
+              DTS:DTSID="{58648087-E165-445C-B346-CA10A7EBD798}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant Close Date"
+              DTS:DTSID="{0C4BD9E9-657C-43C9-8657-87A06457A0B0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="First Day of Training"
+              DTS:DTSID="{CEDFBE89-FD3F-46C5-9B7C-D2E0174B57BA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="First Day of Sneak Peaks"
+              DTS:DTSID="{AEB3E7B7-1177-4548-A13F-B63759DF56EE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Latitude"
+              DTS:DTSID="{701FF0AF-B836-4624-B722-23E946178194}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Longitude"
+              DTS:DTSID="{6B1C108F-4ACE-4E15-AD6F-01098835A5DD}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{55111A0D-4C3C-458E-8900-12042B520767}"
+      DTS:ObjectName="file">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">MDM_Restaurant.csv</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{42319B77-2FD4-4A49-BB0D-BF0B987F4DF3}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::PackageName]  + (DT_WSTR,29)(DT_DBDATE)GETDATE()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchTag">
+      <DTS:VariableValue
+        DTS:DataType="8">LoadWorkdayRestaurant2017-08-09</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DC492BC4-C223-46F9-88A7-179E27DB99B8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorVariable">
+      <DTS:VariableValue
+        DTS:DataType="2">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D4ECCDBC-941F-4D5C-B5D4-8CAC280593EE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SuccessVariable">
+      <DTS:VariableValue
+        DTS:DataType="2">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Check File Availability"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{7EC8317D-0128-4394-BE4B-41D616F3A3F2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Check File Availability"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="MaximumErrorCount">1</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_e3c83e7fa14846c5b48a7da4ac14260e"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="$Package::file,$Project::folder">
+          <ProjectItem
+            Name="ST_e3c83e7fa14846c5b48a7da4ac14260e.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD9E3DBC-072A-42F9-BBB3-9BE16DF6A8E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_af0213501f014b958842a75aea36e8ed</RootNamespace>
+    <AssemblyName>ST_e3c83e7fa14846c5b48a7da4ac14260e</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Settings.get_Default():ST_af0213501f014b958842a75aea36e8ed.Properties.Sett" +
+    "ings")]
+
+namespace ST_af0213501f014b958842a75aea36e8ed.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using System.IO;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_af0213501f014b958842a75aea36e8ed
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+		public void Main()
+		{
+			// TODO: Add your code here
+
+            string folder = Dts.Variables["$Project::folder"].Value.ToString();     //@"C:\temp\";
+            string file = Dts.Variables["$Package::file"].Value.ToString();         //"a.txt";
+            string fullPath = string.Format("{0}\\{1}", folder, file);
+
+            //Dts.Variables["User::fileExists"].Value = File.Exists(fullPath); 
+            if (File.Exists(fullPath))
+            {
+                Dts.TaskResult = (int)ScriptResults.Success;
+            }
+            else
+            {
+                Dts.TaskResult = (int)ScriptResults.Failure;
+            }
+		}
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:ProjectId>{7BDB36D3-1C19-4D18-A865-67F3638415D8}</msb:ProjectId>
+		<msb:CodeName>ST_af0213501f014b958842a75aea36e8ed</msb:CodeName>
+		<msb:DisplayName>ST_af0213501f014b958842a75aea36e8ed</msb:DisplayName>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_e3c83e7fa14846c5b48a7da4ac14260e.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_af0213501f014b958842a75aea36e8ed")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_af0213501f014b958842a75aea36e8ed")]
+[assembly: AssemblyCopyright("Copyright @  2017")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_af0213501f014b958842a75aea36e8ed.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_af0213501f014b958842a75aea36e8ed.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_af0213501f014b958842a75aea36e8ed.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_e3c83e7fa14846c5b48a7da4ac14260e.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDALYKUVkAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAzi4A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHQuAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA1A4AAAAgAAAAEAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACw
+LgAAAAAAAEgAAAACAAUA+CEAAHwMAAABAAAAAAAAAEAhAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
+AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
+BoADAAAEKh4CKBQAAAoqABMwAwBvAAAAAgAAEQIoFgAACm8XAAAKcnMAAHBvGAAACm8ZAAAKbxoA
+AAoKAigWAAAKbxcAAApylQAAcG8YAAAKbxkAAApvGgAACgtyswAAcAYHKBsAAAoMCCgcAAAKLA0C
+KBYAAAoWbx0AAAoqAigWAAAKF28dAAAKKh4CKB4AAAoqALQAAADOyu++AQAAAJEAAABsU3lzdGVt
+LlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3Vs
+dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNv
+dXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pCAQABAAAA
+AAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAADYAwAAI34AAEQEAAD0BQAAI1N0cmluZ3MAAAAAOAoA
+AMQAAAAjVVMA/AoAABAAAAAjR1VJRAAAAAwLAABwAQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAwAA
+APolMwAWAAABAAAAHwAAAAUAAAAGAAAACQAAAAEAAAAeAAAAAgAAAA8AAAACAAAAAgAAAAMAAAAE
+AAAAAQAAAAQAAAABAAAAAQAAAAAACgABAAAAAAAGAMEAugAKAN0AyAAOAD0BFAEGAFkBugAGAG8B
+XgEGAKABiwEGAFcCPQIGAIICcAIGAJkCcAIGALYCcAIGANUCcAIGAO4CcAIGAAcDcAIGACIDcAIG
+AD0DcAIGAFYDcAIGAI8DbwMGAK8DbwMGAAQE8QMGACEEugAGACYEugAGAEoEcAIKAHYEYAQKAI8E
+YAQGAKQEbwMOAMYEFAEOAOgEFAESAEEFIQUSAFkFIQUGAH4FugAGAJYFjAUAAAAAAQAAAAAAAQAB
+AAAAEAAyADwABQABAAEAAAEQAGsAPAAJAAMABQABABAAdAB/AA0ABAAIAAMBAACjAAAAEQAEAAoA
+EQB/ARMAEQCsARcAEQD2ATkABgYfAkcAVoAnAkoAVoAvAkoAUCAAAAAAgxi8ARsAAQBYIAAAAACT
+CMIBHwABAJEgAAAAAJMI1gEkAAEAmCAAAAAAkwjiASkAAQCgIAAAAACWCAYCPQACALMgAAAAAIYY
+vAEbAAIApyAAAAAAkRi/BIkAAgC8IAAAAACGABoCGwACADchAAAAAIYYvAEbAAIAAAABADcCOQC8
+AVgAQQC8AVgASQC8AVgAUQC8AVgAWQC8AVgAYQC8AVgAaQC8AVgAcQC8AVgAeQC8AVgAgQC8AVgA
+iQC8AV0AkQC8ARsAmQC8ARsACQC8ARsAoQA4BGIAoQBTBGkAKQC8AW4AuQC8AXoAyQC8ARsAEQC8
+ARsA0QC8ARsAGQD6BI0A2QBLBZIA4QBiBZcA6QBrBZ0ACQB1BaEA8QCFBaUA+QCbBawA2QCiBV0A
+GQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgAbACgBLgAjACgBLgBjAE4BLgALALcALgATAP8ALgAz
+AP8ALgArACgBLgA7AC4BLgBDACgBLgBbAEUBQwBrAFMASQCTAIAAYQCbAFMAgwCrAFMAdQCxAAIA
+AQADAAMAAABvAS8AAADuATQAAAASAkIAAgACAAMAAgADAAUAAQAEAAUAAgAFAAcABIAAAAEAAADy
+GOMsAAAAAAAAzQMAAAQAAAAAAAAAAAAAAAEAsQAAAAAABAAAAAAAAAAAAAAAAQC6AAAAAAALAAAA
+AAAAAAAAAAAKAPUAAAAAAAsAAAAAAAAAAAAAAAoAAgUAAAAAAAAAAAEAAACxBQAABQAEAAAAAAAA
+PE1vZHVsZT4AU1RfZTNjODNlN2ZhMTQ4NDZjNWI0OGE3ZGE0YWMxNDI2MGUuZGxsAFJlc291cmNl
+cwBTVF9hZjAyMTM1MDFmMDE0Yjk1ODg0MmE3NWFlYTM2ZThlZC5Qcm9wZXJ0aWVzAFNldHRpbmdz
+AFNjcmlwdE1haW4AU1RfYWYwMjEzNTAxZjAxNGI5NTg4NDJhNzVhZWEzNmU4ZWQAU2NyaXB0UmVz
+dWx0cwBtc2NvcmxpYgBTeXN0ZW0AT2JqZWN0AFN5c3RlbS5Db25maWd1cmF0aW9uAEFwcGxpY2F0
+aW9uU2V0dGluZ3NCYXNlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQu
+U3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFz
+ZQBFbnVtAFN5c3RlbS5SZXNvdXJjZXMAUmVzb3VyY2VNYW5hZ2VyAHJlc291cmNlTWFuAFN5c3Rl
+bS5HbG9iYWxpemF0aW9uAEN1bHR1cmVJbmZvAHJlc291cmNlQ3VsdHVyZQAuY3RvcgBnZXRfUmVz
+b3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAEN1bHR1cmUAZGVmYXVsdEluc3Rh
+bmNlAGdldF9EZWZhdWx0AERlZmF1bHQATWFpbgB2YWx1ZV9fAFN1Y2Nlc3MARmFpbHVyZQB2YWx1
+ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBTeXN0
+ZW0uUmVmbGVjdGlvbgBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25B
+dHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0
+dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1
+dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNzZW1ibHlDdWx0dXJlQXR0cmlidXRlAEFz
+c2VtYmx5VmVyc2lvbkF0dHJpYnV0ZQBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAENv
+bXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1
+dGUAU1RfZTNjODNlN2ZhMTQ4NDZjNWI0OGE3ZGE0YWMxNDI2MGUAU3lzdGVtLkRpYWdub3N0aWNz
+AERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUAVHlwZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRU
+eXBlRnJvbUhhbmRsZQBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVs
+AEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdl
+bmVyYXRlZEF0dHJpYnV0ZQAuY2N0b3IAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRl
+AFNjcmlwdE9iamVjdE1vZGVsAGdldF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRT
+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMA
+VmFyaWFibGUAZ2V0X0l0ZW0AZ2V0X1ZhbHVlAFRvU3RyaW5nAFN0cmluZwBGb3JtYXQAU3lzdGVt
+LklPAEZpbGUARXhpc3RzAHNldF9UYXNrUmVzdWx0AFNUX2FmMDIxMzUwMWYwMTRiOTU4ODQyYTc1
+YWVhMzZlOGVkLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAcVMAVABfAGEAZgAwADIA
+MQAzADUAMAAxAGYAMAAxADQAYgA5ADUAOAA4ADQAMgBhADcANQBhAGUAYQAzADYAZQA4AGUAZAAu
+AFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAISQAUAByAG8AagBlAGMA
+dAA6ADoAZgBvAGwAZABlAHIAAB0kAFAAYQBjAGsAYQBnAGUAOgA6AGYAaQBsAGUAAA97ADAAfQBc
+AHsAMQB9AAAAVx21kQQ8EEedrrFebSsRJwAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYSGQMgAAEE
+AAASFQQAABIZBQABARIZBAgAEhUECAASGQMGEgwEAAASDAQIABIMAgYIAwYRFAQAAAAABAEAAAAE
+IAEBDgQgAQEIBgABElERVQQgABJZBiACAQ4SWQQHARIVBSABARFhCAEAAgAAAAAAAwAAAQQgABJt
+BCAAEnEFIAESdRwDIAAcAyAADgYAAw4OHBwEAAECDgUHAw4ODkcBABouTkVURnJhbWV3b3JrLFZl
+cnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsgNCgBACNT
+VF9hZjAyMTM1MDFmMDE0Yjk1ODg0MmE3NWFlYTM2ZThlZAAABQEAAAAAFgEAEUNvcHlyaWdodCBA
+ICAyMDE3AAAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBAAAAnC4AAAAA
+AAAAAAAAvi4AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAuAAAAAAAAAAAAAAAAAAAAAAAAAABf
+Q29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
+AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
+AAAAAAC9BO/+AAABAAAAAQDjLPIYAAABAOMs8hg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
+AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
+MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
+AF8AYQBmADAAMgAxADMANQAwADEAZgAwADEANABiADkANQA4ADgANAAyAGEANwA1AGEAZQBhADMA
+NgBlADgAZQBkAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMwA4
+ADYALgAxADEANAA5ADEAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+ZQAzAGMAOAAzAGUANwBmAGEAMQA0ADgANAA2AGMANQBiADQAOABhADcAZABhADQAYQBjADEANAAy
+ADYAMABlAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
+cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADcAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
+AGwAZQBuAGEAbQBlAAAAUwBUAF8AZQAzAGMAOAAzAGUANwBmAGEAMQA0ADgANAA2AGMANQBiADQA
+OABhADcAZABhADQAYQBjADEANAAyADYAMABlAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
+AE4AYQBtAGUAAAAAAFMAVABfAGEAZgAwADIAMQAzADUAMAAxAGYAMAAxADQAYgA5ADUAOAA4ADQA
+MgBhADcANQBhAGUAYQAzADYAZQA4AGUAZAAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4ANgAzADgANgAuADEAMQA0ADkAMQAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAzADgANgAuADEAMQA0ADkAMQAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAADQPgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Restaurant to Maestro"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Load Restaurant Using Integrator"
+      DTS:DTSID="{4726cc68-a29e-4be8-9d4a-a02a6cb1030e}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Restaurant to Maestro"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">"-N:FromStagingToMaestroRestaurant -T:Upsert"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files\Profisee\Master Data Maestro Integrator\3.2.1\IntegratorCLU.exe"
+          Arguments="-N:FromStagingToMaestroRestaurant -T:Upsert"
+          WorkingDirectory="C:\Program Files\Profisee\Master Data Maestro Integrator\3.2.1"
+          WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Workday Restaurant to Staging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3C7DF61F-0865-4BBB-8C49-77A9E4A7F6A9}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Workday Restaurant to Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Workday Restaurant to Staging\Derived Column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[Restaurant Close Date]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Restaurant Close Date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Close Date]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBDATE)[SUBSTRING](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Close Date]},1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBDATE)SUBSTRING([Restaurant Close Date],1,10)</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="State"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[Address 1]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Address 1"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 1]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[Address 2]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Address 2"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 2]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="City"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[Postal Code]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Postal Code"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Postal Code]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[Restaurant Opening Date]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Restaurant Opening Date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Opening Date]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBDATE)[SUBSTRING](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Opening Date]},1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBDATE)SUBSTRING([Restaurant Opening Date],1,10)</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[First Day of Training]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="First Day of Training"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Training]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBDATE)[SUBSTRING](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Training]},1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBDATE)SUBSTRING([First Day of Training],1,10)</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[First Day of Sneak Peaks]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="First Day of Sneak Peaks"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Sneak Peaks]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBDATE)[SUBSTRING](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Sneak Peaks]},1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBDATE)SUBSTRING([First Day of Sneak Peaks],1,10)</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Phone"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,20)[SUBSTRING](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]},1,3) + "-" + [SUBSTRING](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]},4,3) + "-" + [SUBSTRING](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]},7,4)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,20)SUBSTRING(Phone,1,3) + "-" + SUBSTRING(Phone,4,3) + "-" + SUBSTRING(Phone,7,4)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[BatchTag]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="31"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[BatchTag]"
+                      name="BatchTag"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::BatchTag]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::BatchTag]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[ImportType]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[ImportType]"
+                      name="ImportType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_UI1)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_UI1)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[Full Mailing Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[Full Mailing Address]"
+                      name="Full Mailing Address"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,200)(#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 1]} + " " + [REPLACENULL](#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 2]},"") + " " + #{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[City]} + " " + #{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[State]} + " " + #{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Postal Code]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,200)([Address 1] + " " + REPLACENULL([Address 2],"") + " " + City + " " + State + " " + [Postal Code])</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[CleanPhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[CleanPhone]"
+                      name="CleanPhone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,20)([REPLACE]((#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]}),"-",""))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,20)(REPLACE((Phone),"-",""))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load Restaurant to Staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_Workday_Restaurant]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Connections[OleDbConnection]"
+                  connectionManagerID="{8EFA440D-6BA4-44B2-8549-0638C4EA2295}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDM Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Prototype]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Prototype"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Prototype]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Prototype]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Latitude]"
+                      cachedDataType="r4"
+                      cachedName="Latitude"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Latitude]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Restaurant Name]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Restaurant Name"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Name]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[General Manager ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="General Manager ID"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[GeneralManager]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[General Manager ID]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Region ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Region ID"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Region ID]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Hours of Operation]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Hours of Operation"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[HoursOfOperation]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Hours of Operation]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Seating Capacity]"
+                      cachedDataType="numeric"
+                      cachedName="Seating Capacity"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Seating Capacity]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Square Footage]"
+                      cachedDataType="numeric"
+                      cachedName="Square Footage"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[SquareFootage]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Square Footage]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Address 1]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Address 1"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 1]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Address 2]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Address 2"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 2]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Postal Code]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Postal Code"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Postal Code]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Longitude]"
+                      cachedDataType="r4"
+                      cachedName="Longitude"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Longtitude]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Longitude]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Restaurant Number]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Restaurant Number"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Number]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Restaurant Opening Date]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Restaurant Opening Date"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[OriginalOpenDate]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Opening Date]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[TimeZoneCode]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="TimeZoneCode"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Timezone]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Match Output].Columns[TimeZoneCode]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Full Mailing Address]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Full Mailing Address"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[FullMailingAddress]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[Full Mailing Address]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[CleanPhone]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="CleanPhone"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[CleanPhone]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output].Columns[CleanPhone]" />
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                      dataType="wstr"
+                      length="250"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="250"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantNumber]"
+                      dataType="numeric"
+                      name="RestaurantNumber"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                      dataType="wstr"
+                      length="200"
+                      name="AddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                      dataType="wstr"
+                      length="200"
+                      name="AddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine3]"
+                      dataType="wstr"
+                      length="200"
+                      name="AddressLine3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="200"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[County]"
+                      dataType="wstr"
+                      length="100"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="250"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="250"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[GeneralManager]"
+                      dataType="wstr"
+                      length="250"
+                      name="GeneralManager" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[FacilitiesManager]"
+                      dataType="wstr"
+                      length="250"
+                      name="FacilitiesManager" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[PayrollSpecialist]"
+                      dataType="wstr"
+                      length="250"
+                      name="PayrollSpecialist" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="250"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Timezone]"
+                      dataType="wstr"
+                      length="250"
+                      name="Timezone" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[ActiveIndicator]"
+                      dataType="wstr"
+                      length="250"
+                      name="ActiveIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      dataType="numeric"
+                      name="Latitude"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Longtitude]"
+                      dataType="numeric"
+                      name="Longtitude"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="20"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Fax]"
+                      dataType="wstr"
+                      length="20"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="200"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[OpenDate]"
+                      dataType="dbTimeStamp2"
+                      name="OpenDate"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[CloseDate]"
+                      dataType="dbTimeStamp2"
+                      name="CloseDate"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[SquareFootage]"
+                      dataType="numeric"
+                      name="SquareFootage"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
+                      dataType="numeric"
+                      name="SeatCount"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[OperationalStatus]"
+                      dataType="wstr"
+                      length="250"
+                      name="OperationalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Company]"
+                      dataType="wstr"
+                      length="250"
+                      name="Company" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[NROD]"
+                      dataType="wstr"
+                      length="250"
+                      name="NROD" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[FranchiseCompany]"
+                      dataType="wstr"
+                      length="250"
+                      name="FranchiseCompany" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[NetworkID]"
+                      dataType="wstr"
+                      length="50"
+                      name="NetworkID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[SneaksDate]"
+                      dataType="dbTimeStamp2"
+                      name="SneaksDate"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[FirstTrainingDate]"
+                      dataType="dbTimeStamp2"
+                      name="FirstTrainingDate"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[FullMailingAddress]"
+                      dataType="wstr"
+                      length="200"
+                      name="FullMailingAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[APSpecialist]"
+                      dataType="wstr"
+                      length="250"
+                      name="APSpecialist" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[CleanPhone]"
+                      dataType="numeric"
+                      name="CleanPhone"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[Prototype]"
+                      dataType="wstr"
+                      length="200"
+                      name="Prototype" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[ReloCloseDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReloCloseDate"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[ReloOpenDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReloOpenDate"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[CompanySegment]"
+                      dataType="wstr"
+                      length="250"
+                      name="CompanySegment" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[HoursOfOperation]"
+                      dataType="wstr"
+                      length="200"
+                      name="HoursOfOperation" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[FranchiseIndicator]"
+                      dataType="wstr"
+                      length="250"
+                      name="FranchiseIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[OriginalOpenDate]"
+                      dataType="dbTimeStamp2"
+                      name="OriginalOpenDate"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[GroceryDistributionCenter]"
+                      dataType="wstr"
+                      length="250"
+                      name="GroceryDistributionCenter" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input].ExternalColumns[ProduceDistributionCenter]"
+                      dataType="wstr"
+                      length="250"
+                      name="ProduceDistributionCenter" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Read Restaurant CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat Workday Restaurant CSV]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat Workday Restaurant CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Number]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Number]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Number]"
+                      name="Restaurant Number"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Name]"
+                      length="250"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Name]"
+                      name="Restaurant Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[State]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[General Manager Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[General Manager Name]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[General Manager Name]"
+                      name="General Manager Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[General Manager ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[General Manager ID]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[General Manager ID]"
+                      name="General Manager ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Region ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Region ID]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Region ID]"
+                      name="Region ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Time Zone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Time Zone]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Time Zone]"
+                      name="Time Zone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Hours of Operation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Hours of Operation]"
+                      length="200"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Hours of Operation]"
+                      name="Hours of Operation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Seating Capacity]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Seating Capacity]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Seating Capacity]"
+                      name="Seating Capacity"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Square Footage]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Square Footage]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Square Footage]"
+                      name="Square Footage"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Prototype]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Prototype]"
+                      length="200"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Prototype]"
+                      name="Prototype"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Opening Date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Opening Date]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Opening Date]"
+                      name="Restaurant Opening Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Close Date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Close Date]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Restaurant Close Date]"
+                      name="Restaurant Close Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Training]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[First Day of Training]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Training]"
+                      name="First Day of Training"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Sneak Peaks]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[First Day of Sneak Peaks]"
+                      length="50"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[First Day of Sneak Peaks]"
+                      name="First Day of Sneak Peaks"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Address 1]"
+                      length="200"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 1]"
+                      name="Address 1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Address 2]"
+                      length="200"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Address 2]"
+                      name="Address 2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      length="200"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Postal Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Postal Code]"
+                      length="20"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Postal Code]"
+                      name="Postal Code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Time Zone ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Time Zone ID]"
+                      length="250"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Time Zone ID]"
+                      name="Time Zone ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Latitude]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Latitude]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Latitude]"
+                      name="Latitude"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Longitude]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Longitude]"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Longitude]"
+                      name="Longitude"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      length="20"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="50"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Number]"
+                      dataType="wstr"
+                      length="50"
+                      name="Restaurant Number" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Name]"
+                      dataType="wstr"
+                      length="250"
+                      name="Restaurant Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="50"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[General Manager Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="General Manager Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[General Manager ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="General Manager ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Region ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Region ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="20"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Time Zone]"
+                      dataType="wstr"
+                      length="50"
+                      name="Time Zone" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Hours of Operation]"
+                      dataType="wstr"
+                      length="200"
+                      name="Hours of Operation" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Seating Capacity]"
+                      dataType="numeric"
+                      name="Seating Capacity"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Square Footage]"
+                      dataType="numeric"
+                      name="Square Footage"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Prototype]"
+                      dataType="wstr"
+                      length="200"
+                      name="Prototype" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Opening Date]"
+                      dataType="wstr"
+                      length="50"
+                      name="Restaurant Opening Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Restaurant Close Date]"
+                      dataType="wstr"
+                      length="50"
+                      name="Restaurant Close Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[First Day of Training]"
+                      dataType="wstr"
+                      length="50"
+                      name="First Day of Training" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[First Day of Sneak Peaks]"
+                      dataType="wstr"
+                      length="50"
+                      name="First Day of Sneak Peaks" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Address 1]"
+                      dataType="wstr"
+                      length="200"
+                      name="Address 1" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Address 2]"
+                      dataType="wstr"
+                      length="200"
+                      name="Address 2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="200"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Postal Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Postal Code" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Time Zone ID]"
+                      dataType="wstr"
+                      length="250"
+                      name="Time Zone ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Latitude]"
+                      dataType="r4"
+                      name="Latitude" />
+                    <externalMetadataColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].ExternalColumns[Longitude]"
+                      dataType="r4"
+                      name="Longitude" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Timezone Code Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [mdm].[RRTimezone]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [mdm].[RRTimezone]) [refTable]
+where [refTable].[Name] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VersionName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VersionNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VersionFlag" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Code" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ChangeTrackingMask" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GMTOffset" dataType="DT_NUMERIC" length="0" precision="38" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EnterDateTime" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="3" codePage="0"/&gt;&lt;referenceColumn name="EnterUserName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EnterVersionNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastChgDateTime" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="3" codePage="0"/&gt;&lt;referenceColumn name="LastChgUserName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastChgVersionNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ValidationStatus" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Time Zone ID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{C348F907-970D-4795-9589-95EC9A85B37B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SQLMAESTRO MDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Inputs[Lookup Input].Columns[Time Zone ID]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Time Zone ID"
+                      lineageId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output].Columns[Time Zone ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Match Output].Columns[TimeZoneCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="250"
+                      lineageId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Match Output].Columns[TimeZoneCode]"
+                      name="TimeZoneCode"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Code</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Workday Restaurant to Staging.Paths[Derived Column Output]"
+              endId="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load Workday Restaurant to Staging\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load Workday Restaurant to Staging.Paths[Flat File Source Output]"
+              endId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Inputs[Lookup Input]"
+              name="Flat File Source Output"
+              startId="Package\Load Workday Restaurant to Staging\Read Restaurant CSV.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Load Workday Restaurant to Staging.Paths[Lookup Match Output]"
+              endId="Package\Load Workday Restaurant to Staging\Derived Column.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Workday Restaurant to Staging\Timezone Code Lookup.Outputs[Lookup Match Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Business Rules"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Run Maestro Business Rules"
+      DTS:Disabled="True"
+      DTS:DTSID="{0ECD4A3B-B606-4F3C-BD5D-AF6AD54A6980}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Business Rules"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">@[$Project::MaestroServer] + " /VALIDATEENTITY /MODEL:\" " + @[$Project::MaestroModel] +  "\" /ENTITY:\"Restaurant\" /VERSION:\"" + @[$Project::MaestroModelVersion]  + "\""</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files\Profisee\Master Data Maestro Utilities\5.1.2\Profisee.MasterDataMaestro.Utilities.exe"
+          Arguments="/URL:net.tcp://qa1-appmaestro.qa01.net/maestro/service.svc/tcp /VALIDATEENTITY /MODEL:&quot; RR Data Model&quot; /ENTITY:&quot;Restaurant&quot; /VERSION:&quot;Version_1&quot;"
+          WorkingDirectory="C:\Program Files\Profisee\Master Data Maestro Utilities\5.1.2"
+          SuccessValue="1"
+          WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Restaurant Staging Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BF5B32D9-4A9D-4CE5-AB92-CB4BF3E7BBDE}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Restaurant Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8EFA440D-6BA4-44B2-8549-0638C4EA2295}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[STG_Workday_Restaurant]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{51E8AE81-DE68-45FD-8F9E-90AC04C8CED4}"
+      DTS:From="Package\Truncate Restaurant Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Workday Restaurant to Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{33789565-8B2B-4A37-BEAF-A6785DC81933}"
+      DTS:From="Package\Load Workday Restaurant to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Restaurant to Maestro" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8EBA0EDC-2DB8-45EB-9DB0-D83F3781CB83}"
+      DTS:From="Package\Check File Availability"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Truncate Restaurant Staging Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{A3BF81D3-0A8F-4980-9A0C-0689419857D3}"
+      DTS:From="Package\Load Restaurant to Maestro"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Run Business Rules" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Check File Availability"
+          TopLeft="41.5,5.5" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Load Restaurant to Maestro"
+          TopLeft="33.5,298.5" />
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Load Workday Restaurant to Staging"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Run Business Rules"
+          TopLeft="46.5000000000001,413.5" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Truncate Restaurant Staging Table"
+          TopLeft="10,107.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="132.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="135.75,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="132.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="135.75,340.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Workday Restaurant to Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Load Workday Restaurant to Staging\Timezone Code Lookup"
+          TopLeft="14.5,107.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging"
+          TopLeft="5.50000000000003,311.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Load Workday Restaurant to Staging\Read Restaurant CSV"
+          TopLeft="19.5,5.5" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Load Workday Restaurant to Staging\Derived Column"
+          TopLeft="32,209.5" />
+        <EdgeLayout
+          Id="Package\Load Workday Restaurant to Staging.Paths[Lookup Match Output]"
+          TopLeft="110,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Workday Restaurant to Staging.Paths[Flat File Source Output]"
+          TopLeft="110,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Workday Restaurant to Staging.Paths[Derived Column Output]"
+          TopLeft="110,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Workday Restaurant to Staging\Timezone Code Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[mdm].[RRTimezone]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">1</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Workday Restaurant to Staging\Load Restaurant to Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

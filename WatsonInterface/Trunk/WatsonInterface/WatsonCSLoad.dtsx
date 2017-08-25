@@ -1,0 +1,1980 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/21/2012 10:55:28 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNIGS2-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{339EC944-3231-419E-B0C4-EC247548D4B0}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="WatsonCSLoad"
+  DTS:PackageType="5"
+  DTS:VersionBuild="181"
+  DTS:VersionGUID="{95D48F6F-B8A9-4E27-A9DC-CD28F0B3D970}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F8CBF63C-7894-467A-B3BB-E55345D727FC}"
+      DTS:ObjectName="HQ-FinSQL-01.Interfaces.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FinSQL-01;User ID=SSISUser;Initial Catalog=Interfaces;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAufOWFZqr40WfvRnghIe+iwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADy71ii40rAHRIo6igGuUTdAAAAAASAAACgAAAAEAAAAOBxeAZB14SxxIuUzdcYmr4oAAAAaWFfb1jhjZSnnBuxgAGqIpH5XCYCOFvEwF+8SI3V7EHYhQgfy78EmRQAAABW8kaAccVdS3lABWjdCPpdRg6Wcw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.Tips]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E85AA239-F3B7-49DB-BE6F-55038688D177}"
+      DTS:ObjectName="HQ-FINSQL-01.Tips">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=Tips;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAufOWFZqr40WfvRnghIe+iwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADAUKBL+paQG+pOVFYfy1ysAAAAAASAAACgAAAAEAAAAJz3cTN07MD3Ru5DobwsKykoAAAANuyCA757yvxo5OhHqky6NQ6ckK3u8wktLwtfpERVfND244D0Sjh1nxQAAADu71HlmPTByYqZ5CcaSGlOTCgJ6g</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Radiant]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E98414B5-5ECC-47A4-8A47-7E7598A587C4}"
+      DTS:ObjectName="Radiant">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-07;User ID=SSISUser;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAufOWFZqr40WfvRnghIe+iwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADCvzwINX/AxiTlVPKV8oo2AAAAAASAAACgAAAAEAAAAONr8oBMKHfkPp23d/vlDcQoAAAA/uNVyd+Yazm6Lp6KZ/6tQU50mUcfQERUWjpMBGCNn3VF11rBXi0vFhQAAADWNGye0JSoWH+u4thsO7hXTpaHIg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WatsonFlowDataGCInc]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Watson Flow Data File"
+      DTS:DTSID="{5CA783F7-601A-47E2-9530-B71432600791}"
+      DTS:ObjectName="WatsonFlowDataGCInc">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePathWatsonGCInc]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\Watson\Outbox\201704110000flowdata.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Property Code"
+              DTS:DTSID="{2F9666F9-AA2C-4DA6-8415-AFD43CFA23C9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source Code"
+              DTS:DTSID="{9D48ACA3-D673-4743-BA6D-77B4CDF65549}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source Code Name"
+              DTS:DTSID="{0CA90B92-AB8B-4B00-85B3-356AACE0665E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Date"
+              DTS:DTSID="{E3AEDDAC-382C-4316-A1FF-2721171CFE38}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Time"
+              DTS:DTSID="{55E506FE-9904-40E3-875D-E2956CE7C40D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value1"
+              DTS:DTSID="{AE5A91C9-96F2-457E-856D-507AB09D6159}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value2"
+              DTS:DTSID="{94508714-FAC7-4439-94EE-9532C8521F37}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WatsonKBI]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Aloha Sales Ledger Export File"
+      DTS:DTSID="{39E6715E-D206-4BF6-ADE9-1E2217C8C626}"
+      DTS:ObjectName="WatsonKBI">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePathWatsonKBI]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\Watson\Outbox\201704110000kbi.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Property Code"
+              DTS:DTSID="{20B819DB-DAE2-4EF4-8088-279BC7DB1CD8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source Code"
+              DTS:DTSID="{D6A1811E-7BE2-45A9-8ABB-0D2F1DFC0570}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source Code Name"
+              DTS:DTSID="{80A9C97E-154E-4A7E-8718-CDCA4005254D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Date"
+              DTS:DTSID="{08D42A3B-C670-4121-BCFC-643EB1F4B1AF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value1"
+              DTS:DTSID="{8D6A9F7F-BC62-4D96-B122-F923D1125962}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value2"
+              DTS:DTSID="{39D875A7-76E6-4BAF-89E5-1352C86CE0E6}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WatsonTransHours]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Watson Transfer Hours File"
+      DTS:DTSID="{444729C8-F291-4A34-8DDB-F60A1B527961}"
+      DTS:ObjectName="WatsonTransHours">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePathWatsonTransHours]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\Watson\Outbox\201704110000transferhours.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EmployeeNumber"
+              DTS:DTSID="{9048FC6F-A6CF-43E0-A896-CA3B8DEBA6FB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DepartmentCode"
+              DTS:DTSID="{48517BDF-5E5E-4E18-8CA0-9D5E14AA412A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PositionCode/JobCode"
+              DTS:DTSID="{425B0B0B-9AF7-40AF-86C6-C30FC23195B2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ShiftDate"
+              DTS:DTSID="{27600779-4F8D-43CF-BA66-24A02C86263C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="134"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PunchInTime"
+              DTS:DTSID="{4F1ACFDD-6D12-4896-A903-5ACF49262C22}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="134"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PunchOutTime"
+              DTS:DTSID="{5F7CED00-D9C4-4E2D-946E-D3992D6EE627}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RegularHours"
+              DTS:DTSID="{5DFF957C-DF28-42FA-B403-A9D4AAFA50BA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OvertimeHours1"
+              DTS:DTSID="{7898FEE8-F4A3-40C0-94B0-3130EFC864E1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OvertimeHours2"
+              DTS:DTSID="{459DE3ED-D542-4518-8AF7-E509C4222C7D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="14"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TrainingHours"
+              DTS:DTSID="{77940868-0C99-4129-9D26-23B7DC4F3282}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RegularDollars"
+              DTS:DTSID="{226AB2C1-800C-4B38-BF65-3C5C477F1CA8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OvertimeDollars1"
+              DTS:DTSID="{E54615B4-D02C-44A1-B74C-21F8370D596D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OvertimeDollars2"
+              DTS:DTSID="{4ED74378-E9CC-4696-9BA0-33569B9C20CC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TrainingDollars"
+              DTS:DTSID="{445EF1DA-CC40-4655-9646-7E9D49E50712}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B366436B-4C1A-46BA-AF15-4D7FD6D1EA8B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_DBTIMESTAMP) GETDATE()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">4/11/2017 8:01:03 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9508FECF-19B8-4D39-B940-57F16BD9F862}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLACE((DT_WSTR, 10)(DT_DBDATE) @[User::CurrentDateTime], &quot;-&quot;,&quot;&quot;) + REPLACE((DT_WSTR,10)(DT_DBTIME) @[User::CurrentDateTime], &quot;:&quot;, &quot;&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Date">
+      <DTS:VariableValue
+        DTS:DataType="8">20170411080103</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{319DF81C-C5FB-4387-9FF1-9F89DA105263}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="DATEADD(&quot;day&quot;,DATEDIFF(&quot;day&quot;,(DT_DBTIMESTAMP)1,GETDATE()),(DT_DBTIMESTAMP)0)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateOfBusiness">
+      <DTS:VariableValue
+        DTS:DataType="7">4/10/2017</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{735EC670-D767-4B09-90C8-A72641E67017}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExcludedRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{401F07DE-82FE-497B-833D-FE66470DDCC9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractStartTime">
+      <DTS:VariableValue
+        DTS:DataType="7">9/4/2012 2:26:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D030F79-A326-47BA-9BDC-6CD4983C95BF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LEFT(@[User::Date], 8) + @[User::StoreIDFourDigit] + &quot;flowdata.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameWatsonGCInc">
+      <DTS:VariableValue
+        DTS:DataType="8">201704110000flowdata.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{99122FED-8F1B-49D8-9C0A-0B97F43A64B7}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LEFT(@[User::Date], 8) + @[User::StoreIDFourDigit] + &quot;kbi.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameWatsonKBI">
+      <DTS:VariableValue
+        DTS:DataType="8">201704110000kbi.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E77C9B12-45EB-446A-A712-A3551FEBDF88}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LEFT(@[User::Date], 8) + @[User::StoreIDFourDigit] + &quot;transferhours.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameWatsonTransHours">
+      <DTS:VariableValue
+        DTS:DataType="8">201704110000transferhours.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E43FA504-8CF8-401E-9A15-8FD13D90E481}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ExportFlatFileDirectory_Outbox]  +  @[User::FileNameWatsonGCInc]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePathWatsonGCInc">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\Watson\Outbox\201704110000flowdata.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{21BDFA70-88A9-4284-B670-3D558784A823}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ExportFlatFileDirectory_Outbox]  +  @[User::FileNameWatsonKBI]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePathWatsonKBI">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\Watson\Outbox\201704110000kbi.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{94F082AD-7CBA-42FE-A9C4-77ABCA10CCF8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ExportFlatFileDirectory_Outbox]  +  @[User::FileNameWatsonTransHours]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePathWatsonTransHours">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\Watson\Outbox\201704110000transferhours.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{17AB5DA9-5CE6-4094-981B-DC2EA61DF985}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="IncludedRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6419415F-83B5-4CD2-9353-66B5108F3B8D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Interface">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1CD53FB5-9582-42FF-A8D4-AB68F6E8B67D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="MissedDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/1900</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CF604D2B-29E0-4064-92D9-6BD87889368A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="MissedStores">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FFC5AD07-28B8-4A71-B981-6159C02B74C0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9281DA48-14CF-414D-BC2E-5DFFC9C9437B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR,4)REPLICATE(&quot;0&quot;,((4) - LEN((DT_WSTR,4) @[User::StoreID] ))) + (DT_WSTR,4) @[User::StoreID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreIDFourDigit">
+      <DTS:VariableValue
+        DTS:DataType="8">0000</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1997CE36-E279-4E61-BA10-92945915B71C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 4)  @[User::StoreID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreIDString">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DB45CBAA-E11E-4E55-B506-02141FD8DC3E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreRows">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1939B6E2-B5F2-4E6E-9A0C-1FDFA0395620}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreRows001">
+      <DTS:VariableValue
+        DTS:DataType="21">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6DF45540-00A2-4752-B20D-10A1CF50EB8E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeZoneStores">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C13BA027-2C5E-4845-9E9D-B383988F4CFC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TransferHoursRows">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{443B8E3E-E924-45A0-B2A9-B90507FECCD9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WatsonDate">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B842033A-3348-4B4D-A5B3-AB2E33775D80}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Zero">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2DFB2F92-862A-42D2-AB8E-0852D7C27E76}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ZeroRows">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\End"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B271BB32-0362-4AF2-A26B-14074366D541}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F8CBF63C-7894-467A-B3BB-E55345D727FC}"
+          SQLTask:SqlStatementSource="SELECT 'Done' as [Action]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Each Missed Store"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{22D3B447-9A2A-466B-B516-9CE2CC45F33C}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="For Each Missed Store">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{CEA0909B-58CC-4FA5-BA1B-B3D65EC39BD9}"
+        DTS:ObjectName="{CEA0909B-58CC-4FA5-BA1B-B3D65EC39BD9}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::MissedStores" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{EADA37BD-5412-4D31-9C15-40A2DBAD1DF5}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="EODComplete">
+          <DTS:VariableValue
+            DTS:DataType="11">0</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Each Missed Store\Check EOD Status"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7982F7B1-75FD-43AC-B5B9-FBD044CEDC24}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Check EOD Status"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{E98414B5-5ECC-47A4-8A47-7E7598A587C4}"
+              SQLTask:SqlStatementSource="EXEC INT011_spCheckEndOfDayStatus&#xA;@StoreID=?,&#xA;@DateOfBusiness=?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="EODComplete"
+                SQLTask:DtsVariableName="User::EODComplete" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StoreID"
+                SQLTask:DtsVariableName="User::StoreID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="3" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@DateOfBusiness"
+                SQLTask:DtsVariableName="User::MissedDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="30" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each Missed Store\Delete Row From Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CA959351-2CB7-4E3B-A89D-62029519465A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete Row From Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F8CBF63C-7894-467A-B3BB-E55345D727FC}"
+              SQLTask:SqlStatementSource="EXEC Watson.spDeleteLogEntry&#xA;@StoreID=?,&#xA;@DateOfBusiness=?,&#xA;@Interface=4" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StoreID"
+                SQLTask:DtsVariableName="User::StoreID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="3" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@DateOfBusiness"
+                SQLTask:DtsVariableName="User::MissedDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="30" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each Missed Store\End"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{84B0614D-7A00-4012-B230-C8F9204127F7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="End"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F8CBF63C-7894-467A-B3BB-E55345D727FC}"
+              SQLTask:SqlStatementSource="SELECT 'Nothing Else To Do' as [Action]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StoreID"
+                SQLTask:DtsVariableName="User::StoreID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="3" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@DateOfBusiness"
+                SQLTask:DtsVariableName="User::DateOfBusiness"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="30" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each Missed Store\Load Check Summary Data"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8E7B9936-9445-4BA3-8B26-47FE62EB4C81}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Check Summary Data"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Load WatsonCSData"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[WatsonCSData]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.Tips]"
+                      connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.Tips]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="DateOfBusiness"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                        <inputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].Columns[FKStoreID]"
+                          cachedDataType="i4"
+                          cachedName="FKStoreID"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[FKStoreID]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[FKStoreID]" />
+                        <inputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].Columns[GuestCount]"
+                          cachedDataType="numeric"
+                          cachedName="GuestCount"
+                          cachedPrecision="12"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[GuestCount]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[GuestCount]" />
+                        <inputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].Columns[ItemSales]"
+                          cachedDataType="r8"
+                          cachedName="ItemSales"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[ItemSales]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[ItemSales]" />
+                        <inputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].Columns[OpenTime]"
+                          cachedDataType="i2"
+                          cachedName="OpenTime"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[OpenTime]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[OpenTime]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                          dataType="dbTimeStamp"
+                          name="DateOfBusiness" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[FKStoreID]"
+                          dataType="i4"
+                          name="FKStoreID" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[GuestCount]"
+                          dataType="numeric"
+                          name="GuestCount"
+                          precision="12"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[ItemSales]"
+                          dataType="cy"
+                          name="ItemSales" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input].ExternalColumns[OpenTime]"
+                          dataType="i2"
+                          name="OpenTime" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Query Check Summary"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [DateOfBusiness]
+,[FKStoreID]
+,[GuestCount]
+,[ItemSales]
+,[OpenTime]
+FROM [dbo].[dpvHstCheckSummary]
+WHERE [DateOfBusiness] = ?
+AND FKStoreID = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{1CD53FB5-9582-42FF-A8D4-AB68F6E8B67D};"Parameter1:Input",{FFC5AD07-28B8-4A71-B981-6159C02B74C0};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Radiant]"
+                      connectionManagerRefId="Package.ConnectionManagers[Radiant]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                          name="DateOfBusiness"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[FKStoreID]"
+                          name="FKStoreID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[GuestCount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[GuestCount]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[GuestCount]"
+                          name="GuestCount"
+                          precision="12"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[ItemSales]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[ItemSales]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[ItemSales]"
+                          name="ItemSales"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[OpenTime]"
+                          dataType="i2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[OpenTime]"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].Columns[OpenTime]"
+                          name="OpenTime"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                          dataType="dbTimeStamp"
+                          name="DateOfBusiness" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[FKStoreID]"
+                          dataType="i4"
+                          name="FKStoreID" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[GuestCount]"
+                          dataType="numeric"
+                          name="GuestCount"
+                          precision="12"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[ItemSales]"
+                          dataType="r8"
+                          name="ItemSales" />
+                        <externalMetadataColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output].ExternalColumns[OpenTime]"
+                          dataType="i2"
+                          name="OpenTime" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                          name="DateOfBusiness" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                          dataType="i4"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[FKStoreID]"
+                          name="FKStoreID" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[GuestCount]"
+                          dataType="numeric"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[GuestCount]"
+                          name="GuestCount"
+                          precision="12"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[ItemSales]"
+                          dataType="r8"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[ItemSales]"
+                          name="ItemSales" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[OpenTime]"
+                          dataType="i2"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[OpenTime]"
+                          name="OpenTime" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\For Each Missed Store\Load Check Summary Data.Paths[OLE DB Source Output]"
+                  endId="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each Missed Store\Rows &gt; 0?"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DBA96024-A654-48B0-B548-923CE222895D}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Rows &gt; 0?"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{E98414B5-5ECC-47A4-8A47-7E7598A587C4}"
+              SQLTask:SqlStatementSource="EXEC INT011_spZeroRowsCheck&#xA;@StoreID=?,&#xA;@DateOfBusiness=?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ZeroRows"
+                SQLTask:DtsVariableName="User::ZeroRows" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StoreID"
+                SQLTask:DtsVariableName="User::StoreID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="3" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@DateOfBusiness"
+                SQLTask:DtsVariableName="User::MissedDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="30" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each Missed Store\Set Start Time"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{757E0D8E-C7D5-470F-AD7B-2A2546763812}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set Start Time"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::ExtractStartTime]  =  @[System::ContainerStartTime]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each Missed Store.PrecedenceConstraints[Constraint 12]"
+          DTS:CreationName=""
+          DTS:DTSID="{77712431-01D7-466E-B1DD-E1E8F9481FCA}"
+          DTS:From="Package\For Each Missed Store\Load Check Summary Data"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 12"
+          DTS:To="Package\For Each Missed Store\Delete Row From Log" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each Missed Store.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{15EF01C1-BE30-4871-8BC4-22D6B5826322}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::EODComplete] == TRUE"
+          DTS:From="Package\For Each Missed Store\Check EOD Status"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\For Each Missed Store\Rows &gt; 0?" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each Missed Store.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:Description="EOD Not Complete"
+          DTS:DTSID="{5BF59AF9-31C6-491C-A950-BF4609E08743}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::EODComplete] == FALSE"
+          DTS:From="Package\For Each Missed Store\Check EOD Status"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\For Each Missed Store\End" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each Missed Store.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{9F53645E-79CD-46D4-BA2A-E226480651DD}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::Interface] == 4"
+          DTS:From="Package\For Each Missed Store\Set Start Time"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\For Each Missed Store\Load Check Summary Data" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each Missed Store.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{45D792E2-C204-4235-AF1B-E9C4D7D63CCA}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::ZeroRows] == FALSE"
+          DTS:From="Package\For Each Missed Store\Rows &gt; 0?"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\For Each Missed Store\Set Start Time" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each Missed Store.PrecedenceConstraints[Constraint 9]"
+          DTS:CreationName=""
+          DTS:DTSID="{85214251-BE35-4DD7-82F9-F892EE62BF10}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::ZeroRows] == TRUE"
+          DTS:From="Package\For Each Missed Store\Rows &gt; 0?"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 9"
+          DTS:To="Package\For Each Missed Store\End" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0CD36EBC-D8A5-44F0-9D33-76A3B57AD426}"
+          DTS:ObjectName="{0CD36EBC-D8A5-44F0-9D33-76A3B57AD426}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::StoreID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{93C8DEF7-6711-4722-A91C-92E6D1755F24}"
+          DTS:ObjectName="{93C8DEF7-6711-4722-A91C-92E6D1755F24}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::MissedDate" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{146D6A55-7224-41D0-B767-FC79CCA5AAD7}"
+          DTS:ObjectName="{146D6A55-7224-41D0-B767-FC79CCA5AAD7}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::Interface" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Missed Stores"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B38B05D0-CCD6-4DC1-B7AE-4D38BBA2C2E4}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Missed Stores"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Missed Stores\Get List of Missing Restaurants"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get List of Missing Restaurants"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  [StoreID]
+      ,[DateOfBusiness]
+      ,[Interface]
+  FROM Watson.MissedRestaurants
+  WHERE [Interface] = 4</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Missed Stores\Get List of Missing Restaurants.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[Interface]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].ExternalColumns[Interface]"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[Interface]"
+                      name="Interface"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].ExternalColumns[Interface]"
+                      dataType="ui1"
+                      name="Interface" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[Interface]"
+                      dataType="ui1"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[Interface]"
+                      name="Interface" />
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Missed Stores\Store Rows"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Store Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::StoreRows</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Get Missed Stores\Store Rows.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Missed Stores\Store Rows.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Get Missed Stores\Store Rows.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Missed Stores\Stores RecordSet"
+              componentClassID="{C457FD7E-CE98-4C4B-AEFE-F3AE0044F181}"
+              contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+              name="Stores RecordSet">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::MissedStores</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Get Missed Stores\Stores RecordSet.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Missed Stores\Stores RecordSet.Inputs[Recordset Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Get Missed Stores\Stores RecordSet.Inputs[Recordset Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Get Missed Stores\Stores RecordSet.Inputs[Recordset Destination Input].Columns[Interface]"
+                      cachedDataType="i4"
+                      cachedName="Interface"
+                      lineageId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output].Columns[Interface]"
+                      usageType="readWrite" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Missed Stores.Paths[OLE DB Source Output]"
+              endId="Package\Get Missed Stores\Store Rows.Inputs[Row Count Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Get Missed Stores\Get List of Missing Restaurants.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Get Missed Stores.Paths[Row Count Output 1]"
+              endId="Package\Get Missed Stores\Stores RecordSet.Inputs[Recordset Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\Get Missed Stores\Store Rows.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{78C9BC7F-8AA3-419A-8226-5E03902250C1}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::StoreRows] &gt; 0"
+      DTS:From="Package\Get Missed Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\For Each Missed Store" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AE4BC9C7-E9F9-403D-BFAC-27BBCA27E422}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::StoreRows] == 0"
+      DTS:From="Package\Get Missed Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\End" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="98,42"
+          Id="Package\End"
+          TopLeft="63.476190476191,287.428571428571" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\For Each Missed Store\Check EOD Status"
+          TopLeft="20,9" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\For Each Missed Store\Delete Row From Log"
+          TopLeft="24,406" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\For Each Missed Store\End"
+          TopLeft="262,128" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\For Each Missed Store\Load Check Summary Data"
+          TopLeft="10.5,318" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\For Each Missed Store\Rows &gt; 0?"
+          TopLeft="37,132" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\For Each Missed Store\Set Start Time"
+          TopLeft="34,227" />
+        <EdgeLayout
+          Id="Package\For Each Missed Store.PrecedenceConstraints[Constraint 12]"
+          TopLeft="114.25,360">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\For Each Missed Store.PrecedenceConstraints[Constraint 2]"
+          TopLeft="76.3333333333333,51">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.1666666666667,81"
+              Start="0,0"
+              End="25.1666666666667,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.8667466986795" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.8667466986795"
+                    Point2="0,32.8667466986795"
+                    Point3="4,32.8667466986795" />
+                  <mssgle:LineSegment
+                    End="21.1666666666667,32.8667466986795" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.1666666666667,32.8667466986795"
+                    Point2="25.1666666666667,32.8667466986795"
+                    Point3="25.1666666666667,36.8667466986795" />
+                  <mssgle:LineSegment
+                    End="25.1666666666667,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="4.58333333333334,37.8667466986795,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\For Each Missed Store.PrecedenceConstraints[Constraint 3]"
+          TopLeft="128.666666666667,51">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="182.333333333333,77"
+              Start="0,0"
+              End="182.333333333333,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.2436974789916" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.2436974789916"
+                    Point2="0,31.2436974789916"
+                    Point3="4,31.2436974789916" />
+                  <mssgle:LineSegment
+                    End="178.333333333333,31.2436974789916" />
+                  <mssgle:CubicBezierSegment
+                    Point1="178.333333333333,31.2436974789916"
+                    Point2="182.333333333333,31.2436974789916"
+                    Point3="182.333333333333,35.2436974789916" />
+                  <mssgle:LineSegment
+                    End="182.333333333333,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="83.1666666666667,36.2436974789916,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\For Each Missed Store.PrecedenceConstraints[Constraint 5]"
+          TopLeft="110.75,269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,12.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\For Each Missed Store.PrecedenceConstraints[Constraint 8]"
+          TopLeft="104.75,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,14.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\For Each Missed Store.PrecedenceConstraints[Constraint 9]"
+          TopLeft="166,151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96,0"
+              Start="0,0"
+              End="88.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="88.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="36.25,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="398,474"
+          Size="398,517"
+          Id="Package\For Each Missed Store"
+          TopLeft="303.5,63.095238095239" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Get Missed Stores"
+          TopLeft="24.714285714286,109.714285714286" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="187.714285714286,130.714285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="115.785714285714,190.880952380953"
+              Start="0,0"
+              End="108.285714285714,190.880952380953">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.892857142857,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.892857142857,0"
+                    Point2="57.892857142857,0"
+                    Point3="57.892857142857,4" />
+                  <mssgle:LineSegment
+                    End="57.892857142857,186.880952380953" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57.892857142857,186.880952380953"
+                    Point2="57.892857142857,190.880952380953"
+                    Point3="61.892857142857,190.880952380953" />
+                  <mssgle:LineSegment
+                    End="108.285714285714,190.880952380953" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="49.892857142857,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="109.345238095239,151.714285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,135.714285714285"
+              Start="0,0"
+              End="0,128.214285714285">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,128.214285714285" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,56.1071428571425,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\For Each Missed Store\Load Check Summary Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData"
+          TopLeft="15.5,106.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary"
+          TopLeft="10.5,14.5" />
+        <EdgeLayout
+          Id="Package\For Each Missed Store\Load Check Summary Data.Paths[OLE DB Source Output]"
+          TopLeft="103.5,56.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Each Missed Store\Load Check Summary Data\Load WatsonCSData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Each Missed Store\Load Check Summary Data\Query Check Summary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Get Missed Stores">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Get Missed Stores\Store Rows"
+          TopLeft="185,209" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Get Missed Stores\Stores RecordSet"
+          TopLeft="176,346" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Get Missed Stores\Get List of Missing Restaurants"
+          TopLeft="134,70" />
+        <EdgeLayout
+          Id="Package\Get Missed Stores.Paths[Row Count Output 1]"
+          TopLeft="256,251">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,95"
+              Start="0,0"
+              End="0,87.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,87.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Get Missed Stores.Paths[OLE DB Source Output]"
+          TopLeft="248.75,112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,97"
+              Start="0,0"
+              End="0,89.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,89.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Missed Stores\Get List of Missing Restaurants">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

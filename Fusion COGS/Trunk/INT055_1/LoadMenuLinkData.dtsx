@@ -1,0 +1,1210 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/3/2014 2:08:54 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="IMONCIVAIS-L6"
+  DTS:CreatorName="CORPHQ\IMoncivais"
+  DTS:DTSID="{AAA978F0-A159-4E7F-B6B6-9D9F3E8B8FF2}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadMenuLinkData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{F3CBD029-BB9A-4902-8EB1-7865F5E632C3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.MLHQ.ReportRunner]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BF4FA1D2-0695-47E2-A9E5-C7156D941672}"
+      DTS:ObjectName="CRONUS\CRONUSSQL2000.MLHQ.ReportRunner">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CRONUS\CRONUSSQL2000;User ID=ReportRunner;Initial Catalog=MLHQ;Provider=SQLOLEDB.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Load MenulinkToStaging-{BF4FA1D2-0695-47E2-A9E5-C7156D941672}CRONUS\CRONUSSQL2000.MLHQ.ReportRunner;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{57956C9D-7E71-47AC-9919-2CD4A4F8E790}"
+      DTS:ObjectName="HQ-FINSQL-01.CognosIntegration">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=CognosIntegration;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+      DTS:ObjectName="HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=CostOfGoodsSoldCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7C750973-C5A5-43C5-B7B5-6B8441E88B4B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FusionSubperiods">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CAF99466-9C59-44D8-9D0C-0977C9038D43}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select distinct subperiod from [vINT055ItemUseVariance] order by Subperiod&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="GetFusionSubPeriods">
+      <DTS:VariableValue
+        DTS:DataType="8">select distinct subperiod from [vINT055ItemUseVariance] order by Subperiod</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{905D7514-6B04-42B6-AD18-BE7461CF2F51}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SubPeriod">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy ML COGS Data"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{7139a38b-4b38-4731-9b23-aec17935eff6}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy ML COGS Data">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{f7368c56-de11-4588-8309-f9887539ae16}"
+        DTS:ObjectName="{4FFBE465-EBFE-4F35-AF37-1156B1130432}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::FusionSubperiods" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Copy ML COGS Data\Execute SQL Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{18DBABEE-8F10-48D6-B060-81315D1D298E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CFFE7A9E-64C8-4F56-A670-8DA2E9A4F479}"
+              SQLTask:SqlStatementSource="delete from [CostOfGoodsSoldCube].[dbo].[ItemUseVariance] where SubPeriod = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@SubPeriod"
+                SQLTask:DtsVariableName="User::SubPeriod"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="4" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{54ab70f4-46e3-4daa-9114-ae4472da45de}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load ML COGS data to ItemVariance"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[ItemUseVariance]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SubPeriod]"
+                          cachedDataType="i4"
+                          cachedName="SubPeriod"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubPeriod]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="StoreID"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RawMaterialItemCatNum]"
+                          cachedDataType="i4"
+                          cachedName="RawMaterialItemCatNum"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatNum]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IngredientID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="IngredientID"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IngredientID]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[IngredientID]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RawMaterialItemName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RawMaterialItemName"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemName]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemName]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SumOfTheoryUse]"
+                          cachedDataType="r8"
+                          cachedName="SumOfTheoryUse"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SumOfTheoryUse]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[SumOfTheoryUse]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EndingItemCost]"
+                          cachedDataType="cy"
+                          cachedName="EndingItemCost"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndingItemCost]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndingItemCost]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ActualUsage]"
+                          cachedDataType="r8"
+                          cachedName="ActualUsage"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsage]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsage]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ActualUse$]"
+                          cachedDataType="r8"
+                          cachedName="ActualUse$"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActualUse$]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUse$]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Variance]"
+                          cachedDataType="r8"
+                          cachedName="Variance"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Variance]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Variance]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IdealUse$]"
+                          cachedDataType="r8"
+                          cachedName="IdealUse$"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdealUse$]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUse$]" />
+                        <inputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Variance$]"
+                          cachedDataType="r8"
+                          cachedName="Variance$"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Variance$]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Variance$]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                          dataType="i4"
+                          name="SubPeriod" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="StoreID" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatNum]"
+                          dataType="i4"
+                          name="RawMaterialItemCatNum" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IngredientID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="IngredientID" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RawMaterialItemName" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SumOfTheoryUse]"
+                          dataType="r8"
+                          name="SumOfTheoryUse" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndingItemCost]"
+                          dataType="cy"
+                          name="EndingItemCost" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsage]"
+                          dataType="r8"
+                          name="ActualUsage" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActualUse$]"
+                          dataType="r8"
+                          name="ActualUse$" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Variance]"
+                          dataType="r8"
+                          name="Variance" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdealUse$]"
+                          dataType="r8"
+                          name="IdealUse$" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Variance$]"
+                          dataType="r8"
+                          name="Variance$" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[vItemUseVariance]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [SubPeriod]
+      ,[StoreID]
+      ,[RawMaterialItemCatNum]
+      ,[RawMaterialItemCatName]
+      ,[IngredientID]
+      ,[RawMaterialItemName]
+      ,[ConversionUnitDesc]
+      ,[SumOfTheoryUse]
+      ,[EndingItemCost]
+      ,[ActualUsage]
+      ,[ActualUse$]
+      ,[Variance]
+      ,[IdealUse$]
+      ,[Variance$]
+      ,[Clear]
+      ,[upsize_ts]
+  FROM [MLHQ].[dbo].[vItemUseVariance]
+ WHERE [SubPeriod] = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{905D7514-6B04-42B6-AD18-BE7461CF2F51};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.MLHQ.ReportRunner]"
+                      connectionManagerRefId="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.MLHQ.ReportRunner]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                          name="SubPeriod"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                          length="15"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreID]"
+                          name="StoreID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatNum]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]"
+                          name="RawMaterialItemCatNum"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatName]"
+                          length="50"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]"
+                          name="RawMaterialItemCatName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[IngredientID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IngredientID]"
+                          length="30"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[IngredientID]"
+                          name="IngredientID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemName]"
+                          length="50"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawMaterialItemName]"
+                          name="RawMaterialItemName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConversionUnitDesc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConversionUnitDesc]"
+                          length="50"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConversionUnitDesc]"
+                          name="ConversionUnitDesc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[SumOfTheoryUse]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SumOfTheoryUse]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[SumOfTheoryUse]"
+                          name="SumOfTheoryUse"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndingItemCost]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EndingItemCost]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndingItemCost]"
+                          name="EndingItemCost"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsage]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUsage]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsage]"
+                          name="ActualUsage"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUse$]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUse$]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUse$]"
+                          name="ActualUse$"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Variance]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Variance]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Variance]"
+                          name="Variance"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUse$]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdealUse$]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUse$]"
+                          name="IdealUse$"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Variance$]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Variance$]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Variance$]"
+                          name="Variance$"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Clear]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Clear]"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[Clear]"
+                          name="Clear"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[upsize_ts]"
+                          dataType="bytes"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[upsize_ts]"
+                          length="8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].Columns[upsize_ts]"
+                          name="upsize_ts"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                          dataType="i4"
+                          name="SubPeriod" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="StoreID" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatNum]"
+                          dataType="i4"
+                          name="RawMaterialItemCatNum" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RawMaterialItemCatName" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IngredientID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="IngredientID" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RawMaterialItemName" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConversionUnitDesc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ConversionUnitDesc" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SumOfTheoryUse]"
+                          dataType="r8"
+                          name="SumOfTheoryUse" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EndingItemCost]"
+                          dataType="cy"
+                          name="EndingItemCost" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUsage]"
+                          dataType="r8"
+                          name="ActualUsage" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUse$]"
+                          dataType="r8"
+                          name="ActualUse$" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Variance]"
+                          dataType="r8"
+                          name="Variance" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdealUse$]"
+                          dataType="r8"
+                          name="IdealUse$" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Variance$]"
+                          dataType="r8"
+                          name="Variance$" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Clear]"
+                          dataType="ui1"
+                          name="Clear" />
+                        <externalMetadataColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[upsize_ts]"
+                          dataType="bytes"
+                          length="8"
+                          name="upsize_ts" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                          dataType="i4"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                          name="SubPeriod" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                          name="StoreID" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatNum]"
+                          dataType="i4"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatNum]"
+                          name="RawMaterialItemCatNum" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatName]"
+                          name="RawMaterialItemCatName" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IngredientID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IngredientID]"
+                          name="IngredientID" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemName]"
+                          name="RawMaterialItemName" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConversionUnitDesc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConversionUnitDesc]"
+                          name="ConversionUnitDesc" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SumOfTheoryUse]"
+                          dataType="r8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SumOfTheoryUse]"
+                          name="SumOfTheoryUse" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EndingItemCost]"
+                          dataType="cy"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EndingItemCost]"
+                          name="EndingItemCost" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUsage]"
+                          dataType="r8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUsage]"
+                          name="ActualUsage" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUse$]"
+                          dataType="r8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUse$]"
+                          name="ActualUse$" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Variance]"
+                          dataType="r8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Variance]"
+                          name="Variance" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdealUse$]"
+                          dataType="r8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdealUse$]"
+                          name="IdealUse$" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Variance$]"
+                          dataType="r8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Variance$]"
+                          name="Variance$" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Clear]"
+                          dataType="ui1"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Clear]"
+                          name="Clear" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[upsize_ts]"
+                          dataType="bytes"
+                          length="8"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[upsize_ts]"
+                          name="upsize_ts" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance.Paths[OLE DB Source Output]"
+                  endId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Copy ML COGS Data.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{9C18B0D4-7001-4A01-8C5D-53AD8822F6C3}"
+          DTS:From="Package\Copy ML COGS Data\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D25EE284-4B59-4D80-AAEB-410E3B451E9F}"
+          DTS:ObjectName="{D25EE284-4B59-4D80-AAEB-410E3B451E9F}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::SubPeriod" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Fusion Subperiods"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{9e529350-3eda-46f5-99c7-e765a1c00c50}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Fusion Subperiods"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Fusion Subperiods\COGS Staging"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="COGS Staging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::GetFusionSubPeriods</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Fusion Subperiods\COGS Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Output].Columns[subperiod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Output].ExternalColumns[subperiod]"
+                      lineageId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Output].Columns[subperiod]"
+                      name="subperiod"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Output].ExternalColumns[subperiod]"
+                      dataType="i4"
+                      name="subperiod" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Error Output].Columns[subperiod]"
+                      dataType="i4"
+                      lineageId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Error Output].Columns[subperiod]"
+                      name="subperiod" />
+                    <outputColumn
+                      refId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Fusion Subperiods\To Object"
+              componentClassID="{C457FD7E-CE98-4C4B-AEFE-F3AE0044F181}"
+              contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+              name="To Object">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::FusionSubperiods</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Get Fusion Subperiods\To Object.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Fusion Subperiods\To Object.Inputs[Recordset Destination Input].Columns[SubPeriod]"
+                      cachedDataType="i4"
+                      cachedName="subperiod"
+                      lineageId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Output].Columns[subperiod]"
+                      name="SubPeriod" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Fusion Subperiods.Paths[OLE DB Source Output]"
+              endId="Package\Get Fusion Subperiods\To Object.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Fusion Subperiods\COGS Staging.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C79342E7-17BE-4608-962A-7BF648B2F51E}"
+      DTS:From="Package\Get Fusion Subperiods"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy ML COGS Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Copy ML COGS Data\Execute SQL Task"
+          TopLeft="41,36" />
+        <NodeLayout
+          Size="181,59"
+          Id="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance"
+          TopLeft="34,119" />
+        <EdgeLayout
+          Id="Package\Copy ML COGS Data.PrecedenceConstraints[Constraint]"
+          TopLeft="124,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="258,233"
+          Size="258,276"
+          Id="Package\Copy ML COGS Data"
+          TopLeft="64,120" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Get Fusion Subperiods"
+          TopLeft="79,28" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="194,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="1.   Runs simple query to get distinct SubPeriods from Fusion extract(s)&#xA;      and populates a memory variable object with it.&#xA;&#xA;&#xA;&#xA;&#xA;2.   Loop container to go through every found SubPeriod&#xA;&#xA;&#xA;&#xA;3.   Delete MenuLink data from correspondign to ORacle Fusion&#xA;      extract SubPeriod to refreshed with the most update ML data set&#xA;&#xA;&#xA;&#xA;4.   Processes all found Oracle Fusion extract Subperiods by copying the&#xA;      matching SubPeriod data from MenuLink table and view behind it:&#xA;      [MLHQ].[dbo].[vItemUseVariance]         ...ST_Item_userVariance&#xA;      Through every loop iteraction&#xA;"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="410,345"
+          Id="e0b33e07-aecf-4ff4-ad40-ddf78ac64245"
+          TopLeft="326,27.1111111111111" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination"
+          TopLeft="121,223" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source"
+          TopLeft="126,47" />
+        <EdgeLayout
+          Id="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance.Paths[OLE DB Source Output]"
+          TopLeft="204.75,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,134"
+              Start="0,0"
+              End="0,126.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy ML COGS Data\Load ML COGS data to ItemVariance\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Get Fusion Subperiods">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Get Fusion Subperiods\To Object"
+          TopLeft="109,260" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Get Fusion Subperiods\COGS Staging"
+          TopLeft="103,34" />
+        <EdgeLayout
+          Id="Package\Get Fusion Subperiods.Paths[OLE DB Source Output]"
+          TopLeft="174,76">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,184"
+              Start="0,0"
+              End="0,176.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,176.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Fusion Subperiods\COGS Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

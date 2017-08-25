@@ -1,0 +1,791 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/25/2013 10:00:27 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{E5766EE1-17EC-40BA-AE6B-6DD430DB265C}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="UpdateRawMaterials"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{EB597F5C-A509-4E35-884B-BC9CD5669DFE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.FoodCost_Mart.ReportRunner]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DA4A1284-E148-4142-8DDC-5314A1664C7A}"
+      DTS:ObjectName="CRONUS\CRONUSSQL2000.FoodCost_Mart.ReportRunner">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CRONUS\CRONUSSQL2000;User ID=ReportRunner;Initial Catalog=FoodCost_Mart;Provider=SQLOLEDB.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-UpdateRawMaterials-{DA4A1284-E148-4142-8DDC-5314A1664C7A}CRONUS\CRONUSSQL2000.FoodCost_Mart.ReportRunner;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B3212B5B-AC0E-491B-923C-9E8D1CEDEFA5}"
+      DTS:ObjectName="HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=CostOfGoodsSoldCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9D541E58-2C5D-4FAF-8461-0A00A949B671}"
+      DTS:ObjectName="HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=CostOfGoodsSoldCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Reload Raw Materials"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{C0B0514D-9A38-486C-8023-F636D7CF5BC4}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reload Raw Materials"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="FoodCostMart RawMaterialMaster"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[vRawMaterials]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.FoodCost_Mart.ReportRunner]"
+                  connectionManagerRefId="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.FoodCost_Mart.ReportRunner]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemID]"
+                      length="30"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemID]"
+                      name="RawMatItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemDesc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemDesc]"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemDesc]"
+                      name="RawMatItemDesc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatCatNum]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatCatNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatCatNum]"
+                      name="RawMatCatNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatCatDesc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatCatDesc]"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatCatDesc]"
+                      name="RawMatCatDesc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatSubCatNum]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatSubCatNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatSubCatNum]"
+                      name="RawMatSubCatNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatSubCatDesc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatSubCatDesc]"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatSubCatDesc]"
+                      name="RawMatSubCatDesc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]"
+                      name="RawMaterialItemCatNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatName]"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]"
+                      name="RawMaterialItemCatName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatType]"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatType]"
+                      name="RawMaterialItemCatType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMateriaItemCatParent]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMateriaItemCatParent]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMateriaItemCatParent]"
+                      name="RawMateriaItemCatParent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemCatAcctNum]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemCatAcctNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemCatAcctNum]"
+                      name="RawMatItemCatAcctNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemCatSubAcctNum]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemCatSubAcctNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemCatSubAcctNum]"
+                      name="RawMatItemCatSubAcctNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemCatSubAcctName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemCatSubAcctName]"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemCatSubAcctName]"
+                      name="RawMatItemCatSubAcctName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="5"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="RawMatItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemDesc]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMatItemDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatCatNum]"
+                      dataType="r8"
+                      name="RawMatCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatCatDesc]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMatCatDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatSubCatNum]"
+                      dataType="r8"
+                      name="RawMatSubCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatSubCatDesc]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMatSubCatDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      name="RawMaterialItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatName]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMaterialItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatType]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMaterialItemCatType" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMateriaItemCatParent]"
+                      dataType="r8"
+                      name="RawMateriaItemCatParent" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemCatAcctNum]"
+                      dataType="r8"
+                      name="RawMatItemCatAcctNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemCatSubAcctNum]"
+                      dataType="r8"
+                      name="RawMatItemCatSubAcctNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[RawMatItemCatSubAcctName]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMatItemCatSubAcctName" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="5"
+                      name="Description" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemID]"
+                      name="RawMatItemID" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemDesc]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemDesc]"
+                      name="RawMatItemDesc" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatCatNum]"
+                      dataType="r8"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatCatNum]"
+                      name="RawMatCatNum" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatCatDesc]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatCatDesc]"
+                      name="RawMatCatDesc" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatSubCatNum]"
+                      dataType="r8"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatSubCatNum]"
+                      name="RawMatSubCatNum" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatSubCatDesc]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatSubCatDesc]"
+                      name="RawMatSubCatDesc" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatNum]"
+                      name="RawMaterialItemCatNum" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatName]"
+                      name="RawMaterialItemCatName" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatType]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatType]"
+                      name="RawMaterialItemCatType" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMateriaItemCatParent]"
+                      dataType="r8"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMateriaItemCatParent]"
+                      name="RawMateriaItemCatParent" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemCatAcctNum]"
+                      dataType="r8"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemCatAcctNum]"
+                      name="RawMatItemCatAcctNum" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemCatSubAcctNum]"
+                      dataType="r8"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemCatSubAcctNum]"
+                      name="RawMatItemCatSubAcctNum" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemCatSubAcctName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[RawMatItemCatSubAcctName]"
+                      name="RawMatItemCatSubAcctName" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reload Raw Materials\Raw Materials"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Raw Materials"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[RawMaterials]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reload Raw Materials\Raw Materials.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.CostOfGoodsSoldCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMatItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="RawMatItemID"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatItemID]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemID]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMatItemDesc]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="RawMatItemDesc"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatItemDesc]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatItemDesc]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMatCatNum]"
+                      cachedDataType="r8"
+                      cachedName="RawMatCatNum"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatCatNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatCatNum]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMatCatDesc]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="RawMatCatDesc"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatCatDesc]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatCatDesc]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMatSubCatNum]"
+                      cachedDataType="r8"
+                      cachedName="RawMatSubCatNum"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatSubCatNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatSubCatNum]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMatSubCatDesc]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="RawMatSubCatDesc"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatSubCatDesc]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMatSubCatDesc]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMaterialItemCatNum]"
+                      cachedDataType="r8"
+                      cachedName="RawMaterialItemCatNum"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatNum]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMaterialItemCatName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="RawMaterialItemCatName"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatName]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]" />
+                    <inputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].Columns[RawMaterialItemCatType]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="RawMaterialItemCatType"
+                      externalMetadataColumnId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatType]"
+                      lineageId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatType]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="RawMatItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatItemDesc]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMatItemDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatCatNum]"
+                      dataType="r8"
+                      name="RawMatCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatCatDesc]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMatCatDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatSubCatNum]"
+                      dataType="r8"
+                      name="RawMatSubCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMatSubCatDesc]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMatSubCatDesc" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      name="RawMaterialItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatName]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMaterialItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatType]"
+                      dataType="wstr"
+                      length="40"
+                      name="RawMaterialItemCatType" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reload Raw Materials\Raw Materials.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reload Raw Materials\Raw Materials.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reload Raw Materials\Raw Materials.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reload Raw Materials\Raw Materials.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Reload Raw Materials.Paths[OLE DB Source Output]"
+              endId="Package\Reload Raw Materials\Raw Materials.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate RawMaterials"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{EBF53F7C-3882-4A92-A5C8-B860DC2234B3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate RawMaterials"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B3212B5B-AC0E-491B-923C-9E8D1CEDEFA5}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE RawMaterials" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{45A8F541-239E-4F74-B430-D917970EBCC4}"
+      DTS:From="Package\Truncate RawMaterials"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Reload Raw Materials" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Reload Raw Materials"
+          TopLeft="138,202" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Truncate RawMaterials"
+          TopLeft="132,91" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="227.5,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Reload Raw Materials">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Reload Raw Materials\Raw Materials"
+          TopLeft="172,184" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster"
+          TopLeft="133,40" />
+        <EdgeLayout
+          Id="Package\Reload Raw Materials.Paths[OLE DB Source Output]"
+          TopLeft="248.75,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102"
+              Start="0,0"
+              End="0,94.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reload Raw Materials\FoodCostMart RawMaterialMaster">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reload Raw Materials\Raw Materials">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

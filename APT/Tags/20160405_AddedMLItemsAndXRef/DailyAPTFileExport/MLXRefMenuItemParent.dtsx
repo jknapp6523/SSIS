@@ -1,0 +1,456 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/4/2016 8:33:03 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="AALLEN-L7"
+  DTS:CreatorName="CORPHQ\aallen"
+  DTS:DTSID="{0E9B2946-BA57-4121-A984-A25A7625944D}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="MLXRefMenuItemParent"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{E936CA33-AADD-44E6-9058-442A238B7D70}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{8A897F7C-902C-4495-A096-1AF217E0F50B}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"M:\\MessageHub\\APT\\Outbox\\MLMenuItemXRef_"+(DT_STR,4,1252)DATEPART( "yyyy" , getdate() ) + RIGHT("0" + (DT_STR,4,1252)DATEPART( "mm" , getdate() ), 2) + RIGHT("0" + (DT_STR,4,1252)DATEPART( "dd" , getdate() ), 2) +".txt"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="M:\MessageHub\APT\Outbox\MLMenuItemXRef_20160404.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ModifierID"
+              DTS:DTSID="{1F8D039A-0DC0-4330-8105-2A00E2B7D554}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ModifierName"
+              DTS:DTSID="{C9F6A498-0215-4994-A272-C8DAB2C7D48C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ParentToModify"
+              DTS:DTSID="{56745A4F-45FC-433D-8563-1FB4365448D0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ModifierRecipeID"
+              DTS:DTSID="{A8FADA0F-DE71-4EC7-8409-246FBDDD0A74}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Maindata]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6206DFFE-4E90-4CD5-AE45-B9796BB77247}"
+      DTS:ObjectName="Maindata">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=\\hq-nas\Polling\Ml32_Mstr\Patch_RRI\maindata.mdb;Provider=Microsoft.Jet.OLEDB.4.0;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load ML MenuItem XRef"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{006BEEB8-2B5D-4FCE-AD9F-646D1BEFB8DD}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load ML MenuItem XRef"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load ML MenuItem XRef\Get MenuItemXRef"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get MenuItemXRef"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">ModifierCrossReference</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Maindata]"
+                  connectionManagerRefId="Package.ConnectionManagers[Maindata]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ModifierID]"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierID]"
+                      name="ModifierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ModifierName]"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierName]"
+                      name="ModifierName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ParentToModify]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ParentToModify]"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ParentToModify]"
+                      name="ParentToModify"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierRecipeID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ModifierRecipeID]"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierRecipeID]"
+                      name="ModifierRecipeID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ModifierID]"
+                      dataType="wstr"
+                      length="50"
+                      name="ModifierID" />
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ModifierName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ModifierName" />
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ParentToModify]"
+                      dataType="wstr"
+                      length="50"
+                      name="ParentToModify" />
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].ExternalColumns[ModifierRecipeID]"
+                      dataType="wstr"
+                      length="50"
+                      name="ModifierRecipeID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ModifierID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ModifierID]"
+                      name="ModifierID" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ModifierName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ModifierName]"
+                      name="ModifierName" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ParentToModify]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ParentToModify]"
+                      name="ParentToModify" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ModifierRecipeID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ModifierRecipeID]"
+                      name="ModifierRecipeID" />
+                    <outputColumn
+                      refId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Load ML Item XRef File for APT">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].Columns[ModifierID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ModifierID"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ModifierID]"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierID]" />
+                    <inputColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].Columns[ModifierName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ModifierName"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ModifierName]"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierName]" />
+                    <inputColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].Columns[ParentToModify]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ParentToModify"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ParentToModify]"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ParentToModify]" />
+                    <inputColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].Columns[ModifierRecipeID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ModifierRecipeID"
+                      externalMetadataColumnId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ModifierRecipeID]"
+                      lineageId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output].Columns[ModifierRecipeID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ModifierID]"
+                      dataType="wstr"
+                      length="50"
+                      name="ModifierID" />
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ModifierName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ModifierName" />
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ParentToModify]"
+                      dataType="wstr"
+                      length="50"
+                      name="ParentToModify" />
+                    <externalMetadataColumn
+                      refId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input].ExternalColumns[ModifierRecipeID]"
+                      dataType="wstr"
+                      length="50"
+                      name="ModifierRecipeID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load ML MenuItem XRef.Paths[OLE DB Source Output]"
+              endId="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load ML MenuItem XRef\Get MenuItemXRef.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Load ML MenuItem XRef"
+          TopLeft="119,58" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load ML MenuItem XRef">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load ML MenuItem XRef\Get MenuItemXRef"
+          TopLeft="130,159" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Load ML MenuItem XRef\Load ML Item XRef File for APT"
+          TopLeft="254,364" />
+        <EdgeLayout
+          Id="Package\Load ML MenuItem XRef.Paths[OLE DB Source Output]"
+          TopLeft="215,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="153.5,163"
+              Start="0,0"
+              End="153.5,155.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,77.5"
+                    Point2="0,81.5"
+                    Point3="4,81.5" />
+                  <mssgle:LineSegment
+                    End="149.5,81.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="149.5,81.5"
+                    Point2="153.5,81.5"
+                    Point3="153.5,85.5" />
+                  <mssgle:LineSegment
+                    End="153.5,155.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load ML MenuItem XRef\Get MenuItemXRef">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

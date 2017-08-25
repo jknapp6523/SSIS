@@ -1,0 +1,1800 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/26/2015 1:23:04 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="NCIUFI-L7"
+  DTS:CreatorName="CORPHQ\NCiufi"
+  DTS:DTSID="{1A5E1954-E9B3-4B43-B031-8C017F0D428F}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RCN-BLKHWK_OLD"
+  DTS:PackageType="5"
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{012D2BC8-5408-43A5-8123-A903B558519F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FinSQL-01.Giftcard.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{11C155AD-BBDA-4909-8C2C-6C51670B0051}"
+      DTS:ObjectName="HQ-FinSQL-01.Giftcard.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FinSQL-01;User ID=SSISUser;Initial Catalog=Giftcard;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0PaxfnfqXk+7InMBaRU2IAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABEpbDtvYci6D80U1Ce/2BbAAAAAASAAACgAAAAEAAAALBueZFmrMntU4xaEvKIS2MoAAAAjrf3+uio/1gFg6zw2JE+1Xe67KQj8HiZWdMH8gp8kAvZeyetHPOOghQAAAAD35eDc6eN2zrQ+IGPyqwShT26ew</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Main Blackhawk RECON flat file source]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A13F5149-2227-46B2-9D80-58084820DB8E}"
+      DTS:ObjectName="Main Blackhawk RECON flat file source">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ImportFlatFileDirectory_RCN] +  @[User::ReconFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="FixedWidth"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowsToSkip="1"
+          DTS:HeaderRowDelimiter="_x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\GiftCard\Inbox\download\BHN_DAILY_RECON.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="RecordID"
+              DTS:DTSID="{E694ED65-E6DF-491E-9FA1-B7343E09AD58}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="16"
+              DTS:MaximumWidth="16"
+              DTS:DataType="129"
+              DTS:ObjectName="GC_Num"
+              DTS:DTSID="{81FF506C-F798-4C02-BBA2-27ED655D265C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:ObjectName="Fill 1"
+              DTS:DTSID="{77A040EB-0DD5-4D31-A52E-7A0E07A35046}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="Trans_Date"
+              DTS:DTSID="{AC242FAA-D1C6-40F7-9DAC-79F7C5C085AD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="Trans_Time"
+              DTS:DTSID="{427A7AD8-3271-4635-A1AC-236170A1F6D2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="4"
+              DTS:MaximumWidth="4"
+              DTS:DataType="129"
+              DTS:ObjectName="Trans_Num"
+              DTS:DTSID="{3B2B411E-04FB-4F23-A319-54BA6C3174E4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="13"
+              DTS:MaximumWidth="13"
+              DTS:DataType="129"
+              DTS:ObjectName="GC_Value"
+              DTS:DTSID="{7E4BE64D-1B11-4D33-BEDC-298884296E4F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="26"
+              DTS:MaximumWidth="26"
+              DTS:DataType="129"
+              DTS:ObjectName="SysTrace_Num"
+              DTS:DTSID="{B26B8AD2-7061-49D6-8CC9-DD27471B277C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="15"
+              DTS:MaximumWidth="15"
+              DTS:DataType="129"
+              DTS:ObjectName="Fill 2"
+              DTS:DTSID="{6519DB2C-30C4-45B5-B25C-BF77BC6544A6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="Approval_Code"
+              DTS:DTSID="{2AFE4EDA-1780-45D0-9913-7D3E211AD092}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="Trans_Type"
+              DTS:DTSID="{6F0524D0-4B2E-41F1-86E1-550A0EB19E11}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="Fill 3"
+              DTS:DTSID="{D5289432-0939-40D6-A422-C92F7D733B61}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7018ECE8-E51D-4089-A4A6-66449923D028}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ReconFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">BHN_DAILY_RECON.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{86CF8ECA-86F9-4CAA-BE46-5CE1BF154464}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ImportFlatFileDirectory_RCN] +  @[User::ReconFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\GiftCard\Inbox\download\BHN_DAILY_RECON.txt</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Process each RECON File"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{6D7DE015-E13D-4F2B-B83A-208543047F4F}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process each RECON File">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{0A2E6FA1-966A-494F-ABB4-305B379EA403}"
+        DTS:ObjectName="{0A2E6FA1-966A-494F-ABB4-305B379EA403}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\hq-ssis2012-01\MessageHub\GiftCard\Inbox\download" />
+            <FEFEProperty
+              FileSpec="BHN_DAILY_RECON*.txt" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Process each RECON File\Execute SQL Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1DEF9AD7-2DC2-466C-87CB-C7064D0703BB}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{11C155AD-BBDA-4909-8C2C-6C51670B0051}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[BHMasterStageToProd]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Process each RECON File\Load RECON Flat File"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{67CC4B02-BBE5-458E-8B7C-5D6710C7BBA7}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load RECON Flat File"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Change GC Value to float"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Inputs[Data Conversion Input].Columns[GC_Value]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="13"
+                          cachedName="GC_Value"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[GC_Value]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Output].Columns[Copy of GC_Value]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Output].Columns[Copy of GC_Value]"
+                          name="Copy of GC_Value"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[GC_Value]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input].Columns[RptDate]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="RptDate"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Output].Columns[RptDate]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input].Columns[RealDate]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="RealDate"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RealDate]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input].Columns[Store_Num]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="Store_Num"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Store_Num]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input].Columns[Reg_Lane_Num]"
+                          cachedDataType="wstr"
+                          cachedLength="4"
+                          cachedName="Reg_Lane_Num"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Reg_Lane_Num]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RptDate]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RptDate]"
+                          name="Copy of RptDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Output].Columns[RptDate]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RealDate]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RealDate]"
+                          name="Copy of RealDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RealDate]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Store_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="3"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Store_Num]"
+                          name="Copy of Store_Num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Store_Num]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reg_Lane_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reg_Lane_Num]"
+                          name="Copy of Reg_Lane_Num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Reg_Lane_Num]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derive String Date From MMDDYY"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Inputs[Derived Column Input].Columns[RptDateMMDDYY]"
+                          cachedDataType="wstr"
+                          cachedLength="6"
+                          cachedName="RptDateMMDDYY"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RptDateMMDDYY]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Output].Columns[RptDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Output].Columns[RptDate]"
+                          name="RptDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"20" + [SUBSTRING](#{Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RptDateMMDDYY]},5,2) + [SUBSTRING](#{Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RptDateMMDDYY]},1,2) + [SUBSTRING](#{Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RptDateMMDDYY]},3,2)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"20" + SUBSTRING(RptDateMMDDYY,5,2) + SUBSTRING(RptDateMMDDYY,1,2) + SUBSTRING(RptDateMMDDYY,3,2)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived MMDDYY From File Name"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Inputs[Derived Column Input].Columns[SysTrace_Num]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="26"
+                          cachedName="SysTrace_Num"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[SysTrace_Num]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Inputs[Derived Column Input].Columns[Trans_Date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Trans_Date"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Date]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Inputs[Derived Column Input].Columns[Copy of GC_Value]"
+                          cachedDataType="cy"
+                          cachedName="Copy of GC_Value"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Output].Columns[Copy of GC_Value]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RptDateMMDDYY]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="6"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RptDateMMDDYY]"
+                          name="RptDateMMDDYY"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[SUBSTRING](@[User::ReconFileName],17,6)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(@[User::ReconFileName],17,6)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Store_Num]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="3"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Store_Num]"
+                          name="Store_Num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[SUBSTRING](#{Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[SysTrace_Num]},15,3)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(SysTrace_Num,15,3)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Reg_Lane_Num]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[Reg_Lane_Num]"
+                          name="Reg_Lane_Num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[SUBSTRING](#{Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[SysTrace_Num]},18,4)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(SysTrace_Num,18,4)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RealDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[RealDate]"
+                          name="RealDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Date]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Trans_Date</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[GC_Value_Dec]"
+                          dataType="r4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[GC_Value_Dec]"
+                          name="GC_Value_Dec"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Output].Columns[Copy of GC_Value]} / 100</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">[Copy of GC_Value] / 100</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[SourceFileName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[SourceFileName]"
+                          name="SourceFileName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::ReconFileName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::ReconFileName]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source"
+                  componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Main Blackhawk RECON flat file source]"
+                      connectionManagerRefId="Package.ConnectionManagers[Main Blackhawk RECON flat file source]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[RecordID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RecordID]"
+                          length="2"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[RecordID]"
+                          name="RecordID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[GC_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[GC_Num]"
+                          length="16"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[GC_Num]"
+                          name="GC_Num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Date]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Date]"
+                          length="8"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Date]"
+                          name="Trans_Date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Time]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Time]"
+                          length="6"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Time]"
+                          name="Trans_Time"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Num]"
+                          length="4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Num]"
+                          name="Trans_Num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[GC_Value]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[GC_Value]"
+                          length="13"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[GC_Value]"
+                          name="GC_Value"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[SysTrace_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[SysTrace_Num]"
+                          length="26"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[SysTrace_Num]"
+                          name="SysTrace_Num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Approval_Code]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Approval_Code]"
+                          length="6"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Approval_Code]"
+                          name="Approval_Code"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Type]"
+                          length="1"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Type]"
+                          name="Trans_Type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RecordID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="RecordID" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[GC_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="GC_Num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Fill 1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="Fill 1" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Trans_Date" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Time]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="Trans_Time" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="Trans_Num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[GC_Value]"
+                          codePage="1252"
+                          dataType="str"
+                          length="13"
+                          name="GC_Value" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[SysTrace_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="26"
+                          name="SysTrace_Num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Fill 2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Fill 2" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Approval_Code]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="Approval_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Trans_Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Trans_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Fill 3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="Fill 3" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[BlackhawkMasterNewPackage]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[HQ-FinSQL-01.Giftcard.SSISUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[HQ-FinSQL-01.Giftcard.SSISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GC_Num]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="16"
+                          cachedName="GC_Num"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GC_Num]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[GC_Num]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Trans_Date]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Trans_Date"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Date]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Date]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Trans_Time]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="Trans_Time"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Time]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Time]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Trans_Num]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="Trans_Num"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Num]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Num]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SysTrace_Num]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="26"
+                          cachedName="SysTrace_Num"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SysTrace_num]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[SysTrace_Num]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Approval_Code]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="Approval_Code"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Approval_Code]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Approval_Code]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Trans_Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="Trans_Type"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Type]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[Trans_Type]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of RealDate]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Copy of RealDate"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RealDate]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RealDate]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of RptDate]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Copy of RptDate"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RptDate]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RptDate]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Store_Num]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="Copy of Store_Num"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Store_Num]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Store_Num]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Reg_Lane_Num]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="Copy of Reg_Lane_Num"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Reg_Lane_Num]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reg_Lane_Num]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RecordID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2"
+                          cachedName="RecordID"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output].Columns[RecordID]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GC_Value_Dec]"
+                          cachedDataType="r4"
+                          cachedName="GC_Value_Dec"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GC_Value]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[GC_Value_Dec]" />
+                        <inputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceFileName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SourceFileName"
+                          externalMetadataColumnId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceFileName]"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output].Columns[SourceFileName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RptDate]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="RptDate" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GC_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="19"
+                          name="GC_Num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Trans_Date" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Time]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="Trans_Time" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="Trans_Num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GC_Value]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="GC_Value" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SysTrace_num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="27"
+                          name="SysTrace_num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Store_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="Store_Num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Reg_Lane_Num]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="Reg_Lane_Num" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State_Code]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="State_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Zip_Code]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Zip_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Approval_Code]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="Approval_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Trans_Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Trans_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RealDate]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="RealDate" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="RecordID" />
+                        <externalMetadataColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceFileName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SourceFileName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Process each RECON File\Load RECON Flat File.Paths[Data Conversion Output]"
+                  endId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Inputs[Derived Column Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Process each RECON File\Load RECON Flat File.Paths[Data Conversion Output1]"
+                  endId="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Process each RECON File\Load RECON Flat File.Paths[Derived Column Output]"
+                  endId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Inputs[Derived Column Input]"
+                  name="Derived Column Output"
+                  startId="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Process each RECON File\Load RECON Flat File.Paths[Derived Column Output1]"
+                  endId="Package\Process each RECON File\Load RECON Flat File\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Process each RECON File\Load RECON Flat File.Paths[Flat File Source Output]"
+                  endId="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float.Inputs[Data Conversion Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Process each RECON File\Load RECON Flat File\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Process each RECON File\Move Files to Archive"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{2D8BA4CE-AD25-444D-933C-0FE5D9C469E8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move Files to Archive"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="User::SourcePath"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="$Project::ExportFlatFileDirectory_RCN"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Process each RECON File.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7569F1DA-B9BD-4667-AA67-71E7DD1AC245}"
+          DTS:From="Package\Process each RECON File\Load RECON Flat File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Process each RECON File\Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Process each RECON File.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{E25726D2-51EF-48A1-9898-CC79D318E3CD}"
+          DTS:From="Package\Process each RECON File\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Process each RECON File\Move Files to Archive" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{BE93DE61-919E-4213-87A7-16F1DEFD8E5B}"
+          DTS:ObjectName="{BE93DE61-919E-4213-87A7-16F1DEFD8E5B}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ReconFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Blackhawk RECON Staging Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F5F6F4F7-53AD-4365-BE58-C34CE3ECAF08}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Blackhawk RECON Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{11C155AD-BBDA-4909-8C2C-6C51670B0051}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[BlackhawkMasterNewPackage]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FA269EDC-6723-4498-8B68-7CD79C430D80}"
+      DTS:From="Package\Truncate Blackhawk RECON Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Process each RECON File" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Process each RECON File\Execute SQL Task"
+          TopLeft="38,126" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Process each RECON File\Load RECON Flat File"
+          TopLeft="57,21" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Process each RECON File\Move Files to Archive"
+          TopLeft="35,240" />
+        <EdgeLayout
+          Id="Package\Process each RECON File.PrecedenceConstraints[Constraint]"
+          TopLeft="147,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26.5,63"
+              Start="0,0"
+              End="-26.5,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="-4,31.5" />
+                  <mssgle:LineSegment
+                    End="-22.5,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,31.5"
+                    Point2="-26.5,31.5"
+                    Point3="-26.5,35.5" />
+                  <mssgle:LineSegment
+                    End="-26.5,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each RECON File.PrecedenceConstraints[Constraint 1]"
+          TopLeft="123,168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="386,372"
+          Size="386,415"
+          Id="Package\Process each RECON File"
+          TopLeft="78,104" />
+        <NodeLayout
+          Size="280,42"
+          Id="Package\Truncate Blackhawk RECON Staging Table"
+          TopLeft="77,21" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="217,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54,41"
+              Start="0,0"
+              End="54,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
+                  <mssgle:LineSegment
+                    End="50,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50,20.5"
+                    Point2="54,20.5"
+                    Point3="54,24.5" />
+                  <mssgle:LineSegment
+                    End="54,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Process each RECON File\Load RECON Flat File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Process each RECON File\Load RECON Flat File\Data Conversion"
+          TopLeft="98,361" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Process each RECON File\Load RECON Flat File\Derived MMDDYY From File Name"
+          TopLeft="56.3333333333333,195" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination"
+          TopLeft="93.3333333333333,466" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Process each RECON File\Load RECON Flat File\Flat File Source"
+          TopLeft="103.333333333333,20" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Process each RECON File\Load RECON Flat File\Change GC Value to float"
+          TopLeft="74,106" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Process each RECON File\Load RECON Flat File\Derive String Date From MMDDYY"
+          TopLeft="58.3333333333333,276" />
+        <EdgeLayout
+          Id="Package\Process each RECON File\Load RECON Flat File.Paths[Derived Column Output1]"
+          TopLeft="177.916666666667,318">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each RECON File\Load RECON Flat File.Paths[Derived Column Output]"
+          TopLeft="177.833333333333,237">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each RECON File\Load RECON Flat File.Paths[Data Conversion Output1]"
+          TopLeft="178.416666666667,403">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each RECON File\Load RECON Flat File.Paths[Data Conversion Output]"
+          TopLeft="175.166666666667,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each RECON File\Load RECON Flat File.Paths[Flat File Source Output]"
+          TopLeft="176.666666666667,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Process each RECON File\Load RECON Flat File\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

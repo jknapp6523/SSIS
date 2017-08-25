@@ -1,0 +1,2451 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/20/2017 9:24:05 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-SSIS2012-1"
+  DTS:CreatorName="DEV01\dconolle_dev"
+  DTS:DTSID="{9FF4177B-9721-4891-81CD-B7F128F13ABB}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NBOTransformDummyVendorItemsCheck"
+  DTS:PackageType="5"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{BB9F3EA7-E806-4879-85A8-E2CB59C92D4D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MissingDummyVendorItems]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{B152163F-FFC4-4390-9215-0E4CC80BDCC9}"
+      DTS:ObjectName="MissingDummyVendorItems">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FileOutput]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\dev1-ssis2012-01\MessageHub\NBOFusion\Output\DataCheck\MissingDummyVendorItems.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemNumber"
+              DTS:DTSID="{0DE75F85-DBDD-4A2F-8BF9-E1A80766C590}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="244"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemIDName"
+              DTS:DTSID="{3F50FD65-9D2A-4221-9F39-CE5F87A98F9B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DataCheck"
+              DTS:DTSID="{359A3266-E04F-45EF-A3C4-7BD21ACD2F12}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NBOInterfaceStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{90D0BD06-3AD3-497A-BD09-CCEE0343B8AA}"
+      DTS:ObjectName="NBOInterfaceStaging">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::NBOInterfaceStaging_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-SQL-NBO;User ID=SSISUser;Initial Catalog=DataMartStaging;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D83F3FAC-91C1-468D-9D8B-F9F89CAECC29}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{794D97A6-2DB8-40A4-AD80-94134B71058E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailAttachment">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1B612B8A-29CE-4852-9E10-F309C52183BD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailBody">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{43A7BF4A-36AF-41B2-9745-A6701415D291}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailDistro">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D1BFB3C0-D446-4458-8625-9A669870FEDB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailFrom">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D67CCC9-5E4D-469B-9DD3-0C34C2424B67}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailPriority">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{77071185-94ED-4E7C-8956-B1FDBCAF6337}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailSubject">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7524B35D-7056-498C-A8B4-C1F802298F39}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileOutput">
+      <DTS:VariableValue
+        DTS:DataType="8">\\dev1-ssis2012-01\MessageHub\NBOFusion\Output\DataCheck\MissingDummyVendorItems.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F14E9552-588F-4A5E-B2F1-20FDF987865C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FolderArchive">
+      <DTS:VariableValue
+        DTS:DataType="8">\\dev1-ssis2012-01\MessageHub\NBOFusion\Archive\DataCheck</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A4271487-BFCA-49BA-BA3B-846BE2D519FF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JobName">
+      <DTS:VariableValue
+        DTS:DataType="8">NBOInterfaceDailyDataCheck</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{21D7AEE0-45F5-4E6C-BA32-DF34033861F3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsOutput">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\End Package Audit"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0C25AB61-9C65-4735-9EDD-AD64EFE6FAB4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End Package Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{90D0BD06-3AD3-497A-BD09-CCEE0343B8AA}"
+          SQLTask:SqlStatementSource="DECLARE @AuditKey INT &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;DECLARE @RowsOutput INT &#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;&#xA;SET @AuditKey = ? &#xA;SET @PackageName = ? &#xA;SET @RowsOutput = ? &#xA;SET @FileOutput = ? &#xA;&#xA;IF @RowsOutput = 0 &#xA;  SET @FileOutput = '' &#xA;&#xA;EXECUTE audit.uspEndPackage @AuditKey, @PackageName, '', @FileOutput, '', @RowsOutput, 0, 0; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowsOutput"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::FileOutput"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Variables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{599FE3FC-2EF2-4A45-AFAB-DFE99CD8C6BA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Variables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{90D0BD06-3AD3-497A-BD09-CCEE0343B8AA}"
+          SQLTask:SqlStatementSource="---------------------------------------------------------------------------------------------------&#xA;-- INITIALIZE &#xA;--------------------------------------------------------------------------------------------------- &#xA;&#xA;--DECLARE AND SET&#xA;DECLARE @JobName NVARCHAR(256) &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;DECLARE @AuditKey INT &#xA;DECLARE @SessionRequestedSource INT &#xA;&#xA;DECLARE @FileTimestamp VARCHAR(4000) &#xA;&#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;DECLARE @FolderArchive VARCHAR(4000) &#xA;DECLARE @EmailDistro VARCHAR(4000) &#xA;&#xA;SET @JobName = ?  &#xA;SET @PackageName = ? &#xA;&#xA;SET @AuditKey = (&#xA;&#x9;SELECT MAX(a.AuditKey) AS AuditKey &#xA;&#x9;FROM audit.Session a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.JobName = @JobName AND &#xA;&#x9;&#x9;a.IsCurrentSession = 1) &#xA;&#xA;SET @SessionRequestedSource = ( &#xA;&#x9;SELECT a.SessionRequestedSource &#xA;&#x9;FROM audit.Session a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.AuditKey = @AuditKey) &#xA;&#xA;SET @FileTimestamp = CONVERT(VARCHAR(4000), GETDATE(), 120) &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, '-', '') &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, ' ', '') &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, ':', '') &#xA;&#xA;SET @EmailDistro = ( &#xA;&#x9;SELECT a.ConfiguredValue&#xA;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.ConfigurationFilter = 'Notification ' + @PackageName + ' Distro') &#xA;&#xA;IF @SessionRequestedSource = 1 &#xA;&#x9;BEGIN &#xA;&#xA;&#x9;&#x9;SET @FileOutput = ( &#xA;&#x9;&#x9;&#x9;SELECT a.ConfiguredValue + &#xA;&#x9;&#x9;&#x9;CASE &#xA;&#x9;&#x9;&#x9;&#x9;WHEN (RIGHT(a.ConfiguredValue, 1) &lt;&gt; '\') THEN ('\') &#xA;&#x9;&#x9;&#x9;&#x9;ELSE ('') &#xA;&#x9;&#x9;&#x9;END + 'MissingDummyVendorItems_' + @FileTimestamp + '.csv'&#xA;&#x9;&#x9;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;&#x9;&#x9;WHERE &#xA;&#x9;&#x9;&#x9;&#x9;a.ConfigurationFilter = 'Folder DataCheck Output') &#xA;&#xA;&#x9;&#x9;SET @FolderArchive = ( &#xA;&#x9;&#x9;&#x9;SELECT a.ConfiguredValue&#xA;&#x9;&#x9;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;&#x9;&#x9;WHERE &#xA;&#x9;&#x9;&#x9;&#x9;a.ConfigurationFilter = 'Folder DataCheck Archive') &#xA;&#x9;END &#xA;ELSE &#xA;&#x9;BEGIN &#xA;&#xA;&#x9;&#x9;SET @FileOutput = ( &#xA;&#x9;&#x9;&#x9;SELECT a.ConfiguredValue + &#xA;&#x9;&#x9;&#x9;CASE &#xA;&#x9;&#x9;&#x9;&#x9;WHEN (RIGHT(a.ConfiguredValue, 1) &lt;&gt; '\') THEN ('\') &#xA;&#x9;&#x9;&#x9;&#x9;ELSE ('') &#xA;&#x9;&#x9;&#x9;END + 'MissingDummyVendorItems_' + @FileTimestamp + '.csv'&#xA;&#x9;&#x9;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;&#x9;&#x9;WHERE &#xA;&#x9;&#x9;&#x9;&#x9;a.ConfigurationFilter = 'Folder DataCheck Output Manual') &#xA;&#xA;&#x9;&#x9;SET @FolderArchive = ( &#xA;&#x9;&#x9;&#x9;SELECT a.ConfiguredValue&#xA;&#x9;&#x9;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;&#x9;&#x9;WHERE &#xA;&#x9;&#x9;&#x9;&#x9;a.ConfigurationFilter = 'Folder DataCheck Archive Manual') &#xA;&#x9;END &#xA;&#xA;  &#xA;---------------------------------------------------------------------------------------------------&#xA;-- TERMINATE&#xA;---------------------------------------------------------------------------------------------------&#xA;&#xA;--RETURN &#xA;SELECT @AuditKey AS AuditKey, @FileOutput AS FileOutput, @FolderArchive AS FolderArchive, &#xA;&#x9;@EmailDistro AS EmailDistro &#xA;&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::AuditKey" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::FileOutput" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::FolderArchive" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="3"
+            SQLTask:DtsVariableName="User::EmailDistro" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::JobName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Rows Exist Actions"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{65438E1B-9AA5-4758-A5EF-60A18B65A0D8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Rows Exist Actions">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Copy to Archive"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{8759B617-918C-4574-8A58-88509E2177D0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Copy to Archive"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskSourcePath="User::FileOutput"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::FolderArchive"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Create File"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{A6070ADE-C6E9-49D8-9FB8-7620F91D9C4B}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create File"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Rows Exist Actions\Create File\DataCheck"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="DataCheck"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT CAST(a.NumericValue AS INT) AS ItemNumber, a.TextValue AS ItemIDName, 
+	a.DataCheck 
+FROM dbo.DataCheck a 
+WHERE 
+	a.DataCheck IN ('IncorrectDummyVendorItemCode', 'MissingDummyVendorItems') AND 
+	a.AuditKey = ?
+ORDER BY a.DataCheckKey</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{D83F3FAC-91C1-468D-9D8B-F9F89CAECC29};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Rows Exist Actions\Create File\DataCheck.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[ItemNumber]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].ExternalColumns[ItemNumber]"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[ItemNumber]"
+                          name="ItemNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[ItemIDName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].ExternalColumns[ItemIDName]"
+                          length="244"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[ItemIDName]"
+                          name="ItemIDName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[DataCheck]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].ExternalColumns[DataCheck]"
+                          length="100"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[DataCheck]"
+                          name="DataCheck"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].ExternalColumns[ItemNumber]"
+                          dataType="i4"
+                          name="ItemNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].ExternalColumns[ItemIDName]"
+                          dataType="wstr"
+                          length="244"
+                          name="ItemIDName" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].ExternalColumns[DataCheck]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="DataCheck" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ItemNumber]"
+                          dataType="i4"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ItemNumber]"
+                          name="ItemNumber" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ItemIDName]"
+                          dataType="wstr"
+                          length="244"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ItemIDName]"
+                          name="ItemIDName" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[DataCheck]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[DataCheck]"
+                          name="DataCheck" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File"
+                  componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="MissingDummyVendorItems File">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MissingDummyVendorItems]"
+                      connectionManagerRefId="Package.ConnectionManagers[MissingDummyVendorItems]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].Columns[ItemNumber]"
+                          cachedDataType="i4"
+                          cachedName="ItemNumber"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].ExternalColumns[ItemNumber]"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[ItemNumber]" />
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].Columns[ItemIDName]"
+                          cachedDataType="wstr"
+                          cachedLength="244"
+                          cachedName="ItemIDName"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].ExternalColumns[ItemIDName]"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[ItemIDName]" />
+                        <inputColumn
+                          refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].Columns[DataCheck]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="DataCheck"
+                          externalMetadataColumnId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].ExternalColumns[DataCheck]"
+                          lineageId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output].Columns[DataCheck]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].ExternalColumns[ItemNumber]"
+                          dataType="i4"
+                          name="ItemNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].ExternalColumns[ItemIDName]"
+                          dataType="wstr"
+                          length="244"
+                          name="ItemIDName" />
+                        <externalMetadataColumn
+                          refId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input].ExternalColumns[DataCheck]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="DataCheck" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Rows Exist Actions\Create File.Paths[OLE DB Source Output]"
+                  endId="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Rows Exist Actions\Create File\DataCheck.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Dummy"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F06B942C-57FD-4467-BED4-96462493B075}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Dummy"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90D0BD06-3AD3-497A-BD09-CCEE0343B8AA}"
+              SQLTask:SqlStatementSource="SELECT 0 " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Execute NBOSendEmail"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{01ECE25B-D082-437A-905C-F2A754B40FF7}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute NBOSendEmail"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>NBOSendEmail.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Rows Exist Actions\Get Email Values"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{08912EB3-C7E3-476B-B451-5AD4A28C1571}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Email Values"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90D0BD06-3AD3-497A-BD09-CCEE0343B8AA}"
+              SQLTask:SqlStatementSource="--DECLARE AND SET &#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;DECLARE @EmailAttachment VARCHAR(4000) &#xA;DECLARE @EmailBody VARCHAR(4000) &#xA;DECLARE @EmailDistro VARCHAR(4000) &#xA;DECLARE @EmailFrom VARCHAR(4000) &#xA;DECLARE @EmailSubject VARCHAR(4000) &#xA;&#xA;SET @EmailDistro = ? &#xA;SET @FileOutput = ? &#xA;&#xA;SET @EmailAttachment = @FileOutput &#xA;&#xA;SET @EmailBody = 'One or more Items is/are not mapped to the Dummy Vendor.  Any items not mapped ' + &#xA;&#x9;'may not be produced for initial pricing (dummy invoices) at Go Live.  Please see the attached ' + &#xA;&#x9;'for details.'&#xA;&#xA;SET @EmailFrom = 'Fusion_SSIS_Support@redrobin.com' &#xA;&#xA;SET @EmailSubject = 'Missing Dummy Vendor Items'&#xA;&#xA;&#xA;--RETURN &#xA;SELECT @EmailAttachment AS EmailAttachment, @EmailBody AS EmailBody, @EmailDistro AS EmailDistro, &#xA; @EmailFrom AS EmailFrom, 1 AS EmailPriority, @EmailSubject AS EmailSubject "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::EmailAttachment" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::EmailBody" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::EmailDistro" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="3"
+                SQLTask:DtsVariableName="User::EmailFrom" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="4"
+                SQLTask:DtsVariableName="User::EmailPriority" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="5"
+                SQLTask:DtsVariableName="User::EmailSubject" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::EmailDistro"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::FileOutput"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F2477D79-833E-45A1-9FE7-220517586FAC}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::RowsOutput] &gt; 0"
+          DTS:From="Package\Rows Exist Actions\Dummy"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Rows Exist Actions\Create File" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{29148EE4-440D-44E3-A8A5-F0CEFC3FCFC6}"
+          DTS:From="Package\Rows Exist Actions\Create File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Rows Exist Actions\Copy to Archive" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{7BB18EF5-491C-4D12-95E9-CC2E59108BF1}"
+          DTS:From="Package\Rows Exist Actions\Copy to Archive"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Rows Exist Actions\Get Email Values" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{6B782B87-3222-4951-B50A-4DC7FAC05E05}"
+          DTS:From="Package\Rows Exist Actions\Get Email Values"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Rows Exist Actions\Execute NBOSendEmail" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Package Audit"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{532922CC-0514-4486-98AC-669202FBD2DB}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Package Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{90D0BD06-3AD3-497A-BD09-CCEE0343B8AA}"
+          SQLTask:SqlStatementSource="--DECLARE AND SET &#xA;DECLARE @AuditKey INT &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;&#xA;SET @AuditKey = ? &#xA;SET @PackageName = ? &#xA;&#xA;EXECUTE audit.uspStartPackage @AuditKey, @PackageName, ''; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transform Missing Items"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2839926C-16CC-4936-B261-6E665762A3F5}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transform Missing Items"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Transform Missing Items\Add Auditing Columns"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Auditing Columns"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform Missing Items\Add Auditing Columns.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Transform Missing Items\Add Auditing Columns.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                      name="AuditKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::AuditKey]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::AuditKey]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                      name="ExecutionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                      name="SSISExecutionServer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::MachineName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::MachineName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                      name="PackageID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::PackageID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                      name="PackageName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::PackageName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageName]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Transform Missing Items\Add Auditing Columns.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform Missing Items\Add Distribution"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Distribution"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform Missing Items\Add Distribution.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Transform Missing Items\Add Distribution.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Output].Columns[NotificationDistribution]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4000"
+                      lineageId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Output].Columns[NotificationDistribution]"
+                      name="NotificationDistribution"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,4000,1252)@[User::EmailDistro]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,4000,1252)@[User::EmailDistro]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Transform Missing Items\Add Distribution.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform Missing Items\DataCheck"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DataCheck"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DataCheck]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform Missing Items\DataCheck.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[BusinessDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="BusinessDate"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDate]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[BusinessDate]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[DataCheck]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DataCheck"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[DataCheck]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[DataCheck]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[NumericValue]"
+                      cachedDataType="i4"
+                      cachedName="NumericValue"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[NumericValue]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NumericValue]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[TextValue]"
+                      cachedDataType="wstr"
+                      cachedLength="240"
+                      cachedName="TextValue"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[TextValue]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[TextValue]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[NotificationMethod]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="NotificationMethod"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[NotificationMethod]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NotificationMethod]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[AuditKey]"
+                      cachedDataType="i4"
+                      cachedName="AuditKey"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[AuditKey]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[ExecutionID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ExecutionID"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[ExecutionID]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[SSISExecutionServer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SSISExecutionServer"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[SSISExecutionServer]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[PackageID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PackageID"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[PackageID]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].Columns[NotificationDistribution]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4000"
+                      cachedName="NotificationDistribution"
+                      externalMetadataColumnId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[NotificationDistribution]"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NotificationDistribution]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[DataCheckKey]"
+                      dataType="i4"
+                      name="DataCheckKey" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[BusinessDate]"
+                      dataType="dbTimeStamp"
+                      name="BusinessDate" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="wstr"
+                      length="25"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[DataCheck]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="DataCheck" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[NumericValue]"
+                      dataType="cy"
+                      name="NumericValue" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[TextValue]"
+                      dataType="wstr"
+                      length="244"
+                      name="TextValue" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[NotificationMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="NotificationMethod" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[NotificationDistribution]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      name="NotificationDistribution" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                      dataType="i4"
+                      name="AuditKey" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ExecutionID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SSISExecutionServer" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PackageID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PackageName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform Missing Items\DataCheck.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\DataCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\DataCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\DataCheck.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform Missing Items\Row Count"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowsOutput</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Transform Missing Items\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform Missing Items\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Transform Missing Items\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform Missing Items\Sort"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Transform Missing Items\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[BusinessDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="BusinessDate"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[BusinessDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[StoreID]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="StoreID"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[StoreID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[DataCheck]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DataCheck"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[DataCheck]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[NumericValue]"
+                      cachedDataType="i4"
+                      cachedName="NumericValue"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NumericValue]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[TextValue]"
+                      cachedDataType="wstr"
+                      cachedLength="240"
+                      cachedName="TextValue"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[TextValue]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[NotificationMethod]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="NotificationMethod"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NotificationMethod]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[AuditKey]"
+                      cachedDataType="i4"
+                      cachedName="AuditKey"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[ExecutionID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ExecutionID"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[SSISExecutionServer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SSISExecutionServer"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[PackageID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PackageID"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[PackageName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PackageName"
+                      lineageId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform Missing Items\Sort.Inputs[Sort Input].Columns[NotificationDistribution]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4000"
+                      cachedName="NotificationDistribution"
+                      lineageId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Output].Columns[NotificationDistribution]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform Missing Items\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[BusinessDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[BusinessDate]"
+                      name="BusinessDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[BusinessDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[StoreID]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[StoreID]"
+                      name="StoreID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[StoreID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[DataCheck]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[DataCheck]"
+                      name="DataCheck"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[DataCheck]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NumericValue]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NumericValue]"
+                      name="NumericValue"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NumericValue]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[TextValue]"
+                      dataType="wstr"
+                      length="240"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[TextValue]"
+                      name="TextValue"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[TextValue]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NotificationMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NotificationMethod]"
+                      name="NotificationMethod">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NotificationMethod]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[AuditKey]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[AuditKey]"
+                      name="AuditKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[ExecutionID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[ExecutionID]"
+                      name="ExecutionID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[SSISExecutionServer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[SSISExecutionServer]"
+                      name="SSISExecutionServer">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[PackageID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[PackageID]"
+                      name="PackageID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[PackageName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[PackageName]"
+                      name="PackageName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NotificationDistribution]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      lineageId="Package\Transform Missing Items\Sort.Outputs[Sort Output].Columns[NotificationDistribution]"
+                      name="NotificationDistribution">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Output].Columns[NotificationDistribution]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform Missing Items\ST_Items"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ST_Items"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT CAST(CAST(GETDATE() AS DATE) AS DATETIME) AS BusinessDate, 
+	N'0' AS StoreID, 
+	CASE 
+		WHEN (
+			EXISTS ( 
+				SELECT 1 
+				FROM nbo.ST_VendorItems x 
+				JOIN nbo.ST_Vendors w ON 
+					x.SiteNumber = w.SiteNumber AND 
+					x.VendorNumber = w.VendorNumber AND 			
+					UPPER(w.VendorID) = 'DUMMY VENDOR' AND 
+					UPPER(w.VendorName) = 'DUMMY VENDOR' 
+				WHERE 
+					a.ItemNumber = x.ItemNumber)) 
+		THEN (CAST('IncorrectDummyVendorItemCode' AS VARCHAR(100))) 
+		ELSE (CAST('MissingDummyVendorItems' AS VARCHAR(100))) 
+	END AS DataCheck, a.ItemNumber AS NumericValue, 
+	CAST(a.ItemID + ' - ' + a.ItemName AS NVARCHAR(240)) AS TextValue, 
+	'Email' AS NotificationMethod 
+FROM nbo.ST_Items a 
+WHERE
+	EXISTS ( 
+		SELECT 1
+		FROM nbo.ST_ItemCategories z
+		JOIN config.ProcessConfiguration y ON 
+			z.ItemCategoryID = CAST(y.ConfigurationValue AS NVARCHAR(25)) AND 
+			y.ConfigurationName = 'InitialPricingInvoices' AND 
+			y.ConfigurationCode = 'CategoryID' 
+		WHERE 
+			a.ItemCategoryNumber = z.ItemCategoryNumber) AND 
+	NOT EXISTS ( 
+		SELECT 1 
+		FROM nbo.ST_VendorItems x 
+		JOIN nbo.ST_Vendors w ON 
+			x.SiteNumber = w.SiteNumber AND 
+			x.VendorNumber = w.VendorNumber AND 			
+			UPPER(w.VendorID) = 'DUMMY VENDOR' AND 
+			UPPER(w.VendorName) = 'DUMMY VENDOR' 
+		WHERE 
+			CAST(x.ItemNumber AS NVARCHAR(50)) = x.VendorItemCode AND 
+			a.ItemNumber = x.ItemNumber) AND 
+	EXISTS ( 
+		SELECT 1 
+		FROM nbo.ST_VendorItems v 
+		WHERE 
+			a.ItemNumber = v.ItemNumber AND 
+			v.OrderUnitPrice &gt; 0 AND 
+			v.Exclude = 0)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform Missing Items\ST_Items.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[BusinessDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[BusinessDate]"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[BusinessDate]"
+                      name="BusinessDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="1"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[DataCheck]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[DataCheck]"
+                      length="100"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[DataCheck]"
+                      name="DataCheck"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NumericValue]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[NumericValue]"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NumericValue]"
+                      name="NumericValue"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[TextValue]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[TextValue]"
+                      length="240"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[TextValue]"
+                      name="TextValue"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NotificationMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[NotificationMethod]"
+                      length="5"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].Columns[NotificationMethod]"
+                      name="NotificationMethod"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[BusinessDate]"
+                      dataType="dbTimeStamp"
+                      name="BusinessDate" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="wstr"
+                      length="1"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[DataCheck]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="DataCheck" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[NumericValue]"
+                      dataType="i4"
+                      name="NumericValue" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[TextValue]"
+                      dataType="wstr"
+                      length="240"
+                      name="TextValue" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output].ExternalColumns[NotificationMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="NotificationMethod" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[BusinessDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[BusinessDate]"
+                      name="BusinessDate" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[DataCheck]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[DataCheck]"
+                      name="DataCheck" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[NumericValue]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[NumericValue]"
+                      name="NumericValue" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[TextValue]"
+                      dataType="wstr"
+                      length="240"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[TextValue]"
+                      name="TextValue" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[NotificationMethod]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[NotificationMethod]"
+                      name="NotificationMethod" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Transform Missing Items.Paths[Derived Column Output]"
+              endId="Package\Transform Missing Items\Add Distribution.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Transform Missing Items\Add Auditing Columns.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Transform Missing Items.Paths[Derived Column Output1]"
+              endId="Package\Transform Missing Items\Row Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\Transform Missing Items\Add Distribution.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Transform Missing Items.Paths[OLE DB Source Output]"
+              endId="Package\Transform Missing Items\Add Auditing Columns.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Transform Missing Items\ST_Items.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Transform Missing Items.Paths[Row Count Output 1]"
+              endId="Package\Transform Missing Items\Sort.Inputs[Sort Input]"
+              name="Row Count Output 1"
+              startId="Package\Transform Missing Items\Row Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Transform Missing Items.Paths[Sort Output]"
+              endId="Package\Transform Missing Items\DataCheck.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Transform Missing Items\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{995E391F-45A5-4F38-85EA-3FE1C117B3E1}"
+      DTS:From="Package\Get Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Start Package Audit" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{54EAA0E5-DEFA-422D-B938-02C903E5F8F3}"
+      DTS:From="Package\Start Package Audit"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Transform Missing Items" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C8C462A5-938C-47A4-8305-463F32B2CC34}"
+      DTS:From="Package\Transform Missing Items"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Rows Exist Actions" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{99DABC94-7FD9-4743-8F2F-C7A9C9DCC587}"
+      DTS:From="Package\Rows Exist Actions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\End Package Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="256,42"
+          Id="Package\End Package Audit"
+          TopLeft="18.3333333333333,697.26190476191" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Get Variables"
+          TopLeft="18.3333333333333,15" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Copy to Archive"
+          TopLeft="32,163" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Create File"
+          TopLeft="32,90.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Dummy"
+          TopLeft="32,18" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Execute NBOSendEmail"
+          TopLeft="32,308" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Rows Exist Actions\Get Email Values"
+          TopLeft="32,235.5" />
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint]"
+          TopLeft="127.5,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,3.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 1]"
+          TopLeft="127.5,132.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 2]"
+          TopLeft="127.5,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Rows Exist Actions.PrecedenceConstraints[Constraint 3]"
+          TopLeft="127.5,277.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="256,405"
+          Size="256,448"
+          Id="Package\Rows Exist Actions"
+          TopLeft="18.3333333333333,222.196428571433" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Start Package Audit"
+          TopLeft="18.3333333333333,84.0654761904775" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Transform Missing Items"
+          TopLeft="18.3333333333333,153.130952380955" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="146.333333333333,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.0654761904775"
+              Start="0,0"
+              End="0,19.5654761904775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5654761904775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="146.333333333333,126.065476190478">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.0654761904775"
+              Start="0,0"
+              End="0,19.5654761904775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5654761904775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="146.333333333333,195.130952380955">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.0654761904776"
+              Start="0,0"
+              End="0,19.5654761904776">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5654761904776" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="146.333333333333,670.196428571433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.0654761904775"
+              Start="0,0"
+              End="0,19.5654761904775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5654761904775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Rows Exist Actions\Create File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Rows Exist Actions\Create File\MissingDummyVendorItems File"
+          TopLeft="19,105" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Rows Exist Actions\Create File\DataCheck"
+          TopLeft="19,20" />
+        <EdgeLayout
+          Id="Package\Rows Exist Actions\Create File.Paths[OLE DB Source Output]"
+          TopLeft="135,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Rows Exist Actions\Create File\DataCheck">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Transform Missing Items">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Transform Missing Items\DataCheck"
+          TopLeft="27,405" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Transform Missing Items\Sort"
+          TopLeft="27,328.4" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Transform Missing Items\Row Count"
+          TopLeft="27,251.8" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Transform Missing Items\ST_Items"
+          TopLeft="27,22" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Transform Missing Items\Add Distribution"
+          TopLeft="27,175.2" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Transform Missing Items\Add Auditing Columns"
+          TopLeft="27,98.6" />
+        <EdgeLayout
+          Id="Package\Transform Missing Items.Paths[Sort Output]"
+          TopLeft="119.5,370.4">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.6"
+              Start="0,0"
+              End="0,27.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform Missing Items.Paths[Row Count Output 1]"
+          TopLeft="119.5,293.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.6"
+              Start="0,0"
+              End="0,27.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform Missing Items.Paths[OLE DB Source Output]"
+          TopLeft="119.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.6"
+              Start="0,0"
+              End="0,27.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform Missing Items.Paths[Derived Column Output]"
+          TopLeft="119.5,140.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.6"
+              Start="0,0"
+              End="0,27.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform Missing Items.Paths[Derived Column Output1]"
+          TopLeft="119.5,217.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.6"
+              Start="0,0"
+              End="0,27.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform Missing Items\DataCheck">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform Missing Items\ST_Items">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

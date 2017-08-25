@@ -1,0 +1,695 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/4/2016 8:26:27 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="AALLEN-L7"
+  DTS:CreatorName="CORPHQ\aallen"
+  DTS:DTSID="{6B5C7653-069C-441E-B195-7662D023B44B}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="MLMenuItems"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{45BB8F54-7AA7-469B-B8B9-11F97E87EE06}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{289458B0-894D-4A86-A8D6-2D5CA0708FC8}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory] +  @[User::ExportFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-SSIS2012-01\MessageHub\APT\OutboxMLItems_20161024.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MenuItemID"
+              DTS:DTSID="{C343C027-64DE-4569-9D51-664AAE089088}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MenuItemName"
+              DTS:DTSID="{B45546CC-262E-4D30-A757-810058DB22F0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MenuItemCatNum"
+              DTS:DTSID="{B26D550E-C42F-44EA-989B-AC09426B8B57}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MenuItemCatName"
+              DTS:DTSID="{7A9509C5-B5CC-4B82-A059-B07EF0316BDA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MenuItemCatType"
+              DTS:DTSID="{39D40DD2-88A4-4D37-A6CC-446BCB6D0BD3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="POSCode"
+              DTS:DTSID="{A0D38EC3-E7EC-4B6F-A542-4791A1047473}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UpdateDateTime"
+              DTS:DTSID="{FB6E29F9-BF5F-467F-AA7F-E057E8CA7BD8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UpdateID"
+              DTS:DTSID="{EC65F8F7-814E-45FE-BED4-9CF2282EF227}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="5"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MaxPrice"
+              DTS:DTSID="{4847FC37-190E-488C-88CC-63C6D564D211}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MLAddOn]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{662D170D-F320-4963-99E1-5382E10449C6}"
+      DTS:ObjectName="MLAddOn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CRONUS\CRONUSSQL2000;User ID=SSISUser;Initial Catalog=MLAddOn;Provider=SQLOLEDB.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-MLMenuItems-{662D170D-F320-4963-99E1-5382E10449C6}CRONUS\CRONUSSQL2000.MLAddOn.SSISUser;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0PaxfnfqXk+7InMBaRU2IAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADz/KsSVh4m2LL4zfHUWjGJAAAAAASAAACgAAAAEAAAAIa9e3rpSFWfF5mQlXrO2kwoAAAAp2FWmNO6f6MQ28j1v4uYbhmVFYSp2Bu7lR1GvKlt8J3xG5Azr/2VmhQAAAAD/E0p8ZfC4isYgoazF8wBJ+c+aw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5E54809F-581B-4157-9986-48F0F6970285}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;MLItems_&quot; + REPLACE((DT_WSTR, 200)(DT_DBDATE)GETUTCDATE(),&quot;-&quot;,&quot;&quot;) + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExportFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">MLItems_20161024.txt</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load MenuLink Items for APT"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6CB59167-595C-4152-AF5B-A32E642026E3}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load MenuLink Items for APT"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load MenuLink Items for APT\Get ML Items"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get ML Items"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Menu_Items]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load MenuLink Items for APT\Get ML Items.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MLAddOn]"
+                  connectionManagerRefId="Package.ConnectionManagers[MLAddOn]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemName]"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemName]"
+                      name="MenuItemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatNum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatNum]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatNum]"
+                      name="MenuItemCatNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatName]"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatName]"
+                      name="MenuItemCatName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatType]"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatType]"
+                      name="MenuItemCatType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[POSCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[POSCode]"
+                      length="10"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[POSCode]"
+                      name="POSCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[UpdateDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[UpdateDateTime]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[UpdateDateTime]"
+                      name="UpdateDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[UpdateID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[UpdateID]"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[UpdateID]"
+                      name="UpdateID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MaxPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MaxPrice]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MaxPrice]"
+                      name="MaxPrice"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemName" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatNum]"
+                      dataType="i4"
+                      name="MenuItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatType" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[POSCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="POSCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[UpdateDateTime]"
+                      dataType="dbTimeStamp"
+                      name="UpdateDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[UpdateID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="UpdateID" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].ExternalColumns[MaxPrice]"
+                      dataType="r8"
+                      name="MaxPrice" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemName]"
+                      name="MenuItemName" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemCatNum]"
+                      dataType="i4"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemCatNum]"
+                      name="MenuItemCatNum" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemCatName]"
+                      name="MenuItemCatName" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MenuItemCatType]"
+                      name="MenuItemCatType" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[POSCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[POSCode]"
+                      name="POSCode" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[UpdateDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[UpdateDateTime]"
+                      name="UpdateDateTime" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[UpdateID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[UpdateID]"
+                      name="UpdateID" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MaxPrice]"
+                      dataType="r8"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[MaxPrice]"
+                      name="MaxPrice" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load MenuLink Items for APT\Load ML Item File for APT"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Load ML Item File for APT">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemID"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemID]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[MenuItemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemName"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemName]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemName]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[MenuItemCatNum]"
+                      cachedDataType="i4"
+                      cachedName="MenuItemCatNum"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemCatNum]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatNum]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[MenuItemCatName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemCatName"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemCatName]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatName]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[MenuItemCatType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemCatType"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemCatType]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MenuItemCatType]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[POSCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="POSCode"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[POSCode]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[POSCode]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[UpdateDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdateDateTime"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[UpdateDateTime]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[UpdateDateTime]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[UpdateID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="UpdateID"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[UpdateID]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[UpdateID]" />
+                    <inputColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].Columns[MaxPrice]"
+                      cachedDataType="r8"
+                      cachedName="MaxPrice"
+                      externalMetadataColumnId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MaxPrice]"
+                      lineageId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output].Columns[MaxPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemName" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemCatNum]"
+                      dataType="i4"
+                      name="MenuItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatType" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[POSCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="POSCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[UpdateDateTime]"
+                      dataType="dbTimeStamp"
+                      name="UpdateDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[UpdateID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="UpdateID" />
+                    <externalMetadataColumn
+                      refId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input].ExternalColumns[MaxPrice]"
+                      dataType="r8"
+                      name="MaxPrice" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load MenuLink Items for APT.Paths[OLE DB Source Output]"
+              endId="Package\Load MenuLink Items for APT\Load ML Item File for APT.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load MenuLink Items for APT\Get ML Items.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="220,42"
+          Id="Package\Load MenuLink Items for APT"
+          TopLeft="77,49" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load MenuLink Items for APT">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Load MenuLink Items for APT\Load ML Item File for APT"
+          TopLeft="192,370" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Load MenuLink Items for APT\Get ML Items"
+          TopLeft="167,71" />
+        <EdgeLayout
+          Id="Package\Load MenuLink Items for APT.Paths[OLE DB Source Output]"
+          TopLeft="239,113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,257"
+              Start="0,0"
+              End="55,249.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,124.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,124.5"
+                    Point2="0,128.5"
+                    Point3="4,128.5" />
+                  <mssgle:LineSegment
+                    End="51,128.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51,128.5"
+                    Point2="55,128.5"
+                    Point3="55,132.5" />
+                  <mssgle:LineSegment
+                    End="55,249.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MenuLink Items for APT\Get ML Items">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

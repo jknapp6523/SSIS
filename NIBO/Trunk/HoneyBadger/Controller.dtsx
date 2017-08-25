@@ -1,0 +1,926 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/30/2015 7:54:58 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="TCHILDS-L72"
+  DTS:CreatorName="CORPHQ\tchilds"
+  DTS:DTSID="{72F6A883-6C33-4E8E-BCF2-3816B16217D4}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Controller"
+  DTS:PackageType="5"
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{3306FFF3-0380-4CC1-8AEC-CBF2115CBE5A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Processed]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{66802CA8-92ED-431D-A843-526E9254524C}"
+      DTS:ObjectName="Processed">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\AP_ZipFiles\Processed" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3CA9EEF3-18D9-49CE-8442-DB6952BE463C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FileSource] +  @[User::FileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AP_FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\APFiles\168.dep</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CBBEE925-1E79-4B8C-82F3-13AFA8613AA5}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::ExtractSource]  +  @[User::FileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\AP_ZipFiles\Extracts\168.dep</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3892C69C-7DD4-4EC5-9625-1B9E0C308E89}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractSource">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\AP_ZipFiles\Extracts\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{36516446-D169-439F-8BCE-F47B5B972CBD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">168.dep</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0E5F023B-6BA3-4F2E-B9CD-8ED0B3DDE712}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileSource">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\APFiles\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6783A12D-8768-465A-86E3-FA6C8E57CF02}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileStaging">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\MLI Staging\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1556F793-8CB4-47AB-80E2-9004E7801E4B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FileStaging] + REPLACE(@[User::FileName],&quot;.&quot;,  &quot;_&quot;+&#xA; (DT_WSTR,4)DATEPART(&quot;yyyy&quot;,GetDate()) +&#xA; RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;mm&quot;,GetDate()) ,2) + &#xA; RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;dd&quot;,GetDate()),2) + &#xA; RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;hh&quot;,GetDate()),2) + &#xA; RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;mi&quot;,GetDate()),2) + &#xA;RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;ss&quot;,GetDate()),2)+ &#xA;RIGHT(&quot;00&quot; + (DT_WSTR,3)DATEPART(&quot;ms&quot;,GetDate()),3)+&quot;.&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StageName">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\MLI Staging\168_20151205095916607.dep</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{66F5DFFD-1600-4689-B0B6-C4E37C36995A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ZipFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">*.zip</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Daily Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{E574162C-0077-4AC9-AE7B-88EB1499E8B6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Daily Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Daily Sequence Container\Execute MIX Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{E481FC3A-FB56-4B25-9F28-8B241860E943}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute MIX Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>MIX Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Daily Sequence Container\Execute RGR Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{F5279F43-79DE-442F-90B2-158EBB56F69D}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute RGR Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RGR Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Daily Sequence Container\Execute SAL Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{3B0F39EA-2580-4304-B612-AB8FC6C59A67}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute SAL Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>SAL Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Loop Through AP Files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{7C92BB0E-8575-46A4-980C-2899F9F285B2}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Loop Through AP Files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{3E1BCECF-F7E9-41CD-B58E-8956EEA388C7}"
+        DTS:ObjectName="{3E1BCECF-F7E9-41CD-B58E-8956EEA388C7}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::FileSource]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\APFiles\" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Loop Through AP Files\Move and Stamp File"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{7A23E0F0-CB8A-4026-B610-AE575C1760E5}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move and Stamp File"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="RenameFile"
+              TaskSourcePath="User::AP_FileName"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::StageName"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D1DFFF24-EA16-4FC8-8615-D33420CC81EA}"
+          DTS:ObjectName="{D1DFFF24-EA16-4FC8-8615-D33420CC81EA}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Loop Through Zip Files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{9E8E27AC-E022-4243-B690-DB52911BF02F}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Loop Through Zip Files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{7A7165AB-F011-4686-9B7B-B7E54A067A6B}"
+        DTS:ObjectName="{7A7165AB-F011-4686-9B7B-B7E54A067A6B}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\AP_ZipFiles\" />
+            <FEFEProperty
+              FileSpec="*.zip" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Loop Through Zip Files\Execute Process Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{337A6423-68F9-41F6-9363-FBBC40B85BBD}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute Process Task"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"e" + " \"" +  @[User::ZipFileName] + "\""</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Program Files\7-Zip\7z.exe"
+              Arguments="e &quot;*.zip&quot;"
+              WorkingDirectory="\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\AP_ZipFiles\Extracts" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Loop Through Zip Files\Loop Through Extract Files"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{063A85B8-106C-4034-A559-9F6B80ECC690}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Loop Through Extract Files">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="DTS.ForEachFileEnumerator.3"
+            DTS:DTSID="{314552FD-FFEC-4247-B4F7-8969ACF54876}"
+            DTS:ObjectName="{314552FD-FFEC-4247-B4F7-8969ACF54876}">
+            <DTS:ObjectData>
+              <ForEachFileEnumeratorProperties>
+                <FEFEProperty
+                  Folder="\\HQ-SSIS2012-01\MessageHub\MenuLink\Inbox\AP_ZipFiles\Extracts\" />
+                <FEFEProperty
+                  FileSpec="*.*" />
+                <FEFEProperty
+                  FileNameRetrievalType="1" />
+                <FEFEProperty
+                  Recurse="0" />
+              </ForEachFileEnumeratorProperties>
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Loop Through Zip Files\Loop Through Extract Files\File System Task"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="File System Task"
+              DTS:DTSID="{5C6D5BC0-3405-407F-85AF-5D68F6E29F0D}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="File System Task"
+              DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <FileSystemData
+                  TaskOperationType="RenameFile"
+                  TaskSourcePath="User::ExtractFileName"
+                  TaskIsSourceVariable="True"
+                  TaskDestinationPath="User::StageName"
+                  TaskIsDestinationVariable="True" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{235FFAA5-1233-427F-B5E7-22E3F06F1FBB}"
+              DTS:ObjectName="{235FFAA5-1233-427F-B5E7-22E3F06F1FBB}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::FileName" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Loop Through Zip Files\Move and Stamp File"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{a99bc376-a013-450b-b6d0-00decd69095c}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move and Stamp File"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="User::ZipFileName"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="Processed" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Loop Through Zip Files.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7501CD6B-C766-4294-921D-D5C56B6B4C99}"
+          DTS:From="Package\Loop Through Zip Files\Execute Process Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Loop Through Zip Files\Loop Through Extract Files" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Loop Through Zip Files.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{8CAF6CA8-FBE5-4B23-9063-3519B7276B46}"
+          DTS:From="Package\Loop Through Zip Files\Loop Through Extract Files"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Loop Through Zip Files\Move and Stamp File" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D5DE0EC0-2BC9-4F36-B604-7A248A481DC4}"
+          DTS:ObjectName="{D5DE0EC0-2BC9-4F36-B604-7A248A481DC4}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ZipFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tuesday Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A7307F45-924B-4FB8-A422-910C363B9D9A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tuesday Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute BEV Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Beverag Cost Package"
+          DTS:DTSID="{685EAB4D-9EBF-4A2A-9502-4FF686FC1739}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute BEV Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>BEV Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute COG Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Cost of Goods Package"
+          DTS:DTSID="{DCDDF455-9305-4555-8C8D-2B976CE7C8CB}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute COG Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>COG Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute CST Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Food Cost Package"
+          DTS:DTSID="{077C5BF5-06F7-4E00-8748-77EA5EE8DF8A}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute CST Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>CST Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute DET Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Invoice Detail Package"
+          DTS:DTSID="{B3DF4BFB-7111-422E-9238-36CD9CD2B338}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute DET Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DET Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute HDR Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Invoice Header Package"
+          DTS:DTSID="{0E5FBD93-A3D3-41FA-8190-8B387F224707}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute HDR Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>HDR Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute MIC Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute MIC Package"
+          DTS:DTSID="{1CC4B527-94BD-44E2-9084-C06F17B26243}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute MIC Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>MIC Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute PL1 Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute PandLCat Package"
+          DTS:DTSID="{57FF1E61-2B21-4671-A55E-AA0794D3EACD}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute PL1 Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>PL1 Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute PL2 Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute PandLPrct Package"
+          DTS:DTSID="{F2B1B53A-98BC-4EF5-B59F-BD6481C63D6D}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute PL2 Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>PL2 Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute PL3 Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute PandLPrctGrp Package"
+          DTS:DTSID="{AA27CF34-E6C8-4CBD-AEC2-B7A50C3D8A78}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute PL3 Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>PL3 Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute PL4 Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute PandLPrctTot Package"
+          DTS:DTSID="{37691C28-51B7-4A2C-80C9-8381D99595E1}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute PL4 Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>PL4 Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute Raw Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Raw Info Package"
+          DTS:DTSID="{31D70A62-3FA7-4C37-A35F-4C17ADFFE46C}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute Raw Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RAW Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute SGH Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute SaleGueatByHalfHour Package"
+          DTS:DTSID="{AD9D8367-2FF7-4DFC-8A46-99509580EFC8}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute SGH Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>SGH Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Tuesday Sequence Container\Execute USE Consolidation"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Item Use Variance Package"
+          DTS:DTSID="{C9C50A93-42B2-40D5-A401-A07639179D0A}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="20"
+          DTS:ObjectName="Execute USE Consolidation"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>USE Consolidation.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6E2C0D75-D0DA-482C-9795-6FDD68A4B981}"
+      DTS:From="Package\Loop Through AP Files"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Loop Through Zip Files" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4A4EAD80-1909-4CC3-9870-1155D0940C5D}"
+      DTS:From="Package\Loop Through Zip Files"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Daily Sequence Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{3486CDA6-AE68-45E3-8AB0-A69EC232B770}"
+      DTS:From="Package\Daily Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Tuesday Sequence Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Daily Sequence Container\Execute MIX Consolidation"
+          TopLeft="18.8333333333334,174" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Daily Sequence Container\Execute RGR Consolidation"
+          TopLeft="21.3333333333334,28" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Daily Sequence Container\Execute SAL Consolidation"
+          TopLeft="22.8333333333334,102" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="260,271"
+          Size="260,314"
+          Id="Package\Daily Sequence Container"
+          TopLeft="541,30" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Loop Through AP Files\Move and Stamp File"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="190,103"
+          Size="190,146"
+          Id="Package\Loop Through AP Files"
+          TopLeft="56.0000000000001,5.5" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Loop Through Zip Files\Execute Process Task"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Loop Through Zip Files\Loop Through Extract Files\File System Task"
+          TopLeft="4.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="180,103"
+          Size="180,146"
+          Id="Package\Loop Through Zip Files\Loop Through Extract Files"
+          TopLeft="11,107.5" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Loop Through Zip Files\Move and Stamp File"
+          TopLeft="7.00000000000003,313.5" />
+        <EdgeLayout
+          Id="Package\Loop Through Zip Files.PrecedenceConstraints[Constraint]"
+          TopLeft="98.75,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loop Through Zip Files.PrecedenceConstraints[Constraint 1]"
+          TopLeft="98.75,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="227,411"
+          Size="227,454"
+          Id="Package\Loop Through Zip Files"
+          TopLeft="28.5000000000001,211.5" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute BEV Consolidation"
+          TopLeft="21.1923076923076,23" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute COG Consolidation"
+          TopLeft="20.1923076923076,83.4166666666667" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute CST Consolidation"
+          TopLeft="21.1923076923076,143.833333333333" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute DET Consolidation"
+          TopLeft="20.6923076923076,264.666666666667" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute HDR Consolidation"
+          TopLeft="20.1923076923076,204.25" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute MIC Consolidation"
+          TopLeft="21.1923076923076,325.083333333333" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute PL1 Consolidation"
+          TopLeft="22.1923076923076,385.5" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute PL2 Consolidation"
+          TopLeft="22.1923076923076,445.916666666667" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute PL3 Consolidation"
+          TopLeft="22.1923076923076,506.333333333333" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute PL4 Consolidation"
+          TopLeft="22.1923076923076,566.75" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute Raw Consolidation"
+          TopLeft="20.1923076923076,627.166666666667" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute SGH Consolidation"
+          TopLeft="20.1923076923076,687.583333333333" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Tuesday Sequence Container\Execute USE Consolidation"
+          TopLeft="21.1923076923076,748" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="267,859"
+          Size="267,902"
+          Id="Package\Tuesday Sequence Container"
+          TopLeft="537,409.666666666657" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="151,151.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.99999999999997,60"
+              Start="0,0"
+              End="-8.99999999999997,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-4.99999999999997,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.99999999999997,30"
+                    Point2="-8.99999999999997,30"
+                    Point3="-8.99999999999997,34" />
+                  <mssgle:LineSegment
+                    End="-8.99999999999997,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="255.5,438.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="285.5,-251.5"
+              Start="0,0"
+              End="278,-251.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="138.75,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="138.75,0"
+                    Point2="142.75,0"
+                    Point3="142.75,-4" />
+                  <mssgle:LineSegment
+                    End="142.75,-247.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="142.75,-247.5"
+                    Point2="142.75,-251.5"
+                    Point3="146.75,-251.5" />
+                  <mssgle:LineSegment
+                    End="278,-251.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="670.75,344">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.666666666657"
+              Start="0,0"
+              End="0,58.166666666657">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.166666666657" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

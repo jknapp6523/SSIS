@@ -1,0 +1,2424 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/10/2017 2:01:34 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-SSIS2012-1"
+  DTS:CreatorName="DEV01\dconolle_dev"
+  DTS:DTSID="{FE39BE16-BAB7-4FD6-954D-D5C00EFA3C19}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NBOExtractMDS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{76164153-6628-4174-B17E-537B8667E0E2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MDS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3B9CBFF7-03B4-4632-9F60-BFFA4F944007}"
+      DTS:ObjectName="MDS">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::MDS_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-MDM-01;User ID=SSISUser;Initial Catalog=MDS;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NBOInterfaceStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8C0EC55B-7D71-4056-9926-7C18D6E1DB50}"
+      DTS:ObjectName="NBOInterfaceStaging">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::NBOInterfaceStaging_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-SQL-NBO;User ID=SSISUser;Initial Catalog=DataMartStaging;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7D7B7B68-323A-45CB-B9FC-BACC74575206}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{55BBDC1E-C1BF-4AFA-AD0F-0604D81268D0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JobName">
+      <DTS:VariableValue
+        DTS:DataType="8">Debug</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract MDS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{64355748-85E2-483D-9ACF-B27621C581F5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract MDS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Extract MDS\RREmployee"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3653F8FB-7B81-47DA-933C-F80FBD3C9B56}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="RREmployee"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract MDS\RREmployee\Add Auditing Columns"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add Auditing Columns"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract MDS\RREmployee\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          name="AuditKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::AuditKey]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::AuditKey]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          name="ExecutionID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          name="SSISExecutionServer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::MachineName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::MachineName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          name="PackageID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          name="PackageName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageName]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract MDS\RREmployee\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract MDS\RREmployee\MDS RREmployee"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MDS RREmployee"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.ID, a.Name, a.Code, a.Email, a.Title 
+FROM mdm.RREmployee a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract MDS\RREmployee\MDS RREmployee.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MDS]"
+                      connectionManagerRefId="Package.ConnectionManagers[MDS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[ID]"
+                          name="ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Code]"
+                          name="Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Email]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          length="100"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Email]"
+                          name="Email"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Title]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          length="200"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Title]"
+                          name="Title"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          dataType="wstr"
+                          length="100"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="200"
+                          name="Title" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          name="ID" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          name="Code" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          name="Email" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          dataType="wstr"
+                          length="200"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          name="Title" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract MDS\RREmployee\Stage RREmployee"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Stage RREmployee"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[mdm].[RREmployee]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract MDS\RREmployee\Stage RREmployee.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[ID]"
+                          cachedDataType="i4"
+                          cachedName="ID"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[ID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[Code]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Code"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Code]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[Email]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Email"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Email]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[Title]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="Title"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          lineageId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output].Columns[Title]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[AuditKey]"
+                          cachedDataType="i4"
+                          cachedName="AuditKey"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[ExecutionID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ExecutionID"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[SSISExecutionServer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SSISExecutionServer"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[PackageID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageID"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageName"
+                          externalMetadataColumnId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          lineageId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          dataType="wstr"
+                          length="100"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="200"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          dataType="i4"
+                          name="AuditKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSISExecutionServer" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RREmployee\Stage RREmployee.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RREmployee\Stage RREmployee.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RREmployee\Stage RREmployee.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RREmployee\Stage RREmployee.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract MDS\RREmployee.Paths[Derived Column Output]"
+                  endId="Package\Extract MDS\RREmployee\Stage RREmployee.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract MDS\RREmployee\Add Auditing Columns.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract MDS\RREmployee.Paths[OLE DB Source Output]"
+                  endId="Package\Extract MDS\RREmployee\Add Auditing Columns.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Extract MDS\RREmployee\MDS RREmployee.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract MDS\RRRegion"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{717C5939-024E-4C71-9390-F9B303CEB19D}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="RRRegion"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract MDS\RRRegion\Add Auditing Columns"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add Auditing Columns"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract MDS\RRRegion\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          name="AuditKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::AuditKey]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::AuditKey]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          name="ExecutionID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          name="SSISExecutionServer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::MachineName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::MachineName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          name="PackageID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          name="PackageName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageName]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract MDS\RRRegion\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract MDS\RRRegion\MDS RRRegion"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MDS RRRegion"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.ID, a.Name, a.Code, a.RegionalOperationsDirector_Code, 
+	a.RegionalOperationsDirector_Name, a.RegionalOperationsDirector_ID
+FROM mdm.RRRegion a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract MDS\RRRegion\MDS RRRegion.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MDS]"
+                      connectionManagerRefId="Package.ConnectionManagers[MDS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[ID]"
+                          name="ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[Code]"
+                          name="Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[RegionalOperationsDirector_Code]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_Code]"
+                          name="RegionalOperationsDirector_Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[RegionalOperationsDirector_Name]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_Name]"
+                          name="RegionalOperationsDirector_Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[RegionalOperationsDirector_ID]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_ID]"
+                          name="RegionalOperationsDirector_ID"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[RegionalOperationsDirector_Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="RegionalOperationsDirector_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[RegionalOperationsDirector_Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="RegionalOperationsDirector_Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].ExternalColumns[RegionalOperationsDirector_ID]"
+                          dataType="i4"
+                          name="RegionalOperationsDirector_ID" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          name="ID" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          name="Code" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[RegionalOperationsDirector_Code]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[RegionalOperationsDirector_Code]"
+                          name="RegionalOperationsDirector_Code" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[RegionalOperationsDirector_Name]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[RegionalOperationsDirector_Name]"
+                          name="RegionalOperationsDirector_Name" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[RegionalOperationsDirector_ID]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[RegionalOperationsDirector_ID]"
+                          name="RegionalOperationsDirector_ID" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract MDS\RRRegion\Stage RRRegion"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Stage RRRegion"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[mdm].[RRRegion]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract MDS\RRRegion\Stage RRRegion.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[ID]"
+                          cachedDataType="i4"
+                          cachedName="ID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[ID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[Code]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Code"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[Code]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[RegionalOperationsDirector_Code]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="RegionalOperationsDirector_Code"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[RegionalOperationsDirector_Code]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_Code]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[RegionalOperationsDirector_Name]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="RegionalOperationsDirector_Name"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[RegionalOperationsDirector_Name]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_Name]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[RegionalOperationsDirector_ID]"
+                          cachedDataType="i4"
+                          cachedName="RegionalOperationsDirector_ID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[RegionalOperationsDirector_ID]"
+                          lineageId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output].Columns[RegionalOperationsDirector_ID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[AuditKey]"
+                          cachedDataType="i4"
+                          cachedName="AuditKey"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[ExecutionID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ExecutionID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[SSISExecutionServer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SSISExecutionServer"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[PackageID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageName"
+                          externalMetadataColumnId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          lineageId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[RegionalOperationsDirector_Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="RegionalOperationsDirector_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[RegionalOperationsDirector_Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="RegionalOperationsDirector_Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[RegionalOperationsDirector_ID]"
+                          dataType="i4"
+                          name="RegionalOperationsDirector_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          dataType="i4"
+                          name="AuditKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSISExecutionServer" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RRRegion\Stage RRRegion.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\Stage RRRegion.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRegion\Stage RRRegion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRegion\Stage RRRegion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract MDS\RRRegion.Paths[Derived Column Output]"
+                  endId="Package\Extract MDS\RRRegion\Stage RRRegion.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract MDS\RRRegion\Add Auditing Columns.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract MDS\RRRegion.Paths[OLE DB Source Output]"
+                  endId="Package\Extract MDS\RRRegion\Add Auditing Columns.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Extract MDS\RRRegion\MDS RRRegion.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract MDS\RRRestaurant"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{A15D1D69-7348-403B-B87C-964C0FAEACBC}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="RRRestaurant"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add Auditing Columns"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                          name="AuditKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::AuditKey]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::AuditKey]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                          name="ExecutionID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                          name="SSISExecutionServer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::MachineName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::MachineName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                          name="PackageID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                          name="PackageName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)@[System::PackageName]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageName]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MDS RRRestaurant"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.ID, a.Name, a.Code, a.RestaurantNumber, a.Region_Code, a.Region_Name, a.Region_ID 
+FROM mdm.RRRestaurant a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MDS]"
+                      connectionManagerRefId="Package.ConnectionManagers[MDS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[ID]"
+                          name="ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Code]"
+                          name="Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[RestaurantNumber]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[RestaurantNumber]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[RestaurantNumber]"
+                          name="RestaurantNumber"
+                          precision="38"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Region_Code]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_Code]"
+                          name="Region_Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Region_Name]"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_Name]"
+                          name="Region_Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Region_ID]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_ID]"
+                          name="Region_ID"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[RestaurantNumber]"
+                          dataType="numeric"
+                          name="RestaurantNumber"
+                          precision="38" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Region_Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Region_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Region_Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Region_Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].ExternalColumns[Region_ID]"
+                          dataType="i4"
+                          name="Region_ID" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          name="ID" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          name="Code" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[RestaurantNumber]"
+                          dataType="numeric"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[RestaurantNumber]"
+                          name="RestaurantNumber"
+                          precision="38" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Region_Code]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Region_Code]"
+                          name="Region_Code" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Region_Name]"
+                          dataType="wstr"
+                          length="250"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Region_Name]"
+                          name="Region_Name" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Region_ID]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[Region_ID]"
+                          name="Region_ID" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Stage RRRestaurant"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[mdm].[RRRestaurant]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[ID]"
+                          cachedDataType="i4"
+                          cachedName="ID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[ID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[Code]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Code"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Code]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[RestaurantNumber]"
+                          cachedDataType="numeric"
+                          cachedName="RestaurantNumber"
+                          cachedPrecision="38"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantNumber]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[RestaurantNumber]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[Region_Code]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Region_Code"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Region_Code]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_Code]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[Region_Name]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Region_Name"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Region_Name]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_Name]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[Region_ID]"
+                          cachedDataType="i4"
+                          cachedName="Region_ID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Region_ID]"
+                          lineageId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output].Columns[Region_ID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[AuditKey]"
+                          cachedDataType="i4"
+                          cachedName="AuditKey"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[ExecutionID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ExecutionID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[SSISExecutionServer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SSISExecutionServer"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[PackageID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageID"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]" />
+                        <inputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PackageName"
+                          externalMetadataColumnId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          lineageId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantNumber]"
+                          dataType="numeric"
+                          name="RestaurantNumber"
+                          precision="38" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Region_Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Region_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Region_Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Region_Name" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[Region_ID]"
+                          dataType="i4"
+                          name="Region_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                          dataType="i4"
+                          name="AuditKey" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SSISExecutionServer" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PackageName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract MDS\RRRestaurant.Paths[Derived Column Output]"
+                  endId="Package\Extract MDS\RRRestaurant\Stage RRRestaurant.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract MDS\RRRestaurant.Paths[OLE DB Source Output]"
+                  endId="Package\Extract MDS\RRRestaurant\Add Auditing Columns.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Extract MDS\RRRestaurant\MDS RRRestaurant.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Variables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7B8C0389-7336-4998-8116-34F64E4E5271}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Variables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8C0EC55B-7D71-4056-9926-7C18D6E1DB50}"
+          SQLTask:SqlStatementSource="--DECLARE AND SET&#xA;DECLARE @JobName NVARCHAR(256) &#xA;DECLARE @AuditKey INT &#xA;&#xA;SET @JobName = ? &#xA;&#xA;SET @AuditKey = (&#xA;&#x9;SELECT MAX(a.AuditKey) AS AuditKey &#xA;&#x9;FROM audit.Session a &#xA;&#x9;WHERE a.JobName = @JobName AND &#xA;&#x9;&#x9;a.IsCurrentSession = 1) &#xA;&#xA;&#xA;--RETURN &#xA;SELECT @AuditKey AS AuditKey"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::AuditKey" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::JobName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE Tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9BEE4487-DD9F-4423-99D6-D8578CF4FC40}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8C0EC55B-7D71-4056-9926-7C18D6E1DB50}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE mdm.RREmployee; &#xA;TRUNCATE TABLE mdm.RRRegion; &#xA;TRUNCATE TABLE mdm.RRRestaurant; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{45FCFC9B-4E93-48FC-940F-DA2E5CB2B4BF}"
+      DTS:From="Package\Get Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\TRUNCATE Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D93493DF-A091-4AFE-A430-837B650714CF}"
+      DTS:From="Package\TRUNCATE Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Extract MDS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Get Variables"
+          TopLeft="24,20" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\TRUNCATE Tables"
+          TopLeft="24,101.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="120.5,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.5"
+              Start="0,0"
+              End="0,32">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Extract MDS\RREmployee"
+          TopLeft="25,15" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Extract MDS\RRRegion"
+          TopLeft="25,79.5" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Extract MDS\RRRestaurant"
+          TopLeft="25,144" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="193,239"
+          Size="193,282"
+          Id="Package\Extract MDS"
+          TopLeft="24,183" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="120.5,143.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.5"
+              Start="0,0"
+              End="0,32">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract MDS\RREmployee">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RREmployee\Stage RREmployee"
+          TopLeft="27,228" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RREmployee\MDS RREmployee"
+          TopLeft="27,22" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RREmployee\Add Auditing Columns"
+          TopLeft="27,125" />
+        <EdgeLayout
+          Id="Package\Extract MDS\RREmployee.Paths[OLE DB Source Output]"
+          TopLeft="119.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract MDS\RREmployee.Paths[Derived Column Output]"
+          TopLeft="119.5,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Extract MDS\RRRegion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RRRegion\MDS RRRegion"
+          TopLeft="39,31" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RRRegion\Stage RRRegion"
+          TopLeft="39,250" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RRRegion\Add Auditing Columns"
+          TopLeft="39,140.5" />
+        <EdgeLayout
+          Id="Package\Extract MDS\RRRegion.Paths[OLE DB Source Output]"
+          TopLeft="131.5,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67.5"
+              Start="0,0"
+              End="0,60">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract MDS\RRRegion.Paths[Derived Column Output]"
+          TopLeft="131.5,182.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67.5"
+              Start="0,0"
+              End="0,60">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Extract MDS\RRRestaurant">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RRRestaurant\Stage RRRestaurant"
+          TopLeft="33,205" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RRRestaurant\MDS RRRestaurant"
+          TopLeft="33,23" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Extract MDS\RRRestaurant\Add Auditing Columns"
+          TopLeft="33,114" />
+        <EdgeLayout
+          Id="Package\Extract MDS\RRRestaurant.Paths[OLE DB Source Output]"
+          TopLeft="125.5,65">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract MDS\RRRestaurant.Paths[Derived Column Output]"
+          TopLeft="125.5,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract MDS\RREmployee\Stage RREmployee">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract MDS\RREmployee\MDS RREmployee">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract MDS\RRRegion\MDS RRRegion">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract MDS\RRRegion\Stage RRRegion">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract MDS\RRRestaurant\Stage RRRestaurant">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract MDS\RRRestaurant\MDS RRRestaurant">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

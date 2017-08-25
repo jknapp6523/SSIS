@@ -1,0 +1,1273 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/22/2017 12:58:22 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="TMAUL-SP4"
+  DTS:CreatorName="CORPHQ\TMaul"
+  DTS:DTSID="{47A25B00-6E0D-4A14-8397-4105A858F728}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Utilities"
+  DTS:PackageType="5"
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{A7FAE41F-9854-40D8-8B35-D0448AE0D3E8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BudgetsAndAllocationsExport]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Utilities data from Fusion"
+      DTS:DTSID="{44cc9e5b-6a25-40c6-972d-c925faec2324}"
+      DTS:ObjectName="BudgetsAndAllocationsExport">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFile]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\Fusion\Utilities\Outbox\BudgetsAndAllocations.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Site ID"
+              DTS:DTSID="{C6F80B6C-B41B-4D98-8609-95ECBEC34E58}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Data Name"
+              DTS:DTSID="{E87A7ADB-86ED-4643-8115-21D490F874F8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="From Date"
+              DTS:DTSID="{92267385-AA89-4D91-BE3F-8B58B80A1C97}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="To Date"
+              DTS:DTSID="{8BBE2AA3-E27C-451A-B24D-87135BABCF50}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Budget or Allocation"
+              DTS:DTSID="{6D6AB23C-32DB-4F25-BE06-E5E7011AA923}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value"
+              DTS:DTSID="{FC071A64-2496-4897-89D3-D3E2EC44F4C2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Percent"
+              DTS:DTSID="{833116CB-FC3A-49D6-B40E-FB0ED633C41C}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[UtilitiesImport]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Utilities data from Fusion"
+      DTS:DTSID="{50110BA7-EE7D-462C-836A-C294032A58CA}"
+      DTS:ObjectName="UtilitiesImport">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ImportFile]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\Fusion\Utilities\Inbox\UTILITIES.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SITEID"
+              DTS:DTSID="{F018EE80-C943-4C77-8881-743D7380B07B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PERIOD"
+              DTS:DTSID="{D5C8EE3E-935A-4191-AC66-B1C5F8A257F1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FISCALYEAR"
+              DTS:DTSID="{A062B153-DC07-4686-80B5-39F7B42011CF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ELECTRICITY"
+              DTS:DTSID="{1F78BDEF-490E-4D05-B19A-65304259D45D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="GARBAGE"
+              DTS:DTSID="{D902A66E-9130-4C6F-9D32-4632ADCAC460}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NATURALGAS"
+              DTS:DTSID="{62EF8992-430A-4FE6-8B52-32AB5D5C90E6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WATER"
+              DTS:DTSID="{B5726859-2B47-4803-965A-49285340972D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Export File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D818E26C-3484-43A8-B67B-3535CEE62D2A}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export File\BudgetsAndAllocations Text File"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="BudgetsAndAllocations Text File">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export File\BudgetsAndAllocations Text File.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BudgetsAndAllocationsExport]"
+                  connectionManagerRefId="Package.ConnectionManagers[BudgetsAndAllocationsExport]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].Columns[Site ID]"
+                      cachedDataType="i4"
+                      cachedName="Site ID"
+                      externalMetadataColumnId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Site ID]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Site ID]" />
+                    <inputColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].Columns[Data Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="Data Name"
+                      externalMetadataColumnId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Data Name]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Data Name]" />
+                    <inputColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].Columns[From Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="From Date"
+                      externalMetadataColumnId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[From Date]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[From Date]" />
+                    <inputColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].Columns[To Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="To Date"
+                      externalMetadataColumnId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[To Date]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[To Date]" />
+                    <inputColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].Columns[Budget or Allocation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Budget or Allocation"
+                      externalMetadataColumnId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Budget or Allocation]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Budget or Allocation]" />
+                    <inputColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].Columns[Value]"
+                      cachedDataType="numeric"
+                      cachedName="Value"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Value]" />
+                    <inputColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].Columns[Percent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Percent"
+                      externalMetadataColumnId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Percent]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Percent]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Site ID]"
+                      dataType="i4"
+                      name="Site ID" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Data Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Data Name" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[From Date]"
+                      dataType="date"
+                      name="From Date" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[To Date]"
+                      dataType="date"
+                      name="To Date" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Budget or Allocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Budget or Allocation" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      dataType="r4"
+                      name="Value" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input].ExternalColumns[Percent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Percent" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export File\Select Rows"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Select Rows"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXEC fusion.uspUtilitiesExport</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export File\Select Rows.Connections[OleDbConnection]"
+                  connectionManagerID="{6B41154F-F596-4CBA-8321-BB8138AE1E67}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DataMartStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Site ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Site ID]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Site ID]"
+                      name="Site ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Data Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Data Name]"
+                      length="11"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Data Name]"
+                      name="Data Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[From Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[From Date]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[From Date]"
+                      name="From Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[To Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[To Date]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[To Date]"
+                      name="To Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Budget or Allocation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Budget or Allocation]"
+                      length="1"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Budget or Allocation]"
+                      name="Budget or Allocation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Value]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Value]"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Value]"
+                      name="Value"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Percent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Percent]"
+                      length="1"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].Columns[Percent]"
+                      name="Percent"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Site ID]"
+                      dataType="i4"
+                      name="Site ID" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Data Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="Data Name" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[From Date]"
+                      dataType="dbTimeStamp"
+                      name="From Date" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[To Date]"
+                      dataType="dbTimeStamp"
+                      name="To Date" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Budget or Allocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Budget or Allocation" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Value]"
+                      dataType="numeric"
+                      name="Value"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Output].ExternalColumns[Percent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Percent" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Site ID]"
+                      dataType="i4"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Site ID]"
+                      name="Site ID" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Data Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Data Name]"
+                      name="Data Name" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[From Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[From Date]"
+                      name="From Date" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[To Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[To Date]"
+                      name="To Date" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Budget or Allocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Budget or Allocation]"
+                      name="Budget or Allocation" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Value]"
+                      dataType="numeric"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Value]"
+                      name="Value"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Percent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[Percent]"
+                      name="Percent" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export File\Select Rows.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export File.Paths[OLE DB Source Output]"
+              endId="Package\Export File\BudgetsAndAllocations Text File.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Export File\Select Rows.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\History Update Insert"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CD712810-266A-4ACE-AAB8-3658365DD343}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="History Update Insert"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6B41154F-F596-4CBA-8321-BB8138AE1E67}"
+          SQLTask:SqlStatementSource="EXEC fusion.uspUtilitiesHistoryInsert" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Staging Insert"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6CB25FF3-4AE5-4B3F-984D-8D4388207AD3}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Staging Insert"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Staging Insert\Utilities File"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Utilities File"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging Insert\Utilities File.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[UtilitiesImport]"
+                  connectionManagerRefId="Package.ConnectionManagers[UtilitiesImport]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[SITEID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[SITEID]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[SITEID]"
+                      name="SITEID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[PERIOD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[PERIOD]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[PERIOD]"
+                      name="PERIOD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[FISCALYEAR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[FISCALYEAR]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[FISCALYEAR]"
+                      name="FISCALYEAR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[ELECTRICITY]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[ELECTRICITY]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[ELECTRICITY]"
+                      name="ELECTRICITY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[GARBAGE]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[GARBAGE]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[GARBAGE]"
+                      name="GARBAGE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[NATURALGAS]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[NATURALGAS]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[NATURALGAS]"
+                      name="NATURALGAS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[WATER]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[WATER]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[WATER]"
+                      name="WATER"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[SITEID]"
+                      dataType="i4"
+                      name="SITEID" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[PERIOD]"
+                      dataType="i4"
+                      name="PERIOD" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[FISCALYEAR]"
+                      dataType="i4"
+                      name="FISCALYEAR" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[ELECTRICITY]"
+                      dataType="r4"
+                      name="ELECTRICITY" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[GARBAGE]"
+                      dataType="r4"
+                      name="GARBAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[NATURALGAS]"
+                      dataType="r4"
+                      name="NATURALGAS" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].ExternalColumns[WATER]"
+                      dataType="r4"
+                      name="WATER" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Staging Insert\UtilitiesStaging Table"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="UtilitiesStaging Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[fusion].[UtilitiesStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging Insert\UtilitiesStaging Table.Connections[OleDbConnection]"
+                  connectionManagerID="{6B41154F-F596-4CBA-8321-BB8138AE1E67}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DataMartStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].Columns[SITEID]"
+                      cachedDataType="i4"
+                      cachedName="SITEID"
+                      externalMetadataColumnId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[SITEID]" />
+                    <inputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].Columns[PERIOD]"
+                      cachedDataType="i4"
+                      cachedName="PERIOD"
+                      externalMetadataColumnId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[PERIOD]" />
+                    <inputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].Columns[FISCALYEAR]"
+                      cachedDataType="i4"
+                      cachedName="FISCALYEAR"
+                      externalMetadataColumnId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[FISCALYEAR]" />
+                    <inputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].Columns[ELECTRICITY]"
+                      cachedDataType="r4"
+                      cachedName="ELECTRICITY"
+                      externalMetadataColumnId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Electricity]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[ELECTRICITY]" />
+                    <inputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].Columns[GARBAGE]"
+                      cachedDataType="r4"
+                      cachedName="GARBAGE"
+                      externalMetadataColumnId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Garbage]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[GARBAGE]" />
+                    <inputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].Columns[NATURALGAS]"
+                      cachedDataType="r4"
+                      cachedName="NATURALGAS"
+                      externalMetadataColumnId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[NaturalGas]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[NATURALGAS]" />
+                    <inputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].Columns[WATER]"
+                      cachedDataType="r4"
+                      cachedName="WATER"
+                      externalMetadataColumnId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Water]"
+                      lineageId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output].Columns[WATER]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
+                      dataType="i4"
+                      name="SiteID" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Electricity]"
+                      dataType="numeric"
+                      name="Electricity"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Garbage]"
+                      dataType="numeric"
+                      name="Garbage"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[NaturalGas]"
+                      dataType="numeric"
+                      name="NaturalGas"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[Water]"
+                      dataType="numeric"
+                      name="Water"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="InsertedBy" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Staging Insert\UtilitiesStaging Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging Insert\UtilitiesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging Insert\UtilitiesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging Insert\UtilitiesStaging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Staging Insert.Paths[Flat File Source Output]"
+              endId="Package\Staging Insert\UtilitiesStaging Table.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Staging Insert\Utilities File.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{517E6F7D-90ED-48C3-8A8A-3AD9415B75BF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6B41154F-F596-4CBA-8321-BB8138AE1E67}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE fusion.UtilitiesStaging" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D272EEFC-3C2B-45BB-83A2-C4AE13870130}"
+      DTS:From="Package\Truncate Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Staging Insert" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C979A639-9510-4BFB-B261-92AC018E040A}"
+      DTS:From="Package\Staging Insert"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\History Update Insert" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{10F75B2A-1C6B-4E7F-AB06-BDA0BA2A3E57}"
+      DTS:From="Package\History Update Insert"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Export File" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Export File"
+          TopLeft="76.5,341" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\History Update Insert"
+          TopLeft="76.5,245" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Staging Insert"
+          TopLeft="76.5,147" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Truncate Staging Table"
+          TopLeft="76.5,55" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="170.5,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="170.5,189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="170.5,287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Export File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="276,42"
+          Id="Package\Export File\BudgetsAndAllocations Text File"
+          TopLeft="193.833333333333,295" />
+        <NodeLayout
+          Size="276,42"
+          Id="Package\Export File\Select Rows"
+          TopLeft="193.833333333333,56" />
+        <EdgeLayout
+          Id="Package\Export File.Paths[OLE DB Source Output]"
+          TopLeft="331.833333333333,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,197"
+              Start="0,0"
+              End="0,189.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,189.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export File\Select Rows">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Staging Insert">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Staging Insert\UtilitiesStaging Table"
+          TopLeft="54,161" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Staging Insert\Utilities File"
+          TopLeft="61,43" />
+        <EdgeLayout
+          Id="Package\Staging Insert.Paths[Flat File Source Output]"
+          TopLeft="146.5,85">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Staging Insert\UtilitiesStaging Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

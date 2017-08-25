@@ -1,0 +1,2490 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2014 10:57:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="LSELLITTO-L72"
+  DTS:CreatorName="CORPHQ\lsellitto"
+  DTS:DTSID="{DA4E4704-838C-4D26-A276-3870C93532AA}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="COGs"
+  DTS:PackageType="5"
+  DTS:VersionBuild="84"
+  DTS:VersionGUID="{0DDB85F1-3B60-410A-A931-97E410A948DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{4DE38753-796C-4EF0-BD71-A651B943EE22}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory]  +  @[User::ExportFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-ssis2012-01\MessageHub\Anaplan\Outbox\COGs_20170515113959.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Account"
+              DTS:DTSID="{67E51DA0-33DE-4224-B381-29656C4BCA87}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant"
+              DTS:DTSID="{E47AA006-8ABD-4D07-8CF6-CF9EB268A6CB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WeekInfo"
+              DTS:DTSID="{247091CA-0BC0-40AF-988F-BECCDDBBE0AA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ActualUsageCount"
+              DTS:DTSID="{3CF9D50C-A9A3-4DE4-8525-5D474EB4A4BF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ActualUsageDollars"
+              DTS:DTSID="{C167008E-9C66-48DF-8299-CF8AFC7454D0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="IdealUsageCount"
+              DTS:DTSID="{BA433798-576D-4051-AE26-5A86A84FEF50}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="IdealUsageDollars"
+              DTS:DTSID="{D23B2DBD-EA8B-4E3D-9E20-19F852399A30}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{E8439BEE-B654-4D9F-B96E-5EE8AF4D9A14}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.redrobin.com;UseWindowsAuthentication=True;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1EE54EBC-D6B6-4323-ACC2-FAFC6C9451A7}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;COGs_&quot; + REPLACE((DT_WSTR, 200)(DT_DBDATE)GETUTCDATE(),&quot;-&quot;,&quot;&quot;)  + REPLACE((DT_WSTR, 8)(DT_DBTIME) @[System::StartTime] ,&quot;:&quot;,&quot;&quot;) &#xA; + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExportFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">COGs_20170515113959.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EF0F2C1F-A840-482E-BC2B-FBA0323D8EF6}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT&#xA;     x.Account,&#xA;     x.Restaurant,&#xA;     x.FiscalYear,&#xA;     x.Period,&#xA;     x.WeekNum,&#xA;     x.SubPeriod,&#xA;     x.WeekInfo,&#xA;     SUM(x.ActualUsageCount) AS 'ActualUsageCount',&#xA;     SUM(x.ActualUsageDollars) AS 'ActualUsageDollars',&#xA;     SUM(x.IdealUsageCount) AS 'IdealUsageCount',&#xA;     SUM(x.IdealUsageDollars) AS 'IdealUsageDollars'&#xA;FROM&#xA;         (SELECT DISTINCT&#xA;               i.RawMaterialItemCatNum AS 'Account',&#xA;               i.IngredientID,&#xA;               CONVERT(INT, i.StoreId) AS 'Restaurant',&#xA;               t.FiscalYear,&#xA;               t.Period,&#xA;               t.WeekNumber AS 'WeekNum',&#xA;               i.Subperiod,&#xA;               '' AS 'WeekInfo',&#xA;               i.ActualUsage AS 'ActualUsageCount',&#xA;               i.ActualUse$ AS 'ActualUsageDollars',&#xA;               i.SumOfTheoryUse AS 'IdealUsageCount',&#xA;               i.IdealUse$ AS 'IdealUsageDollars'&#xA;          FROM dbo.ST_ItemUseVariance i&#xA;          INNER JOIN MLAddOn.dbo.Time_Periods t&#xA;               ON  i.SubPeriod = t.SubPeriod&#xA;          LEFT OUTER JOIN MLAddOn.dbo.ProcessConfiguration ex&#xA;               ON ex.ConfigurationName = 'Cubes'&#xA;               AND ex.ConfigurationCode = 'Exclusions'&#xA;               AND CONVERT(INT, i.StoreId) = ex.ConfigurationValue&#xA;               AND t.SalesMixDate BETWEEN ex.EffectiveDate AND ex.ObsoleteDate&#xA;          WHERE t.Subperiod &gt;= &quot; + (DT_WSTR, 4) @[User::SubPeriod] + &quot;&#xA;               AND i.RawMaterialItemCatNum IN (5100000, 5110000, 5120000, 5130000,5140000, 5150000,&#xA;                                               5160000, 5170000,5180000, 5185000, 5190000, 5210000,&#xA;                                               5220000, 5230000, 5240000, 5250000)&#xA;               AND ex.ConfigurationValue IS NULL) x&#xA;GROUP BY&#xA;     x.Account,&#xA;     x.Restaurant,&#xA;     x.FiscalYear,&#xA;     x.Period,&#xA;     x.WeekNum,&#xA;     x.SubPeriod,&#xA;     x.WeekInfo&#xA;ORDER BY&#xA;     x.Restaurant,&#xA;     x.FiscalYear,&#xA;     x.Period&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="GetCronusDataSource">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT
+     x.Account,
+     x.Restaurant,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum,
+     x.SubPeriod,
+     x.WeekInfo,
+     SUM(x.ActualUsageCount) AS 'ActualUsageCount',
+     SUM(x.ActualUsageDollars) AS 'ActualUsageDollars',
+     SUM(x.IdealUsageCount) AS 'IdealUsageCount',
+     SUM(x.IdealUsageDollars) AS 'IdealUsageDollars'
+FROM
+         (SELECT DISTINCT
+               i.RawMaterialItemCatNum AS 'Account',
+               i.IngredientID,
+               CONVERT(INT, i.StoreId) AS 'Restaurant',
+               t.FiscalYear,
+               t.Period,
+               t.WeekNumber AS 'WeekNum',
+               i.Subperiod,
+               '' AS 'WeekInfo',
+               i.ActualUsage AS 'ActualUsageCount',
+               i.ActualUse$ AS 'ActualUsageDollars',
+               i.SumOfTheoryUse AS 'IdealUsageCount',
+               i.IdealUse$ AS 'IdealUsageDollars'
+          FROM dbo.ST_ItemUseVariance i
+          INNER JOIN MLAddOn.dbo.Time_Periods t
+               ON  i.SubPeriod = t.SubPeriod
+          LEFT OUTER JOIN MLAddOn.dbo.ProcessConfiguration ex
+               ON ex.ConfigurationName = 'Cubes'
+               AND ex.ConfigurationCode = 'Exclusions'
+               AND CONVERT(INT, i.StoreId) = ex.ConfigurationValue
+               AND t.SalesMixDate BETWEEN ex.EffectiveDate AND ex.ObsoleteDate
+          WHERE t.Subperiod &gt;= 0
+               AND i.RawMaterialItemCatNum IN (5100000, 5110000, 5120000, 5130000,5140000, 5150000,
+                                               5160000, 5170000,5180000, 5185000, 5190000, 5210000,
+                                               5220000, 5230000, 5240000, 5250000)
+               AND ex.ConfigurationValue IS NULL) x
+GROUP BY
+     x.Account,
+     x.Restaurant,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum,
+     x.SubPeriod,
+     x.WeekInfo
+ORDER BY
+     x.Restaurant,
+     x.FiscalYear,
+     x.Period</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{297AD8D5-F8F5-4368-83F7-A39DFAC5818C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT&#xA;               ct.ConfigurationCode AS 'Account',&#xA;               CONVERT(INT, i.StoreId) AS 'Restaurant',&#xA;               t.[Year] AS FiscalYear,&#xA;               t.Period,&#xA;               t.[Week] AS 'WeekNum',&#xA;               i.Subperiod,&#xA;               '' AS 'WeekInfo',&#xA;               SUM(ISNULL(i.ActualUsage, 0)) AS 'ActualUsageCount',&#xA;               SUM(ISNULL(i.ActualUse$, 0)) AS 'ActualUsageDollars',&#xA;               SUM(ISNULL(i.SumOfTheoryUse, 0)) AS 'IdealUsageCount',&#xA;               SUM(ISNULL(i.IdealUse$, 0)) AS 'IdealUsageDollars'&#xA;          FROM dbo.ST_ItemUseVariance i&#xA;          INNER JOIN dbo.ST_CalendarSubperiods t&#xA;               ON  i.SubPeriod = t.BusinessCalendarSubperiodNumber&#xA;          INNER JOIN DataMartStaging.config.ProcessConfiguration ct&#xA;               ON ct.ConfigurationName = 'COGSCatTran'&#xA;               AND i.RawMaterialItemCatNum = ct.ConfigurationValue&#xA;               AND t.EndDate BETWEEN ct.EffectiveDate AND ct.ObsoleteDate&#xA;          LEFT OUTER JOIN DataMartStaging.config.ProcessConfiguration ex&#xA;               ON ex.ConfigurationName = 'Cubes'&#xA;               AND ex.ConfigurationCode = 'Exclusions'&#xA;               AND CONVERT(INT, i.StoreId) = ex.ConfigurationValue&#xA;               AND t.EndDate BETWEEN ex.EffectiveDate AND ex.ObsoleteDate&#xA;          WHERE t.BusinessCalendarSubperiodNumber &gt;= &quot; + (DT_WSTR, 4) @[User::SubPeriod] + &quot;&#xA;               AND ex.ConfigurationValue IS NULL&#xA;          GROUP BY&#xA;               ct.ConfigurationCode,&#xA;               CONVERT(INT, i.StoreId),&#xA;               t.[Year],&#xA;               t.Period,&#xA;               t.[Week],&#xA;               i.Subperiod&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="GetNBODataSource">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT
+               ct.ConfigurationCode AS 'Account',
+               CONVERT(INT, i.StoreId) AS 'Restaurant',
+               t.[Year] AS FiscalYear,
+               t.Period,
+               t.[Week] AS 'WeekNum',
+               i.Subperiod,
+               '' AS 'WeekInfo',
+               SUM(ISNULL(i.ActualUsage, 0)) AS 'ActualUsageCount',
+               SUM(ISNULL(i.ActualUse$, 0)) AS 'ActualUsageDollars',
+               SUM(ISNULL(i.SumOfTheoryUse, 0)) AS 'IdealUsageCount',
+               SUM(ISNULL(i.IdealUse$, 0)) AS 'IdealUsageDollars'
+          FROM dbo.ST_ItemUseVariance i
+          INNER JOIN dbo.ST_CalendarSubperiods t
+               ON  i.SubPeriod = t.BusinessCalendarSubperiodNumber
+          INNER JOIN DataMartStaging.config.ProcessConfiguration ct
+               ON ct.ConfigurationName = 'COGSCatTran'
+               AND i.RawMaterialItemCatNum = ct.ConfigurationValue
+               AND t.EndDate BETWEEN ct.EffectiveDate AND ct.ObsoleteDate
+          LEFT OUTER JOIN DataMartStaging.config.ProcessConfiguration ex
+               ON ex.ConfigurationName = 'Cubes'
+               AND ex.ConfigurationCode = 'Exclusions'
+               AND CONVERT(INT, i.StoreId) = ex.ConfigurationValue
+               AND t.EndDate BETWEEN ex.EffectiveDate AND ex.ObsoleteDate
+          WHERE t.BusinessCalendarSubperiodNumber &gt;= 0
+               AND ex.ConfigurationValue IS NULL
+          GROUP BY
+               ct.ConfigurationCode,
+               CONVERT(INT, i.StoreId),
+               t.[Year],
+               t.Period,
+               t.[Week],
+               i.Subperiod</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7CEB92ED-3F94-4CD0-A108-9F740A038ED8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SubPeriod">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{98898CA6-BEC6-45DB-817B-351DAE74FEFE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValidateRecordCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Assign SubPeriod to Variable"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C7B8A51E-1560-4CDF-A81D-0235B022CBBE}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Assign SubPeriod to Variable"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9CC8C75B-D463-427E-829A-72FAE686E021}"
+          SQLTask:SqlStatementSource="SELECT&#xA;&#x9;MIN(SubPeriods) - 8 AS SubPeriod&#xA;FROM  [Staging].[dbo].[vwCalendarShort]&#xA;WHERE Period IN&#xA;(&#xA;&#x9;SELECT&#xA;&#x9;&#x9;Period&#xA;&#x9;FROM  Staging.dbo.vwCalendarShort&#xA;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)&#xA;)&#xA;&#x9; AND FiscalYear IN&#xA;(&#xA;&#x9;SELECT&#xA;&#x9;&#x9;FiscalYear&#xA;&#x9;FROM  Staging.dbo.vwCalendarShort&#xA;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)&#xA;);"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SubPeriod"
+            SQLTask:DtsVariableName="User::SubPeriod" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Count Result Set Records"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Count Result Set Records"
+      DTS:DTSID="{ab349ffe-e18e-46c5-afec-392c3d7df239}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Count Result Set Records"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="SELECT COUNT(Account) Cnt&#xA;FROM dbo.COGs&#xA;WHERE&#x9;SubPeriod &gt;= ?&#xA; AND Restaurant IN (SELECT DISTINCT Restaurant&#xA;           FROM dbo.Hierarchy)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Cnt"
+            SQLTask:DtsVariableName="User::ValidateRecordCount" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete data for the current period plus two periods prior"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data for the current period plus two periods prior"
+      DTS:DTSID="{75D3E2C8-957E-47B3-AF16-A305F3ABFEF3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete data for the current period plus two periods prior"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.COGs&#xA;WHERE SubPeriod &gt;= ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SubPeriod"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Data Older Than 25 Months"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Delete data older than 25 Months"
+      DTS:DTSID="{1EDDD25E-C48A-48FA-9114-4BB6148F51BE}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Data Older Than 25 Months"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.COGs&#xA;WHERE SubPeriod &lt;= (SELECT MIN(SubPeriods) -112 SubPeriod&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; FROM [Staging].[dbo].[vwCalendarShort]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; WHERE Period IN (SELECT Period&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM Staging.dbo.vwCalendarShort&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120) = &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; AND FiscalYear IN (SELECT FiscalYear&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM Staging.dbo.vwCalendarShort&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WHERE CONVERT(VARCHAR(10), FullDate, 120)  = &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate recent COGs data from MenuLink"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D9B5B7AD-C96D-4B6E-8991-C29D3FE9A194}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate recent COGs data from MenuLink"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Cronus Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @SubPeriod INT
+SET @SubPeriod = (SELECT MIN(SubPeriod) - 8 AS 'SubPeriod'
+                  FROM MLAddOn.dbo.Time_Periods_BI
+                  WHERE Period IN (SELECT Period
+                                   FROM MLAddOn.dbo.Time_Periods_BI
+                                   WHERE CONVERT(VARCHAR(10), salesmixdate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120))
+                                        AND FiscalYear IN (SELECT FiscalYear
+                                                           FROM MLAddOn.dbo.Time_Periods_BI
+                                                           WHERE CONVERT(VARCHAR(10), salesmixdate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)))
+
+SELECT
+     x.Account,
+     x.Restaurant,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum,
+     x.SubPeriod,
+     x.WeekInfo,
+     SUM(x.ActualUsageCount) AS 'ActualUsageCount',
+     SUM(x.ActualUsageDollars) AS 'ActualUsageDollars',
+     SUM(x.IdealUsageCount) AS 'IdealUsageCount',
+     SUM(x.IdealUsageDollars) AS 'IdealUsageDollars'
+FROM
+         (SELECT DISTINCT
+               i.RawMaterialItemCatNum AS 'Account',
+               i.IngredientID,
+               i.StoreID AS 'Restaurant',
+               t.FiscalYear,
+               t.Period,
+               t.WeekNumber AS 'WeekNum',
+               i.Subperiod,
+               '' AS 'WeekInfo',
+               i.ActualUsage AS 'ActualUsageCount',
+               i.ActualUse$ AS 'ActualUsageDollars',
+               i.SumOfTheoryUse AS 'IdealUsageCount',
+               i.IdealUse$ AS 'IdealUsageDollars'
+          FROM dbo.ST_ItemUseVariance i
+          INNER JOIN MLAddOn.dbo.Time_Periods t
+               ON  i.SubPeriod = t.SubPeriod
+          WHERE t.Subperiod &gt;= @SubPeriod
+               AND i.RawMaterialItemCatNum IN (5100000, 5110000, 5120000, 5130000,5140000, 5150000,
+                                               5160000, 5170000,5180000, 5185000, 5190000, 5210000,
+                                               5220000, 5230000, 5240000, 5250000)) x
+GROUP BY
+     x.Account,
+     x.Restaurant,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum,
+     x.SubPeriod,
+     x.WeekInfo
+ORDER BY
+     x.Restaurant,
+     x.Account,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::GetCronusDataSource</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Connections[OleDbConnection]"
+                  connectionManagerID="{7e2df2b7-0420-4316-8960-8c87cbb6dee4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Cronus.MLHQ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      name="FiscalYear"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      name="Period"
+                      sortKeyPosition="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekNum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[WeekNum]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekNum]"
+                      name="WeekNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      name="SubPeriod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[ActualUsageCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageCount]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[ActualUsageCount]"
+                      name="ActualUsageCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]"
+                      name="ActualUsageDollars"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[IdealUsageCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageCount]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[IdealUsageCount]"
+                      name="IdealUsageCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]"
+                      name="IdealUsageDollars"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      dataType="i4"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[WeekNum]"
+                      dataType="i4"
+                      name="WeekNum" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageCount]"
+                      dataType="r8"
+                      name="ActualUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageDollars]"
+                      dataType="r8"
+                      name="ActualUsageDollars" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageCount]"
+                      dataType="r8"
+                      name="IdealUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageDollars]"
+                      dataType="r8"
+                      name="IdealUsageDollars" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      name="FiscalYear" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      name="Period" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[WeekNum]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[WeekNum]"
+                      name="WeekNum" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      name="SubPeriod" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageCount]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageCount]"
+                      name="ActualUsageCount" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageDollars]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageDollars]"
+                      name="ActualUsageDollars" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageCount]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageCount]"
+                      name="IdealUsageCount" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageDollars]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageDollars]"
+                      name="IdealUsageDollars" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert COGs Data"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[COGs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[Account]"
+                      cachedDataType="i4"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[FiscalYear]"
+                      cachedDataType="i4"
+                      cachedName="FiscalYear"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[FiscalYear]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[Period]"
+                      cachedDataType="i4"
+                      cachedName="Period"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[Period]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[WeekNum]"
+                      cachedDataType="i4"
+                      cachedName="WeekNum"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekNum]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekNum]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[SubPeriod]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[SubPeriod]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[ActualUsageCount]"
+                      cachedDataType="r8"
+                      cachedName="ActualUsageCount"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageCount]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[ActualUsageCount]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[ActualUsageDollars]"
+                      cachedDataType="r8"
+                      cachedName="ActualUsageDollars"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[IdealUsageCount]"
+                      cachedDataType="r8"
+                      cachedName="IdealUsageCount"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageCount]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[IdealUsageCount]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[IdealUsageDollars]"
+                      cachedDataType="r8"
+                      cachedName="IdealUsageDollars"
+                      externalMetadataColumnId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekNum]"
+                      dataType="i4"
+                      name="WeekNum" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageCount]"
+                      dataType="r8"
+                      name="ActualUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageDollars]"
+                      dataType="r8"
+                      name="ActualUsageDollars" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageCount]"
+                      dataType="r8"
+                      name="IdealUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageDollars]"
+                      dataType="r8"
+                      name="IdealUsageDollars" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Populate recent COGs data from MenuLink.Paths[OLE DB Source Output]"
+              endId="Package\Populate recent COGs data from MenuLink\Insert COGs Data.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Populate recent COGs data from MenuLink\Get Cronus Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate recent COGs data from NBO"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8c9430f7-f6d8-4aaa-99b2-a0ce29bdd99d}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate recent COGs data from NBO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Populate recent COGs data from NBO\Get NBO Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get NBO Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @SubPeriod INT
+SET @SubPeriod = (SELECT MIN(SubPeriod) - 8 AS 'SubPeriod'
+                  FROM MLAddOn.dbo.Time_Periods_BI
+                  WHERE Period IN (SELECT Period
+                                   FROM MLAddOn.dbo.Time_Periods_BI
+                                   WHERE CONVERT(VARCHAR(10), salesmixdate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120))
+                                        AND FiscalYear IN (SELECT FiscalYear
+                                                           FROM MLAddOn.dbo.Time_Periods_BI
+                                                           WHERE CONVERT(VARCHAR(10), salesmixdate, 120) = CONVERT(VARCHAR(10), CURRENT_TIMESTAMP, 120)))
+
+SELECT
+     x.Account,
+     x.Restaurant,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum,
+     x.SubPeriod,
+     x.WeekInfo,
+     SUM(x.ActualUsageCount) AS 'ActualUsageCount',
+     SUM(x.ActualUsageDollars) AS 'ActualUsageDollars',
+     SUM(x.IdealUsageCount) AS 'IdealUsageCount',
+     SUM(x.IdealUsageDollars) AS 'IdealUsageDollars'
+FROM
+         (SELECT DISTINCT
+               i.RawMaterialItemCatNum AS 'Account',
+               i.IngredientID,
+               i.StoreID AS 'Restaurant',
+               t.FiscalYear,
+               t.Period,
+               t.WeekNumber AS 'WeekNum',
+               i.Subperiod,
+               '' AS 'WeekInfo',
+               i.ActualUsage AS 'ActualUsageCount',
+               i.ActualUse$ AS 'ActualUsageDollars',
+               i.SumOfTheoryUse AS 'IdealUsageCount',
+               i.IdealUse$ AS 'IdealUsageDollars'
+          FROM dbo.ST_ItemUseVariance i
+          INNER JOIN MLAddOn.dbo.Time_Periods t
+               ON  i.SubPeriod = t.SubPeriod
+          WHERE t.Subperiod &gt;= @SubPeriod
+               AND i.RawMaterialItemCatNum IN (5100000, 5110000, 5120000, 5130000,5140000, 5150000,
+                                               5160000, 5170000,5180000, 5185000, 5190000, 5210000,
+                                               5220000, 5230000, 5240000, 5250000)) x
+GROUP BY
+     x.Account,
+     x.Restaurant,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum,
+     x.SubPeriod,
+     x.WeekInfo
+ORDER BY
+     x.Restaurant,
+     x.Account,
+     x.FiscalYear,
+     x.Period,
+     x.WeekNum</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::GetNBODataSource</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent COGs data from NBO\Get NBO Data.Connections[OleDbConnection]"
+                  connectionManagerID="{4D01CF9F-8281-471D-A379-4EDFD3036BF9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DataMart SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[FiscalYear]"
+                      name="FiscalYear"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Period]"
+                      name="Period"
+                      sortKeyPosition="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekNum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[WeekNum]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekNum]"
+                      name="WeekNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[ActualUsageCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageCount]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[ActualUsageCount]"
+                      name="ActualUsageCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]"
+                      name="ActualUsageDollars"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[IdealUsageCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageCount]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[IdealUsageCount]"
+                      name="IdealUsageCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]"
+                      name="IdealUsageDollars"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Subperiod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Subperiod]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Subperiod]"
+                      name="Subperiod"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[FiscalYear]"
+                      dataType="i2"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                      dataType="i2"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[WeekNum]"
+                      dataType="i2"
+                      name="WeekNum" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageCount]"
+                      dataType="r8"
+                      name="ActualUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageDollars]"
+                      dataType="r8"
+                      name="ActualUsageDollars" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageCount]"
+                      dataType="r8"
+                      name="IdealUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageDollars]"
+                      dataType="r8"
+                      name="IdealUsageDollars" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].ExternalColumns[Subperiod]"
+                      dataType="i4"
+                      name="Subperiod" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      dataType="i2"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[FiscalYear]"
+                      name="FiscalYear" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      dataType="i2"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Period]"
+                      name="Period" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[WeekNum]"
+                      dataType="i2"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[WeekNum]"
+                      name="WeekNum" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Subperiod]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[Subperiod]"
+                      name="Subperiod" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageCount]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageCount]"
+                      name="ActualUsageCount" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageDollars]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ActualUsageDollars]"
+                      name="ActualUsageDollars" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageCount]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageCount]"
+                      name="IdealUsageCount" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageDollars]"
+                      dataType="r8"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[IdealUsageDollars]"
+                      name="IdealUsageDollars" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate recent COGs data from NBO\Insert COGs Data"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert COGs Data"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[COGs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[Account]"
+                      cachedDataType="i4"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[FiscalYear]"
+                      cachedDataType="i4"
+                      cachedName="FiscalYear"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[FiscalYear]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[Period]"
+                      cachedDataType="i4"
+                      cachedName="Period"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Period]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[WeekNum]"
+                      cachedDataType="i4"
+                      cachedName="WeekNum"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekNum]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekNum]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[Subperiod]"
+                      cachedDataType="i4"
+                      cachedName="Subperiod"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[Subperiod]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[ActualUsageCount]"
+                      cachedDataType="r8"
+                      cachedName="ActualUsageCount"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageCount]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[ActualUsageCount]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[ActualUsageDollars]"
+                      cachedDataType="r8"
+                      cachedName="ActualUsageDollars"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[IdealUsageCount]"
+                      cachedDataType="r8"
+                      cachedName="IdealUsageCount"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageCount]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[IdealUsageCount]" />
+                    <inputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].Columns[IdealUsageDollars]"
+                      cachedDataType="r8"
+                      cachedName="IdealUsageDollars"
+                      externalMetadataColumnId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageDollars]"
+                      lineageId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[Period]"
+                      dataType="i4"
+                      name="Period" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekNum]"
+                      dataType="i4"
+                      name="WeekNum" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageCount]"
+                      dataType="r8"
+                      name="ActualUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[ActualUsageDollars]"
+                      dataType="r8"
+                      name="ActualUsageDollars" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageCount]"
+                      dataType="r8"
+                      name="IdealUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input].ExternalColumns[IdealUsageDollars]"
+                      dataType="r8"
+                      name="IdealUsageDollars" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from NBO\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate recent COGs data from NBO\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate recent COGs data from NBO\Insert COGs Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Populate recent COGs data from NBO.Paths[OLE DB Source Output]"
+              endId="Package\Populate recent COGs data from NBO\Insert COGs Data.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Populate recent COGs data from NBO\Get NBO Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Select Output Data for Text File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E7D0A9E7-420A-4F17-9F7D-0DD05E1C8098}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Select Output Data for Text File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Select Output Data for Text File\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Account]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Account"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[WeekInfo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WeekInfo"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[ActualUsageCount]"
+                      cachedDataType="r8"
+                      cachedName="ActualUsageCount"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ActualUsageCount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsageCount]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[ActualUsageDollars]"
+                      cachedDataType="r8"
+                      cachedName="ActualUsageDollars"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ActualUsageDollars]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[IdealUsageCount]"
+                      cachedDataType="r8"
+                      cachedName="IdealUsageCount"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[IdealUsageCount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUsageCount]" />
+                    <inputColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].Columns[IdealUsageDollars]"
+                      cachedDataType="r8"
+                      cachedName="IdealUsageDollars"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[IdealUsageDollars]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ActualUsageCount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ActualUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ActualUsageDollars]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ActualUsageDollars" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[IdealUsageCount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="IdealUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[IdealUsageDollars]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="IdealUsageDollars" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Select Output Data for Text File\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[COGs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Account
+			,Restaurant
+			,WeekInfo
+			,ActualUsageCount
+      ,ActualUsageDollars
+			,IdealUsageCount
+      ,IdealUsageDollars
+FROM dbo.COGs
+WHERE	SubPeriod &gt;= ?
+	AND Restaurant IN (SELECT DISTINCT Restaurant
+										 FROM dbo.Hierarchy)
+ORDER BY Restaurant
+				,WeekInfo
+				,Account</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0:Input",{7CEB92ED-3F94-4CD0-A108-9F740A038ED8};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AnaplanScorecardBudget SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
+                      name="Account"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekInfo]"
+                      name="WeekInfo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsageCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageCount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsageCount]"
+                      name="ActualUsageCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageDollars]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[ActualUsageDollars]"
+                      name="ActualUsageDollars"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUsageCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageCount]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUsageCount]"
+                      name="IdealUsageCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageDollars]"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdealUsageDollars]"
+                      name="IdealUsageDollars"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Account" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeekInfo" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageCount]"
+                      dataType="r8"
+                      name="ActualUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ActualUsageDollars]"
+                      dataType="r8"
+                      name="ActualUsageDollars" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageCount]"
+                      dataType="r8"
+                      name="IdealUsageCount" />
+                    <externalMetadataColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdealUsageDollars]"
+                      dataType="r8"
+                      name="IdealUsageDollars" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      name="Account" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekInfo]"
+                      name="WeekInfo" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUsageCount]"
+                      dataType="r8"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUsageCount]"
+                      name="ActualUsageCount" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUsageDollars]"
+                      dataType="r8"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ActualUsageDollars]"
+                      name="ActualUsageDollars" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdealUsageCount]"
+                      dataType="r8"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdealUsageCount]"
+                      name="IdealUsageCount" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdealUsageDollars]"
+                      dataType="r8"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdealUsageDollars]"
+                      name="IdealUsageDollars" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+              endId="Package\Select Output Data for Text File\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Select Output Data for Text File\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{1ab9b8f7-a188-4103-8829-ca32b9a0dc69}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[$Project::SendEmailTo]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{E8439BEE-B654-4D9F-B96E-5EE8AF4D9A14}"
+          SendMailTask:From="itdatasupport@redrobin.com"
+          SendMailTask:To="itsupportservices@redrobin.com"
+          SendMailTask:Subject="Anaplan Sales Record Count Is Zero" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update WeekInfo"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Update WeekInfo"
+      DTS:DTSID="{CF48009E-1E27-4B5F-8B65-C7190018B939}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update WeekInfo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BB7A5518-49D7-4918-BA38-AF71FB377BFB}"
+          SQLTask:SqlStatementSource="UPDATE dbo.COGs&#xA;&#x9;SET WeekInfo = 'Week ' + CONVERT(VARCHAR(2), v.FiscalWeekNumOfYear) + ' FY' + SUBSTRING(CONVERT(VARCHAR(4), v.FiscalYear),3, 2)&#xA;&#x9;FROM [Staging].[dbo].[vwCalendarShort] v&#xA;&#x9;WHERE COGs.FiscalYear = v.FiscalYear&#xA;&#x9;&#x9;AND COGs.Period = v.Period&#xA;&#x9;&#x9;AND COGs.WeekNum = v.WeekNumInPeriod&#xA;&#x9;&#x9;AND COGs.SubPeriod &gt;= v.SubPeriods" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D26FBC03-CE8D-4F7A-B319-2012AE10ECEC}"
+      DTS:From="Package\Delete Data Older Than 25 Months"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Delete data for the current period plus two periods prior" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DF40D8ED-682C-4947-9C4A-9CAC63418C09}"
+      DTS:From="Package\Delete data for the current period plus two periods prior"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Populate recent COGs data from MenuLink" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8752CEAC-2149-423D-813D-D2E2CDBD9584}"
+      DTS:From="Package\Populate recent COGs data from MenuLink"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Populate recent COGs data from NBO" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{B95CE774-8BD9-48F5-831F-FEEC1D52B59C}"
+      DTS:From="Package\Update WeekInfo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Count Result Set Records" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{33C8DB99-4E00-4947-9A1D-AC2D158E73D2}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount &gt;= 1"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Select Output Data for Text File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{33AB33A0-9AA7-4EA0-B73E-2E60E1A9B2D2}"
+      DTS:EvalOp="3"
+      DTS:Expression="@ValidateRecordCount == 0"
+      DTS:From="Package\Count Result Set Records"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Send Mail Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{A11E9FDE-644D-42B7-A94F-5EA73B2FDB14}"
+      DTS:From="Package\Assign SubPeriod to Variable"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Delete Data Older Than 25 Months" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{F6D03917-9230-478A-94A2-F459472DA6FE}"
+      DTS:From="Package\Populate recent COGs data from NBO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Update WeekInfo" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Assign SubPeriod to Variable"
+          TopLeft="234,29" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Count Result Set Records"
+          TopLeft="224.816,491" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Delete data for the current period plus two periods prior"
+          TopLeft="221.816,187.5" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Delete Data Older Than 25 Months"
+          TopLeft="221.816,119" />
+        <NodeLayout
+          Size="279,42"
+          Id="Package\Populate recent COGs data from MenuLink"
+          TopLeft="208.816,253" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Select Output Data for Text File"
+          TopLeft="98.36,557" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Send Mail Task"
+          TopLeft="373,558" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Update WeekInfo"
+          TopLeft="272.816,423.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="344.316,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.5"
+              Start="0,0"
+              End="0,19">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="346.316,229.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.5"
+              Start="0,0"
+              End="0,16">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="350.816,465.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.5"
+              Start="0,0"
+              End="0,18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="307.816,533">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-86.956,24"
+              Start="0,0"
+              End="-86.956,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,5.69343065693431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,5.69343065693431"
+                    Point2="0,9.69343065693431"
+                    Point3="-4,9.69343065693431" />
+                  <mssgle:LineSegment
+                    End="-82.956,9.69343065693431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-82.956,9.69343065693431"
+                    Point2="-86.956,9.69343065693431"
+                    Point3="-86.956,13.6934306569343" />
+                  <mssgle:LineSegment
+                    End="-86.956,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-51.478,14.6934306569343,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="386.816,533">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.184,25"
+              Start="0,0"
+              End="82.184,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.09732360097314" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.09732360097314"
+                    Point2="0,10.0973236009731"
+                    Point3="4,10.0973236009731" />
+                  <mssgle:LineSegment
+                    End="78.184,10.0973236009731" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.184,10.0973236009731"
+                    Point2="82.184,10.0973236009731"
+                    Point3="82.184,14.0973236009731" />
+                  <mssgle:LineSegment
+                    End="82.184,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="33.092,15.0973236009731,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="343.158,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="255,42"
+          Id="Package\Populate recent COGs data from NBO"
+          TopLeft="221,337" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="348.408,295">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="351.408,379">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.5"
+              Start="0,0"
+              End="0,37">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Populate recent COGs data from MenuLink">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Populate recent COGs data from MenuLink\Get Cronus Data"
+          TopLeft="132,81" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Populate recent COGs data from MenuLink\Insert COGs Data"
+          TopLeft="275,263" />
+        <EdgeLayout
+          Id="Package\Populate recent COGs data from MenuLink.Paths[OLE DB Source Output]"
+          TopLeft="210.5,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145,140"
+              Start="0,0"
+              End="145,132.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66"
+                    Point2="0,70"
+                    Point3="4,70" />
+                  <mssgle:LineSegment
+                    End="141,70" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141,70"
+                    Point2="145,70"
+                    Point3="145,74" />
+                  <mssgle:LineSegment
+                    End="145,132.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent COGs data from MenuLink\Get Cronus Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent COGs data from MenuLink\Insert COGs Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Select Output Data for Text File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Select Output Data for Text File\Flat File Destination"
+          TopLeft="183.75,141" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Select Output Data for Text File\OLE DB Source"
+          TopLeft="183.75,66" />
+        <EdgeLayout
+          Id="Package\Select Output Data for Text File.Paths[OLE DB Source Output]"
+          TopLeft="270.75,108">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Select Output Data for Text File\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Populate recent COGs data from NBO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Populate recent COGs data from NBO\Get NBO Data"
+          TopLeft="132,81" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Populate recent COGs data from NBO\Insert COGs Data"
+          TopLeft="275,263" />
+        <EdgeLayout
+          Id="Package\Populate recent COGs data from NBO.Paths[OLE DB Source Output]"
+          TopLeft="204.5,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151,140"
+              Start="0,0"
+              End="151,132.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66"
+                    Point2="0,70"
+                    Point3="4,70" />
+                  <mssgle:LineSegment
+                    End="147,70" />
+                  <mssgle:CubicBezierSegment
+                    Point1="147,70"
+                    Point2="151,70"
+                    Point3="151,74" />
+                  <mssgle:LineSegment
+                    End="151,132.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent COGs data from NBO\Get NBO Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate recent COGs data from NBO\Insert COGs Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

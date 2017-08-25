@@ -1,0 +1,831 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/7/2014 10:20:52 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="IMONCIVAIS-L6"
+  DTS:CreatorName="CORPHQ\IMoncivais"
+  DTS:DTSID="{A43A47E9-EBE8-4439-B952-1747B0367310}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TEST - Copy Kula"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{9C8777D0-4F02-4096-A5A3-2AA2280E3F7B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.DW.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{402D986A-2C23-4DE4-82AC-E68C51044D76}"
+      DTS:ObjectName="HQ-FINSQL-01.DW.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=DW;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABj/RXDbFpd54oXDc8zrEkkAAAAAASAAACgAAAAEAAAAM0OiwwIsU032O7ylQz1+88oAAAAbg3on/fZmitsgD2JHDTXs1c2BdoLmTmjfIQe/X3AIyONC/FFTIppbhQAAAAFl9DbaIK8P/1D1ifKJQPZKY8YFA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{43B69370-F59D-41AB-835B-689C95B44194}"
+      DTS:ObjectName="HQ-SQL-06.Radiant.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-06;User ID=SSISUser;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAYVGCM7UbK3Z4F9o6Tgv+sAAAAAASAAACgAAAAEAAAAMjuQcr3T5RoAE72BvzfUmQoAAAAF/bTjSDNl1QVL8sQH1LsyjKT9LEZZjUByCEakfJx8WObpkEaRB+8WBQAAACRELD4PvD2txgTvVZU7WttyqeinQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy Kula related tables"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A97F8CA0-1C17-467F-A273-846E04415277}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Kula related tables"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy Kula related tables\from Dpvhstgnditem"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="from Dpvhstgnditem"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[vwDpvHstGndItem]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Kula related tables\from Dpvhstgnditem.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[FKStoreId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[FKStoreId]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[FKStoreId]"
+                      name="FKStoreId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[EntryId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[EntryId]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[EntryId]"
+                      name="EntryId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      name="CheckNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[FKCategoryId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[FKCategoryId]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[FKCategoryId]"
+                      name="FKCategoryId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DiscPric]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[DiscPric]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DiscPric]"
+                      name="DiscPric"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[DateTimeStamp]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DateTimeStamp]"
+                      name="DateTimeStamp"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[FKStoreId]"
+                      dataType="i4"
+                      name="FKStoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[EntryId]"
+                      dataType="i4"
+                      name="EntryId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[FKCategoryId]"
+                      dataType="i4"
+                      name="FKCategoryId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[DiscPric]"
+                      dataType="r8"
+                      name="DiscPric" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].ExternalColumns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="DateTimeStamp" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[FKStoreId]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[FKStoreId]"
+                      name="FKStoreId" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[EntryId]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[EntryId]"
+                      name="EntryId" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      name="CheckNumber" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[FKCategoryId]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[FKCategoryId]"
+                      name="FKCategoryId" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[DiscPric]"
+                      dataType="r8"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[DiscPric]"
+                      name="DiscPric" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[DateTimeStamp]"
+                      name="DateTimeStamp" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Kula related tables\to Dpvhstgnditem"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="to Dpvhstgnditem"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dpvHstGndItem]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Kula related tables\to Dpvhstgnditem.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].Columns[FKStoreId]"
+                      cachedDataType="i4"
+                      cachedName="FKStoreId"
+                      externalMetadataColumnId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKStoreId]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[FKStoreId]" />
+                    <inputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].Columns[EntryId]"
+                      cachedDataType="i4"
+                      cachedName="EntryId"
+                      externalMetadataColumnId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[EntryId]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[EntryId]" />
+                    <inputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].Columns[CheckNumber]"
+                      cachedDataType="i4"
+                      cachedName="CheckNumber"
+                      externalMetadataColumnId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[CheckNumber]" />
+                    <inputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].Columns[FKCategoryId]"
+                      cachedDataType="i4"
+                      cachedName="FKCategoryId"
+                      externalMetadataColumnId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKCategoryId]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[FKCategoryId]" />
+                    <inputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].Columns[DiscPric]"
+                      cachedDataType="r8"
+                      cachedName="DiscPric"
+                      externalMetadataColumnId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[DiscPric]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DiscPric]" />
+                    <inputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].Columns[DateTimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateTimeStamp"
+                      externalMetadataColumnId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[DateTimeStamp]"
+                      lineageId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output].Columns[DateTimeStamp]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[UniqueID]"
+                      dataType="i4"
+                      name="UniqueID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKStoreId]"
+                      dataType="i4"
+                      name="FKStoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKOccasionId]"
+                      dataType="i4"
+                      name="FKOccasionId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[EntryId]"
+                      dataType="i4"
+                      name="EntryId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      dataType="ui1"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKEmployeeNumber]"
+                      dataType="i4"
+                      name="FKEmployeeNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKItemId]"
+                      dataType="i4"
+                      name="FKItemId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ParentId]"
+                      dataType="i4"
+                      name="ParentId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKCategoryId]"
+                      dataType="i4"
+                      name="FKCategoryId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKOrderModeId]"
+                      dataType="i4"
+                      name="FKOrderModeId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKDayPartId]"
+                      dataType="i4"
+                      name="FKDayPartId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[Hour]"
+                      dataType="ui1"
+                      name="Hour" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[Minute]"
+                      dataType="ui1"
+                      name="Minute" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKTaxId]"
+                      dataType="i4"
+                      name="FKTaxId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKRevenueId]"
+                      dataType="i4"
+                      name="FKRevenueId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FKTerminalId]"
+                      dataType="i4"
+                      name="FKTerminalId" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[MenuPanel]"
+                      dataType="i4"
+                      name="MenuPanel" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[Origin]"
+                      dataType="i4"
+                      name="Origin" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      dataType="r8"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[SeatNumber]"
+                      dataType="ui1"
+                      name="SeatNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="r8"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[DiscPric]"
+                      dataType="r8"
+                      name="DiscPric" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ModCode]"
+                      dataType="ui1"
+                      name="ModCode" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ImportID]"
+                      dataType="guid"
+                      name="ImportID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ImportCheckSum]"
+                      dataType="i8"
+                      name="ImportCheckSum" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[DateTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="DateTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[InclTax]"
+                      dataType="r8"
+                      name="InclTax" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ExclTax]"
+                      dataType="r8"
+                      name="ExclTax" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[SystemDate]"
+                      dataType="dbTimeStamp"
+                      name="SystemDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[PeriodID]"
+                      dataType="i4"
+                      name="PeriodID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[SecondaryTaxID]"
+                      dataType="i4"
+                      name="SecondaryTaxID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[RevenueCenterItemOrder]"
+                      dataType="i4"
+                      name="RevenueCenterItemOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ConceptItemOrder]"
+                      dataType="i4"
+                      name="ConceptItemOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ItemCourseNumber]"
+                      dataType="i4"
+                      name="ItemCourseNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[BohControlName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="BohControlName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[BohControlNameParent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="BohControlNameParent" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ModifierFunctionTypes]"
+                      dataType="i4"
+                      name="ModifierFunctionTypes" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[QSQuickComboID]"
+                      dataType="i4"
+                      name="QSQuickComboID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[GroupQuickComboID]"
+                      dataType="i4"
+                      name="GroupQuickComboID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[ParentModifierID]"
+                      dataType="i4"
+                      name="ParentModifierID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[HourItemAdded]"
+                      dataType="i4"
+                      name="HourItemAdded" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[MinuteItemAdded]"
+                      dataType="i4"
+                      name="MinuteItemAdded" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[SecondItemAdded]"
+                      dataType="i4"
+                      name="SecondItemAdded" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FOHUniqueTableID]"
+                      dataType="i4"
+                      name="FOHUniqueTableID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[QuantityUnit]"
+                      dataType="numeric"
+                      name="QuantityUnit"
+                      precision="19"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[SubstituteItemID]"
+                      dataType="i4"
+                      name="SubstituteItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[FamilyStylePortion]"
+                      dataType="i4"
+                      name="FamilyStylePortion" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input].ExternalColumns[OrgPrice]"
+                      dataType="r8"
+                      name="OrgPrice" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Kula related tables\to Dpvhstgnditem.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\to Dpvhstgnditem.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Kula related tables\to Dpvhstgnditem.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Kula related tables\to Dpvhstgnditem.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy Kula related tables.Paths[OLE DB Source Output]"
+              endId="Package\Copy Kula related tables\to Dpvhstgnditem.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Kula related tables\from Dpvhstgnditem.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Create Index"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9215D3D1-8B7C-4FC1-8622-199B98D07DB5}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create Index"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{402D986A-2C23-4DE4-82AC-E68C51044D76}"
+          SQLTask:SqlStatementSource="&#xA;--&#x9;------&#xA;&#xA;USE DW&#xA;GO&#xA;&#xA;&#xA;IF EXISTS (SELECT Name FROM sysindexes WHERE Name = 'ClusteredIndex_GndItem_DateStore') &#xA;DROP INDEX [users].[ClusteredIndex_GndItem_DateStore]&#xA;GO&#xA;&#xA;&#x9;CREATE CLUSTERED INDEX [ClusteredIndex_GndItem_DateStore] ON [dbo].[dpvHstGndItem]&#xA;&#x9;(&#x9;[DateOfBusiness], [FKStoreId]&#xA;&#x9;)&#x9;WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF,&#xA;&#x9;&#x9;DROP_EXISTING = OFF,ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)&#xA;&#x9;ON [PRIMARY]&#xA;&#x9;GO&#xA;&#xA;--&#x9;------imp&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop and Create tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A519FCAA-7C3E-421D-B26C-815BE98F43A7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop and Create tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{402D986A-2C23-4DE4-82AC-E68C51044D76}"
+          SQLTask:SqlStatementSource="&#xA;USE [DW]&#xA;GO&#xA;&#xA;&#xA;--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[dpvHstGndItem]'))&#xA;DROP TABLE [dbo].[dpvHstGndItem]&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[dpvHstGndItem](&#xA; [UniqueID] [int] NULL,&#xA; [DateOfBusiness] [datetime] NULL,&#xA; [FKStoreId] [int] NULL,&#xA; [FKOccasionId] [int] NULL,&#xA; [EntryId] [int] NULL,&#xA; [Type] [tinyint] NULL,&#xA; [FKEmployeeNumber] [int] NULL,&#xA; [CheckNumber] [int] NULL,&#xA; [FKItemId] [int] NULL,&#xA; [ParentId] [int] NULL,&#xA; [FKCategoryId] [int] NULL,&#xA; [FKOrderModeId] [int] NULL,&#xA; [FKDayPartId] [int] NULL,&#xA; [Hour] [tinyint] NULL,&#xA; [Minute] [tinyint] NULL,&#xA; [FKTaxId] [int] NULL,&#xA; [FKRevenueId] [int] NULL,&#xA; [FKTerminalId] [int] NULL,&#xA; [MenuPanel] [int] NULL,&#xA; [Origin] [int] NULL,&#xA; [Price] [float] NULL,&#xA; [SeatNumber] [tinyint] NULL,&#xA; [Quantity] [float] NULL,&#xA; [DiscPric] [float] NULL,&#xA; [ModCode] [tinyint] NULL,&#xA; [ImportID] [uniqueidentifier] NULL,&#xA; [ImportCheckSum] [bigint] NULL,&#xA; [DateTimeStamp] [datetime] NULL,&#xA; [InclTax] [float] NULL,&#xA; [ExclTax] [float] NULL,&#xA; [SystemDate] [datetime] NULL,&#xA; [PeriodID] [int] NULL,&#xA; [SecondaryTaxID] [int] NULL,&#xA; [RevenueCenterItemOrder] [int] NULL,&#xA; [ConceptItemOrder] [int] NULL,&#xA; [ItemCourseNumber] [int] NULL,&#xA; [BohControlName] [varchar](20) NULL,&#xA; [BohControlNameParent] [varchar](20) NULL,&#xA; [ModifierFunctionTypes] [int] NULL,&#xA; [QSQuickComboID] [int] NULL,&#xA; [GroupQuickComboID] [int] NULL,&#xA; [ParentModifierID] [int] NULL,&#xA; [HourItemAdded] [int] NULL,&#xA; [MinuteItemAdded] [int] NULL,&#xA; [SecondItemAdded] [int] NULL,&#xA; [FOHUniqueTableID] [int] NULL,&#xA; [QuantityUnit] [decimal](19, 4) NULL,&#xA; [SubstituteItemID] [int] NULL,&#xA; [FamilyStylePortion] [int] NULL,&#xA; [OrgPrice] [float] NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;&#xA;--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -&#xA;&#xA;-- imp&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1ED82ED-E76B-4D18-8A7E-3D259456156E}"
+      DTS:From="Package\Drop and Create tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy Kula related tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C10BF25E-9A0A-4BBF-9CA2-61B793A1EAE2}"
+      DTS:From="Package\Copy Kula related tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Create Index" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Copy Kula related tables"
+          TopLeft="59.5,172.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Drop and Create tables"
+          TopLeft="62,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="157,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.5"
+              Start="0,0"
+              End="0,63">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Create Index"
+          TopLeft="86,275" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="157,214.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.5"
+              Start="0,0"
+              End="0,53">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy Kula related tables">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Copy Kula related tables\to Dpvhstgnditem"
+          TopLeft="60,132" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Copy Kula related tables\from Dpvhstgnditem"
+          TopLeft="54,19" />
+        <EdgeLayout
+          Id="Package\Copy Kula related tables.Paths[OLE DB Source Output]"
+          TopLeft="142.5,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Kula related tables\from Dpvhstgnditem">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Kula related tables\to Dpvhstgnditem">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

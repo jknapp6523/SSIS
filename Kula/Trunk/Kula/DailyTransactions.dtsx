@@ -1,0 +1,740 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/28/2014 1:13:02 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="QA-SSIS2012-01"
+  DTS:CreatorName="QA01\HHicks"
+  DTS:DTSID="{D38C7854-724A-48B4-BB4B-28AFB5D5AB82}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DailyTransactions"
+  DTS:PackageType="5"
+  DTS:VersionBuild="207"
+  DTS:VersionGUID="{BC727304-8D42-4D36-92B8-E770AEEE601D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kula Daily Export]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Export file location for daily transactions"
+      DTS:DTSID="{A9A6EDC7-431C-4529-BBDF-D5216B9B399C}"
+      DTS:ObjectName="Kula Daily Export">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ExportFlatFileDirectory]  + @[User::NewTransactionsFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\Kula\Outbox\RRRDonations-20161103124052.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="134"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TimeOfSale"
+              DTS:DTSID="{AA3EBC49-313A-4223-9BA9-B234454EE7D9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Restaurant"
+              DTS:DTSID="{820F7D9F-CA26-4A02-9D86-E9125E8E7777}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CheckNumber"
+              DTS:DTSID="{BBAA1EE6-5E50-4C57-BFF0-3186E9189927}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="134"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateOfBusiness"
+              DTS:DTSID="{BEC6AAF4-99C8-4E08-AEC4-32D200C264D0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="KulaCustomerId"
+              DTS:DTSID="{6D0B78F4-4792-4639-AD21-24DD752B57B7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="36"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DonationAmount"
+              DTS:DTSID="{D5E61E95-D5E9-4693-97EB-11B1820CCB78}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Currency"
+              DTS:DTSID="{7104A162-9562-435C-B77C-8BD9AF031BC1}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RadiantStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4c2d5446-05ae-4c9b-a700-1c045fa1053f}"
+      DTS:ObjectName="RadiantStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-07;User ID=SSISUser;Initial Catalog=RadiantStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0PaxfnfqXk+7InMBaRU2IAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB4KzBHw89jPGAsY9TcAzoYAAAAAASAAACgAAAAEAAAAGyU9myzvXs7kpPRI1w8NfMoAAAAJ81xzdtEtYz2rxToYUC2HUJXZhGBj9+V8VCtf1nQYmIPz76rjAe7uRQAAABnsy7PlryvkOMOBHzKJJa/xc8kjg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{1DC19EA6-7220-4449-8209-4DF4553A91E0}"
+      DTS:ObjectName="DonationPercent">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">.01</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="convert(varchar, dateadd(d, -1, getdate()),1)"
+      DTS:DTSID="{E3CB623C-EAA2-48C8-851B-FC862A69D5CC}"
+      DTS:ObjectName="EndDate">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">'4/7/14'</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="convert(varchar, dateadd(d, -1, getdate()),1)"
+      DTS:DTSID="{A0F4E838-45E5-460D-BE7A-2588066EA7D2}"
+      DTS:ObjectName="StartDate">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">'8/31/14'</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2DA40EF9-098E-4B3B-9EB3-A5BA996FCFF8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NewTransactionRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{329E60CE-85A2-4839-9EF4-B1199ED14FC8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;RRRDonations-&quot; + REPLACE((DT_WSTR, 200)(DT_DBDATE)GETUTCDATE(),&quot;-&quot;,&quot;&quot;)  + REPLACE((DT_WSTR, 8)(DT_DBTIME) @[System::StartTime] ,&quot;:&quot;,&quot;&quot;) &#xA; + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="NewTransactionsFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">RRRDonations-20161103124052.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A218C106-DDA8-4E4E-A87C-2A0F1CDA80D1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StartDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/1900</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{850F626D-939E-467E-A930-2CAE67D6EF16}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Create File\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Create File\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Kula Daily Export]"
+                  connectionManagerRefId="Package.ConnectionManagers[Kula Daily Export]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].Columns[TimeOfSale]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TimeOfSale"
+                      externalMetadataColumnId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TimeOfSale]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[TimeOfSale]" />
+                    <inputColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Restaurant]"
+                      cachedDataType="i4"
+                      cachedName="Restaurant"
+                      externalMetadataColumnId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[Restaurant]" />
+                    <inputColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].Columns[CheckNumber]"
+                      cachedDataType="i4"
+                      cachedName="CheckNumber"
+                      externalMetadataColumnId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[CheckNumber]" />
+                    <inputColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].Columns[KulaCustomerId]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="KulaCustomerId"
+                      externalMetadataColumnId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[KulaCustomerId]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[KulaCustomerId]" />
+                    <inputColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].Columns[DonationAmount]"
+                      cachedDataType="numeric"
+                      cachedName="DonationAmount"
+                      cachedPrecision="16"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DonationAmount]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[DonationAmount]" />
+                    <inputColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].Columns[Currency]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Currency"
+                      externalMetadataColumnId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Currency]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[Currency]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TimeOfSale]"
+                      dataType="dbTime"
+                      name="TimeOfSale" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTime"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[KulaCustomerId]"
+                      dataType="wstr"
+                      length="50"
+                      name="KulaCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[DonationAmount]"
+                      dataType="numeric"
+                      name="DonationAmount"
+                      precision="36"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Currency]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Currency" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Create File\Get Transaction Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Transaction Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+     a.DateOfBusiness AS 'TimeOfSale',
+     a.Restaurant,
+     a.CheckNumber,
+     a.DateOfBusiness,
+     a.KulaCustomerId,
+     a.DonationAmount,
+     a.Currency
+FROM dbo.KulaTransactionDetail_work a</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Create File\Get Transaction Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RadiantStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[RadiantStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[TimeOfSale]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[TimeOfSale]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[TimeOfSale]"
+                      name="TimeOfSale"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[Restaurant]"
+                      name="Restaurant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[CheckNumber]"
+                      name="CheckNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[KulaCustomerId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[KulaCustomerId]"
+                      length="50"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[KulaCustomerId]"
+                      name="KulaCustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[DonationAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[DonationAmount]"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[DonationAmount]"
+                      name="DonationAmount"
+                      precision="16"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[Currency]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                      length="3"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].Columns[Currency]"
+                      name="Currency"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[TimeOfSale]"
+                      dataType="dbTimeStamp"
+                      name="TimeOfSale" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[Restaurant]"
+                      dataType="i4"
+                      name="Restaurant" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[CheckNumber]"
+                      dataType="i4"
+                      name="CheckNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[KulaCustomerId]"
+                      dataType="wstr"
+                      length="50"
+                      name="KulaCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[DonationAmount]"
+                      dataType="numeric"
+                      name="DonationAmount"
+                      precision="16"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Currency" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[TimeOfSale]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[TimeOfSale]"
+                      name="TimeOfSale" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      dataType="i4"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[Restaurant]"
+                      name="Restaurant" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      dataType="i4"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[CheckNumber]"
+                      name="CheckNumber" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[KulaCustomerId]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[KulaCustomerId]"
+                      name="KulaCustomerId" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[DonationAmount]"
+                      dataType="numeric"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[DonationAmount]"
+                      name="DonationAmount"
+                      precision="16"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                      name="Currency" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Create File.Paths[OLE DB Source Output]"
+              endId="Package\Create File\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Create File\Get Transaction Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Populate KulaTransactionDetail_work"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Populate KulaTransactionDetail with current data"
+      DTS:DTSID="{EDB37038-90F7-4DB9-A6CA-A49744A3C0E0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate KulaTransactionDetail_work"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4c2d5446-05ae-4c9b-a700-1c045fa1053f}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_KulaTransactionDetail ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::StartDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4FA9A323-0516-431C-AF35-406BC1A91676}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4c2d5446-05ae-4c9b-a700-1c045fa1053f}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.KulaTransactionDetail_work" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{508F8110-9BE2-4E74-A23B-3C05471597E1}"
+      DTS:From="Package\Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Populate KulaTransactionDetail_work" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4D2C40E6-451B-4ACF-9F98-9712EC6B3117}"
+      DTS:From="Package\Populate KulaTransactionDetail_work"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Create File" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Create File"
+          TopLeft="110.21450617284,311.5" />
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Populate KulaTransactionDetail_work"
+          TopLeft="110.21450617284,214.75" />
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Truncate Table"
+          TopLeft="110.21450617284,118" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="237.21450617284,160">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.75"
+              Start="0,0"
+              End="0,47.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="237.21450617284,256.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.75"
+              Start="0,0"
+              End="0,47.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Create File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Create File\Flat File Destination"
+          TopLeft="212.125,131" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Create File\Get Transaction Data"
+          TopLeft="212.125,48" />
+        <EdgeLayout
+          Id="Package\Create File.Paths[OLE DB Source Output]"
+          TopLeft="300.375,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Create File\Get Transaction Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

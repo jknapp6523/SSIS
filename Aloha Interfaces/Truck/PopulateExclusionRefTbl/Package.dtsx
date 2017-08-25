@@ -1,0 +1,860 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/17/2012 9:10:14 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNIGS2-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{BE885BAE-1884-47B8-875A-89A6A76578A4}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{33F6896C-2716-4B63-BB03-F67E1EE070DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SSIS2012-01.AlohaInterfaces.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A60ED4EE-61E9-4480-9AAA-6D9314D991FD}"
+      DTS:ObjectName="HQ-SSIS2012-01.AlohaInterfaces.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SSIS2012-01;User ID=SSISUser;Initial Catalog=AlohaInterfaces;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALLKivbPBk02nafOlv1aAIAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACpmcRUB3DDisFJPbqleD7AAAAAAASAAACgAAAAEAAAAOVAAr5GDFr/ca9vOLLSidsoAAAA4oGtuQgSnz4MiYaQsemrdhDD9uzV5WG8jL4VCG7SDKQOBrCCdrMZPhQAAABKX5W+aDl4QCMhbBwmplsliBbJsw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SSIS2012-01.ItemFallOut.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BF0A0B9E-52A1-4DCF-BFD6-D651950236FB}"
+      DTS:ObjectName="HQ-SSIS2012-01.ItemFallOut.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SSIS2012-01;User ID=SSISUser;Initial Catalog=ItemFallout;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALLKivbPBk02nafOlv1aAIAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB5nazqjDBgOrUsK+n2f0IEAAAAAASAAACgAAAAEAAAAEXDGJtY5GMv9+gBU4P5jNQoAAAAaAmcyd3f2pHZBcubSFodNZpWcFOYXcdOQ1Rl3kjSNs8D1nEFlXSkyBQAAABh3klbA9IwTyQ5ddGwEYVVtsZIKA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Radiant]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{75A070D5-BEFD-4708-8B32-AF8B4837ADF1}"
+      DTS:ObjectName="Radiant">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-07;User ID=ReportRunner;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALLKivbPBk02nafOlv1aAIAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACqPj5qdzZIE1QG9SCq/Yk4AAAAAASAAACgAAAAEAAAACv2PmyiXGNCIFXBTXhn7RIgAAAAHG4aL60u1FWjuUjUmTAbJ1OwUz3YRcY6PQ3jg6lfvysUAAAAxuY0/k/ohDpXB8sIQqr2ui6nWLU</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{446667C7-AFF5-4321-A7B4-033374F500C2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="GetExcludedItemData">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT	ItemID AS [ModifierID], ShortName AS [ModifierDescription], SUBSTRING(SKU2, 1, (CHARINDEX('_',SKU2) -1)) AS [ExclusionCategory] FROM Item WHERE SKU2 IS NOT NULL</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{146FA96A-6312-46F7-B33D-2CDAA5D4C080}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TruncateReference">
+      <DTS:VariableValue
+        DTS:DataType="8">TRUNCATE TABLE ExcludedModifiers</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Populate Exclusion Reference Table"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{25CD0A48-3D38-4B73-BD66-E3424A72BDD0}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate Exclusion Reference Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Populate Exclusion Reference Table\Excluded Modifiers"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Excluded Modifiers"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ExcludedModifiers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SSIS2012-01.AlohaInterfaces.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SSIS2012-01.AlohaInterfaces.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].Columns[ModifierID]"
+                      cachedDataType="i4"
+                      cachedName="ModifierID"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].ExternalColumns[ModifierID]"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierID]" />
+                    <inputColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].Columns[ModifierDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="ModifierDescription"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].ExternalColumns[ModifierDescription]"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierDescription]" />
+                    <inputColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].Columns[ExclusionCategory]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="ExclusionCategory"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].ExternalColumns[ExclusionCategory]"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ExclusionCategory]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].ExternalColumns[ModifierID]"
+                      dataType="i4"
+                      name="ModifierID" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].ExternalColumns[ModifierDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ModifierDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input].ExternalColumns[ExclusionCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ExclusionCategory" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Exclusion Reference Table\Fallout Exclusions"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Fallout Exclusions"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ExcludedModifiers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SSIS2012-01.ItemFallOut.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SSIS2012-01.ItemFallOut.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].Columns[ModifierID]"
+                      cachedDataType="i4"
+                      cachedName="ModifierID"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].ExternalColumns[ModifierID]"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierID]" />
+                    <inputColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].Columns[ModifierDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="ModifierDescription"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].ExternalColumns[ModifierDescription]"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierDescription]" />
+                    <inputColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].Columns[ExclusionCategory]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="ExclusionCategory"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].ExternalColumns[ExclusionCategory]"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ExclusionCategory]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].ExternalColumns[ModifierID]"
+                      dataType="i4"
+                      name="ModifierID" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].ExternalColumns[ModifierDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ModifierDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input].ExternalColumns[ExclusionCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ExclusionCategory" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Exclusion Reference Table\Multicast"
+              componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Populate Exclusion Reference Table\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Exclusion Reference Table\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  description="AlohaInterfaces"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Populate Exclusion Reference Table\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Populate Exclusion Reference Table\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  description="Fallout Exclusions"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Populate Exclusion Reference Table\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Populate Exclusion Reference Table\Multicast.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Populate Exclusion Reference Table\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Exclusion Reference Table\Radiant"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Radiant"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::GetExcludedItemData</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate Exclusion Reference Table\Radiant.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Radiant]"
+                  connectionManagerRefId="Package.ConnectionManagers[Radiant]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].ExternalColumns[ModifierID]"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierID]"
+                      name="ModifierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].ExternalColumns[ModifierDescription]"
+                      length="16"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ModifierDescription]"
+                      name="ModifierDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ExclusionCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].ExternalColumns[ExclusionCategory]"
+                      length="16"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].Columns[ExclusionCategory]"
+                      name="ExclusionCategory"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].ExternalColumns[ModifierID]"
+                      dataType="i4"
+                      name="ModifierID" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].ExternalColumns[ModifierDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="ModifierDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output].ExternalColumns[ExclusionCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="ExclusionCategory" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ModifierID]"
+                      dataType="i4"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ModifierID]"
+                      name="ModifierID" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ModifierDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ModifierDescription]"
+                      name="ModifierDescription" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ExclusionCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ExclusionCategory]"
+                      name="ExclusionCategory" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Populate Exclusion Reference Table.Paths[Multicast Output 1]"
+              endId="Package\Populate Exclusion Reference Table\Excluded Modifiers.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 1"
+              startId="Package\Populate Exclusion Reference Table\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Populate Exclusion Reference Table.Paths[Multicast Output 2]"
+              endId="Package\Populate Exclusion Reference Table\Fallout Exclusions.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 2"
+              startId="Package\Populate Exclusion Reference Table\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Populate Exclusion Reference Table.Paths[OLE DB Source Output]"
+              endId="Package\Populate Exclusion Reference Table\Multicast.Inputs[Multicast Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Populate Exclusion Reference Table\Radiant.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Exclusion Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B1B2F94C-6001-4321-83AD-5E76554B6F90}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Exclusion Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A60ED4EE-61E9-4480-9AAA-6D9314D991FD}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::TruncateReference" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Fallout Reference"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{386DE492-CCB4-4EB9-BA43-7B25F9F8D2AF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Fallout Reference"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BF0A0B9E-52A1-4DCF-BFD6-D651950236FB}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::TruncateReference" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A57F292B-1D2A-423C-89C9-38ED0AC886E8}"
+      DTS:From="Package\Truncate Exclusion Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Populate Exclusion Reference Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FDD53469-3F88-481F-8E6B-2F0E771F4361}"
+      DTS:From="Package\Truncate Fallout Reference"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncate Exclusion Table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Populate Exclusion Reference Table"
+          TopLeft="128,294" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Truncate Exclusion Table"
+          TopLeft="151,159" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Truncate Fallout Reference"
+          TopLeft="147,58" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="250.75,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,93"
+              Start="0,0"
+              End="0,85.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="250.25,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Populate Exclusion Reference Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Populate Exclusion Reference Table\Multicast"
+          TopLeft="155,164" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Populate Exclusion Reference Table\Fallout Exclusions"
+          TopLeft="412,260" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Populate Exclusion Reference Table\Excluded Modifiers"
+          TopLeft="136,258" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Populate Exclusion Reference Table\Radiant"
+          TopLeft="155,79" />
+        <EdgeLayout
+          Id="Package\Populate Exclusion Reference Table.Paths[OLE DB Source Output]"
+          TopLeft="214.25,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Exclusion Reference Table.Paths[Multicast Output 2]"
+          TopLeft="234.333333333333,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="259.166666666667,54"
+              Start="0,0"
+              End="259.166666666667,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.0228384991843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.0228384991843"
+                    Point2="0,22.0228384991843"
+                    Point3="4,22.0228384991843" />
+                  <mssgle:LineSegment
+                    End="255.166666666667,22.0228384991843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="255.166666666667,22.0228384991843"
+                    Point2="259.166666666667,22.0228384991843"
+                    Point3="259.166666666667,26.0228384991843" />
+                  <mssgle:LineSegment
+                    End="259.166666666667,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Exclusion Reference Table.Paths[Multicast Output 1]"
+          TopLeft="217.75,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate Exclusion Reference Table\Fallout Exclusions">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate Exclusion Reference Table\Excluded Modifiers">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate Exclusion Reference Table\Radiant">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

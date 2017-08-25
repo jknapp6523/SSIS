@@ -1,0 +1,2489 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/23/2012 3:41:21 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNIGS2-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{554C013B-1632-4894-B00B-A3972B577D69}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{1D2D1197-0375-454E-B063-B4F5A1DCFAEE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Cronus.MLHQ]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1461EBDC-2271-490C-897C-845DF8B10ED2}"
+      DTS:ObjectName="Cronus.MLHQ">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CRONUS\CRONUSSQL2000;User ID=ReportRunner;Initial Catalog=MLHQ;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Package-{1461EBDC-2271-490C-897C-845DF8B10ED2}cronus\cronussql2000.master;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAufOWFZqr40WfvRnghIe+iwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAf+KFY5MzceYbZDk6tduhfAAAAAASAAACgAAAAEAAAAMuABw0XEGwzhTqYu5QGpJAgAAAAj7jH8NwqyXILwbq7P7hO9idjb9EqVg/EhS8nrBz2AYcUAAAAyRBRO1708haNOTjTIJdsoG5D55w</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DetailsNotExcluded]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{733A57F2-19BF-41E9-87BA-9C8F4F496E31}"
+      DTS:ObjectName="DetailsNotExcluded">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePathDetailNotExcluded]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\MenuLink\Staging\MLInvoiceDetail_20170411070245.dat">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Identifier"
+              DTS:DTSID="{551AA6E7-538B-4FD7-BC33-A37D13368655}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="15"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RESTAURANT_NUM"
+              DTS:DTSID="{D104185C-E0B1-4EE1-9BAD-3627C71A15BA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_NUM"
+              DTS:DTSID="{63C026BB-1ACD-41AC-A396-7252D821130C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LINE_DESC"
+              DTS:DTSID="{781F4B03-182E-400C-B664-537F1332978D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="60"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="VENDOR_ITEM_NUM"
+              DTS:DTSID="{60E8F65A-FB92-4D34-98F1-4E456A3C9873}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LINE_NUM"
+              DTS:DTSID="{BA789B5A-6D0A-4D65-8534-FD32BE66CEC9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="10"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="QUANTITY"
+              DTS:DTSID="{59286BB8-43DF-40B1-BA47-E114F19B140A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="10"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UNIT_PRICE"
+              DTS:DTSID="{5F3B7271-A1BA-45E2-AB2E-13343EFE2D02}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="10"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TOTAL_AMOUNT"
+              DTS:DTSID="{0A7BF79A-9863-41AB-AF4C-C7E13FEFD079}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="GL_ACCOUNT"
+              DTS:DTSID="{FFDFA406-731D-48CA-952D-6B398195839B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SUPPLIER_NUM"
+              DTS:DTSID="{AC303442-1AFF-4004-B5CE-BD461F3D2D21}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="15"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_DATE"
+              DTS:DTSID="{E269DF4A-B6E0-492B-80D4-D68E429991C6}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HeaderFileNotExcluded]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{413F8868-F59A-42CE-BD1D-78282694CEA2}"
+      DTS:ObjectName="HeaderFileNotExcluded">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FilePathHeaderNotExcluded]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\HQ-SSIS2012-01\MessageHub\MenuLink\Staging\MLInvoiceHeader_20170411070245.dat">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Identifier"
+              DTS:DTSID="{FB654062-55C3-4F6F-8CDE-599FF345B2E3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RESTAURANT_NUM"
+              DTS:DTSID="{077A3692-12F9-4F32-933F-4F575AB37523}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_NUM"
+              DTS:DTSID="{3AA3E7BE-36E6-4555-BEF1-653AB12D87AA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SUPPLIER_NUM"
+              DTS:DTSID="{795CD12A-2BB5-46DA-B055-F1D13BB17A55}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PERIOD_NUM"
+              DTS:DTSID="{A25CCD4E-4092-4883-8922-D52515D42EBD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WEEK_NUM"
+              DTS:DTSID="{378DC573-8EB2-4871-AC01-546A2B2D6A27}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_TOTAL"
+              DTS:DTSID="{C12837CF-3741-45B8-9249-57DA2AA7C612}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="INVOICE_DATE"
+              DTS:DTSID="{3C4D79E8-2E08-44D3-AD65-FA95967A85E9}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FCD5846F-F8DE-49C3-BCD9-78CB61D24952}"
+      DTS:ObjectName="HQ-FinSQL-01.Interfaces.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FinSQL-01;User ID=SSISUser;Initial Catalog=Interfaces;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAufOWFZqr40WfvRnghIe+iwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADj3w+yevMqYN32gv2K/cTZAAAAAASAAACgAAAAEAAAAJFvE9lti46n+X/NwgsBWWooAAAAvlNDUEbebQ/zobYTrMNPDdhPiCugyxM38XICx96vHPr5smki1lHQgRQAAADOw0oRJkQqiQfRCMXTUMhew1WwfA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{11BF2E31-A7DC-48E7-A450-C11A26456EF8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLACE((DT_WSTR, 10)(DT_DBDATE)@[System::StartTime], &quot;-&quot;,&quot;&quot;) + REPLACE((DT_WSTR,10)(DT_DBTIME)@[System::StartTime], &quot;:&quot;, &quot;&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Date">
+      <DTS:VariableValue
+        DTS:DataType="8">20170411070245</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6B407EA-86E4-4A2C-B37B-E0B51A871098}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DetailsRecordset">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DB88B0D3-5EA6-4D41-B888-72011E90C004}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\HQ-SSIS2012-01\\MessageHub\\MenuLink\\Staging\\MLInvoiceDetail_&quot; + @Date + &quot;.dat&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePathDetailNotExcluded">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Staging\MLInvoiceDetail_20170411070245.dat</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5F4E937F-ECD5-4089-9B77-D6AF91F76FE5}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\HQ-SSIS2012-01\\MessageHub\\MenuLink\\Staging\\MLInvoiceHeader_&quot; + @Date + &quot;.dat&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePathHeaderNotExcluded">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Staging\MLInvoiceHeader_20170411070245.dat</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{512DED49-0F19-4DB6-9ED6-395894569F9E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="HeaderRecordset">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1CB52BC1-A629-4EC3-8CDD-7E3F209FE13E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\HQ-SSIS2012-01\\MessageHub\\MenuLink\\Outbox\\&quot;  +  @[User::StagingFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutboxDestinationPath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Outbox\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D927E03E-7B98-4EA7-A765-33CF0B52AC80}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StagingFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A54A3A1F-4688-42BE-9965-C884278AC910}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\HQ-SSIS2012-01\\MessageHub\\MenuLink\\Staging\\&quot; +  @[User::StagingFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StagingSourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\HQ-SSIS2012-01\MessageHub\MenuLink\Staging\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get Invoice Details"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5260121B-F4B7-4223-A873-EF59FD66A8EA}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Invoice Details"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Invoice Details\Detail File Not Excluded"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Detail File Not Excluded">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Invoice Details\Detail File Not Excluded.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DetailsNotExcluded]"
+                  connectionManagerRefId="Package.ConnectionManagers[DetailsNotExcluded]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[Identifier]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Identifier"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[Identifier]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[Identifier]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[RESTAURANT_NUM]"
+                      cachedDataType="i4"
+                      cachedName="RESTAURANT_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[RESTAURANT_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[RESTAURANT_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[LINE_DESC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="LINE_DESC"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[LINE_DESC]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[LINE_DESC]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[VENDOR_ITEM_NUM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="VENDOR_ITEM_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[VENDOR_ITEM_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[VENDOR_ITEM_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[LINE_NUM]"
+                      cachedDataType="i4"
+                      cachedName="LINE_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[LINE_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[LINE_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[QUANTITY]"
+                      cachedDataType="numeric"
+                      cachedName="QUANTITY"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[QUANTITY]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[UNIT_PRICE]"
+                      cachedDataType="numeric"
+                      cachedName="UNIT_PRICE"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[UNIT_PRICE]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[UNIT_PRICE]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[TOTAL_AMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="TOTAL_AMOUNT"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[TOTAL_AMOUNT]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[TOTAL_AMOUNT]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[GL_ACCOUNT]"
+                      cachedDataType="i4"
+                      cachedName="GL_ACCOUNT"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[GL_ACCOUNT]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[GL_ACCOUNT]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[SUPPLIER_NUM]"
+                      cachedDataType="i4"
+                      cachedName="SUPPLIER_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[SUPPLIER_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[INVOICE_DATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="INVOICE_DATE"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_DATE]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_DATE]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].Columns[INVOICE_NUM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="INVOICE_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Identifier" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[RESTAURANT_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="RESTAURANT_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="INVOICE_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[LINE_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LINE_DESC" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[VENDOR_ITEM_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="VENDOR_ITEM_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[LINE_NUM]"
+                      dataType="i4"
+                      name="LINE_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[UNIT_PRICE]"
+                      dataType="numeric"
+                      name="UNIT_PRICE"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[TOTAL_AMOUNT]"
+                      dataType="numeric"
+                      name="TOTAL_AMOUNT"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[GL_ACCOUNT]"
+                      dataType="i4"
+                      name="GL_ACCOUNT" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[SUPPLIER_NUM]"
+                      dataType="i4"
+                      name="SUPPLIER_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="INVOICE_DATE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Get Invoice Details\Detail Recordset"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Detail Recordset"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">-- Detail Recordset
+-- Get last weeks subperiod
+DECLARE @SubPeriod int
+DECLARE @TodayDate datetime
+
+SET @TodayDate = DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))
+SET @SubPeriod = (SELECT Subperiod FROM [MLAddOn].dbo.[Time_Periods] WHERE SalesMixDate = @TodayDate)
+SET @SubPeriod = (@SubPeriod -1)
+
+-- Declare Invoice Detail table variable
+DECLARE @InvoiceDetail TABLE (
+								dIdentifier varchar(1),
+								dStoreID varchar(15),
+								dInvoiceID varchar(30),
+								dLineDesc varchar(100),
+								dVendorItemID varchar(60),
+								dLineNumber int,
+								dQuantity decimal(10,2),
+								dUnitPrice decimal(10,2),
+								dExtendedPrice decimal(10,2),
+								dGLAccount int,
+								hVendorID varchar(50),
+								dSubperiod varchar(10),
+								dInvoiceDate datetime
+								)
+
+-- Populate detail table variable with all invoice line item detail for the specified subperiod
+INSERT INTO @InvoiceDetail (dIdentifier,
+								dStoreID,
+								dInvoiceID,
+								dLineDesc,
+								dVendorItemID,
+								dLineNumber,
+								dQuantity,
+								dUnitPrice,
+								dExtendedPrice,
+								dGLAccount,
+								dSubperiod,
+								dInvoiceDate
+								)								
+	SELECT	'I',
+			StoreID,
+			UPPER(InvoiceID) as InvoiceID,
+			dLineDesc = CASE RawMaterialCatNum
+				WHEN 1015000 THEN 'Payroll Cash Clearing'
+				WHEN 1065000 THEN 'Employee Advance - Merc. Comm.'
+				WHEN 2100000 THEN 'Gift Certificate Sales'
+				WHEN 5100000 THEN 'Meat'
+				WHEN 5110000 THEN 'Hamburger'
+				WHEN 5120000 THEN 'Poultry'
+				WHEN 5130000 THEN 'Seafood'
+				WHEN 5140000 THEN 'Produce'
+				WHEN 5150000 THEN 'French Fries'
+				WHEN 5160000 THEN 'Canned/Dry Goods'
+				WHEN 5170000 THEN 'Bread'
+				WHEN 5180000 THEN 'Dairy'
+				WHEN 5185000 THEN 'Cheese'
+				WHEN 5190000 THEN 'Fry Oil'
+				WHEN 5199000 THEN 'Rebates'
+				WHEN 5210000 THEN 'Liquor'
+				WHEN 5220000 THEN 'Wine'
+				WHEN 5230000 THEN 'Draft Beer'
+				WHEN 5240000 THEN 'Bottled Beer'
+				WHEN 5250000 THEN 'Bar Consumables'
+				WHEN 6050000 THEN 'Team Member Meetings'
+				WHEN 6255000 THEN 'Laundry Allowance'
+				WHEN 7010000 THEN 'Kitchen Supplies'
+				WHEN 7020000 THEN 'Restaurant Supplies'
+				WHEN 7030000 THEN 'Glassware'
+				WHEN 7040000 THEN 'China'
+				WHEN 7050000 THEN 'Paper Supplies'
+				WHEN 7060000 THEN 'Cleaning Supplies'
+				WHEN 7070000 THEN 'Office Supplies'
+				WHEN 7110000 THEN 'Laundry'
+				WHEN 7120000 THEN 'Uniforms'
+				WHEN 7140000 THEN 'Guest Complaints'
+				WHEN 7150000 THEN 'Telephone'
+				WHEN 7160000 THEN 'Dues and Subs'
+				WHEN 7170000 THEN 'Recruitment Adv.'
+				WHEN 7180000 THEN 'Cash Over and Short'
+				WHEN 7190000 THEN 'Theft Loss &amp; Walkouts'
+				WHEN 7200000 THEN 'Postage &amp; Freight'
+				WHEN 7220000 THEN 'Janitorial &amp; Plant Maint.'
+				WHEN 7221000 THEN 'Indoor Cleaning'
+				WHEN 7222000 THEN 'Outdoor - Cleaning &amp; Landscape'
+				WHEN 7222000 THEN 'Outdoor Cleaning &amp; Landscape'
+				WHEN 7223000 THEN 'Pest Control'
+				WHEN 7240000 THEN 'Travel'
+				WHEN 7250000 THEN 'Warehousing &amp; Storage'
+				WHEN 7310000 THEN 'R &amp; M - Building/FFE RPM'
+				WHEN 7320000 THEN 'Preventive Maint Contracts'
+				WHEN 7325000 THEN 'R &amp; M - Local Services'
+				WHEN 7330000 THEN 'Comp &amp; Office Equip Maint.'
+				WHEN 7440000 THEN 'Garbage'
+				WHEN 7510000 THEN 'Leased Music'
+				WHEN 7525000 THEN 'Plants Purchased'
+				WHEN 7530000 THEN 'Bad Debts'
+				WHEN 7540000 THEN 'Licenses'
+				WHEN 7545000 THEN 'Security Services'
+				WHEN 7550000 THEN 'City Business Tax'
+				WHEN 7560000 THEN 'Small Equipment'
+				WHEN 7580000 THEN 'Professional Services'
+				WHEN 7590000 THEN 'Bank Charges'
+				WHEN 7610000 THEN 'Marketing Supplies'
+				WHEN 7620000 THEN 'Gift Cert - Promo'
+				WHEN 7630000 THEN 'Local Store Marketing'
+				WHEN 7630100 THEN 'Local Store Mktg Fundraiser'
+				WHEN 7630100 THEN 'Local Store Mktg Fundraising'
+				WHEN 7640000 THEN 'Advertising Contribribution'
+				WHEN 7640000 THEN 'Advertising Contribution'
+				WHEN 7660000 THEN 'Discount/Coupons - Rest'
+				WHEN 7670000 THEN 'Discount/Coupons - Corp'
+				WHEN 7710000 THEN 'Mercantile'
+				WHEN 7720000 THEN 'Telephone Income'
+				WHEN 7740000 THEN 'Amusement Income'
+				WHEN 7750000 THEN 'Misc Income'
+				WHEN 7820000 THEN 'Parking'
+				WHEN 7840000 THEN 'Real Estate Taxes'
+				WHEN 7870000 THEN 'Leased Equipment'
+				WHEN 7900000 THEN 'Amort - Leasehold Imp'
+				WHEN 7905000 THEN 'RRI Fee Expense'
+				WHEN 7910000 THEN 'Amort - Organization'
+				END,
+			VendorItemID,
+			convert(int, (convert(decimal(17,12), InvoiceLineItem#))),
+			round((convert(decimal(38,30), QuantityReceived)), 2),
+			round((convert(decimal(38,30), PurchaseUnitPrice)), 2),
+			round((convert(decimal(38,30), ExtendedPrice)), 2),
+			convert(int, RawMaterialCatNum),
+			Subperiod,
+			InvoiceDate
+	FROM	dbo.ST_InvoiceDetails          
+	WHERE	SubPeriod = @Subperiod
+
+-- Get the Supplier Number for each invoice from the header record
+UPDATE @InvoiceDetail
+SET hVendorID = (	SELECT convert(int, ih.VendorID)
+					FROM ST_InvoiceHeaders ih
+					WHERE ih.StoreID = dStoreID
+					AND ih.Subperiod = dSubperiod
+					AND UPPER(ih.InvoiceID) = UPPER(dInvoiceID)
+					AND ih.InvoiceDate = dInvoiceDate)
+
+-- Generate the final recordset
+SELECT	id.dIdentifier as [Identifier],
+		convert(int, id.dStoreID) as [RESTAURANT_NUM],
+		id.dInvoiceID as [INVOICE_NUM],
+		id.dLineDesc as [LINE_DESC],
+		id.dVendorItemID as [VENDOR_ITEM_NUM],
+		id.dLineNumber as [LINE_NUM],
+		id.dQuantity as [QUANTITY],
+		id.dUnitPrice as [UNIT_PRICE],
+		id.dExtendedPrice as [TOTAL_AMOUNT],
+		id.dGLAccount as [GL_ACCOUNT],
+		id.hVendorID as [SUPPLIER_NUM],
+		convert(varchar(15),id.dInvoiceDate, 101) as [INVOICE_DATE]
+FROM	@InvoiceDetail id
+LEFT OUTER JOIN [dbo].[FusionInvoiceStaging] fi
+     ON id.dInvoiceID = fi.InvoiceNumber
+     AND id.hVendorID = fi.VendorNumber
+WHERE fi.InvoiceNumber IS NULL</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Invoice Details\Detail Recordset.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Cronus.MLHQ]"
+                  connectionManagerRefId="Package.ConnectionManagers[Cronus.MLHQ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[Identifier]"
+                      length="1"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[Identifier]"
+                      name="Identifier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[RESTAURANT_NUM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[RESTAURANT_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[RESTAURANT_NUM]"
+                      name="RESTAURANT_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_NUM]"
+                      length="30"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]"
+                      name="INVOICE_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[LINE_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[LINE_DESC]"
+                      length="100"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[LINE_DESC]"
+                      name="LINE_DESC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[VENDOR_ITEM_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[VENDOR_ITEM_NUM]"
+                      length="60"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[VENDOR_ITEM_NUM]"
+                      name="VENDOR_ITEM_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[LINE_NUM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[LINE_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[LINE_NUM]"
+                      name="LINE_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[QUANTITY]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[UNIT_PRICE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[UNIT_PRICE]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[UNIT_PRICE]"
+                      name="UNIT_PRICE"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[TOTAL_AMOUNT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_AMOUNT]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[TOTAL_AMOUNT]"
+                      name="TOTAL_AMOUNT"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[GL_ACCOUNT]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[GL_ACCOUNT]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[GL_ACCOUNT]"
+                      name="GL_ACCOUNT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[SUPPLIER_NUM]"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]"
+                      name="SUPPLIER_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_DATE]"
+                      length="15"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_DATE]"
+                      name="INVOICE_DATE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Identifier" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[RESTAURANT_NUM]"
+                      dataType="i4"
+                      name="RESTAURANT_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="INVOICE_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[LINE_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LINE_DESC" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[VENDOR_ITEM_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="VENDOR_ITEM_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[LINE_NUM]"
+                      dataType="i4"
+                      name="LINE_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[UNIT_PRICE]"
+                      dataType="numeric"
+                      name="UNIT_PRICE"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[TOTAL_AMOUNT]"
+                      dataType="numeric"
+                      name="TOTAL_AMOUNT"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[GL_ACCOUNT]"
+                      dataType="i4"
+                      name="GL_ACCOUNT" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[SUPPLIER_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SUPPLIER_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="INVOICE_DATE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[Identifier]"
+                      name="Identifier" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[RESTAURANT_NUM]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[RESTAURANT_NUM]"
+                      name="RESTAURANT_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[INVOICE_NUM]"
+                      name="INVOICE_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[LINE_DESC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[LINE_DESC]"
+                      name="LINE_DESC" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[VENDOR_ITEM_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[VENDOR_ITEM_NUM]"
+                      name="VENDOR_ITEM_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[LINE_NUM]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[LINE_NUM]"
+                      name="LINE_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[QUANTITY]"
+                      dataType="numeric"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[UNIT_PRICE]"
+                      dataType="numeric"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[UNIT_PRICE]"
+                      name="UNIT_PRICE"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[TOTAL_AMOUNT]"
+                      dataType="numeric"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[TOTAL_AMOUNT]"
+                      name="TOTAL_AMOUNT"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[GL_ACCOUNT]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[GL_ACCOUNT]"
+                      name="GL_ACCOUNT" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[SUPPLIER_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[SUPPLIER_NUM]"
+                      name="SUPPLIER_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[INVOICE_DATE]"
+                      name="INVOICE_DATE" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Invoice Details\Remove Existing JDE Invoices"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Remove Existing JDE Invoices"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [MenuLink].[INT037JDEReference]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [MenuLink].[INT037JDEReference]) [refTable]
+where [refTable].[JDESupplierInvoiceID] = ? and [refTable].[JDESupplierID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="JDESupplierID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="JDESupplierInvoiceID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]};#{Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Inputs[Lookup Input].Columns[INVOICE_NUM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="INVOICE_NUM"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">JDESupplierInvoiceID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Inputs[Lookup Input].Columns[SUPPLIER_NUM]"
+                      cachedDataType="i4"
+                      cachedName="SUPPLIER_NUM"
+                      lineageId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">JDESupplierID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Get Invoice Details\Remove Existing JDE Invoices.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Get Invoice Details\Remove Existing JDE Invoices.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Get Invoice Details\Remove Existing JDE Invoices.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Invoice Details.Paths[Lookup No Match Output]"
+              endId="Package\Get Invoice Details\Detail File Not Excluded.Inputs[Flat File Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Get Invoice Details\Remove Existing JDE Invoices.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Get Invoice Details.Paths[OLE DB Source Output]"
+              endId="Package\Get Invoice Details\Remove Existing JDE Invoices.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Invoice Details\Detail Recordset.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Invoice Headers"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5AD07FAE-C66C-4942-9180-205AE9BB925E}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Invoice Headers"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Invoice Headers\Flat File Destination Not Excluded"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination Not Excluded">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HeaderFileNotExcluded]"
+                  connectionManagerRefId="Package.ConnectionManagers[HeaderFileNotExcluded]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[Identifier]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Identifier"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[Identifier]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Identifier]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[RESTAURANT_NUM]"
+                      cachedDataType="i4"
+                      cachedName="RESTAURANT_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[RESTAURANT_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[RESTAURANT_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[SUPPLIER_NUM]"
+                      cachedDataType="i4"
+                      cachedName="SUPPLIER_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[SUPPLIER_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[PERIOD_NUM]"
+                      cachedDataType="i4"
+                      cachedName="PERIOD_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[PERIOD_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[PERIOD_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[WEEK_NUM]"
+                      cachedDataType="i4"
+                      cachedName="WEEK_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[WEEK_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[WEEK_NUM]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[INVOICE_TOTAL]"
+                      cachedDataType="cy"
+                      cachedName="INVOICE_TOTAL"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_TOTAL]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_TOTAL]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[INVOICE_DATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="INVOICE_DATE"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_DATE]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_DATE]" />
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].Columns[INVOICE_NUM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="INVOICE_NUM"
+                      externalMetadataColumnId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Identifier" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[RESTAURANT_NUM]"
+                      dataType="i4"
+                      name="RESTAURANT_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="INVOICE_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[SUPPLIER_NUM]"
+                      dataType="i4"
+                      name="SUPPLIER_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[PERIOD_NUM]"
+                      dataType="i4"
+                      name="PERIOD_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[WEEK_NUM]"
+                      dataType="i4"
+                      name="WEEK_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_TOTAL]"
+                      dataType="cy"
+                      name="INVOICE_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input].ExternalColumns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="INVOICE_DATE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Get Invoice Headers\Lookup"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [MenuLink].[INT037JDEReference]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [MenuLink].[INT037JDEReference]) [refTable]
+where [refTable].[JDESupplierInvoiceID] = ? and [refTable].[JDESupplierID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="JDESupplierID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="JDESupplierInvoiceID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]};#{Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Invoice Headers\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Invoice Headers\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Lookup.Inputs[Lookup Input].Columns[SUPPLIER_NUM]"
+                      cachedDataType="i4"
+                      cachedName="SUPPLIER_NUM"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">JDESupplierID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Get Invoice Headers\Lookup.Inputs[Lookup Input].Columns[INVOICE_NUM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="INVOICE_NUM"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">JDESupplierInvoiceID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Invoice Headers\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Get Invoice Headers\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Get Invoice Headers\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Get Invoice Headers\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Get Invoice Headers\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Get Invoice Headers\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Headers\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Headers\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Invoice Headers\OLE DB Source 1"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source 1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">-- Header Recordset
+-- Get Last Weeks SubPeriod Number
+DECLARE @SubPeriod int
+DECLARE @TodayDate datetime
+
+SET @TodayDate = DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))
+SET @SubPeriod = (SELECT Subperiod FROM [MLAddOn].dbo.[Time_Periods] WHERE SalesMixDate = @TodayDate)
+SET @SubPeriod = (@SubPeriod -1)
+
+-- Declare Invoice Header table variable
+DECLARE @InvoiceHeader TABLE (
+								hIdentifier varchar(1),
+								hStoreID varchar(15),
+								hInvoiceID varchar(30),
+								hSupplierID varchar(50),
+								hPeriod int,
+								hWeekNum int,
+								hInvoiceAmount money,
+								hCalculatedInvoiceAmount money,
+								hInvoiceDate varchar(20)
+								)
+
+-- Declare Invoice Detail table variable
+DECLARE @InvoiceDetail TABLE (
+								dIdentifier varchar(1),
+								dStoreID varchar(15),
+								dInvoiceID varchar(30),
+								dLineDesc varchar(100),
+								dVendorItemID varchar(60),
+								dLineNumber int,
+								dQuantity decimal(10,2),
+								dUnitPrice decimal(10,2),
+								dExtendedPrice decimal(10,2),
+								dGLAccount int,
+								dSubperiod varchar(10),
+								dInvoiceDate datetime
+								)
+
+
+-- Populate header table variable with all invoice headers for the specified subperiod
+INSERT INTO @InvoiceHeader (	hIdentifier,
+								hStoreID,
+								hInvoiceID,
+								hSupplierID,
+								hPeriod,
+								hWeekNum,
+								hInvoiceAmount,
+								hInvoiceDate
+								)
+	SELECT	'I',
+			StoreID,
+			UPPER(InvoiceID) as [InvoiceID],
+			convert(int, VendorID) as VendorID,
+			ReportingPeriod#,
+			[Week],
+			convert(money, TotalAmountPayable) as [INVOICE_TOTAL],
+			convert(varchar(15),InvoiceDate, 101) as [INVOICE_DATE]
+	FROM	ST_InvoiceHeaders 
+	WHERE	SubPeriod = @SubPeriod
+
+
+-- Populate detail table variable with all invoice line item detail for the specified subperiod
+INSERT INTO @InvoiceDetail
+	SELECT	'I',
+			StoreID,
+			UPPER(InvoiceID) as [InvoiceID],
+			dLineDesc = CASE RawMaterialCatNum
+				WHEN 1015000 THEN 'Payroll Cash Clearing'
+				WHEN 1065000 THEN 'Employee Advance - Merc. Comm.'
+				WHEN 2100000 THEN 'Gift Certificate Sales'
+				WHEN 5100000 THEN 'Meat'
+				WHEN 5110000 THEN 'Hamburger'
+				WHEN 5120000 THEN 'Poultry'
+				WHEN 5130000 THEN 'Seafood'
+				WHEN 5140000 THEN 'Produce'
+				WHEN 5150000 THEN 'French Fries'
+				WHEN 5160000 THEN 'Canned/Dry Goods'
+				WHEN 5170000 THEN 'Bread'
+				WHEN 5180000 THEN 'Dairy'
+				WHEN 5185000 THEN 'Cheese'
+				WHEN 5190000 THEN 'Fry Oil'
+				WHEN 5199000 THEN 'Rebates'
+				WHEN 5210000 THEN 'Liquor'
+				WHEN 5220000 THEN 'Wine'
+				WHEN 5230000 THEN 'Draft Beer'
+				WHEN 5240000 THEN 'Bottled Beer'
+				WHEN 5250000 THEN 'Bar Consumables'
+				WHEN 6050000 THEN 'Team Member Meetings'
+				WHEN 6255000 THEN 'Laundry Allowance'
+				WHEN 7010000 THEN 'Kitchen Supplies'
+				WHEN 7020000 THEN 'Restaurant Supplies'
+				WHEN 7030000 THEN 'Glassware'
+				WHEN 7040000 THEN 'China'
+				WHEN 7050000 THEN 'Paper Supplies'
+				WHEN 7060000 THEN 'Cleaning Supplies'
+				WHEN 7070000 THEN 'Office Supplies'
+				WHEN 7110000 THEN 'Laundry'
+				WHEN 7120000 THEN 'Uniforms'
+				WHEN 7140000 THEN 'Guest Complaints'
+				WHEN 7150000 THEN 'Telephone'
+				WHEN 7160000 THEN 'Dues and Subs'
+				WHEN 7170000 THEN 'Recruitment Adv.'
+				WHEN 7180000 THEN 'Cash Over and Short'
+				WHEN 7190000 THEN 'Theft Loss &amp; Walkouts'
+				WHEN 7200000 THEN 'Postage &amp; Freight'
+				WHEN 7220000 THEN 'Janitorial &amp; Plant Maint.'
+				WHEN 7221000 THEN 'Indoor Cleaning'
+				WHEN 7222000 THEN 'Outdoor - Cleaning &amp; Landscape'
+				WHEN 7222000 THEN 'Outdoor Cleaning &amp; Landscape'
+				WHEN 7223000 THEN 'Pest Control'
+				WHEN 7240000 THEN 'Travel'
+				WHEN 7250000 THEN 'Warehousing &amp; Storage'
+				WHEN 7310000 THEN 'R &amp; M - Building/FFE RPM'
+				WHEN 7320000 THEN 'Preventive Maint Contracts'
+				WHEN 7325000 THEN 'R &amp; M - Local Services'
+				WHEN 7330000 THEN 'Comp &amp; Office Equip Maint.'
+				WHEN 7440000 THEN 'Garbage'
+				WHEN 7510000 THEN 'Leased Music'
+				WHEN 7525000 THEN 'Plants Purchased'
+				WHEN 7530000 THEN 'Bad Debts'
+				WHEN 7540000 THEN 'Licenses'
+				WHEN 7545000 THEN 'Security Services'
+				WHEN 7550000 THEN 'City Business Tax'
+				WHEN 7560000 THEN 'Small Equipment'
+				WHEN 7580000 THEN 'Professional Services'
+				WHEN 7590000 THEN 'Bank Charges'
+				WHEN 7610000 THEN 'Marketing Supplies'
+				WHEN 7620000 THEN 'Gift Cert - Promo'
+				WHEN 7630000 THEN 'Local Store Marketing'
+				WHEN 7630100 THEN 'Local Store Mktg Fundraiser'
+				WHEN 7630100 THEN 'Local Store Mktg Fundraising'
+				WHEN 7640000 THEN 'Advertising Contribribution'
+				WHEN 7640000 THEN 'Advertising Contribution'
+				WHEN 7660000 THEN 'Discount/Coupons - Rest'
+				WHEN 7670000 THEN 'Discount/Coupons - Corp'
+				WHEN 7710000 THEN 'Mercantile'
+				WHEN 7720000 THEN 'Telephone Income'
+				WHEN 7740000 THEN 'Amusement Income'
+				WHEN 7750000 THEN 'Misc Income'
+				WHEN 7820000 THEN 'Parking'
+				WHEN 7840000 THEN 'Real Estate Taxes'
+				WHEN 7870000 THEN 'Leased Equipment'
+				WHEN 7900000 THEN 'Amort - Leasehold Imp'
+				WHEN 7905000 THEN 'RRI Fee Expense'
+				WHEN 7910000 THEN 'Amort - Organization'
+				END,
+			VendorItemID,
+			convert(int, (convert(decimal(17,12), InvoiceLineItem#))),
+			round((convert(decimal(38,30), QuantityReceived)), 2),
+			round((convert(decimal(38,30), PurchaseUnitPrice)), 2),
+			round((convert(decimal(38,30), ExtendedPrice)), 2),
+			convert(int, RawMaterialCatNum),
+			Subperiod,
+			InvoiceDate
+	FROM	ST_InvoiceDetails 
+	WHERE	SubPeriod = @SubPeriod
+
+-- Calculate the invoice header total from the extended price of the line items in the detail
+
+-- Calculate totals for each invoice
+UPDATE @InvoiceHeader
+SET hCalculatedInvoiceAmount = (	SELECT sum(dExtendedPrice) 
+									FROM @InvoiceDetail
+									WHERE hStoreID = dStoreID
+										AND UPPER(hInvoiceID) = UPPER(dInvoiceID)
+										AND hInvoiceDate = dInvoiceDate
+								)
+
+-- Remove Records with NULL hCalculatedInvoiceAmount
+DELETE  FROM @InvoiceHeader
+WHERE hCalculatedInvoiceAmount IS NULL AND hInvoiceID LIKE 'P%'
+
+SELECT	ih.hIdentifier as [Identifier],
+		convert(int, ih.hStoreID) as [RESTAURANT_NUM],
+		UPPER(ih.hInvoiceID) as [INVOICE_NUM],
+		ih.hSupplierID as [SUPPLIER_NUM],
+		ih.hPeriod as [PERIOD_NUM],
+		ih.hWeekNum as [WEEK_NUM],
+		ih.hCalculatedInvoiceAmount as [INVOICE_TOTAL],
+		ih.hInvoiceDate as [INVOICE_DATE]
+ FROM	@InvoiceHeader ih
+LEFT OUTER JOIN [dbo].[FusionInvoiceStaging] fi
+     ON ih.hInvoiceID = fi.InvoiceNumber
+     AND ih.hSupplierID = fi.VendorNumber
+WHERE fi.InvoiceNumber IS NULL</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Invoice Headers\OLE DB Source 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Cronus.MLHQ]"
+                  connectionManagerRefId="Package.ConnectionManagers[Cronus.MLHQ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[Identifier]"
+                      length="1"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Identifier]"
+                      name="Identifier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[RESTAURANT_NUM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[RESTAURANT_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[RESTAURANT_NUM]"
+                      name="RESTAURANT_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_NUM]"
+                      length="30"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_NUM]"
+                      name="INVOICE_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[SUPPLIER_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[SUPPLIER_NUM]"
+                      name="SUPPLIER_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[PERIOD_NUM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[PERIOD_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[PERIOD_NUM]"
+                      name="PERIOD_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[WEEK_NUM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[WEEK_NUM]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[WEEK_NUM]"
+                      name="WEEK_NUM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_TOTAL]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_TOTAL]"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_TOTAL]"
+                      name="INVOICE_TOTAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_DATE]"
+                      length="20"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[INVOICE_DATE]"
+                      name="INVOICE_DATE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Identifier" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[RESTAURANT_NUM]"
+                      dataType="i4"
+                      name="RESTAURANT_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="INVOICE_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[SUPPLIER_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SUPPLIER_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[PERIOD_NUM]"
+                      dataType="i4"
+                      name="PERIOD_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[WEEK_NUM]"
+                      dataType="i4"
+                      name="WEEK_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_TOTAL]"
+                      dataType="cy"
+                      name="INVOICE_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="INVOICE_DATE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[Identifier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[Identifier]"
+                      name="Identifier" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[RESTAURANT_NUM]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[RESTAURANT_NUM]"
+                      name="RESTAURANT_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[INVOICE_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[INVOICE_NUM]"
+                      name="INVOICE_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[SUPPLIER_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[SUPPLIER_NUM]"
+                      name="SUPPLIER_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[PERIOD_NUM]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[PERIOD_NUM]"
+                      name="PERIOD_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[WEEK_NUM]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[WEEK_NUM]"
+                      name="WEEK_NUM" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[INVOICE_TOTAL]"
+                      dataType="cy"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[INVOICE_TOTAL]"
+                      name="INVOICE_TOTAL" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[INVOICE_DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[INVOICE_DATE]"
+                      name="INVOICE_DATE" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Invoice Headers.Paths[Lookup No Match Output]"
+              endId="Package\Get Invoice Headers\Flat File Destination Not Excluded.Inputs[Flat File Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Get Invoice Headers\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Get Invoice Headers.Paths[OLE DB Source Output]"
+              endId="Package\Get Invoice Headers\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Invoice Headers\OLE DB Source 1.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move Files to Outbox"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{AA867262-564D-4B7F-B435-B15FFFDEC8AC}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move Files to Outbox">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{0B3D199E-0DAD-422A-852E-ACC9D91D7AE7}"
+        DTS:ObjectName="{0B3D199E-0DAD-422A-852E-ACC9D91D7AE7}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\hq-ssis2012-01\MessageHub\MenuLink\Staging" />
+            <FEFEProperty
+              FileSpec="MLInvoice*.DAT" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Move Files to Outbox\Move File to Outbox"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{F684105E-BA53-4B43-81AA-D89FD92E25F4}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move File to Outbox"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="RenameFile"
+              TaskSourcePath="User::StagingSourcePath"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::OutboxDestinationPath"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{88BEA6C3-3F48-4FDB-A03F-CEE41F2DC486}"
+          DTS:ObjectName="{88BEA6C3-3F48-4FDB-A03F-CEE41F2DC486}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::StagingFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CE3204CB-ED1D-4C2E-96C1-8A6C6D307C33}"
+      DTS:From="Package\Get Invoice Details"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Invoice Headers" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0D727F7C-B946-4B05-88F0-5A759990E8A9}"
+      DTS:From="Package\Get Invoice Headers"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Move Files to Outbox" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Get Invoice Details"
+          TopLeft="154,85" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Get Invoice Headers"
+          TopLeft="157,192" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Move Files to Outbox\Move File to Outbox"
+          TopLeft="37,34" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="261,130"
+          Size="261,173"
+          Id="Package\Move Files to Outbox"
+          TopLeft="128,294" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="241.75,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="245,234">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.5,60"
+              Start="0,0"
+              End="13.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="9.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.5,30"
+                    Point2="13.5,30"
+                    Point3="13.5,34" />
+                  <mssgle:LineSegment
+                    End="13.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Invoice Details">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Get Invoice Details\Remove Existing JDE Invoices"
+          TopLeft="341,144" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Get Invoice Details\Detail Recordset"
+          TopLeft="149,67" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Get Invoice Details\Detail File Not Excluded"
+          TopLeft="666,253" />
+        <EdgeLayout
+          Id="Package\Get Invoice Details.Paths[OLE DB Source Output]"
+          TopLeft="227,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="224.5,35"
+              Start="0,0"
+              End="224.5,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="4,17.5" />
+                  <mssgle:LineSegment
+                    End="220.5,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="220.5,17.5"
+                    Point2="224.5,17.5"
+                    Point3="224.5,21.5" />
+                  <mssgle:LineSegment
+                    End="224.5,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Get Invoice Details.Paths[Lookup No Match Output]"
+          TopLeft="487,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="274.5,67"
+              Start="0,0"
+              End="274.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.088948787062" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.088948787062"
+                    Point2="0,27.088948787062"
+                    Point3="4,27.088948787062" />
+                  <mssgle:LineSegment
+                    End="270.5,27.088948787062" />
+                  <mssgle:CubicBezierSegment
+                    Point1="270.5,27.088948787062"
+                    Point2="274.5,27.088948787062"
+                    Point3="274.5,31.088948787062" />
+                  <mssgle:LineSegment
+                    End="274.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="81.44361328125,32.088948787062,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Invoice Details\Remove Existing JDE Invoices">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[MenuLink].[INT037JDEReference]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Invoice Details\Detail Recordset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Get Invoice Headers">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Get Invoice Headers\OLE DB Source 1"
+          TopLeft="458,89" />
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Get Invoice Headers\Lookup"
+          TopLeft="525,221" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Get Invoice Headers\Flat File Destination Not Excluded"
+          TopLeft="793,286" />
+        <EdgeLayout
+          Id="Package\Get Invoice Headers.Paths[OLE DB Source Output]"
+          TopLeft="538,131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44,90"
+              Start="0,0"
+              End="44,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41"
+                    Point2="0,45"
+                    Point3="4,45" />
+                  <mssgle:LineSegment
+                    End="40,45" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40,45"
+                    Point2="44,45"
+                    Point3="44,49" />
+                  <mssgle:LineSegment
+                    End="44,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Get Invoice Headers.Paths[Lookup No Match Output]"
+          TopLeft="582,263">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="330,23"
+              Start="0,0"
+              End="330,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.5"
+                    Point2="0,11.5"
+                    Point3="4,11.5" />
+                  <mssgle:LineSegment
+                    End="326,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="326,11.5"
+                    Point2="330,11.5"
+                    Point3="330,15.5" />
+                  <mssgle:LineSegment
+                    End="330,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="109.19361328125,16.5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Invoice Headers\OLE DB Source 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Invoice Headers\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[MenuLink].[INT037JDEReference]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

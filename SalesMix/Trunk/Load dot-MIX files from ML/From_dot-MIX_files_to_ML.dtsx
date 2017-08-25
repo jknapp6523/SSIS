@@ -1,0 +1,3062 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/11/2014 1:55:01 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="IMONCIVAIS-L6"
+  DTS:CreatorName="CORPHQ\IMoncivais"
+  DTS:DTSID="{923A1234-3922-4EE1-B3BA-A5F6A678360E}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="From_dot-MIX_files_to_ML"
+  DTS:PackageType="5"
+  DTS:VersionBuild="204"
+  DTS:VersionGUID="{99796F4E-C4B3-43F9-B4EA-98461757DDD3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Mgr]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{CB8D79C6-4E17-4F8B-B4F1-48229819A980}"
+      DTS:ObjectName="Flat File Mgr">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::SourcePath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="M:\MessageHub\SalesMix\Inbox\012.mix">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 0"
+              DTS:DTSID="{39489148-4817-454A-B838-3F63091BCE8C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 1"
+              DTS:DTSID="{F6039538-8E96-40A6-A305-FC6BCE87AAEE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 2"
+              DTS:DTSID="{F05E173E-150E-4ACC-A885-A6B7C2BEA6D8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 3"
+              DTS:DTSID="{DE3CC974-8C27-4DCF-AA41-0D4690E5B2EF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 4"
+              DTS:DTSID="{9F6C4BD3-A6AD-4E70-9831-62E6791D7364}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 5"
+              DTS:DTSID="{515439F2-C74C-4365-A791-1068100C49A8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 6"
+              DTS:DTSID="{D744DA6F-D7ED-42ED-9693-028C8DE31A04}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="8192"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 7"
+              DTS:DTSID="{9459961D-5801-4981-9D34-671E548AE509}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1617EC17-A6F8-4A90-A221-1713E8AED16D}"
+      DTS:ObjectName="HQ-FINSQL-01.Audit.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=Audit;Provider=SQLNCLI11.1;Persist Security Info=True;OLE DB Services=-1;Connect Timeout=1800;General Timeout=3600;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADxkqU19JdDLfZcGVd/HsfLAAAAAASAAACgAAAAEAAAAGHt9yO0eXJG9WeK7MVlztMoAAAAjag8JtUXhRwW1uggnq2obYrs7LicTK2pY1n3yY+iNOPMhRbWV6PpDxQAAACRA+smHT/dophkzxWSwfHTMk2hLw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22825FA5-C8E1-45EB-B140-B427C556BD4E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;M:\\MessageHub\\SalesMix\\Archive\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestinationPath">
+      <DTS:VariableValue
+        DTS:DataType="8">M:\MessageHub\SalesMix\Archive\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AD4C3EB5-169F-4F9D-83D2-78460CD90B79}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">012.mix</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2910A751-4E7D-4C2B-8E72-FDC02F47CBEC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;M:\\MessageHub\\SalesMix\\Inbox\\&quot;  +  @[User::FileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">M:\MessageHub\SalesMix\Inbox\012.mix</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data FCleanup and Load SalesMix data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{f4644139-9ebe-4fb3-82ce-77d3aafb5e51}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data FCleanup and Load SalesMix data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data FCleanup and Load SalesMix data\cast from string"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="cast from string"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--TotalNumberSold]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--TotalNumberSold"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--TotalNumberSold]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--MenuItemCost]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--MenuItemCost"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemCost]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--SellingPrice]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--SellingPrice"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SellingPrice]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--SalesMixDate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--SalesMixDate"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SalesMixDate]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--ItemC]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--ItemC"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--ItemC]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--SubPeriod#]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--SubPeriod#"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SubPeriod#]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--StoreID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--StoreID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--StoreID]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input].Columns[--MenuItemID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="--MenuItemID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemCost]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SellingPrice]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SalesMixDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SalesMixDate]"
+                      name="SalesMixDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SalesMixDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[ItemC]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[ItemC]"
+                      name="ItemC"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--ItemC]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[TotalNumberSold]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[TotalNumberSold]"
+                      name="TotalNumberSold"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--TotalNumberSold]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SubPeriod#]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SubPeriod#]"
+                      name="SubPeriod#"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SubPeriod#]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--StoreID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data FCleanup and Load SalesMix data\insert into table"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="insert into table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FromFusionSaleMixToReCreateMLDataSSIS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data FCleanup and Load SalesMix data\insert into table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.SubPeriod#]"
+                      cachedDataType="i4"
+                      cachedName="cast from string.SubPeriod#"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SubPeriod#]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.MenuItemCost]"
+                      cachedDataType="cy"
+                      cachedName="cast from string.MenuItemCost"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCost]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.MenuItemCost]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.ItemC]"
+                      cachedDataType="i4"
+                      cachedName="cast from string.ItemC"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[ItemC]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.ItemC]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="cast from string.SellingPrice"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SellingPrice]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.TotalNumberSold]"
+                      cachedDataType="i4"
+                      cachedName="cast from string.TotalNumberSold"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.TotalNumberSold]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.SalesMixDate]"
+                      cachedDataType="date"
+                      cachedName="cast from string.SalesMixDate"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SalesMixDate]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.StoreID]"
+                      cachedDataType="i4"
+                      cachedName="cast from string.StoreID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.StoreID]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].Columns[cast from string.MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="cast from string.MenuItemID"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.MenuItemID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesMixDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                      dataType="i4"
+                      name="TotalNumberSold" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCost]"
+                      dataType="cy"
+                      name="MenuItemCost" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input].ExternalColumns[ItemC]"
+                      dataType="i4"
+                      name="ItemC" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\insert into table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\insert into table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\insert into table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\insert into table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data FCleanup and Load SalesMix data\manage nulls"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="manage nulls"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-TotalNumberSold]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-TotalNumberSold"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-TotalNumberSold]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-StoreID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-StoreID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-StoreID]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-MenuItemID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-MenuItemID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-SubPeriod#]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-SubPeriod#"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SubPeriod#]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-SalesMixDate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-SalesMixDate"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SalesMixDate]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-MenuItemCost]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-MenuItemCost"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemCost]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-ItemC]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-ItemC"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-ItemC]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input].Columns[-SellingPrice]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="-SellingPrice"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SellingPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--TotalNumberSold]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--TotalNumberSold]"
+                      name="--TotalNumberSold"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-TotalNumberSold]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-TotalNumberSold]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-TotalNumberSold] != "" ? [-TotalNumberSold] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--StoreID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--StoreID]"
+                      name="--StoreID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-StoreID]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-StoreID]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-StoreID] != "" ? [-StoreID] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemID]"
+                      name="--MenuItemID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemID]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemID]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-MenuItemID] != "" ? [-MenuItemID] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SubPeriod#]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SubPeriod#]"
+                      name="--SubPeriod#"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SubPeriod#]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SubPeriod#]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-SubPeriod#] != "" ? [-SubPeriod#] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SalesMixDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SalesMixDate]"
+                      name="--SalesMixDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SalesMixDate]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SalesMixDate]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-SalesMixDate] != "" ? [-SalesMixDate] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemCost]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--MenuItemCost]"
+                      name="--MenuItemCost"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemCost]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemCost]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-MenuItemCost] != "" ? [-MenuItemCost] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SellingPrice]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--SellingPrice]"
+                      name="--SellingPrice"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SellingPrice]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SellingPrice]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-SellingPrice] != "" ? [-SellingPrice] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--ItemC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output].Columns[--ItemC]"
+                      name="--ItemC"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-ItemC]} != "" ? #{Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-ItemC]} : NULL(DT_WSTR,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">([-ItemC] != "" ? [-ItemC] : NULL(DT_WSTR,50))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data FCleanup and Load SalesMix data\Read RAW data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Read RAW data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data_RAW]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SubPeriod#]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod#]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SubPeriod#]"
+                      name="SubPeriod#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SalesMixDate]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[SalesMixDate]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SalesMixDate]"
+                      name="SalesMixDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[TotalNumberSold]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[TotalNumberSold]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[TotalNumberSold]"
+                      name="TotalNumberSold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[ItemC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[ItemC]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[ItemC]"
+                      name="ItemC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod#]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[SalesMixDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SalesMixDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[TotalNumberSold]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TotalNumberSold" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCost" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[ItemC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ItemC" />
+                    <externalMetadataColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SellingPrice" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[SubPeriod#]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[SubPeriod#]"
+                      name="SubPeriod#" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[SalesMixDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[SalesMixDate]"
+                      name="SalesMixDate" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[TotalNumberSold]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[TotalNumberSold]"
+                      name="TotalNumberSold" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      name="MenuItemCost" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[ItemC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[ItemC]"
+                      name="ItemC" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data FCleanup and Load SalesMix data\remove quotes"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="remove quotes"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="StoreID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[SubPeriod#]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SubPeriod#"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SubPeriod#]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[SalesMixDate]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SalesMixDate"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SalesMixDate]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[TotalNumberSold]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TotalNumberSold"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[TotalNumberSold]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[MenuItemCost]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemCost"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemCost]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[ItemC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ItemC"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[ItemC]" />
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input].Columns[SellingPrice]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SellingPrice"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SellingPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-StoreID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-StoreID]"
+                      name="-StoreID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[StoreID]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Read RAW data].StoreID,"\"","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemID]"
+                      name="-MenuItemID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemID]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Read RAW data].MenuItemID,"\"","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SubPeriod#]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SubPeriod#]"
+                      name="-SubPeriod#"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SubPeriod#]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Read RAW data].SubPeriod#,"\"","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SalesMixDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SalesMixDate]"
+                      name="-SalesMixDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SalesMixDate]},"#","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Read RAW data].SalesMixDate,"#","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-TotalNumberSold]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-TotalNumberSold]"
+                      name="-TotalNumberSold"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[TotalNumberSold]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(TotalNumberSold,"\"","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemCost]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-MenuItemCost]"
+                      name="-MenuItemCost"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[MenuItemCost]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Read RAW data].MenuItemCost,"\"","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-ItemC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-ItemC]"
+                      name="-ItemC"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[ItemC]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Read RAW data].ItemC,"\"","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SellingPrice]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output].Columns[-SellingPrice]"
+                      name="-SellingPrice"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output].Columns[SellingPrice]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Read RAW data].SellingPrice,"\"","")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data FCleanup and Load SalesMix data\sort data"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="sort data"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[TotalNumberSold]"
+                      cachedDataType="i4"
+                      cachedName="TotalNumberSold"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[TotalNumberSold]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[MenuItemCost]"
+                      cachedDataType="cy"
+                      cachedName="MenuItemCost"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemCost]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[SellingPrice]"
+                      cachedDataType="cy"
+                      cachedName="SellingPrice"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SellingPrice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[SalesMixDate]"
+                      cachedDataType="date"
+                      cachedName="SalesMixDate"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SalesMixDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[ItemC]"
+                      cachedDataType="i4"
+                      cachedName="ItemC"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[ItemC]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[SubPeriod#]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod#"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SubPeriod#]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[StoreID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemID"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.TotalNumberSold]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.TotalNumberSold]"
+                      name="cast from string.TotalNumberSold">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[TotalNumberSold]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.MenuItemCost]"
+                      dataType="cy"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.MenuItemCost]"
+                      name="cast from string.MenuItemCost">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemCost]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SellingPrice]"
+                      name="cast from string.SellingPrice">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SellingPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SalesMixDate]"
+                      dataType="date"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SalesMixDate]"
+                      name="cast from string.SalesMixDate"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SalesMixDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.ItemC]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.ItemC]"
+                      name="cast from string.ItemC">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[ItemC]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SubPeriod#]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.SubPeriod#]"
+                      name="cast from string.SubPeriod#">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[SubPeriod#]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.StoreID]"
+                      name="cast from string.StoreID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[StoreID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output].Columns[cast from string.MenuItemID]"
+                      name="cast from string.MenuItemID"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output].Columns[MenuItemID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data FCleanup and Load SalesMix data.Paths[Data Conversion Output]"
+              endId="Package\Data FCleanup and Load SalesMix data\sort data.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\Data FCleanup and Load SalesMix data\cast from string.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Data FCleanup and Load SalesMix data.Paths[Derived Column Output1]"
+              endId="Package\Data FCleanup and Load SalesMix data\manage nulls.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Data FCleanup and Load SalesMix data\remove quotes.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data FCleanup and Load SalesMix data.Paths[Derived Column Output]"
+              endId="Package\Data FCleanup and Load SalesMix data\cast from string.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Data FCleanup and Load SalesMix data\manage nulls.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data FCleanup and Load SalesMix data.Paths[OLE DB Source Output]"
+              endId="Package\Data FCleanup and Load SalesMix data\remove quotes.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data FCleanup and Load SalesMix data\Read RAW data.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data FCleanup and Load SalesMix data.Paths[Sort Output]"
+              endId="Package\Data FCleanup and Load SalesMix data\insert into table.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Data FCleanup and Load SalesMix data\sort data.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; ReCreate tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c09b6ad0-3051-4265-9f62-0c66ee92dbcb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; ReCreate tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1617EC17-A6F8-4A90-A221-1713E8AED16D}"
+          SQLTask:SqlStatementSource="&#xA;USE Audit&#xA;GO&#xA;&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data_RAW]'))&#xA;DROP TABLE [dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data_RAW]&#xA;GO&#xA;&#xA;&#xA;CREATE TABLE [dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data_RAW](&#xA; [StoreID] [varchar](50) NULL,&#xA; [MenuItemID] [varchar](50) NULL,&#xA; [SubPeriod#] [varchar](50) NULL,&#xA; [SalesMixDate] [varchar](50) NULL,&#xA; [TotalNumberSold] [varchar](50) NULL,&#xA; [MenuItemCost] [varchar](50) NULL,&#xA; [ItemC] [varchar](50) NULL,&#xA; [SellingPrice] [varchar](50) NULL&#xA;) ON [PRIMARY]&#xA;&#xA;GO&#xA;&#xA;&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[FromFusionSaleMixToReCreateMLDataSSIS]'))&#xA;DROP TABLE [dbo].[FromFusionSaleMixToReCreateMLDataSSIS]&#xA;GO&#xA;&#xA;&#xA;CREATE TABLE [dbo].[FromFusionSaleMixToReCreateMLDataSSIS](&#xA; [StoreID] [int] NULL,&#xA; [MenuItemID] [varchar](12) NULL,&#xA; [SubPeriod#] [int] NULL,&#xA; [SalesMixDate] [datetime] NULL,&#xA; [TotalNumberSold] [int] NULL,&#xA; [MenuItemCost] [money] NULL,&#xA; [ItemC] [int] NULL,&#xA; [SellingPrice] [money] NULL&#xA;) ON [PRIMARY]&#xA;&#xA;GO&#xA;&#xA;&#xA;&#xA;-- -------------------imp&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process each dot-MIX Flat File"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{8301de50-9da2-4c93-beb9-20a8c612374f}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process each dot-MIX Flat File">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{fd9ed165-4056-4050-8e23-4241667e5d0e}"
+        DTS:ObjectName="{227A556E-20C4-4CC6-902B-0075661957C5}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="M:\MessageHub\SalesMix\Inbox" />
+            <FEFEProperty
+              FileSpec="*.mix" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Process each dot-MIX Flat File\Archive RR PTD Flat File"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{6c2401b8-086a-401f-9b71-fd853c8687dd}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Archive RR PTD Flat File"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="User::SourcePath"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::DestinationPath"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3e756b9e-6829-4d35-9cb9-358d9c084a68}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load from dot-MIX files"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 0]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 0"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 0]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 1"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 1]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 2"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 2]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 3]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 3"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 3]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 4]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 4"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 4]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 5]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 5"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 5]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 6]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 6"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 6]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input].Columns[Column 7]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Column 7"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 7]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 0]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 0]"
+                          name="Copy of Column 0"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 0]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 1]"
+                          name="Copy of Column 1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 2]"
+                          name="Copy of Column 2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 3]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 3]"
+                          name="Copy of Column 3"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 3]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 4]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 4]"
+                          name="Copy of Column 4"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 4]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 5]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 5]"
+                          name="Copy of Column 5"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 5]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 6]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 6]"
+                          name="Copy of Column 6"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 6]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 7]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 7]"
+                          name="Copy of Column 7"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 7]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Insert into Staging Table"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[From_Fusion_SaleMix_To_ReCreate_ML_Data_RAW]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+                      connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.Audit.SSISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 0]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 0"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 0]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 1"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 1]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 2"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 2]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 3]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 3"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 3]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 4]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 4"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 4]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 5]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 5"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 5]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 7]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 7"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCost]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 7]" />
+                        <inputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].Columns[Copy of Column 6]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Column 6"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ItemC]"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Column 6]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="StoreID" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SubPeriod#" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SalesMixDate]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SalesMixDate" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MenuItemID" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[TotalNumberSold]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TotalNumberSold" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SellingPrice]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SellingPrice" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCost]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MenuItemCost" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ItemC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ItemC" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files"
+                  componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Load dot-MIX flat files"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Mgr]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Mgr]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 0]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 0]"
+                          name="Column 0"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 1]"
+                          name="Column 1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 2]"
+                          name="Column 2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 3]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 3]"
+                          name="Column 3"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 4]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 4]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 4]"
+                          name="Column 4"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 5]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 5]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 5]"
+                          name="Column 5"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 6]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 6]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 6]"
+                          name="Column 6"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 7]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 7]"
+                          length="50"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].Columns[Column 7]"
+                          name="Column 7"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 0" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 1" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 2" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 3" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 4" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 5" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 6]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 6" />
+                        <externalMetadataColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output].ExternalColumns[Column 7]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8192"
+                          name="Column 7" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files.Paths[Data Conversion Output]"
+                  endId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Process each dot-MIX Flat File\Load from dot-MIX files.Paths[Flat File Source Output]"
+                  endId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Process each dot-MIX Flat File.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{a2bb4750-0145-4762-9ccc-8eb0782bf7aa}"
+          DTS:From="Package\Process each dot-MIX Flat File\Load from dot-MIX files"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Process each dot-MIX Flat File\Archive RR PTD Flat File" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{75111ac7-9a80-4faa-a9e3-0699b9b05004}"
+          DTS:ObjectName="{BE50FA6F-0E00-46AA-8C47-91DD36A08599}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6314c12a-c42a-4a38-b131-ae7d7b431064}"
+      DTS:From="Package\Drop &amp; ReCreate tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Process each dot-MIX Flat File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{c8573a0f-f245-4f52-a839-5f188871a822}"
+      DTS:From="Package\Process each dot-MIX Flat File"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Data FCleanup and Load SalesMix data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="264,42"
+          Id="Package\Data FCleanup and Load SalesMix data"
+          TopLeft="375.833333333333,141" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Drop &amp; ReCreate tables"
+          TopLeft="96.5,60" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Process each dot-MIX Flat File\Archive RR PTD Flat File"
+          TopLeft="21.9166666666667,102.833333333333" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Process each dot-MIX Flat File\Load from dot-MIX files"
+          TopLeft="37,20" />
+        <EdgeLayout
+          Id="Package\Process each dot-MIX Flat File.PrecedenceConstraints[Constraint]"
+          TopLeft="133.708333333333,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.833333333333"
+              Start="0,0"
+              End="0,33.333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="270,200"
+          Size="270,243"
+          Id="Package\Process each dot-MIX Flat File"
+          TopLeft="60,133.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="193.75,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.5"
+              Start="0,0"
+              End="0,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="330,163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.8333333333333,0"
+              Start="0,0"
+              End="38.3333333333333,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="38.3333333333333,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data FCleanup and Load SalesMix data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data FCleanup and Load SalesMix data\remove quotes"
+          TopLeft="368.166666666667,36.0555555555557" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data FCleanup and Load SalesMix data\Read RAW data"
+          TopLeft="47.1666666666666,36.0555555555557" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data FCleanup and Load SalesMix data\insert into table"
+          TopLeft="47.1666666666666,130.055555555556" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Data FCleanup and Load SalesMix data\manage nulls"
+          TopLeft="698.791666666667,33" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data FCleanup and Load SalesMix data\cast from string"
+          TopLeft="688.291666666667,130.055555555556" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Data FCleanup and Load SalesMix data\sort data"
+          TopLeft="382.166666666667,130.055555555556" />
+        <EdgeLayout
+          Id="Package\Data FCleanup and Load SalesMix data.Paths[Sort Output]"
+          TopLeft="382.166666666667,151.055555555556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-180,0"
+              Start="0,0"
+              End="-172.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-172.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data FCleanup and Load SalesMix data.Paths[OLE DB Source Output]"
+          TopLeft="202.166666666667,57.0555555555557">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="166,0"
+              Start="0,0"
+              End="158.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="158.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data FCleanup and Load SalesMix data.Paths[Derived Column Output]"
+          TopLeft="768.041666666667,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.0555555555557"
+              Start="0,0"
+              End="0,47.5555555555557">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5555555555557" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data FCleanup and Load SalesMix data.Paths[Derived Column Output1]"
+          TopLeft="519.166666666667,55.5277777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="179.625,0"
+              Start="0,0"
+              End="172.125,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="172.125,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data FCleanup and Load SalesMix data.Paths[Data Conversion Output]"
+          TopLeft="688.291666666667,151.055555555556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-183.125,0"
+              Start="0,0"
+              End="-175.625,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-175.625,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data FCleanup and Load SalesMix data\Read RAW data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data FCleanup and Load SalesMix data\insert into table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Process each dot-MIX Flat File\Load from dot-MIX files">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table"
+          TopLeft="47,208" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Load dot-MIX flat files"
+          TopLeft="54.333333333333,37" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Data Conversion"
+          TopLeft="61.333333333333,119" />
+        <EdgeLayout
+          Id="Package\Process each dot-MIX Flat File\Load from dot-MIX files.Paths[Flat File Source Output]"
+          TopLeft="143.583333333333,79">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each dot-MIX Flat File\Load from dot-MIX files.Paths[Data Conversion Output]"
+          TopLeft="143.166666666667,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Process each dot-MIX Flat File\Load from dot-MIX files\Insert into Staging Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1836 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/2/2013 10:36:39 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="IMONCIVAIS-L7"
+  DTS:CreatorName="CORPHQ\IMoncivais"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{9729D61C-29D8-4289-9509-7D73977386C1}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="Copy Radiant XLARGE data to DW-staging"
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{D97E7648-872F-44F5-A126-2167A04F2C05}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{ACE87908-7EBF-4DAD-8EAF-ADDCD510AC9B}"
+      DTS:ObjectName="HQ-FINSQL-01.DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=DW;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAApRHgoQFn50ebZPTiKObeAwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADTTrg+GoPdRXBL+rdqVwI3AAAAAASAAACgAAAAEAAAALGv1AzzM9FJK+f7XeLttZcoAAAAvMISYyIOY63ubrmQq//BfDop5mVNsqfN9h+PJQwkgiG6q2+VntKXERQAAAB59jbD/Nlm9kpPPNFC6CUpabiEpA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4E55B52C-4AB0-4B12-9CCC-C2D5EF32694D}"
+      DTS:ObjectName="HQ-SQL-06.Radiant">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SQL-06;User ID=SSISUser;Initial Catalog=Radiant;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAApRHgoQFn50ebZPTiKObeAwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADGIVb5Ju/PfndIWlbGc9SpAAAAAASAAACgAAAAEAAAALooZfDpnjIhq/08Neon1uYoAAAAedgkAwZNnwuPQub4QAVsOj/wZMpkPOQSvZrpNFOirjlMmj7j9HS6xBQAAAB4aNy1VZIwDUWmNitLTfUWDut7nw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy Cube Data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{89CC02F5-4649-4D61-8CDF-127047257082}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Cube Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - HstvbofqAssignmentMerit"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqAssignmentMerit]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].Columns[FKHstvbofqAssignmentID]"
+                      cachedDataType="i4"
+                      cachedName="FKHstvbofqAssignmentID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].ExternalColumns[FKHstvbofqAssignmentID]"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].Columns[FKHstvbofqRewardProgramID]"
+                      cachedDataType="i4"
+                      cachedName="FKHstvbofqRewardProgramID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[FKHstvbofqRewardProgramID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].Columns[MeritAmount]"
+                      cachedDataType="r8"
+                      cachedName="MeritAmount"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].ExternalColumns[MeritAmount]"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[MeritAmount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].ExternalColumns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="FKHstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKHstvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input].ExternalColumns[MeritAmount]"
+                      dataType="r8"
+                      name="MeritAmount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination 2 - vbofqRewardProgramStandings"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[vbofqRewardProgramStandings]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[FKvbofqMemberAccountID]"
+                      cachedDataType="i4"
+                      cachedName="FKvbofqMemberAccountID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqMemberAccountID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqMemberAccountID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[FKvbofqRewardProgramID]"
+                      cachedDataType="i4"
+                      cachedName="FKvbofqRewardProgramID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqRewardProgramID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqRewardProgramID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[NextResetDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="NextResetDate"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[NextResetDate]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextResetDate]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[Iteration]"
+                      cachedDataType="i4"
+                      cachedName="Iteration"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[Iteration]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[Iteration]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[CommittedMerit]"
+                      cachedDataType="r8"
+                      cachedName="CommittedMerit"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[CommittedMerit]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[CommittedMerit]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[PendingMerit]"
+                      cachedDataType="r8"
+                      cachedName="PendingMerit"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[PendingMerit]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[PendingMerit]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[NextRewardTierName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="NextRewardTierName"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[NextRewardTierName]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextRewardTierName]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[NextRewardThreshold]"
+                      cachedDataType="r8"
+                      cachedName="NextRewardThreshold"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[NextRewardThreshold]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextRewardThreshold]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[FKTierID]"
+                      cachedDataType="i4"
+                      cachedName="FKTierID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKTierID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKTierID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[FKhstvbofqRewardProgramID]"
+                      cachedDataType="i4"
+                      cachedName="FKhstvbofqRewardProgramID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKhstvbofqRewardProgramID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKhstvbofqRewardProgramID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[FKvbofqMetricID]"
+                      cachedDataType="i4"
+                      cachedName="FKvbofqMetricID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqMetricID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqMetricID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[FKvbofqRewardMethodID]"
+                      cachedDataType="i4"
+                      cachedName="FKvbofqRewardMethodID"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqRewardMethodID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqRewardMethodID]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[RewardAmount]"
+                      cachedDataType="r8"
+                      cachedName="RewardAmount"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[RewardAmount]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[RewardAmount]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[DiscountSumOverInterval]"
+                      cachedDataType="r8"
+                      cachedName="DiscountSumOverInterval"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[DiscountSumOverInterval]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[DiscountSumOverInterval]" />
+                    <inputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].Columns[DiscountLimit]"
+                      cachedDataType="r8"
+                      cachedName="DiscountLimit"
+                      externalMetadataColumnId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[DiscountLimit]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[DiscountLimit]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      name="FKvbofqMemberAccountID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[NextResetDate]"
+                      dataType="dbTimeStamp"
+                      name="NextResetDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[Iteration]"
+                      dataType="i4"
+                      name="Iteration" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[CommittedMerit]"
+                      dataType="r8"
+                      name="CommittedMerit" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[PendingMerit]"
+                      dataType="r8"
+                      name="PendingMerit" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[NextRewardTierName]"
+                      dataType="wstr"
+                      length="50"
+                      name="NextRewardTierName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[NextRewardThreshold]"
+                      dataType="r8"
+                      name="NextRewardThreshold" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKTierID]"
+                      dataType="i4"
+                      name="FKTierID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKhstvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKhstvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqMetricID]"
+                      dataType="i4"
+                      name="FKvbofqMetricID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[FKvbofqRewardMethodID]"
+                      dataType="i4"
+                      name="FKvbofqRewardMethodID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[RewardAmount]"
+                      dataType="r8"
+                      name="RewardAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[DiscountSumOverInterval]"
+                      dataType="r8"
+                      name="DiscountSumOverInterval" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input].ExternalColumns[DiscountLimit]"
+                      dataType="r8"
+                      name="DiscountLimit" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source - HstvbofqAssignmentMerit"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqAssignmentMerit]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqAssignmentID]"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]"
+                      name="FKHstvbofqAssignmentID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[FKHstvbofqRewardProgramID]"
+                      name="FKHstvbofqRewardProgramID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[MeritAmount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].ExternalColumns[MeritAmount]"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].Columns[MeritAmount]"
+                      name="MeritAmount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="FKHstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKHstvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output].ExternalColumns[MeritAmount]"
+                      dataType="r8"
+                      name="MeritAmount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqAssignmentID]"
+                      name="FKHstvbofqAssignmentID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqRewardProgramID]"
+                      name="FKHstvbofqRewardProgramID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[MeritAmount]"
+                      dataType="r8"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[MeritAmount]"
+                      name="MeritAmount" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source 2 - vbofqRewardProgramStandings"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[vbofqRewardProgramStandings]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqMemberAccountID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqMemberAccountID]"
+                      name="FKvbofqMemberAccountID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqRewardProgramID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqRewardProgramID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqRewardProgramID]"
+                      name="FKvbofqRewardProgramID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextResetDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[NextResetDate]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextResetDate]"
+                      name="NextResetDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[Iteration]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[Iteration]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[Iteration]"
+                      name="Iteration"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[CommittedMerit]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[CommittedMerit]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[CommittedMerit]"
+                      name="CommittedMerit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[PendingMerit]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[PendingMerit]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[PendingMerit]"
+                      name="PendingMerit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextRewardTierName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[NextRewardTierName]"
+                      length="50"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextRewardTierName]"
+                      name="NextRewardTierName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextRewardThreshold]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[NextRewardThreshold]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[NextRewardThreshold]"
+                      name="NextRewardThreshold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKTierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKTierID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKTierID]"
+                      name="FKTierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKhstvbofqRewardProgramID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKhstvbofqRewardProgramID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKhstvbofqRewardProgramID]"
+                      name="FKhstvbofqRewardProgramID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqMetricID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqMetricID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqMetricID]"
+                      name="FKvbofqMetricID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqRewardMethodID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqRewardMethodID]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[FKvbofqRewardMethodID]"
+                      name="FKvbofqRewardMethodID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[RewardAmount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[RewardAmount]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[RewardAmount]"
+                      name="RewardAmount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[DiscountSumOverInterval]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[DiscountSumOverInterval]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[DiscountSumOverInterval]"
+                      name="DiscountSumOverInterval"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[DiscountLimit]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[DiscountLimit]"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].Columns[DiscountLimit]"
+                      name="DiscountLimit"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      name="FKvbofqMemberAccountID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[NextResetDate]"
+                      dataType="dbTimeStamp"
+                      name="NextResetDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[Iteration]"
+                      dataType="i4"
+                      name="Iteration" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[CommittedMerit]"
+                      dataType="r8"
+                      name="CommittedMerit" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[PendingMerit]"
+                      dataType="r8"
+                      name="PendingMerit" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[NextRewardTierName]"
+                      dataType="wstr"
+                      length="50"
+                      name="NextRewardTierName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[NextRewardThreshold]"
+                      dataType="r8"
+                      name="NextRewardThreshold" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKTierID]"
+                      dataType="i4"
+                      name="FKTierID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKhstvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKhstvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqMetricID]"
+                      dataType="i4"
+                      name="FKvbofqMetricID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqRewardMethodID]"
+                      dataType="i4"
+                      name="FKvbofqRewardMethodID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[RewardAmount]"
+                      dataType="r8"
+                      name="RewardAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[DiscountSumOverInterval]"
+                      dataType="r8"
+                      name="DiscountSumOverInterval" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output].ExternalColumns[DiscountLimit]"
+                      dataType="r8"
+                      name="DiscountLimit" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqMemberAccountID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqMemberAccountID]"
+                      name="FKvbofqMemberAccountID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqRewardProgramID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqRewardProgramID]"
+                      name="FKvbofqRewardProgramID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[NextResetDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[NextResetDate]"
+                      name="NextResetDate" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[Iteration]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[Iteration]"
+                      name="Iteration" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[CommittedMerit]"
+                      dataType="r8"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[CommittedMerit]"
+                      name="CommittedMerit" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[PendingMerit]"
+                      dataType="r8"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[PendingMerit]"
+                      name="PendingMerit" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[NextRewardTierName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[NextRewardTierName]"
+                      name="NextRewardTierName" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[NextRewardThreshold]"
+                      dataType="r8"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[NextRewardThreshold]"
+                      name="NextRewardThreshold" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKTierID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKTierID]"
+                      name="FKTierID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKhstvbofqRewardProgramID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKhstvbofqRewardProgramID]"
+                      name="FKhstvbofqRewardProgramID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqMetricID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqMetricID]"
+                      name="FKvbofqMetricID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqRewardMethodID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[FKvbofqRewardMethodID]"
+                      name="FKvbofqRewardMethodID" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[RewardAmount]"
+                      dataType="r8"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[RewardAmount]"
+                      name="RewardAmount" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[DiscountSumOverInterval]"
+                      dataType="r8"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[DiscountSumOverInterval]"
+                      name="DiscountSumOverInterval" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[DiscountLimit]"
+                      dataType="r8"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[DiscountLimit]"
+                      name="DiscountLimit" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy Cube Data.Paths[OLE DB Source Output1]"
+              endId="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Copy Cube Data.Paths[OLE DB Source Output]"
+              endId="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy Radiant XLarge"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{23DE25B0-A126-433C-94BB-A32430FD952D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Radiant XLarge"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - HstvbofqAssignmentReward"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqAssignmentReward]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[FKHstvbofqAssignmentID]"
+                      cachedDataType="i4"
+                      cachedName="FKHstvbofqAssignmentID"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[FKHstvbofqAssignmentID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[FKHstvbofqRewardProgramID]"
+                      cachedDataType="i4"
+                      cachedName="FKHstvbofqRewardProgramID"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKHstvbofqRewardProgramID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[TierID]"
+                      cachedDataType="i4"
+                      cachedName="TierID"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[TierID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[TierID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[Event]"
+                      cachedDataType="i4"
+                      cachedName="Event"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[Event]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Event]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[Iteration]"
+                      cachedDataType="i4"
+                      cachedName="Iteration"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[Iteration]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Iteration]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[CUID]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CUID"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[CUID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[CUID]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[QueueRewards]"
+                      cachedDataType="bool"
+                      cachedName="QueueRewards"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[QueueRewards]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[QueueRewards]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[RewardAmount]"
+                      cachedDataType="r8"
+                      cachedName="RewardAmount"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[RewardAmount]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[RewardAmount]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[Proposed]"
+                      cachedDataType="bool"
+                      cachedName="Proposed"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[Proposed]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Proposed]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[PreviousProfileValue]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PreviousProfileValue"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[PreviousProfileValue]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[PreviousProfileValue]" />
+                    <inputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].Columns[FKvbofqRewardDeletedReasonID]"
+                      cachedDataType="i4"
+                      cachedName="FKvbofqRewardDeletedReasonID"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[FKvbofqRewardDeletedReasonID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKvbofqRewardDeletedReasonID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="FKHstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKHstvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[TierID]"
+                      dataType="i4"
+                      name="TierID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[Event]"
+                      dataType="i4"
+                      name="Event" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[Iteration]"
+                      dataType="i4"
+                      name="Iteration" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[CUID]"
+                      dataType="wstr"
+                      length="15"
+                      name="CUID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[QueueRewards]"
+                      dataType="bool"
+                      name="QueueRewards" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[RewardAmount]"
+                      dataType="r8"
+                      name="RewardAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[Proposed]"
+                      dataType="bool"
+                      name="Proposed" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[PreviousProfileValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PreviousProfileValue" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input].ExternalColumns[FKvbofqRewardDeletedReasonID]"
+                      dataType="i4"
+                      name="FKvbofqRewardDeletedReasonID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source - HstvbofqAssignmentReward"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[HstvbofqAssignmentReward]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SQL-06.Radiant]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqAssignmentID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKHstvbofqAssignmentID]"
+                      name="FKHstvbofqAssignmentID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKHstvbofqRewardProgramID]"
+                      name="FKHstvbofqRewardProgramID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[TierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[TierID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[TierID]"
+                      name="TierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Event]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[Event]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Event]"
+                      name="Event"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Iteration]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[Iteration]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Iteration]"
+                      name="Iteration"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[CUID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[CUID]"
+                      length="15"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[CUID]"
+                      name="CUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[QueueRewards]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[QueueRewards]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[QueueRewards]"
+                      name="QueueRewards"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[RewardAmount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[RewardAmount]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[RewardAmount]"
+                      name="RewardAmount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Proposed]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[Proposed]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[Proposed]"
+                      name="Proposed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[PreviousProfileValue]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[PreviousProfileValue]"
+                      length="100"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[PreviousProfileValue]"
+                      name="PreviousProfileValue"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKvbofqRewardDeletedReasonID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqRewardDeletedReasonID]"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].Columns[FKvbofqRewardDeletedReasonID]"
+                      name="FKvbofqRewardDeletedReasonID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      name="FKHstvbofqAssignmentID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      name="FKHstvbofqRewardProgramID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[TierID]"
+                      dataType="i4"
+                      name="TierID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[Event]"
+                      dataType="i4"
+                      name="Event" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[Iteration]"
+                      dataType="i4"
+                      name="Iteration" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[CUID]"
+                      dataType="wstr"
+                      length="15"
+                      name="CUID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[QueueRewards]"
+                      dataType="bool"
+                      name="QueueRewards" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[RewardAmount]"
+                      dataType="r8"
+                      name="RewardAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[Proposed]"
+                      dataType="bool"
+                      name="Proposed" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[PreviousProfileValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PreviousProfileValue" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output].ExternalColumns[FKvbofqRewardDeletedReasonID]"
+                      dataType="i4"
+                      name="FKvbofqRewardDeletedReasonID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqAssignmentID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqAssignmentID]"
+                      name="FKHstvbofqAssignmentID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqRewardProgramID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[FKHstvbofqRewardProgramID]"
+                      name="FKHstvbofqRewardProgramID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[TierID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[TierID]"
+                      name="TierID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[Event]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[Event]"
+                      name="Event" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[Iteration]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[Iteration]"
+                      name="Iteration" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[CUID]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[CUID]"
+                      name="CUID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[QueueRewards]"
+                      dataType="bool"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[QueueRewards]"
+                      name="QueueRewards" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[RewardAmount]"
+                      dataType="r8"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[RewardAmount]"
+                      name="RewardAmount" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[Proposed]"
+                      dataType="bool"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[Proposed]"
+                      name="Proposed" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[PreviousProfileValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[PreviousProfileValue]"
+                      name="PreviousProfileValue" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[FKvbofqRewardDeletedReasonID]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[FKvbofqRewardDeletedReasonID]"
+                      name="FKvbofqRewardDeletedReasonID" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy Radiant XLarge.Paths[OLE DB Source Output]"
+              endId="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prep Radiant XLarge"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DTSID="{82DC6C57-CE8D-4F8A-AA41-AB08F1396A25}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prep Radiant XLarge"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ACE87908-7EBF-4DAD-8EAF-ADDCD510AC9B}"
+          SQLTask:SqlStatementSource="&#xA;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&#xA;Use DW&#xA;go&#xA;--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&#xA;&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[HstvbofqAssignmentReward]'))&#xA;DROP TABLE [dbo].[HstvbofqAssignmentReward]&#xA;go&#xA;&#xA;CREATE TABLE [HstvbofqAssignmentReward](&#xA; [FKHstvbofqAssignmentID] [int] NULL,&#xA; [FKHstvbofqRewardProgramID] [int] NULL,&#xA; [TierID] [int] NULL,&#xA; [Event] [int] NULL,&#xA; [Iteration] [int] NULL,&#xA; [CUID] [nvarchar](15) NULL,&#xA; [QueueRewards] [bit] NULL,&#xA; [RewardAmount] [float] NULL,&#xA; [Proposed] [bit] NULL,&#xA; [PreviousProfileValue] [varchar](100) NULL,&#xA; [FKvbofqRewardDeletedReasonID] [int] NULL)&#xA;GO&#xA;&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[HstvbofqAssignmentMerit]'))&#xA;DROP TABLE [dbo].[HstvbofqAssignmentMerit]&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[HstvbofqAssignmentMerit] (&#xA;[FKHstvbofqAssignmentID] int NULL,&#xA;[FKHstvbofqRewardProgramID] int NULL,&#xA;[MeritAmount] float NULL&#xA;)&#xA;GO&#xA;&#xA;&#xA;&#xA;&#xA;IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vbofqRewardProgramStandings]'))&#xA;DROP TABLE [dbo].[vbofqRewardProgramStandings]&#xA;GO&#xA;&#xA;CREATE TABLE [dbo].[vbofqRewardProgramStandings] (&#xA;[FKvbofqMemberAccountID] int NULL,&#xA;[FKvbofqRewardProgramID] int NULL,&#xA;[NextResetDate] smalldatetime NULL,&#xA;[Iteration] int NULL,&#xA;[CommittedMerit] float NULL,&#xA;[PendingMerit] float NULL,&#xA;[NextRewardTierName] nvarchar(50) NULL,&#xA;[NextRewardThreshold] float NULL,&#xA;[FKTierID] int NULL,&#xA;[FKhstvbofqRewardProgramID] int NULL,&#xA;[FKvbofqMetricID] int NULL,&#xA;[FKvbofqRewardMethodID] int NULL,&#xA;[RewardAmount] float NULL,&#xA;[DiscountSumOverInterval] float NULL,&#xA;[DiscountLimit] float NULL&#xA;)&#xA;GO&#xA;&#xA;&#xA;--&#x9;------imp&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2446B999-AC0D-42AC-B388-FF0C4C78F471}"
+      DTS:From="Package\Prep Radiant XLarge"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy Cube Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{E0820A88-E047-443D-81E5-856E9358C74C\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{E0820A88-E047-443D-81E5-856E9358C74C}"
+      DTS:From="Package\Prep Radiant XLarge"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{E0820A88-E047-443D-81E5-856E9358C74C}"
+      DTS:To="Package\Copy Radiant XLarge" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Copy Cube Data"
+          TopLeft="217.75,124" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Copy Radiant XLarge"
+          TopLeft="23.5,124" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Prep Radiant XLarge"
+          TopLeft="117.5,27.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="233.5,69.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.25,54.5"
+              Start="0,0"
+              End="62.25,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.0945945945946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.0945945945946"
+                    Point2="0,22.0945945945946"
+                    Point3="4,22.0945945945946" />
+                  <mssgle:LineSegment
+                    End="58.25,22.0945945945946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.25,22.0945945945946"
+                    Point2="62.25,22.0945945945946"
+                    Point3="62.25,26.0945945945946" />
+                  <mssgle:LineSegment
+                    End="62.25,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{E0820A88-E047-443D-81E5-856E9358C74C\}]"
+          TopLeft="177.5,69.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-65,54.5"
+              Start="0,0"
+              End="-65,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.0945945945946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.0945945945946"
+                    Point2="0,22.0945945945946"
+                    Point3="-4,22.0945945945946" />
+                  <mssgle:LineSegment
+                    End="-61,22.0945945945946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-61,22.0945945945946"
+                    Point2="-65,22.0945945945946"
+                    Point3="-65,26.0945945945946" />
+                  <mssgle:LineSegment
+                    End="-65,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy Cube Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="279,42"
+          Id="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings"
+          TopLeft="379.5,5.49999999999989" />
+        <NodeLayout
+          Size="300,42"
+          Id="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings"
+          TopLeft="369,107.5" />
+        <NodeLayout
+          Size="242,42"
+          Id="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit"
+          TopLeft="16,5.5" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit"
+          TopLeft="5.5,107.5" />
+        <EdgeLayout
+          Id="Package\Copy Cube Data.Paths[OLE DB Source Output]"
+          TopLeft="519,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Copy Cube Data.Paths[OLE DB Source Output1]"
+          TopLeft="137,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Cube Data\Source 2 - vbofqRewardProgramStandings">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Cube Data\Destination 2 - vbofqRewardProgramStandings">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Cube Data\Source - HstvbofqAssignmentMerit">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Cube Data\Destination - HstvbofqAssignmentMerit">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Copy Radiant XLarge">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward"
+          TopLeft="16,5.5" />
+        <NodeLayout
+          Size="275,42"
+          Id="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward"
+          TopLeft="5.50000000000003,107.5" />
+        <EdgeLayout
+          Id="Package\Copy Radiant XLarge.Paths[OLE DB Source Output]"
+          TopLeft="143,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant XLarge\Destination - HstvbofqAssignmentReward">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Radiant XLarge\Source - HstvbofqAssignmentReward">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2571 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/26/2017 1:46:02 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="TMAUL-SP4"
+  DTS:CreatorName="CORPHQ\TMaul"
+  DTS:DTSID="{2E6139D5-A544-470B-8186-3BD1839C348B}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="EmployeeScorecard"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{A82C22AE-504D-4E1D-AE2A-0FB632461AA0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NPS]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{30D0ABFB-DB36-48B1-BA06-A6137C767652}"
+      DTS:ObjectName="NPS">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ImportFlatFileDirectory] + "NPS.txt"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\hq-ssis2012-01\MessageHub\NPS\Inbox\NPS.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UID"
+              DTS:DTSID="{6A66E877-3550-4451-9A92-7B943A604E55}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CouponNum"
+              DTS:DTSID="{1F469858-D913-4A66-814F-40B989D2B1BA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreId"
+              DTS:DTSID="{518EBA02-F573-4DDB-9C26-21FEDA4C2900}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Date_Time"
+              DTS:DTSID="{45501DDC-FE85-4FCB-B146-0523B8C6DF40}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Methodology_id"
+              DTS:DTSID="{0C82B811-F481-4396-8500-A667FE76DE26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CountryCode"
+              DTS:DTSID="{ADE4E3FD-721F-4B64-8B7B-181D2085F695}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="VisitDate"
+              DTS:DTSID="{72106BD8-C7AF-4682-87E5-26DF109A1DEB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="InviteType"
+              DTS:DTSID="{2875D448-F663-4B72-B77C-B5EE782820CC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TransactionNum"
+              DTS:DTSID="{F4E5607A-BA49-459E-A086-A87582CBFE60}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SERVER_ID"
+              DTS:DTSID="{B7911256-EBE7-46E0-B7BE-81627AAFB89F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SERVER_NAME"
+              DTS:DTSID="{7138F9C1-B9AE-4B4A-857B-49B5ECC36ED1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RECOMMEND_ZIOSK"
+              DTS:DTSID="{AFCEA941-3A96-411C-AFE9-BC715E112990}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SERVER_SERVICE_TIME_ZIOSK"
+              DTS:DTSID="{EB20EAD7-F9AC-4DC0-952E-9C69AAE6187C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SERVICE_ATTENTIVE_ZIOSK"
+              DTS:DTSID="{16495960-D1F5-4B8A-B9E2-34EDDBA67E1F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FOOD_GREAT_ZIOSK"
+              DTS:DTSID="{2DB61469-FEC7-4C4D-97B1-2196210F4DFE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="REST_CLEAN_ZIOSK"
+              DTS:DTSID="{E9CD6A87-6AF0-435E-9D3E-30C5ECAC62E4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LONGER_SURVEY"
+              DTS:DTSID="{6B5A5D63-E486-4A89-BD3E-2094039D0282}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BOTTOMLESS_ZIOSK"
+              DTS:DTSID="{713B4CFF-AE64-47B6-892E-CEFD77ADC9D4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="1200"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="S000274"
+              DTS:DTSID="{26081A28-5CA3-47C9-8EC2-DB9B4B00ED7C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="1200"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="S000328"
+              DTS:DTSID="{C5860CE0-C769-4930-815F-B38F178EA3DD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="1200"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ZCOMMENT"
+              DTS:DTSID="{AD3BE223-E02B-4665-A7B0-8678975A5A18}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete and Truncate tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CFB618E1-01CB-441E-BF83-74B070EEF7B1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete and Truncate tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{24406690-BCFC-488D-B92C-9D17AC6C9686}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE rpt.EmployeeScorecardWork&#xA;TRUNCATE TABLE dbo.NetPromoterScoreStaging&#xA;DELETE FROM rpt.EmployeeScorecard WHERE DateOfBusiness &gt;= DATEADD(d, -65, DATEDIFF(d, 0, GETDATE()))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load NPS Staging"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0134F47A-536C-4182-BE09-37571E5379C7}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load NPS Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load NPS Staging\NPS File"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="NPS File"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load NPS Staging\NPS File.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NPS]"
+                  connectionManagerRefId="Package.ConnectionManagers[NPS]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[UID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[UID]"
+                      length="100"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[UID]"
+                      name="UID"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[CouponNum]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[CouponNum]"
+                      length="100"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[CouponNum]"
+                      name="CouponNum"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[StoreId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[StoreId]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[StoreId]"
+                      name="StoreId"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[Date_Time]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[Date_Time]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[Date_Time]"
+                      name="Date_Time"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[Methodology_id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[Methodology_id]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[Methodology_id]"
+                      name="Methodology_id"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[VisitDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[VisitDate]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[VisitDate]"
+                      name="VisitDate"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[LONGER_SURVEY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[LONGER_SURVEY]"
+                      length="500"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[LONGER_SURVEY]"
+                      name="LONGER_SURVEY"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[S000274]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[S000274]"
+                      length="500"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[S000274]"
+                      name="S000274"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[S000328]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[S000328]"
+                      length="500"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[S000328]"
+                      name="S000328"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[ZCOMMENT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[ZCOMMENT]"
+                      length="500"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[ZCOMMENT]"
+                      name="ZCOMMENT"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[CountryCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[CountryCode]"
+                      length="50"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[CountryCode]"
+                      name="CountryCode"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[InviteType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[InviteType]"
+                      length="50"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[InviteType]"
+                      name="InviteType"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[TransactionNum]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[TransactionNum]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[TransactionNum]"
+                      name="TransactionNum"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_ID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVER_ID]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_ID]"
+                      name="SERVER_ID"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVER_NAME]"
+                      length="100"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_NAME]"
+                      name="SERVER_NAME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[RECOMMEND_ZIOSK]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[RECOMMEND_ZIOSK]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[RECOMMEND_ZIOSK]"
+                      name="RECOMMEND_ZIOSK"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_SERVICE_TIME_ZIOSK]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVER_SERVICE_TIME_ZIOSK]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_SERVICE_TIME_ZIOSK]"
+                      name="SERVER_SERVICE_TIME_ZIOSK"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVICE_ATTENTIVE_ZIOSK]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVICE_ATTENTIVE_ZIOSK]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVICE_ATTENTIVE_ZIOSK]"
+                      name="SERVICE_ATTENTIVE_ZIOSK"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[FOOD_GREAT_ZIOSK]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[FOOD_GREAT_ZIOSK]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[FOOD_GREAT_ZIOSK]"
+                      name="FOOD_GREAT_ZIOSK"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[REST_CLEAN_ZIOSK]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[REST_CLEAN_ZIOSK]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[REST_CLEAN_ZIOSK]"
+                      name="REST_CLEAN_ZIOSK"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[BOTTOMLESS_ZIOSK]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[BOTTOMLESS_ZIOSK]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[BOTTOMLESS_ZIOSK]"
+                      name="BOTTOMLESS_ZIOSK"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[UID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="UID" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[CouponNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CouponNum" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[StoreId]"
+                      dataType="i8"
+                      name="StoreId" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[Date_Time]"
+                      dataType="date"
+                      name="Date_Time" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[Methodology_id]"
+                      dataType="i8"
+                      name="Methodology_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[VisitDate]"
+                      dataType="date"
+                      name="VisitDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[LONGER_SURVEY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="LONGER_SURVEY" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[S000274]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1200"
+                      name="S000274" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[S000328]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1200"
+                      name="S000328" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[ZCOMMENT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1200"
+                      name="ZCOMMENT" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[CountryCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[InviteType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InviteType" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[TransactionNum]"
+                      dataType="i8"
+                      name="TransactionNum" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVER_ID]"
+                      dataType="i8"
+                      name="SERVER_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVER_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="SERVER_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[RECOMMEND_ZIOSK]"
+                      dataType="i8"
+                      name="RECOMMEND_ZIOSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVER_SERVICE_TIME_ZIOSK]"
+                      dataType="i8"
+                      name="SERVER_SERVICE_TIME_ZIOSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[SERVICE_ATTENTIVE_ZIOSK]"
+                      dataType="i8"
+                      name="SERVICE_ATTENTIVE_ZIOSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[FOOD_GREAT_ZIOSK]"
+                      dataType="i8"
+                      name="FOOD_GREAT_ZIOSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[REST_CLEAN_ZIOSK]"
+                      dataType="i8"
+                      name="REST_CLEAN_ZIOSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].ExternalColumns[BOTTOMLESS_ZIOSK]"
+                      dataType="i8"
+                      name="BOTTOMLESS_ZIOSK" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load NPS Staging\NPS Staging"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="NPS Staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[NetPromoterScoreStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load NPS Staging\NPS Staging.Connections[OleDbConnection]"
+                  connectionManagerID="{24406690-BCFC-488D-B92C-9D17AC6C9686}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HQ-FinSQL-01.Staging.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[Date_Time]"
+                      cachedDataType="date"
+                      cachedName="Date_Time"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[Date_Time]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[StoreId]"
+                      cachedDataType="i8"
+                      cachedName="StoreId"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[StoreId]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[UID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="UID"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[UID]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[UID]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[CouponNum]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CouponNum"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[CouponNum]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[CouponNum]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[Methodology_id]"
+                      cachedDataType="i8"
+                      cachedName="Methodology_id"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[MethodologyID]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[Methodology_id]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[VisitDate]"
+                      cachedDataType="date"
+                      cachedName="VisitDate"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[VisitDate]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[VisitDate]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[LONGER_SURVEY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="LONGER_SURVEY"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[LongerSurvey]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[LONGER_SURVEY]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[S000274]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="S000274"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[WOW]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[S000274]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[S000328]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="S000328"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[OpenEnd]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[S000328]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[ZCOMMENT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="ZCOMMENT"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[Comment]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[ZCOMMENT]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[SERVER_ID]"
+                      cachedDataType="i8"
+                      cachedName="SERVER_ID"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_ID]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[SERVER_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SERVER_NAME"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_NAME]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[TransactionNum]"
+                      cachedDataType="i8"
+                      cachedName="TransactionNum"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[CheckNum]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[TransactionNum]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[BOTTOMLESS_ZIOSK]"
+                      cachedDataType="i8"
+                      cachedName="BOTTOMLESS_ZIOSK"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[Bottomless]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[BOTTOMLESS_ZIOSK]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[SERVER_SERVICE_TIME_ZIOSK]"
+                      cachedDataType="i8"
+                      cachedName="SERVER_SERVICE_TIME_ZIOSK"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[ServiceTime]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVER_SERVICE_TIME_ZIOSK]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[SERVICE_ATTENTIVE_ZIOSK]"
+                      cachedDataType="i8"
+                      cachedName="SERVICE_ATTENTIVE_ZIOSK"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[AttentiveServer]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[SERVICE_ATTENTIVE_ZIOSK]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[FOOD_GREAT_ZIOSK]"
+                      cachedDataType="i8"
+                      cachedName="FOOD_GREAT_ZIOSK"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[TasteOfFood]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[FOOD_GREAT_ZIOSK]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[REST_CLEAN_ZIOSK]"
+                      cachedDataType="i8"
+                      cachedName="REST_CLEAN_ZIOSK"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantCleanliness]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[REST_CLEAN_ZIOSK]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[RECOMMEND_ZIOSK]"
+                      cachedDataType="i8"
+                      cachedName="RECOMMEND_ZIOSK"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[NPS]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[RECOMMEND_ZIOSK]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[CountryCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CountryCode"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[CountryCode]" />
+                    <inputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].Columns[InviteType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InviteType"
+                      externalMetadataColumnId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[InviteType]"
+                      lineageId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output].Columns[InviteType]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="EmployeeName" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[CheckNum]"
+                      dataType="i4"
+                      name="CheckNum" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[Bottomless]"
+                      dataType="i4"
+                      name="Bottomless" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[ServiceTime]"
+                      dataType="i4"
+                      name="ServiceTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[AttentiveServer]"
+                      dataType="i4"
+                      name="AttentiveServer" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[TasteOfFood]"
+                      dataType="i4"
+                      name="TasteOfFood" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[RestaurantCleanliness]"
+                      dataType="i4"
+                      name="RestaurantCleanliness" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[Comment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1200"
+                      name="Comment" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="InsertedBy" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[UID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="UID" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[CouponNum]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CouponNum" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[MethodologyID]"
+                      dataType="i4"
+                      name="MethodologyID" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[VisitDate]"
+                      dataType="dbTimeStamp"
+                      name="VisitDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[InviteType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InviteType" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[NPS]"
+                      dataType="i4"
+                      name="NPS" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[LongerSurvey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="LongerSurvey" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[WOW]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1200"
+                      name="WOW" />
+                    <externalMetadataColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input].ExternalColumns[OpenEnd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1200"
+                      name="OpenEnd" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load NPS Staging\NPS Staging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load NPS Staging\NPS Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load NPS Staging\NPS Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load NPS Staging\NPS Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load NPS Staging.Paths[Flat File Source Output]"
+              endId="Package\Load NPS Staging\NPS Staging.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Load NPS Staging\NPS File.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Royalty Work data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7079535C-C74B-4ACA-8A84-EC4C1F1DED1F}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Royalty Work data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Royalty Work data\EmployeeScorecardWork"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="EmployeeScorecardWork"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[rpt].[EmployeeScorecardWork]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Royalty Work data\EmployeeScorecardWork.Connections[OleDbConnection]"
+                  connectionManagerID="{24406690-BCFC-488D-B92C-9D17AC6C9686}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HQ-FinSQL-01.Staging.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      externalMetadataColumnId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].Columns[RoyaltySalesTotal]"
+                      cachedDataType="r8"
+                      cachedName="RoyaltySalesTotal"
+                      externalMetadataColumnId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[RoyaltySalesTotal]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[RoyaltySalesTotal]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="EmployeeName" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[RoyaltySalesTotal]"
+                      dataType="numeric"
+                      name="RoyaltySalesTotal"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="InsertedBy" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Royalty Work data\EmployeeScorecardWork.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Royalty Work data\EmployeeScorecardWork.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\EmployeeScorecardWork.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Royalty Work data\EmployeeScorecardWork.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Royalty Work data\Royalty"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Royalty"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+	DATEADD(d, 0, DATEDIFF(d, 0, hvfa.ActivityDateTime)) AS [DateOfBusiness],
+	hvfa.FKStoreID AS                                           [StoreID],
+	hvfc.FKEmployeeID AS [EmployeeID],
+	SUM(ISNULL(hvfc.CheckTotal, 0)) AS                      [RoyaltySalesTotal]
+FROM  dbo.HstvbofqAssignment AS hvfa
+INNER JOIN dbo.vbofqMemberAccount AS vfma
+	 ON hvfa.FKvbofqMemberAccountID = vfma.vbofqMemberAccountID
+INNER JOIN dbo.HstvbofqCheck AS hvfc
+	 ON hvfa.HstvbofqAssignmentID = hvfc.FKHstvbofqAssignmentID
+WHERE hvfa.[Status] = 4
+	 AND LEFT(vfma.CardNumber, 5) IN
+	('30384',
+	 '30385'
+	)
+	 AND hvfa.FKStoreID != 0
+	 AND DATEADD(d, 0, DATEDIFF(d, 0, hvfa.ActivityDateTime)) &gt;= DATEADD(d, -65, DATEDIFF(d, 0, GETDATE()))
+                    AND DATEADD(d, 0, DATEDIFF(d, 0, hvfa.ActivityDateTime)) &lt; DATEADD(d, 0, DATEDIFF(d, 0, GETDATE()))
+GROUP BY
+	DATEADD(d, 0, DATEDIFF(d, 0, hvfa.ActivityDateTime)),
+	hvfa.FKStoreID,
+	hvfc.FKEmployeeID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Royalty Work data\Royalty.Connections[OleDbConnection]"
+                  connectionManagerID="{8C0D272A-522C-401E-B8BF-343753FAB2E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HQ-SQL-07.Radiant.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[RoyaltySalesTotal]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[RoyaltySalesTotal]"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].Columns[RoyaltySalesTotal]"
+                      name="RoyaltySalesTotal"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output].ExternalColumns[RoyaltySalesTotal]"
+                      dataType="r8"
+                      name="RoyaltySalesTotal" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[RoyaltySalesTotal]"
+                      dataType="r8"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[RoyaltySalesTotal]"
+                      name="RoyaltySalesTotal" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Royalty Work data.Paths[OLE DB Source Output]"
+              endId="Package\Load Royalty Work data\EmployeeScorecardWork.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Royalty Work data\Royalty.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Scorecard Sales and Guest Count data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{20A040F3-F0B3-4C68-9ACC-295F985CD29B}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Scorecard Sales and Guest Count data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Aloha Sales and Guest Count"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+	dhcs.DateOfBusiness,
+	dhcs.FKStoreID AS                                           [StoreID],
+	dhcs.FKEmployeeNumber AS                                    [EmployeeID],
+	ISNULL(UPPER(ebs.FirstName+' '+ebs.LastName), 'UNKNOWN') AS [EmployeeName],
+	SUM(ISNULL(dhcs.ItemSales, 0)) AS                           [SalesTotal],
+	SUM(ISNULL(dhcs.GuestCount, 0)) AS                          [GuestCount]
+FROM  dbo.DpvHstCheckSummary AS dhcs
+LEFT OUTER JOIN dbo.EmployeeByStore AS ebs
+	 ON dhcs.FKEmployeeNumber = ebs.EmployeeNumber
+	    AND dhcs.FKStoreID = ebs.[Owner]
+WHERE dhcs.DateOfBusiness &gt;= DATEADD(d, -65, DATEDIFF(d, 0, GETDATE()))
+              AND dhcs.DateOfBusiness &lt; DATEADD(d, 0, DATEDIFF(d, 0, GETDATE()))
+GROUP BY
+	dhcs.DateOfBusiness,
+	dhcs.FKStoreID,
+	dhcs.FKEmployeeNumber,
+	ISNULL(UPPER(ebs.FirstName+' '+ebs.LastName), 'UNKNOWN')</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Connections[OleDbConnection]"
+                  connectionManagerID="{8C0D272A-522C-401E-B8BF-343753FAB2E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HQ-SQL-07.Radiant.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[EmployeeName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[EmployeeName]"
+                      length="101"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[EmployeeName]"
+                      name="EmployeeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[SalesTotal]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[SalesTotal]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[SalesTotal]"
+                      name="SalesTotal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[GuestCount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[GuestCount]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[GuestCount]"
+                      name="GuestCount"
+                      precision="38"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[EmployeeName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      name="EmployeeName" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[SalesTotal]"
+                      dataType="r8"
+                      name="SalesTotal" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].ExternalColumns[GuestCount]"
+                      dataType="numeric"
+                      name="GuestCount"
+                      precision="38"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[EmployeeName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[EmployeeName]"
+                      name="EmployeeName" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[SalesTotal]"
+                      dataType="r8"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[SalesTotal]"
+                      name="SalesTotal" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[GuestCount]"
+                      dataType="numeric"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[GuestCount]"
+                      name="GuestCount"
+                      precision="38"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="EmployeeScorecard"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[rpt].[EmployeeScorecard]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Connections[OleDbConnection]"
+                  connectionManagerID="{24406690-BCFC-488D-B92C-9D17AC6C9686}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HQ-FinSQL-01.Staging.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].Columns[EmployeeName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="101"
+                      cachedName="EmployeeName"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[EmployeeName]" />
+                    <inputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].Columns[SalesTotal]"
+                      cachedDataType="r8"
+                      cachedName="SalesTotal"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[SalesTotal]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[SalesTotal]" />
+                    <inputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].Columns[GuestCount]"
+                      cachedDataType="numeric"
+                      cachedName="GuestCount"
+                      cachedPrecision="38"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[GuestCount]"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output].Columns[GuestCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="EmployeeName" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[SalesTotal]"
+                      dataType="numeric"
+                      name="SalesTotal"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[RoyaltySalesTotal]"
+                      dataType="numeric"
+                      name="RoyaltySalesTotal"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[GuestCount]"
+                      dataType="i4"
+                      name="GuestCount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[Promoter]"
+                      dataType="i4"
+                      name="Promoter" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[Neutral]"
+                      dataType="i4"
+                      name="Neutral" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[Detractor]"
+                      dataType="i4"
+                      name="Detractor" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[InsertedDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input].ExternalColumns[InsertedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="InsertedBy" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Scorecard Sales and Guest Count data.Paths[OLE DB Source Output]"
+              endId="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update NPS Detail"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{238B1455-8D86-4B64-9003-2DEEB35F8A6E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update NPS Detail"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{24406690-BCFC-488D-B92C-9D17AC6C9686}"
+          SQLTask:SqlStatementSource="DELETE npsd&#xA;FROM [dbo].[NetPromoterScoreDetail] npsd&#xA;INNER JOIN [dbo].[NetPromoterScoreStaging] npss&#xA;&#x9;ON npsd.[VisitDate] = DATEADD(d, 0, DATEDIFF(d, 0, npss.[VisitDate]));&#xA;&#xA;INSERT INTO [dbo].[NetPromoterScoreDetail]&#xA;(&#xA;&#x9;[UID],&#xA;&#x9;[CouponNum],&#xA;&#x9;[StoreID],&#xA;&#x9;[DateOfBusiness],&#xA;&#x9;[MethodologyID],&#xA;&#x9;[Country],&#xA;&#x9;[VisitDate],&#xA;&#x9;[InviteType],&#xA;&#x9;[CheckNum],&#xA;&#x9;[EmployeeID],&#xA;&#x9;[EmployeeName],&#xA;&#x9;[NPS],&#xA;&#x9;[ServiceTime],&#xA;&#x9;[AttentiveServer],&#xA;&#x9;[TasteOfFood],&#xA;&#x9;[RestaurantCleanliness],&#xA;&#x9;[LongerSurvey],&#xA;&#x9;[Bottomless],&#xA;&#x9;[WOW],&#xA;&#x9;[OpenEnd],&#xA;&#x9;[Comment]&#xA;)&#xA;&#x9;  SELECT&#xA;&#x9;&#x9;  n.[UID],&#xA;&#x9;&#x9;  n.[CouponNum],&#xA;&#x9;&#x9;  n.[StoreID],&#xA;&#x9;&#x9;  n.[DateOfBusiness],&#xA;&#x9;&#x9;  n.[MethodologyID],&#xA;&#x9;&#x9;  n.[Country],&#xA;&#x9;&#x9;  DATEADD(d, 0, DATEDIFF(d, 0, n.[VisitDate])) AS [VisitDate],&#xA;&#x9;&#x9;  n.[InviteType],&#xA;&#x9;&#x9;  n.[CheckNum],&#xA;&#x9;&#x9;  n.[EmployeeID],&#xA;&#x9;&#x9;  n.[EmployeeName],&#xA;&#x9;&#x9;  n.[NPS],&#xA;&#x9;&#x9;  n.[ServiceTime],&#xA;&#x9;&#x9;  n.[AttentiveServer],&#xA;&#x9;&#x9;  n.[TasteOfFood],&#xA;&#x9;&#x9;  n.[RestaurantCleanliness],&#xA;&#x9;&#x9;  n.[LongerSurvey],&#xA;&#x9;&#x9;  n.[Bottomless],&#xA;&#x9;&#x9;  n.[WOW],&#xA;&#x9;&#x9;  n.[OpenEnd],&#xA;&#x9;&#x9;  n.[Comment]&#xA;&#x9;  FROM [dbo].[NetPromoterScoreStaging] AS n&#xA;&#x9;  WHERE n.[EmployeeID] IS NOT NULL OR n.[EmployeeID] &lt;&gt; ''" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update NPS Summary"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{98444D23-697F-407E-8FFF-A1DE668AD9DD}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update NPS Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{24406690-BCFC-488D-B92C-9D17AC6C9686}"
+          SQLTask:SqlStatementSource="DELETE nps&#xA;FROM [dbo].[NetPromoterScore] nps&#xA;INNER JOIN [dbo].[NetPromoterScoreStaging] npss&#xA;     ON nps.DateOfBusiness = DATEADD(d, 0, DATEDIFF(d, 0, npss.VisitDate))&#xA;&#xA;INSERT INTO [dbo].[NetPromoterScore]&#xA;           ([DateOfBusiness]&#xA;           ,[StoreID]&#xA;           ,[EmployeeID]&#xA;           ,[Promoter]&#xA;           ,[Neutral]&#xA;           ,[Detractor])&#xA;SELECT&#xA;     DATEADD(d, 0, DATEDIFF(d, 0, n.VisitDate)) AS [DateOfBusiness],&#xA;     n.StoreID,&#xA;     n.EmployeeID,&#xA;     SUM(CASE WHEN n.NPS BETWEEN 9 AND 10&#xA;          THEN 1&#xA;          ELSE 0&#xA;     END) AS [Promoter],&#xA;     SUM(CASE WHEN n.NPS BETWEEN 7 AND 8&#xA;          THEN 1&#xA;          ELSE 0&#xA;     END) AS [Neutral],&#xA;     SUM(CASE WHEN n.NPS BETWEEN 0 AND 6&#xA;          THEN 1&#xA;          ELSE 0&#xA;     END) AS [Detractor]&#xA;FROM [dbo].[NetPromoterScoreStaging] n&#xA;GROUP BY&#xA;     DATEADD(d, 0, DATEDIFF(d, 0, n.VisitDate)),&#xA;     n.StoreID,&#xA;     n.EmployeeID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Scorecard NPS data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6FD6E8FD-DD14-4184-8FE5-399ED7D73348}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Scorecard NPS data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{24406690-BCFC-488D-B92C-9D17AC6C9686}"
+          SQLTask:SqlStatementSource="UPDATE   es&#xA;&#x9;SET&#xA;&#x9;    es.Promoter = nps.Promoter,&#xA;&#x9;    es.Neutral = nps.Neutral,&#xA;&#x9;    es.Detractor = nps.Detractor&#xA;FROM rpt.EmployeeScorecard es&#xA;INNER JOIN dbo.NetPromoterScore nps&#xA;&#x9;ON es.DateOfBusiness = nps.DateOfBusiness&#xA;&#x9;   AND es.StoreID = nps.StoreID&#xA;&#x9;   AND es.EmployeeID = nps.EmployeeID&#xA;WHERE&#xA;&#x9;es.DateOfBusiness &gt;= DATEADD(d, -65, DATEDIFF(d, 0, GETDATE()))&#xA;                AND es.DateOfBusiness &lt; DATEADD(d, 0, DATEDIFF(d, 0, GETDATE()))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Scorecard Royalty data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{453990F7-4BA4-4BCF-A768-9E0B2A497BC0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Scorecard Royalty data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{24406690-BCFC-488D-B92C-9D17AC6C9686}"
+          SQLTask:SqlStatementSource="UPDATE es&#xA;          SET es.RoyaltySalesTotal = esw.RoyaltySalesTotal&#xA;          FROM rpt.EmployeeScorecard es&#xA;          INNER JOIN rpt.EmployeeScorecardWork esw&#xA;               ON es.DateOfBusiness = esw.DateOfBusiness&#xA;               AND es.StoreID = esw.StoreID&#xA;               AND es.EmployeeID = esw.EmployeeID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B6011871-A954-4289-826E-46CFFFDD70D5}"
+      DTS:From="Package\Delete and Truncate tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Scorecard Sales and Guest Count data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5A31D227-37C4-4745-94FC-31D1779FC1E9}"
+      DTS:From="Package\Load Scorecard Sales and Guest Count data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Royalty Work data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{62815244-B1FC-451F-A226-ED9D827521F5}"
+      DTS:From="Package\Load Royalty Work data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update Scorecard Royalty data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{B94CDD21-CEC9-4A61-BAF4-319F2D41C8ED}"
+      DTS:From="Package\Update Scorecard Royalty data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load NPS Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D85F5780-3886-4532-9600-553DA5287F33}"
+      DTS:From="Package\Load NPS Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Update NPS Detail" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{FEDAE65D-12EB-45D9-8D69-C42112700777}"
+      DTS:From="Package\Update NPS Summary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Update Scorecard NPS data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{2981998E-AFB2-4033-AA98-E34DE6F843D5}"
+      DTS:From="Package\Update NPS Detail"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Update NPS Summary" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Delete and Truncate tables"
+          TopLeft="311.4375,107" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Load NPS Staging"
+          TopLeft="311.4375,485.285714285714" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Load Royalty Work data"
+          TopLeft="311.4375,296.142857142857" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Load Scorecard Sales and Guest Count data"
+          TopLeft="311.4375,201.571428571429" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Update NPS Detail"
+          TopLeft="311.4375,579.857142857143" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Update NPS Summary"
+          TopLeft="311.4375,674.428571428571" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Update Scorecard NPS data"
+          TopLeft="311.4375,769" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Update Scorecard Royalty data"
+          TopLeft="311.4375,390.714285714286" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="453.9375,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.571428571429"
+              Start="0,0"
+              End="0,45.071428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.071428571429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="453.9375,243.571428571429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.571428571428"
+              Start="0,0"
+              End="0,45.071428571428">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.071428571428" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="453.9375,338.142857142857">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.571428571429"
+              Start="0,0"
+              End="0,45.071428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.071428571429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="453.9375,432.714285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.571428571428"
+              Start="0,0"
+              End="0,45.071428571428">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.071428571428" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="453.9375,527.285714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.571428571429"
+              Start="0,0"
+              End="0,45.071428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.071428571429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="453.9375,716.428571428571">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.571428571429"
+              Start="0,0"
+              End="0,45.071428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.071428571429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="453.9375,621.857142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.571428571428"
+              Start="0,0"
+              End="0,45.071428571428">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.071428571428" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load NPS Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Load NPS Staging\NPS Staging"
+          TopLeft="229,243" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Load NPS Staging\NPS File"
+          TopLeft="249,89" />
+        <EdgeLayout
+          Id="Package\Load NPS Staging.Paths[Flat File Source Output]"
+          TopLeft="307.5,131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10,112"
+              Start="0,0"
+              End="-10,104.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,52"
+                    Point2="0,56"
+                    Point3="-4,56" />
+                  <mssgle:LineSegment
+                    End="-6,56" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6,56"
+                    Point2="-10,56"
+                    Point3="-10,60" />
+                  <mssgle:LineSegment
+                    End="-10,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load NPS Staging\NPS Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Royalty Work data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Load Royalty Work data\Royalty"
+          TopLeft="259,104" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Load Royalty Work data\EmployeeScorecardWork"
+          TopLeft="242,358" />
+        <EdgeLayout
+          Id="Package\Load Royalty Work data.Paths[OLE DB Source Output]"
+          TopLeft="316,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24,212"
+              Start="0,0"
+              End="24,204.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,102" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,102"
+                    Point2="0,106"
+                    Point3="4,106" />
+                  <mssgle:LineSegment
+                    End="20,106" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20,106"
+                    Point2="24,106"
+                    Point3="24,110" />
+                  <mssgle:LineSegment
+                    End="24,204.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Royalty Work data\EmployeeScorecardWork">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Royalty Work data\Royalty">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Scorecard Sales and Guest Count data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count"
+          TopLeft="235,64" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard"
+          TopLeft="256,208" />
+        <EdgeLayout
+          Id="Package\Load Scorecard Sales and Guest Count data.Paths[OLE DB Source Output]"
+          TopLeft="342,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102"
+              Start="0,0"
+              End="0,94.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Scorecard Sales and Guest Count data\Aloha Sales and Guest Count">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Scorecard Sales and Guest Count data\EmployeeScorecard">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

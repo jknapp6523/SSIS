@@ -1,0 +1,1052 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/18/2017 4:25:45 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-SSIS2012-1"
+  DTS:CreatorName="DEV01\dconolle_dev"
+  DTS:DTSID="{5FB26691-7100-4D07-9A05-4A27707D0576}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NBOTransformFintechMappingCheck"
+  DTS:PackageType="5"
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{40FDE693-3C16-47B6-825D-2F4DD723D7DA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FintechMappingError]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{20EB70A0-6F87-46B9-BACE-C7AAD4F9941D}"
+      DTS:ObjectName="FintechMappingError">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FileOutput]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\dev1-ssis2012-01\MessageHub\NBOFusion_Manual\Outbox\DataCheck">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorOuptutColumn"
+              DTS:DTSID="{9BFC7654-1372-46DB-813B-EBB37B6AF68C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorDescription"
+              DTS:DTSID="{B3D3F8EB-51CF-4599-A08C-2246E94E96B2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MappingFileName"
+              DTS:DTSID="{91B2E600-5DAB-4CCF-A2CD-B8A91B7F7361}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NBOInterfaceStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2DC1EA21-023F-430F-95B6-6E3E8276A09A}"
+      DTS:ObjectName="NBOInterfaceStaging">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::NBOInterfaceStaging_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-SQL-NBO;User ID=SSISUser;Initial Catalog=DataMartStaging;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CACBF3C4-0CC6-467D-925F-D2D3C079ED12}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{95764AAD-3CBB-4FFA-B041-CB20BB1C36A7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailAttachment">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AF8317B4-4935-417A-B9D0-26F938AC8CD2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailBody">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{117245A0-1759-4ABF-98BD-997ABADDE7E1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailDistro">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B13E220A-9A2C-45EE-AB16-3B3E61317D58}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailFrom">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D39780A2-EFE9-4090-A678-37929259D479}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailPriority">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DEC9CE6E-A428-4E1C-90C2-B768B66C73F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailSubject">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A7FDFAA-0E5E-4267-BA1A-943C19A6801D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileOutput">
+      <DTS:VariableValue
+        DTS:DataType="8">\\dev1-ssis2012-01\MessageHub\NBOFusion_Manual\Outbox\DataCheck</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7A90ECC2-8E4F-4913-A5BB-C313B3C5EAA4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FolderArchive">
+      <DTS:VariableValue
+        DTS:DataType="8">\\dev1-ssis2012-01\MessageHub\NBOFusion_Manual\Archive\DataCheck</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{978D0CF2-9DDA-42B6-8FCB-5C318C3A1E9D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JobName">
+      <DTS:VariableValue
+        DTS:DataType="8">NBOInterfaceDailyDataCheck</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{27EF457C-789C-43EC-A618-60419BBEF7E9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsOutput">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\End Package Audit"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BD1E881B-2C26-4D74-8075-48FE85F4D55C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End Package Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2DC1EA21-023F-430F-95B6-6E3E8276A09A}"
+          SQLTask:SqlStatementSource="DECLARE @AuditKey INT &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;DECLARE @RowsOutput INT &#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;&#xA;SET @AuditKey = ? &#xA;SET @PackageName = ? &#xA;SET @RowsOutput = ? &#xA;SET @FileOutput = ? &#xA;&#xA;IF @RowsOutput = 0 &#xA;  SET @FileOutput = '' &#xA;&#xA;EXECUTE audit.uspEndPackage @AuditKey, @PackageName, '', @FileOutput, '', @RowsOutput, 0, 0; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowsOutput"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::FileOutput"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Error Rows Exist Actions"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B929EA35-070B-43BE-A936-B98BB4013F12}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Error Rows Exist Actions">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Error Rows Exist Actions\Copy to Archive"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{F4CF86FF-F869-45A0-9AE1-91AF6CB1964A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Copy to Archive"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskSourcePath="User::FileOutput"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::FolderArchive"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Error Rows Exist Actions\Create File"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{C7E9D57C-95D6-43E0-9144-7D51DDAC4515}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create File"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Error Rows Exist Actions\Create File\FintechMappingError"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="FintechMappingError"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.ErrorOuptutColumn, a.ErrorDescription, a.MappingFileName 
+FROM fusion.FintechMappingError a 
+WHERE a.AuditKey = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{CACBF3C4-0CC6-467D-925F-D2D3C079ED12};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[ErrorOuptutColumn]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].ExternalColumns[ErrorOuptutColumn]"
+                          length="4000"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[ErrorOuptutColumn]"
+                          name="ErrorOuptutColumn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[ErrorDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].ExternalColumns[ErrorDescription]"
+                          length="255"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[ErrorDescription]"
+                          name="ErrorDescription"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[MappingFileName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].ExternalColumns[MappingFileName]"
+                          length="4000"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[MappingFileName]"
+                          name="MappingFileName"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].ExternalColumns[ErrorOuptutColumn]"
+                          dataType="wstr"
+                          length="4000"
+                          name="ErrorOuptutColumn" />
+                        <externalMetadataColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].ExternalColumns[ErrorDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ErrorDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].ExternalColumns[MappingFileName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4000"
+                          name="MappingFileName" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorOuptutColumn]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorOuptutColumn]"
+                          name="ErrorOuptutColumn" />
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorDescription]"
+                          name="ErrorDescription" />
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[MappingFileName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4000"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[MappingFileName]"
+                          name="MappingFileName" />
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File"
+                  componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="FintechMappingError File">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[FintechMappingError]"
+                      connectionManagerRefId="Package.ConnectionManagers[FintechMappingError]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].Columns[ErrorOuptutColumn]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="ErrorOuptutColumn"
+                          externalMetadataColumnId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].ExternalColumns[ErrorOuptutColumn]"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[ErrorOuptutColumn]" />
+                        <inputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].Columns[ErrorDescription]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ErrorDescription"
+                          externalMetadataColumnId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].ExternalColumns[ErrorDescription]"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[ErrorDescription]" />
+                        <inputColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].Columns[MappingFileName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4000"
+                          cachedName="MappingFileName"
+                          externalMetadataColumnId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].ExternalColumns[MappingFileName]"
+                          lineageId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output].Columns[MappingFileName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].ExternalColumns[ErrorOuptutColumn]"
+                          dataType="wstr"
+                          length="4000"
+                          name="ErrorOuptutColumn" />
+                        <externalMetadataColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].ExternalColumns[ErrorDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ErrorDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input].ExternalColumns[MappingFileName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4000"
+                          name="MappingFileName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Error Rows Exist Actions\Create File.Paths[OLE DB Source Output]"
+                  endId="Package\Error Rows Exist Actions\Create File\FintechMappingError File.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Error Rows Exist Actions\Create File\FintechMappingError.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Error Rows Exist Actions\Dummy"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E3E3FE16-2C48-4DE3-8CF2-8A933340F2BF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Dummy"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2DC1EA21-023F-430F-95B6-6E3E8276A09A}"
+              SQLTask:SqlStatementSource="SELECT 0 " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Error Rows Exist Actions\Execute NBOSendEmail"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{6B7BC482-86FC-42F4-8E56-CD6775D89E9A}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute NBOSendEmail"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>NBOSendEmail.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Error Rows Exist Actions\Get Email Values"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{34EB9617-6BF3-4659-A0F4-1E6C4EB7F037}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Email Values"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2DC1EA21-023F-430F-95B6-6E3E8276A09A}"
+              SQLTask:SqlStatementSource="--DECLARE AND SET &#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;DECLARE @EmailAttachment VARCHAR(4000) &#xA;DECLARE @EmailBody VARCHAR(4000) &#xA;DECLARE @EmailDistro VARCHAR(4000) &#xA;DECLARE @EmailFrom VARCHAR(4000) &#xA;DECLARE @EmailSubject VARCHAR(4000) &#xA;&#xA;SET @FileOutput = ? &#xA;&#xA;SET @EmailAttachment = @FileOutput &#xA;&#xA;SET @EmailBody = 'One or more Fintech Mapping rows have been rejected and will not be ' + &#xA;&#x9;'used in Invoices (INT037) until resolved.  Please see the attached file for details.' &#xA;&#xA;SET @EmailDistro = ( &#xA;&#x9;SELECT a.ConfiguredValue&#xA;&#x9;FROM config.SSISConfigurations a &#xA;&#x9;WHERE &#xA;&#x9;&#x9;a.ConfigurationFilter = 'Notification NBOTransformFintechMappingCheck Distro') &#xA;&#xA;SET @EmailFrom = 'Fusion_SSIS_Support@redrobin.com' &#xA;&#xA;SET @EmailSubject = 'Fintech Mapping Errrors'&#xA;&#xA;&#xA;--RETURN &#xA;SELECT @EmailAttachment AS EmailAttachment, @EmailBody AS EmailBody, @EmailDistro AS EmailDistro, &#xA;&#x9;@EmailFrom AS EmailFrom, 1 AS EmailPriority, @EmailSubject AS EmailSubject "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::EmailAttachment" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::EmailBody" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::EmailDistro" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="3"
+                SQLTask:DtsVariableName="User::EmailFrom" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="4"
+                SQLTask:DtsVariableName="User::EmailPriority" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="5"
+                SQLTask:DtsVariableName="User::EmailSubject" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::FileOutput"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{01AB039B-5E29-40B0-99B6-BA13328FDF3C}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::RowsOutput] &gt; 0"
+          DTS:From="Package\Error Rows Exist Actions\Dummy"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Error Rows Exist Actions\Create File" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{4953CB28-24F4-4287-9556-BE883CE47962}"
+          DTS:From="Package\Error Rows Exist Actions\Create File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Error Rows Exist Actions\Copy to Archive" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{00F71405-A477-47F6-A457-CA7EB45CA020}"
+          DTS:From="Package\Error Rows Exist Actions\Copy to Archive"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Error Rows Exist Actions\Get Email Values" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{E6FA9102-1891-486F-9983-FE9C44670369}"
+          DTS:From="Package\Error Rows Exist Actions\Get Email Values"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Error Rows Exist Actions\Execute NBOSendEmail" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{825FF570-4F6B-4DC5-AC17-601C34267650}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2DC1EA21-023F-430F-95B6-6E3E8276A09A}"
+          SQLTask:SqlStatementSource="SELECT COUNT(1) AS RowsOutput &#xA;FROM fusion.FintechMappingError a &#xA;WHERE a.AuditKey = ? "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::RowsOutput" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Variables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F3E95A75-82C8-4D1C-B116-0999C447280B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Variables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2DC1EA21-023F-430F-95B6-6E3E8276A09A}"
+          SQLTask:SqlStatementSource="---------------------------------------------------------------------------------------------------&#xA;-- INITIALIZE &#xA;--------------------------------------------------------------------------------------------------- &#xA;&#xA;--DECLARE AND SET&#xA;DECLARE @JobName NVARCHAR(256) &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;DECLARE @AuditKey INT &#xA;DECLARE @SessionRequestedSource INT &#xA;&#xA;DECLARE @FileTimestamp VARCHAR(4000) &#xA;&#xA;DECLARE @FileOutput VARCHAR(4000) &#xA;DECLARE @FolderArchive VARCHAR(4000) &#xA;&#xA;SET @JobName = ?  &#xA;SET @PackageName = ? &#xA;&#xA;SET @AuditKey = (&#xA; SELECT MAX(a.AuditKey) AS AuditKey &#xA; FROM audit.Session a &#xA; WHERE &#xA;  a.JobName = @JobName AND &#xA;  a.IsCurrentSession = 1) &#xA;&#xA;SET @SessionRequestedSource = ( &#xA; SELECT a.SessionRequestedSource &#xA; FROM audit.Session a &#xA; WHERE &#xA;  a.AuditKey = @AuditKey) &#xA;&#xA;SET @FileTimestamp = CONVERT(VARCHAR(4000), GETDATE(), 120) &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, '-', '') &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, ' ', '') &#xA;SET @FileTimestamp = REPLACE(@FileTimeStamp, ':', '') &#xA;&#xA;IF @SessionRequestedSource = 1 &#xA; BEGIN &#xA;&#xA;  SET @FileOutput = ( &#xA;   SELECT a.ConfiguredValue + &#xA;    CASE &#xA;     WHEN (RIGHT(a.ConfiguredValue, 1) &lt;&gt; '\') THEN ('\') &#xA;     ELSE ('') &#xA;    END + 'FintechMappingError_' + @FileTimestamp + '.csv'&#xA;   FROM config.SSISConfigurations a &#xA;   WHERE &#xA;    a.ConfigurationFilter = 'Folder DataCheck Output') &#xA;&#xA;  SET @FolderArchive = ( &#xA;   SELECT a.ConfiguredValue&#xA;   FROM config.SSISConfigurations a &#xA;   WHERE &#xA;    a.ConfigurationFilter = 'Folder DataCheck Archive') &#xA; END &#xA;ELSE &#xA; BEGIN &#xA;&#xA;  SET @FileOutput = ( &#xA;   SELECT a.ConfiguredValue + &#xA;    CASE &#xA;     WHEN (RIGHT(a.ConfiguredValue, 1) &lt;&gt; '\') THEN ('\') &#xA;     ELSE ('') &#xA;    END + 'FintechMappingError_' + @FileTimestamp + '.csv'&#xA;   FROM config.SSISConfigurations a &#xA;   WHERE &#xA;    a.ConfigurationFilter = 'Folder DataCheck Output Manual') &#xA;&#xA;  SET @FolderArchive = ( &#xA;   SELECT a.ConfiguredValue&#xA;   FROM config.SSISConfigurations a &#xA;   WHERE &#xA;    a.ConfigurationFilter = 'Folder DataCheck Archive Manual') &#xA; END &#xA;&#xA;  &#xA;---------------------------------------------------------------------------------------------------&#xA;-- TERMINATE&#xA;---------------------------------------------------------------------------------------------------&#xA;&#xA;--RETURN &#xA;SELECT @AuditKey AS AuditKey, @FileOutput AS FileOutput, @FolderArchive AS FolderArchive &#xA;&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::AuditKey" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::FileOutput" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::FolderArchive" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::JobName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Package Audit"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{505CD2A7-68B7-4818-9219-E4421469BC32}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Package Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2DC1EA21-023F-430F-95B6-6E3E8276A09A}"
+          SQLTask:SqlStatementSource="--DECLARE AND SET &#xA;DECLARE @AuditKey INT &#xA;DECLARE @PackageName NVARCHAR(256) &#xA;&#xA;SET @AuditKey = ? &#xA;SET @PackageName = ? &#xA;&#xA;EXECUTE audit.uspStartPackage @AuditKey, @PackageName, ''; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::AuditKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{34378D55-B989-4B23-88CE-40AF81CE6B9D}"
+      DTS:From="Package\Get Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Start Package Audit" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{95CC0E9B-0D02-4145-BE1C-73B990122678}"
+      DTS:From="Package\Start Package Audit"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Get Counts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{3C1DA47E-E800-49CE-9663-EB5DB413D9A6}"
+      DTS:From="Package\Get Counts"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Error Rows Exist Actions" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{4E64BE29-DC9F-43A3-91F5-54235829F38A}"
+      DTS:From="Package\Error Rows Exist Actions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\End Package Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Get Variables"
+          TopLeft="18.3333333333333,16.6666666666667" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Start Package Audit"
+          TopLeft="18.3333333333333,83.4821428571442" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\End Package Audit"
+          TopLeft="18.3333333333333,699.928571428577" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="139.833333333333,58.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.8154761904775"
+              Start="0,0"
+              End="0,17.3154761904775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3154761904775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Error Rows Exist Actions\Create File"
+          TopLeft="28,82.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Error Rows Exist Actions\Dummy"
+          TopLeft="28,10" />
+        <EdgeLayout
+          Id="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint]"
+          TopLeft="123.5,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,3.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Error Rows Exist Actions\Copy to Archive"
+          TopLeft="28,155" />
+        <EdgeLayout
+          Id="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint 1]"
+          TopLeft="123.5,124.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Error Rows Exist Actions\Get Email Values"
+          TopLeft="28,227.5" />
+        <EdgeLayout
+          Id="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint 2]"
+          TopLeft="123.5,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Error Rows Exist Actions\Execute NBOSendEmail"
+          TopLeft="28,300" />
+        <EdgeLayout
+          Id="Package\Error Rows Exist Actions.PrecedenceConstraints[Constraint 3]"
+          TopLeft="123.5,269.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="243,415"
+          Size="243,458"
+          Id="Package\Error Rows Exist Actions"
+          TopLeft="18.3333333333333,217.113095238099" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Get Counts"
+          TopLeft="18.3333333333333,150.297619047622" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="139.833333333333,125.482142857144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.8154761904775"
+              Start="0,0"
+              End="0,17.3154761904775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3154761904775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="139.833333333333,192.297619047622">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.8154761904775"
+              Start="0,0"
+              End="0,17.3154761904775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3154761904775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="139.833333333333,675.113095238099">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.8154761904775"
+              Start="0,0"
+              End="0,17.3154761904775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3154761904775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Error Rows Exist Actions\Create File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Error Rows Exist Actions\Create File\FintechMappingError"
+          TopLeft="19,20" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Error Rows Exist Actions\Create File\FintechMappingError File"
+          TopLeft="19,98" />
+        <EdgeLayout
+          Id="Package\Error Rows Exist Actions\Create File.Paths[OLE DB Source Output]"
+          TopLeft="118,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Error Rows Exist Actions\Create File\FintechMappingError">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

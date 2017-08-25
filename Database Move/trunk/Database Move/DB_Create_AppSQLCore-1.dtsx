@@ -1,0 +1,75 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/30/2016 6:43:24 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="TMAUL-SP4"
+  DTS:CreatorName="CORPHQ\TMaul"
+  DTS:DTSID="{ED547AB9-2906-469A-A8B8-C1F424BC9CCE}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DB_Create_AppSQLCore-1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{22A93091-3396-415B-AD93-0AD9B8F554B1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7ED045EC-3AAF-4A0A-B0FC-D1DF8043B214}"
+      DTS:ObjectName="HQ-FINSQL-01">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=master;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqsTtXOlYhUqQ6fHLEu5q4AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAxBF+w+YW2G9XbxBIySt6uAAAAAASAAACgAAAAEAAAAOyP+g+Unla7FdDb3iX6334oAAAA4veuAAliFYSoU0Ebu8wnr5Ub+YhTS8yzRiMJOTF7G511Algv7BtOKxQAAACmgiBHUFoboJhg0dxxT/yl3V0/DQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Drop &amp; Create ExceptionReporting"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FF908F9E-9050-4636-842E-819679DB2460}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop &amp; Create ExceptionReporting"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7ED045EC-3AAF-4A0A-B0FC-D1DF8043B214}"
+          SQLTask:SqlStatementSource="&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;&#xA;&#xA;USE [Master]&#xA;GO&#xA;&#xA;IF EXISTS (SELECT * FROM master..sysdatabases WHERE name='ExceptionReporting')&#xA;DROP DATABASE [ExceptionReporting]&#xA;GO&#xA;&#xA;CREATE DATABASE [ExceptionReporting] ON  PRIMARY &#xA;( NAME = N'ExceptionReporting', FILENAME = N'E:\DATA\ExceptionReporting.mdf' , &#xA;  SIZE = 312512KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )&#xA;LOG ON &#xA;( NAME = N'ExceptionReporting_log', FILENAME = N'F:\LOGS\ExceptionReporting_log.ldf' , &#xA;  SIZE = 4672KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)&#xA;GO&#xA;&#xA;USE [ExceptionReporting]&#xA;GO&#xA;&#xA; sp_changedbowner @loginame = 'sa'&#xA; go&#xA;&#xA;&#xA;-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Drop &amp; Create ExceptionReporting"
+          TopLeft="45.6249999999999,75" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

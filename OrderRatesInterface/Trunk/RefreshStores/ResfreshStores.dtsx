@@ -1,0 +1,524 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/16/2013 3:41:16 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{BA18C1E8-48E2-428E-BF86-98F5F4F8B5D3}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ResfreshStores"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{042323D1-EA35-4841-B6EF-BF2EDA1B39AE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.OpsSales.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AF5182E8-2D23-4DEF-846C-B2B16F8D3A14}"
+      DTS:ObjectName="HQ-FINSQL-01.OpsSales.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=OpsSales;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB0WsMcs22XrVYK4P7Vurd/AAAAAASAAACgAAAAEAAAAKLpcvC0pRUHHd1xjAOvdAsoAAAAUGcQfDEWllRlcFMIrP1ZSPk1rOIp0P0sVDr5u87/vZCAtDnanxvIvxQAAABXwfdjSwjXjfR5tZSImYNMKv88+Q</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-SSIS2012-01.AlohaInterfaces.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{25D116C0-437E-408D-A8FF-7AD5CD7236BE}"
+      DTS:ObjectName="HQ-SSIS2012-01.AlohaInterfaces.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-SSIS2012-01;User ID=SSISUser;Initial Catalog=AlohaInterfaces;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACZ2pNPUkfdKMeza9J2uqEHAAAAAASAAACgAAAAEAAAALgZnmhrLZvnQEQoNShJs9EoAAAADusN4+4YG7DkjkSzXBuhLkOdiGcXm3baVkNO8ZnrbDXZb1+nmgojOxQAAAA3azWdSKnSQhbUq5vJbNgdBmpj4Q</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Repopulate Stores"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{18768199-B70C-4B5B-95D6-6CA6630A406C}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Repopulate Stores"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Aloha Interfaces RestaurantTimeZone"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[RestaurantTimeZone]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-SSIS2012-01.AlohaInterfaces.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-SSIS2012-01.AlohaInterfaces.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[StoreName]"
+                      length="50"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreName]"
+                      name="StoreName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreOpenDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[StoreOpenDate]"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreOpenDate]"
+                      name="StoreOpenDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i2"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[FusionStoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="FusionStoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="StoreName" />
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[TimeZone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="TimeZone" />
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].ExternalColumns[StoreOpenDate]"
+                      dataType="dbDate"
+                      name="StoreOpenDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i2"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[StoreName]"
+                      name="StoreName" />
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[StoreOpenDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[StoreOpenDate]"
+                      name="StoreOpenDate" />
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Repopulate Stores\Stores"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Stores"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stores]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Repopulate Stores\Stores.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.OpsSales.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.OpsSales.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i2"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].Columns[StoreName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="StoreName"
+                      externalMetadataColumnId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreName]" />
+                    <inputColumn
+                      refId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].Columns[StoreOpenDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StoreOpenDate"
+                      externalMetadataColumnId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[OpenDate]"
+                      lineageId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output].Columns[StoreOpenDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="StoreName" />
+                    <externalMetadataColumn
+                      refId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input].ExternalColumns[OpenDate]"
+                      dataType="dbDate"
+                      name="OpenDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Repopulate Stores\Stores.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Repopulate Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Repopulate Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Repopulate Stores\Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Repopulate Stores.Paths[OLE DB Source Output]"
+              endId="Package\Repopulate Stores\Stores.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stores"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{55D2BC44-C1F0-426D-A02B-A6B126CCCDFC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stores"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AF5182E8-2D23-4DEF-846C-B2B16F8D3A14}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stores" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2149A1C9-B6D9-42BB-9C6E-7D3989BAE6BE}"
+      DTS:From="Package\Truncate Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Repopulate Stores" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Truncate Stores"
+          TopLeft="117,45" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Repopulate Stores"
+          TopLeft="111,167" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="194.75,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80"
+              Start="0,0"
+              End="0,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Repopulate Stores">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone"
+          TopLeft="122,38" />
+        <NodeLayout
+          Size="111,42"
+          Id="Package\Repopulate Stores\Stores"
+          TopLeft="172,162" />
+        <EdgeLayout
+          Id="Package\Repopulate Stores.Paths[OLE DB Source Output]"
+          TopLeft="251.5,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24,82"
+              Start="0,0"
+              End="-24,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37"
+                    Point2="0,41"
+                    Point3="-4,41" />
+                  <mssgle:LineSegment
+                    End="-20,41" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20,41"
+                    Point2="-24,41"
+                    Point3="-24,45" />
+                  <mssgle:LineSegment
+                    End="-24,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Repopulate Stores\Aloha Interfaces RestaurantTimeZone">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Repopulate Stores\Stores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

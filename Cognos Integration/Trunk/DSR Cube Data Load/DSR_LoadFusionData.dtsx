@@ -1,0 +1,2783 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/17/2013 12:39:16 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNIGS2-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{F8CDEE38-9705-4BE8-8A15-72A98A7A2E70}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DSR_LoadFusionData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{90678B4B-580D-4E0D-A7AF-72463C5CB19B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0D297A1E-67D3-4773-A762-C4854D2A384A}"
+      DTS:ObjectName="HQ-FINSQL-01.CognosIntegration.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=CognosIntegration;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADldDMa7n5tVkg8c9K1FXxhAAAAAASAAACgAAAAEAAAABuzM/lyANOKUyMLGNAQtSQoAAAA71vEUg6EfJ+5gCVnbcHbZMeh4Y2KPwo1K6okyY6DI00YpP5rieY1AhQAAADiCiG3AHcur1LehwpuafXSgj/7BQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesCube.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C344037C-451A-430B-8FC3-2F67C6B406EF}"
+      DTS:ObjectName="HQ-FINSQL-01.DailySalesCube.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=DailySalesCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAB1cE1GAJ19bSm+O8cFimKQAAAAAASAAACgAAAAEAAAABFnXOhQUnuRxUM6FTlqeZQoAAAAFiQghs9XVCsh5dM4ETFqJmeo6Z95koYWf1Y80w105d3rcsNWxBJ7lBQAAABXzIfVlNm8c2YDI4HjRVGz2tUJtw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22AB0F68-6791-4470-B821-6529F1D07E03}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateofBusiness">
+      <DTS:VariableValue
+        DTS:DataType="7">2/17/2013 3:32:09 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5EB27EB3-598D-48D9-BA8F-45A0D762466C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FusionRegisterStoreDate">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1BEC1B08-55F2-4D9F-8864-C236225E8BBE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RegisterStore">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C558A3F4-F8D7-4578-AA50-CD806CC6CF50}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLICATE( &quot;0&quot;, 3 - LEN( @[User::RegisterStore]  )  ) +  @[User::RegisterStore]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RegisterStore3Digit">
+      <DTS:VariableValue
+        DTS:DataType="8">000</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3F3B03EF-4E64-409A-924B-70EB6464DA14}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreChanges">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{74557C7E-8658-4A93-8990-22813F5FD0CD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A1204F89-28E5-4836-87F5-5CC7A87697C1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreNumber">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D722F096-22F1-4A23-814C-913319BF482A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StoreOpenDate">
+      <DTS:VariableValue
+        DTS:DataType="7">2/17/2013 1:34:54 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get Fusion Stores and Dates"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F6636B4A-F87E-4E6E-BE8E-726A04FF9496}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Fusion Stores and Dates"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Fusion Stores and Dates\Fusion Stores and Dates"
+              componentClassID="{C457FD7E-CE98-4C4B-AEFE-F3AE0044F181}"
+              contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+              name="Fusion Stores and Dates">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::FusionRegisterStoreDate</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Get Fusion Stores and Dates\Fusion Stores and Dates.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Fusion Stores and Dates\Fusion Stores and Dates.Inputs[Recordset Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="StoreID"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Get Fusion Stores and Dates\Fusion Stores and Dates.Inputs[Recordset Destination Input].Columns[SalesDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesDate"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].Columns[SalesDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Fusion Data from Staging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[INT053StagingNEW]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="15"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[TotalSales]"
+                      dataType="cy"
+                      name="TotalSales" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[CustomerCount]"
+                      dataType="r8"
+                      name="CustomerCount" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax]"
+                      dataType="cy"
+                      name="Tax" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[LaborCost]"
+                      dataType="cy"
+                      name="LaborCost" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[OTHours]"
+                      dataType="r8"
+                      name="OTHours" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[CashOverShort]"
+                      dataType="cy"
+                      name="CashOverShort" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales1]"
+                      dataType="cy"
+                      name="Sales1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales2]"
+                      dataType="cy"
+                      name="Sales2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales3]"
+                      dataType="cy"
+                      name="Sales3" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales4]"
+                      dataType="cy"
+                      name="Sales4" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales5]"
+                      dataType="cy"
+                      name="Sales5" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales6]"
+                      dataType="cy"
+                      name="Sales6" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales7]"
+                      dataType="cy"
+                      name="Sales7" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales8]"
+                      dataType="cy"
+                      name="Sales8" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales9]"
+                      dataType="cy"
+                      name="Sales9" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales10]"
+                      dataType="cy"
+                      name="Sales10" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales11]"
+                      dataType="cy"
+                      name="Sales11" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales12]"
+                      dataType="cy"
+                      name="Sales12" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales13]"
+                      dataType="cy"
+                      name="Sales13" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales14]"
+                      dataType="cy"
+                      name="Sales14" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales15]"
+                      dataType="cy"
+                      name="Sales15" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales16]"
+                      dataType="cy"
+                      name="Sales16" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales17]"
+                      dataType="cy"
+                      name="Sales17" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales18]"
+                      dataType="cy"
+                      name="Sales18" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales19]"
+                      dataType="cy"
+                      name="Sales19" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Sales20]"
+                      dataType="cy"
+                      name="Sales20" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[VoidSales]"
+                      dataType="cy"
+                      name="VoidSales" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount1]"
+                      dataType="cy"
+                      name="Discount1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount2]"
+                      dataType="cy"
+                      name="Discount2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount3]"
+                      dataType="cy"
+                      name="Discount3" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount4]"
+                      dataType="cy"
+                      name="Discount4" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount5]"
+                      dataType="cy"
+                      name="Discount5" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount6]"
+                      dataType="cy"
+                      name="Discount6" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount7]"
+                      dataType="cy"
+                      name="Discount7" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount8]"
+                      dataType="cy"
+                      name="Discount8" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount9]"
+                      dataType="cy"
+                      name="Discount9" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount10]"
+                      dataType="cy"
+                      name="Discount10" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount11]"
+                      dataType="cy"
+                      name="Discount11" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount12]"
+                      dataType="cy"
+                      name="Discount12" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount13]"
+                      dataType="cy"
+                      name="Discount13" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount14]"
+                      dataType="cy"
+                      name="Discount14" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount15]"
+                      dataType="cy"
+                      name="Discount15" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount16]"
+                      dataType="cy"
+                      name="Discount16" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount17]"
+                      dataType="cy"
+                      name="Discount17" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount18]"
+                      dataType="cy"
+                      name="Discount18" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount19]"
+                      dataType="cy"
+                      name="Discount19" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount20]"
+                      dataType="cy"
+                      name="Discount20" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount21]"
+                      dataType="cy"
+                      name="Discount21" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount22]"
+                      dataType="cy"
+                      name="Discount22" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount23]"
+                      dataType="cy"
+                      name="Discount23" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount24]"
+                      dataType="cy"
+                      name="Discount24" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount25]"
+                      dataType="cy"
+                      name="Discount25" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Discount26]"
+                      dataType="cy"
+                      name="Discount26" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[PaidOut1]"
+                      dataType="r8"
+                      name="PaidOut1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[PaidOut2]"
+                      dataType="r8"
+                      name="PaidOut2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[TIPS]"
+                      dataType="r8"
+                      name="TIPS" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit1]"
+                      dataType="cy"
+                      name="Deposit1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit2]"
+                      dataType="cy"
+                      name="Deposit2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit3]"
+                      dataType="cy"
+                      name="Deposit3" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit4]"
+                      dataType="cy"
+                      name="Deposit4" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit5]"
+                      dataType="cy"
+                      name="Deposit5" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit6]"
+                      dataType="cy"
+                      name="Deposit6" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit7]"
+                      dataType="cy"
+                      name="Deposit7" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit8]"
+                      dataType="cy"
+                      name="Deposit8" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit9]"
+                      dataType="cy"
+                      name="Deposit9" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit10]"
+                      dataType="cy"
+                      name="Deposit10" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit11]"
+                      dataType="cy"
+                      name="Deposit11" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit12]"
+                      dataType="cy"
+                      name="Deposit12" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit13]"
+                      dataType="cy"
+                      name="Deposit13" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit14]"
+                      dataType="cy"
+                      name="Deposit14" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit15]"
+                      dataType="cy"
+                      name="Deposit15" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit16]"
+                      dataType="cy"
+                      name="Deposit16" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit17]"
+                      dataType="cy"
+                      name="Deposit17" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit18]"
+                      dataType="cy"
+                      name="Deposit18" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit19]"
+                      dataType="cy"
+                      name="Deposit19" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Deposit20]"
+                      dataType="cy"
+                      name="Deposit20" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Change]"
+                      dataType="cy"
+                      name="Change" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[ActualDeposit]"
+                      dataType="cy"
+                      name="ActualDeposit" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor1]"
+                      dataType="r8"
+                      name="Labor1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor2]"
+                      dataType="r8"
+                      name="Labor2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor3]"
+                      dataType="r8"
+                      name="Labor3" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor4]"
+                      dataType="r8"
+                      name="Labor4" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor5]"
+                      dataType="r8"
+                      name="Labor5" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor6]"
+                      dataType="r8"
+                      name="Labor6" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor7]"
+                      dataType="r8"
+                      name="Labor7" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor8]"
+                      dataType="r8"
+                      name="Labor8" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor9]"
+                      dataType="r8"
+                      name="Labor9" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Labor10]"
+                      dataType="r8"
+                      name="Labor10" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other1]"
+                      dataType="r8"
+                      name="Other1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other2]"
+                      dataType="r8"
+                      name="Other2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other3]"
+                      dataType="r8"
+                      name="Other3" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other4]"
+                      dataType="r8"
+                      name="Other4" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other5]"
+                      dataType="r8"
+                      name="Other5" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other6]"
+                      dataType="r8"
+                      name="Other6" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other7]"
+                      dataType="r8"
+                      name="Other7" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other8]"
+                      dataType="r8"
+                      name="Other8" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other9]"
+                      dataType="r8"
+                      name="Other9" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Other10]"
+                      dataType="r8"
+                      name="Other10" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Comment1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Comment2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Comment3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment3" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Comment4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment4" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax1]"
+                      dataType="r8"
+                      name="Tax1" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax2]"
+                      dataType="r8"
+                      name="Tax2" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax3]"
+                      dataType="r8"
+                      name="Tax3" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax4]"
+                      dataType="r8"
+                      name="Tax4" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax5]"
+                      dataType="r8"
+                      name="Tax5" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax6]"
+                      dataType="r8"
+                      name="Tax6" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax7]"
+                      dataType="r8"
+                      name="Tax7" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax8]"
+                      dataType="r8"
+                      name="Tax8" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax9]"
+                      dataType="r8"
+                      name="Tax9" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[Tax10]"
+                      dataType="r8"
+                      name="Tax10" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[NRT]"
+                      dataType="r8"
+                      name="NRT" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[PreOpeningDay]"
+                      dataType="ui1"
+                      name="PreOpeningDay" />
+                    <externalMetadataColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output].ExternalColumns[NetSales]"
+                      dataType="cy"
+                      name="NetSales" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      name="SalesDate" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Fusion Stores and Dates.Paths[OLE DB Source Output]"
+              endId="Package\Get Fusion Stores and Dates\Fusion Stores and Dates.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import Fusion Data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E49C26B6-DA98-4AE1-8B94-2F4400CA504D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import Fusion Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import Fusion Data\3 Digit Store ID"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="3 Digit Store ID"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import Fusion Data\3 Digit Store ID.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Fusion Data\3 Digit Store ID.Inputs[Derived Column Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="StoreID"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLICATE]("0",3 - [LEN](#{Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[StoreID]})) + #{Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[StoreID]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLICATE("0",3 - LEN(StoreID)) + StoreID</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Fusion Data\3 Digit Store ID.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import Fusion Data\3 Digit Store ID.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Fusion Data\3 Digit Store ID.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import Fusion Data\3 Digit Store ID.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Fusion Data\3 Digit Store ID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\3 Digit Store ID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\3 Digit Store ID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\3 Digit Store ID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Fusion Data\Fusion Archive"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Fusion Archive"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FusionDailySalesArchive]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Fusion Data\Fusion Archive.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].Columns[SalesDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesDate"
+                      externalMetadataColumnId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[SalesDate]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[SalesDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[TotalSales]"
+                      dataType="cy"
+                      name="TotalSales" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[CustomerCount]"
+                      dataType="r8"
+                      name="CustomerCount" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax]"
+                      dataType="cy"
+                      name="Tax" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[LaborCost]"
+                      dataType="cy"
+                      name="LaborCost" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[OTHours]"
+                      dataType="r8"
+                      name="OTHours" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[CashOverShort]"
+                      dataType="cy"
+                      name="CashOverShort" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales1]"
+                      dataType="cy"
+                      name="Sales1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales2]"
+                      dataType="cy"
+                      name="Sales2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales3]"
+                      dataType="cy"
+                      name="Sales3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales4]"
+                      dataType="cy"
+                      name="Sales4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales5]"
+                      dataType="cy"
+                      name="Sales5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales6]"
+                      dataType="cy"
+                      name="Sales6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales7]"
+                      dataType="cy"
+                      name="Sales7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales8]"
+                      dataType="cy"
+                      name="Sales8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales9]"
+                      dataType="cy"
+                      name="Sales9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales10]"
+                      dataType="cy"
+                      name="Sales10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales11]"
+                      dataType="cy"
+                      name="Sales11" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales12]"
+                      dataType="cy"
+                      name="Sales12" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales13]"
+                      dataType="cy"
+                      name="Sales13" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales14]"
+                      dataType="cy"
+                      name="Sales14" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales15]"
+                      dataType="cy"
+                      name="Sales15" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales16]"
+                      dataType="cy"
+                      name="Sales16" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales17]"
+                      dataType="cy"
+                      name="Sales17" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales18]"
+                      dataType="cy"
+                      name="Sales18" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales19]"
+                      dataType="cy"
+                      name="Sales19" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Sales20]"
+                      dataType="cy"
+                      name="Sales20" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[VoidSales]"
+                      dataType="cy"
+                      name="VoidSales" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount1]"
+                      dataType="cy"
+                      name="Discount1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount2]"
+                      dataType="cy"
+                      name="Discount2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount3]"
+                      dataType="cy"
+                      name="Discount3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount4]"
+                      dataType="cy"
+                      name="Discount4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount5]"
+                      dataType="cy"
+                      name="Discount5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount6]"
+                      dataType="cy"
+                      name="Discount6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount7]"
+                      dataType="cy"
+                      name="Discount7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount8]"
+                      dataType="cy"
+                      name="Discount8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount9]"
+                      dataType="cy"
+                      name="Discount9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount10]"
+                      dataType="cy"
+                      name="Discount10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount11]"
+                      dataType="cy"
+                      name="Discount11" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount12]"
+                      dataType="cy"
+                      name="Discount12" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount13]"
+                      dataType="cy"
+                      name="Discount13" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount14]"
+                      dataType="cy"
+                      name="Discount14" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount15]"
+                      dataType="cy"
+                      name="Discount15" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount16]"
+                      dataType="cy"
+                      name="Discount16" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount17]"
+                      dataType="cy"
+                      name="Discount17" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount18]"
+                      dataType="cy"
+                      name="Discount18" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount19]"
+                      dataType="cy"
+                      name="Discount19" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount20]"
+                      dataType="cy"
+                      name="Discount20" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount21]"
+                      dataType="cy"
+                      name="Discount21" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount22]"
+                      dataType="cy"
+                      name="Discount22" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount23]"
+                      dataType="cy"
+                      name="Discount23" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount24]"
+                      dataType="cy"
+                      name="Discount24" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount25]"
+                      dataType="cy"
+                      name="Discount25" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Discount26]"
+                      dataType="cy"
+                      name="Discount26" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[PaidOut1]"
+                      dataType="r8"
+                      name="PaidOut1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[PaidOut2]"
+                      dataType="r8"
+                      name="PaidOut2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[TIPS]"
+                      dataType="r8"
+                      name="TIPS" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit1]"
+                      dataType="cy"
+                      name="Deposit1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit2]"
+                      dataType="cy"
+                      name="Deposit2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit3]"
+                      dataType="cy"
+                      name="Deposit3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit4]"
+                      dataType="cy"
+                      name="Deposit4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit5]"
+                      dataType="cy"
+                      name="Deposit5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit6]"
+                      dataType="cy"
+                      name="Deposit6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit7]"
+                      dataType="cy"
+                      name="Deposit7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit8]"
+                      dataType="cy"
+                      name="Deposit8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit9]"
+                      dataType="cy"
+                      name="Deposit9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit10]"
+                      dataType="cy"
+                      name="Deposit10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit11]"
+                      dataType="cy"
+                      name="Deposit11" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit12]"
+                      dataType="cy"
+                      name="Deposit12" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit13]"
+                      dataType="cy"
+                      name="Deposit13" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit14]"
+                      dataType="cy"
+                      name="Deposit14" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit15]"
+                      dataType="cy"
+                      name="Deposit15" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit16]"
+                      dataType="cy"
+                      name="Deposit16" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit17]"
+                      dataType="cy"
+                      name="Deposit17" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit18]"
+                      dataType="cy"
+                      name="Deposit18" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit19]"
+                      dataType="cy"
+                      name="Deposit19" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Deposit20]"
+                      dataType="cy"
+                      name="Deposit20" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Change]"
+                      dataType="cy"
+                      name="Change" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[ActualDeposit]"
+                      dataType="cy"
+                      name="ActualDeposit" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor1]"
+                      dataType="r8"
+                      name="Labor1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor2]"
+                      dataType="r8"
+                      name="Labor2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor3]"
+                      dataType="r8"
+                      name="Labor3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor4]"
+                      dataType="r8"
+                      name="Labor4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor5]"
+                      dataType="r8"
+                      name="Labor5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor6]"
+                      dataType="r8"
+                      name="Labor6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor7]"
+                      dataType="r8"
+                      name="Labor7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor8]"
+                      dataType="r8"
+                      name="Labor8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor9]"
+                      dataType="r8"
+                      name="Labor9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Labor10]"
+                      dataType="r8"
+                      name="Labor10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other1]"
+                      dataType="r8"
+                      name="Other1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other2]"
+                      dataType="r8"
+                      name="Other2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other3]"
+                      dataType="r8"
+                      name="Other3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other4]"
+                      dataType="r8"
+                      name="Other4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other5]"
+                      dataType="r8"
+                      name="Other5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other6]"
+                      dataType="r8"
+                      name="Other6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other7]"
+                      dataType="r8"
+                      name="Other7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other8]"
+                      dataType="r8"
+                      name="Other8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other9]"
+                      dataType="r8"
+                      name="Other9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Other10]"
+                      dataType="r8"
+                      name="Other10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Comment1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Comment2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Comment3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Comment4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax1]"
+                      dataType="r8"
+                      name="Tax1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax2]"
+                      dataType="r8"
+                      name="Tax2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax3]"
+                      dataType="r8"
+                      name="Tax3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax4]"
+                      dataType="r8"
+                      name="Tax4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax5]"
+                      dataType="r8"
+                      name="Tax5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax6]"
+                      dataType="r8"
+                      name="Tax6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax7]"
+                      dataType="r8"
+                      name="Tax7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax8]"
+                      dataType="r8"
+                      name="Tax8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax9]"
+                      dataType="r8"
+                      name="Tax9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[Tax10]"
+                      dataType="r8"
+                      name="Tax10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[NRT]"
+                      dataType="r8"
+                      name="NRT" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[PreOpeningDay]"
+                      dataType="ui1"
+                      name="PreOpeningDay" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input].ExternalColumns[NetSales]"
+                      dataType="cy"
+                      name="NetSales" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Fusion Data\Fusion Archive.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\Fusion Archive.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\Fusion Archive.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\Fusion Archive.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Fusion Data\INT053 Staging"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="INT053 Staging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[INT054StagingNEW]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Fusion Data\INT053 Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.CognosIntegration.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="15"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="10"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[QuantitySold]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[QuantitySold]"
+                      name="QuantitySold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[QuantitySold]"
+                      dataType="i2"
+                      name="QuantitySold" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCost]"
+                      dataType="numeric"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[QuantitySold]"
+                      dataType="i2"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[QuantitySold]"
+                      name="QuantitySold" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      name="SalesDate" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      dataType="numeric"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[MenuItemCost]"
+                      name="MenuItemCost"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Fusion Data\Multicast"
+              componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Import Fusion Data\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Fusion Data\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Import Fusion Data\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Fusion Data\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Import Fusion Data\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Fusion Data\Multicast.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Import Fusion Data\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Fusion Data\SalesRegister"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="SalesRegister"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SalesRegister]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Fusion Data\SalesRegister.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.DailySalesCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].Columns[SalesDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesDate"
+                      externalMetadataColumnId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[SalesDate]"
+                      lineageId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output].Columns[SalesDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod#]"
+                      dataType="i4"
+                      name="SubPeriod#" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[TotalSales]"
+                      dataType="cy"
+                      name="TotalSales" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[CustomerCount]"
+                      dataType="r8"
+                      name="CustomerCount" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax]"
+                      dataType="cy"
+                      name="Tax" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[LaborCost]"
+                      dataType="cy"
+                      name="LaborCost" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[OTHours]"
+                      dataType="r8"
+                      name="OTHours" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[CashOverShort]"
+                      dataType="cy"
+                      name="CashOverShort" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales1]"
+                      dataType="cy"
+                      name="Sales1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales2]"
+                      dataType="cy"
+                      name="Sales2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales3]"
+                      dataType="cy"
+                      name="Sales3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales4]"
+                      dataType="cy"
+                      name="Sales4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales5]"
+                      dataType="cy"
+                      name="Sales5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales6]"
+                      dataType="cy"
+                      name="Sales6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales7]"
+                      dataType="cy"
+                      name="Sales7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales8]"
+                      dataType="cy"
+                      name="Sales8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales9]"
+                      dataType="cy"
+                      name="Sales9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales10]"
+                      dataType="cy"
+                      name="Sales10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales11]"
+                      dataType="cy"
+                      name="Sales11" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales12]"
+                      dataType="cy"
+                      name="Sales12" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales13]"
+                      dataType="cy"
+                      name="Sales13" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales14]"
+                      dataType="cy"
+                      name="Sales14" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales15]"
+                      dataType="cy"
+                      name="Sales15" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales16]"
+                      dataType="cy"
+                      name="Sales16" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales17]"
+                      dataType="cy"
+                      name="Sales17" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales18]"
+                      dataType="cy"
+                      name="Sales18" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales19]"
+                      dataType="cy"
+                      name="Sales19" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Sales20]"
+                      dataType="cy"
+                      name="Sales20" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[VoidSales]"
+                      dataType="cy"
+                      name="VoidSales" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount1]"
+                      dataType="cy"
+                      name="Discount1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount2]"
+                      dataType="cy"
+                      name="Discount2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount3]"
+                      dataType="cy"
+                      name="Discount3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount4]"
+                      dataType="cy"
+                      name="Discount4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount5]"
+                      dataType="cy"
+                      name="Discount5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount6]"
+                      dataType="cy"
+                      name="Discount6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount7]"
+                      dataType="cy"
+                      name="Discount7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount8]"
+                      dataType="cy"
+                      name="Discount8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount9]"
+                      dataType="cy"
+                      name="Discount9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount10]"
+                      dataType="cy"
+                      name="Discount10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount11]"
+                      dataType="cy"
+                      name="Discount11" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount12]"
+                      dataType="cy"
+                      name="Discount12" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount13]"
+                      dataType="cy"
+                      name="Discount13" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount14]"
+                      dataType="cy"
+                      name="Discount14" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount15]"
+                      dataType="cy"
+                      name="Discount15" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount16]"
+                      dataType="cy"
+                      name="Discount16" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount17]"
+                      dataType="cy"
+                      name="Discount17" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount18]"
+                      dataType="cy"
+                      name="Discount18" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount19]"
+                      dataType="cy"
+                      name="Discount19" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount20]"
+                      dataType="cy"
+                      name="Discount20" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount21]"
+                      dataType="cy"
+                      name="Discount21" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount22]"
+                      dataType="cy"
+                      name="Discount22" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount23]"
+                      dataType="cy"
+                      name="Discount23" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount24]"
+                      dataType="cy"
+                      name="Discount24" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount25]"
+                      dataType="cy"
+                      name="Discount25" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Discount26]"
+                      dataType="cy"
+                      name="Discount26" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[PaidOut1]"
+                      dataType="r8"
+                      name="PaidOut1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[PaidOut2]"
+                      dataType="r8"
+                      name="PaidOut2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[TIPS]"
+                      dataType="r8"
+                      name="TIPS" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit1]"
+                      dataType="cy"
+                      name="Deposit1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit2]"
+                      dataType="cy"
+                      name="Deposit2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit3]"
+                      dataType="cy"
+                      name="Deposit3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit4]"
+                      dataType="cy"
+                      name="Deposit4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit5]"
+                      dataType="cy"
+                      name="Deposit5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit6]"
+                      dataType="cy"
+                      name="Deposit6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit7]"
+                      dataType="cy"
+                      name="Deposit7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit8]"
+                      dataType="cy"
+                      name="Deposit8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit9]"
+                      dataType="cy"
+                      name="Deposit9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit10]"
+                      dataType="cy"
+                      name="Deposit10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit11]"
+                      dataType="cy"
+                      name="Deposit11" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit12]"
+                      dataType="cy"
+                      name="Deposit12" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit13]"
+                      dataType="cy"
+                      name="Deposit13" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit14]"
+                      dataType="cy"
+                      name="Deposit14" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit15]"
+                      dataType="cy"
+                      name="Deposit15" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit16]"
+                      dataType="cy"
+                      name="Deposit16" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit17]"
+                      dataType="cy"
+                      name="Deposit17" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit18]"
+                      dataType="cy"
+                      name="Deposit18" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit19]"
+                      dataType="cy"
+                      name="Deposit19" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Deposit20]"
+                      dataType="cy"
+                      name="Deposit20" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Change]"
+                      dataType="cy"
+                      name="Change" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[ActualDeposit]"
+                      dataType="cy"
+                      name="ActualDeposit" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor1]"
+                      dataType="r8"
+                      name="Labor1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor2]"
+                      dataType="r8"
+                      name="Labor2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor3]"
+                      dataType="r8"
+                      name="Labor3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor4]"
+                      dataType="r8"
+                      name="Labor4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor5]"
+                      dataType="r8"
+                      name="Labor5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor6]"
+                      dataType="r8"
+                      name="Labor6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor7]"
+                      dataType="r8"
+                      name="Labor7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor8]"
+                      dataType="r8"
+                      name="Labor8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor9]"
+                      dataType="r8"
+                      name="Labor9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Labor10]"
+                      dataType="r8"
+                      name="Labor10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other1]"
+                      dataType="r8"
+                      name="Other1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other2]"
+                      dataType="r8"
+                      name="Other2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other3]"
+                      dataType="r8"
+                      name="Other3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other4]"
+                      dataType="r8"
+                      name="Other4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other5]"
+                      dataType="r8"
+                      name="Other5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other6]"
+                      dataType="r8"
+                      name="Other6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other7]"
+                      dataType="r8"
+                      name="Other7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other8]"
+                      dataType="r8"
+                      name="Other8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other9]"
+                      dataType="r8"
+                      name="Other9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Other10]"
+                      dataType="r8"
+                      name="Other10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Comment1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Comment2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Comment3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Comment4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comment4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax1]"
+                      dataType="r8"
+                      name="Tax1" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax2]"
+                      dataType="r8"
+                      name="Tax2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax3]"
+                      dataType="r8"
+                      name="Tax3" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax4]"
+                      dataType="r8"
+                      name="Tax4" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax5]"
+                      dataType="r8"
+                      name="Tax5" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax6]"
+                      dataType="r8"
+                      name="Tax6" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax7]"
+                      dataType="r8"
+                      name="Tax7" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax8]"
+                      dataType="r8"
+                      name="Tax8" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax9]"
+                      dataType="r8"
+                      name="Tax9" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Tax10]"
+                      dataType="r8"
+                      name="Tax10" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[NRT]"
+                      dataType="r8"
+                      name="NRT" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[PreOpeningDay]"
+                      dataType="ui1"
+                      name="PreOpeningDay" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[NetSales]"
+                      dataType="cy"
+                      name="NetSales" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[Shift]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Shift" />
+                    <externalMetadataColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input].ExternalColumns[TableTurns]"
+                      dataType="r8"
+                      name="TableTurns" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Fusion Data\SalesRegister.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\SalesRegister.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Fusion Data\SalesRegister.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Fusion Data\SalesRegister.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import Fusion Data.Paths[Derived Column Output]"
+              endId="Package\Import Fusion Data\Multicast.Inputs[Multicast Input 1]"
+              name="Derived Column Output"
+              startId="Package\Import Fusion Data\3 Digit Store ID.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import Fusion Data.Paths[Multicast Output 1]"
+              endId="Package\Import Fusion Data\Fusion Archive.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 1"
+              startId="Package\Import Fusion Data\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Import Fusion Data.Paths[Multicast Output 2]"
+              endId="Package\Import Fusion Data\SalesRegister.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 2"
+              startId="Package\Import Fusion Data\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Import Fusion Data.Paths[OLE DB Source Output]"
+              endId="Package\Import Fusion Data\3 Digit Store ID.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import Fusion Data\INT053 Staging.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove MenuLink Data"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{527914B4-4C2A-462E-BE57-4B10588851D2}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove MenuLink Data">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{FEAD8950-8397-448E-9FD1-C60F23A6E90E}"
+        DTS:ObjectName="{FEAD8950-8397-448E-9FD1-C60F23A6E90E}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::FusionRegisterStoreDate" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Remove MenuLink Data\Delete MenuLink Row"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{386D977A-A724-4911-BD0A-BD5960E8FB48}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete MenuLink Row"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C344037C-451A-430B-8FC3-2F67C6B406EF}"
+              SQLTask:SqlStatementSource="EXEC spDeleteMenuLinkData ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StoreNumber"
+                SQLTask:DtsVariableName="User::RegisterStore3Digit"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="4" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@DateofBusiness"
+                SQLTask:DtsVariableName="User::DateofBusiness"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="30" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8DF09D89-C5BD-4279-87E7-6831530F809E}"
+          DTS:ObjectName="{8DF09D89-C5BD-4279-87E7-6831530F809E}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::RegisterStore" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D015170F-6E4C-4BEF-B99C-E3B8DAE20FCF}"
+          DTS:ObjectName="{D015170F-6E4C-4BEF-B99C-E3B8DAE20FCF}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::DateofBusiness" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{87F5260F-A9FB-41C1-AC78-B28E8272CA94}"
+      DTS:From="Package\Get Fusion Stores and Dates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Remove MenuLink Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A370F8E-5CF8-45F2-A4DB-3974866C988F}"
+      DTS:From="Package\Remove MenuLink Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Import Fusion Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Get Fusion Stores and Dates"
+          TopLeft="113,37" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import Fusion Data"
+          TopLeft="137,410" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Remove MenuLink Data\Delete MenuLink Row"
+          TopLeft="32,25" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="234,122"
+          Size="234,165"
+          Id="Package\Remove MenuLink Data"
+          TopLeft="100,170" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="218.5,79">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91"
+              Start="0,0"
+              End="0,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="219.75,335">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Fusion Stores and Dates">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Get Fusion Stores and Dates\Fusion Stores and Dates"
+          TopLeft="140,157" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging"
+          TopLeft="131,40" />
+        <EdgeLayout
+          Id="Package\Get Fusion Stores and Dates.Paths[OLE DB Source Output]"
+          TopLeft="238.75,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Fusion Stores and Dates\Get Fusion Data from Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import Fusion Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Import Fusion Data\SalesRegister"
+          TopLeft="68,360" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Import Fusion Data\Fusion Archive"
+          TopLeft="325,359" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Import Fusion Data\INT053 Staging"
+          TopLeft="181,39" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Import Fusion Data\Multicast"
+          TopLeft="195,215" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Import Fusion Data\3 Digit Store ID"
+          TopLeft="178,129" />
+        <EdgeLayout
+          Id="Package\Import Fusion Data.Paths[Multicast Output 2]"
+          TopLeft="237,257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-97,103"
+              Start="0,0"
+              End="-97,95.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38"
+                    Point2="0,42"
+                    Point3="-4,42" />
+                  <mssgle:LineSegment
+                    End="-93,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-93,42"
+                    Point2="-97,42"
+                    Point3="-97,46" />
+                  <mssgle:LineSegment
+                    End="-97,95.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Fusion Data.Paths[Multicast Output 1]"
+          TopLeft="275,257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124.5,102"
+              Start="0,0"
+              End="124.5,94.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5922330097087" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.5922330097087"
+                    Point2="0,41.5922330097087"
+                    Point3="4,41.5922330097087" />
+                  <mssgle:LineSegment
+                    End="120.5,41.5922330097087" />
+                  <mssgle:CubicBezierSegment
+                    Point1="120.5,41.5922330097087"
+                    Point2="124.5,41.5922330097087"
+                    Point3="124.5,45.5922330097087" />
+                  <mssgle:LineSegment
+                    End="124.5,94.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Fusion Data.Paths[Derived Column Output]"
+          TopLeft="255.5,171">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Fusion Data.Paths[OLE DB Source Output]"
+          TopLeft="256.25,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Fusion Data\INT053 Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Fusion Data\Fusion Archive">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Fusion Data\SalesRegister">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

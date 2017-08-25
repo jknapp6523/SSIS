@@ -1,0 +1,133 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Real Estate File"
+  DTS:DTSID="{3A5AF356-4856-4DC0-ACF4-46F9ACE890D6}"
+  DTS:CreationName="FLATFILE">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::ExportFilePath] + "RealEstate_" + (DT_STR,4,1252)DATEPART( "YYYY" , GETDATE() ) + RIGHT("0" + (DT_STR,4,1252)DATEPART( "MM" , GETDATE() ), 2) + RIGHT("0" + (DT_STR,4,1252)DATEPART( "DD" , GETDATE() ), 2) + RIGHT("0" + (DT_STR,4,1252)DATEPART( "HH" , GETDATE() ), 2) + RIGHT("0" + (DT_STR,4,1252)DATEPART( "MI" , GETDATE() ), 2) + RIGHT("0" + (DT_STR,4,1252)DATEPART( "SS" , GETDATE() ), 2) + ".txt"</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Format="Delimited"
+      DTS:LocaleID="1033"
+      DTS:HeaderRowDelimiter="_x000D__x000A_"
+      DTS:ColumnNamesInFirstDataRow="True"
+      DTS:RowDelimiter=""
+      DTS:TextQualifier="_x003C_none_x003E_"
+      DTS:CodePage="1252"
+      DTS:ConnectionString="\\hq-ssis2012-01\MessageHub\RoyaltyRealEstate\Outbox\RealEstate_20170821132319.txt">
+      <DTS:FlatFileColumns>
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="20"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Year"
+          DTS:DTSID="{94411919-56D8-46C8-A337-EC42DE5E801A}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="20"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Period"
+          DTS:DTSID="{82CC930D-D52E-45B8-80F9-068B110D3CDC}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="14"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="CardNumber"
+          DTS:DTSID="{00A4FEF3-6443-49F8-A3F7-D8E7E480013A}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="HomeStore"
+          DTS:DTSID="{E3DBAB05-314A-4A47-B779-E75E8801EC9B}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="20"
+          DTS:TextQualified="True"
+          DTS:ObjectName="ProfileID"
+          DTS:DTSID="{21B2FC86-4D1B-41EB-BB0C-B170CB565008}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Address"
+          DTS:DTSID="{88EA9F86-6596-40A2-A4AB-B9F159AE65DF}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="AddressExt"
+          DTS:DTSID="{11BBB86A-4A12-479C-960F-4E845C002EE4}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="City"
+          DTS:DTSID="{3BF7C489-F725-4469-9503-2AB888C509A9}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="StateProvince"
+          DTS:DTSID="{B70E6B70-A979-4640-B159-BE76F7C03F81}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:MaximumWidth="10"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="PostalCode"
+          DTS:DTSID="{FEA8C19E-5A25-4828-8F0D-28BB2C76AFB0}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="7"
+          DTS:TextQualified="True"
+          DTS:ObjectName="ActivityDate"
+          DTS:DTSID="{63B00622-FD9A-41F7-82FE-DF781857E407}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x007C_"
+          DTS:DataType="20"
+          DTS:TextQualified="True"
+          DTS:ObjectName="StoreID"
+          DTS:DTSID="{AD380036-CC48-4A30-9BDA-2FDFDE3B0F7E}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x000D__x000A_"
+          DTS:DataType="4"
+          DTS:TextQualified="True"
+          DTS:ObjectName="CheckTotal"
+          DTS:DTSID="{5364CE75-BF63-4463-B839-77E74A7C2239}"
+          DTS:CreationName="" />
+      </DTS:FlatFileColumns>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

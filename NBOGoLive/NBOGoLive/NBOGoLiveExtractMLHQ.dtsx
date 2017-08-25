@@ -1,0 +1,1280 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/19/2017 3:13:24 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DEV1-SSIS2012-1"
+  DTS:CreatorName="DEV01\dconolle_dev"
+  DTS:DTSID="{2A676648-57B3-4A4D-97C9-570490286484}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NBOGoLiveExtractMLHQ"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{05416DFA-BF47-48BE-A5A9-EDA4ECE1A0FF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MLHQ]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FFB4B575-7AF1-42F5-9B16-99098DE0DF67}"
+      DTS:ObjectName="MLHQ">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::MLHQ_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-FINSQL-01;User ID=SSISUser;Initial Catalog=MLHQ;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NBOInterfaceStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5459652C-7130-4548-9721-FFCBFF982148}"
+      DTS:ObjectName="NBOInterfaceStaging">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::NBOInterfaceStaging_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DEV1-SQL-NBO;User ID=SSISUser;Initial Catalog=DataMartStaging;Provider=SQLNCLI11.1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{722F7FB9-610A-4ED7-8A28-A86E96E9A0CC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AuditKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C3BB855B-2C3A-4CA2-B4E1-BC1A87D444D4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JobName">
+      <DTS:VariableValue
+        DTS:DataType="8">NBOGoLiveInitialPricingInvoices</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get Variables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0C80D77A-5821-4335-A8E5-C651B6EAF88C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Variables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5459652C-7130-4548-9721-FFCBFF982148}"
+          SQLTask:SqlStatementSource="--DECLARE AND SET&#xA;DECLARE @JobName NVARCHAR(256) &#xA;DECLARE @AuditKey INT &#xA;&#xA;SET @JobName = ? &#xA;&#xA;SET @AuditKey = (&#xA; SELECT MAX(a.AuditKey) AS AuditKey &#xA; FROM audit.Session a &#xA; WHERE a.JobName = @JobName AND &#xA;  a.IsCurrentSession = 1) &#xA;&#xA;&#xA;--RETURN &#xA;SELECT @AuditKey AS AuditKey"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::AuditKey" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::JobName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ST_CostOfGoods"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{61AD1ED2-E361-4ADB-AF79-1AAB661EAF5B}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ST_CostOfGoods"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ST_CostOfGoods\Add Auditing Columns"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Auditing Columns"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ST_CostOfGoods\Add Auditing Columns.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\ST_CostOfGoods\Add Auditing Columns.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]"
+                      name="AuditKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::AuditKey]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::AuditKey]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]"
+                      name="ExecutionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::ExecutionInstanceGUID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]"
+                      name="SSISExecutionServer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::MachineName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::MachineName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]"
+                      name="PackageID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::PackageID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]"
+                      name="PackageName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)@[System::PackageName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)@[System::PackageName]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\ST_CostOfGoods\Add Auditing Columns.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MLHQ ST_CostOfGoods"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.SubPeriod, a.StoreID, a.RawMaterialItemCatNum, a.RawMaterialItemCatName, 
+	a.RawMaterialItemID, a.RawMaterialItemName, a.ConversionUnitDesc, a.BeginningOnHandCount, 
+	a.Purchases, a.EndingOnHandCount, a.UsedAmount, a.EndingItemCost, a.BeginningInventory$, 
+	a.Purchase$, a.EndingInventory$, a.Used$, a.[Clear] 
+FROM dbo.ST_CostOfGoods a 
+JOIN ( 
+	SELECT aa.StoreID, MAX(aa.SubPeriod) AS SubPeriod 
+	FROM dbo.ST_CostOfGoods aa 
+	WHERE 
+		aa.EndingOnHandCount &lt;&gt; 0 
+	GROUP BY aa.StoreID) b ON 
+	a.StoreID = b.StoreID AND 
+	a.SubPeriod = b.SubPeriod</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MLHQ]"
+                  connectionManagerRefId="Package.ConnectionManagers[MLHQ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[SubPeriod]"
+                      name="SubPeriod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      length="15"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatNum]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]"
+                      name="RawMaterialItemCatNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatName]"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]"
+                      name="RawMaterialItemCatName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemID]"
+                      length="30"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemID]"
+                      name="RawMaterialItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemName]"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemName]"
+                      name="RawMaterialItemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[ConversionUnitDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[ConversionUnitDesc]"
+                      length="25"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[ConversionUnitDesc]"
+                      name="ConversionUnitDesc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[BeginningOnHandCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[BeginningOnHandCount]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[BeginningOnHandCount]"
+                      name="BeginningOnHandCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Purchases]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Purchases]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Purchases]"
+                      name="Purchases"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingOnHandCount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[EndingOnHandCount]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingOnHandCount]"
+                      name="EndingOnHandCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[UsedAmount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[UsedAmount]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[UsedAmount]"
+                      name="UsedAmount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingItemCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[EndingItemCost]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingItemCost]"
+                      name="EndingItemCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[BeginningInventory$]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[BeginningInventory$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[BeginningInventory$]"
+                      name="BeginningInventory$"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Purchase$]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Purchase$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Purchase$]"
+                      name="Purchase$"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingInventory$]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[EndingInventory$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingInventory$]"
+                      name="EndingInventory$"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Used$]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Used$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Used$]"
+                      name="Used$"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Clear]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Clear]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Clear]"
+                      name="Clear"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      name="RawMaterialItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RawMaterialItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="RawMaterialItemID" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[RawMaterialItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RawMaterialItemName" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[ConversionUnitDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ConversionUnitDesc" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[BeginningOnHandCount]"
+                      dataType="r8"
+                      name="BeginningOnHandCount" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Purchases]"
+                      dataType="r8"
+                      name="Purchases" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[EndingOnHandCount]"
+                      dataType="r8"
+                      name="EndingOnHandCount" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[UsedAmount]"
+                      dataType="r8"
+                      name="UsedAmount" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[EndingItemCost]"
+                      dataType="cy"
+                      name="EndingItemCost" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[BeginningInventory$]"
+                      dataType="r8"
+                      name="BeginningInventory$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Purchase$]"
+                      dataType="r8"
+                      name="Purchase$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[EndingInventory$]"
+                      dataType="r8"
+                      name="EndingInventory$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Used$]"
+                      dataType="r8"
+                      name="Used$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].ExternalColumns[Clear]"
+                      dataType="ui1"
+                      name="Clear" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      dataType="i4"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[SubPeriod]"
+                      name="SubPeriod" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatNum]"
+                      name="RawMaterialItemCatNum" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemCatName]"
+                      name="RawMaterialItemCatName" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemID]"
+                      name="RawMaterialItemID" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[RawMaterialItemName]"
+                      name="RawMaterialItemName" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[ConversionUnitDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[ConversionUnitDesc]"
+                      name="ConversionUnitDesc" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[BeginningOnHandCount]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[BeginningOnHandCount]"
+                      name="BeginningOnHandCount" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Purchases]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Purchases]"
+                      name="Purchases" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[EndingOnHandCount]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[EndingOnHandCount]"
+                      name="EndingOnHandCount" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[UsedAmount]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[UsedAmount]"
+                      name="UsedAmount" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[EndingItemCost]"
+                      dataType="cy"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[EndingItemCost]"
+                      name="EndingItemCost" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[BeginningInventory$]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[BeginningInventory$]"
+                      name="BeginningInventory$" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Purchase$]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Purchase$]"
+                      name="Purchase$" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[EndingInventory$]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[EndingInventory$]"
+                      name="EndingInventory$" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Used$]"
+                      dataType="r8"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Used$]"
+                      name="Used$" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Clear]"
+                      dataType="ui1"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[Clear]"
+                      name="Clear" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Stage ST_CostOfGoods"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[mlhq].[ST_CostOfGoods]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NBOInterfaceStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[NBOInterfaceStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[SubPeriod]"
+                      cachedDataType="i4"
+                      cachedName="SubPeriod"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[SubPeriod]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[RawMaterialItemCatNum]"
+                      cachedDataType="r8"
+                      cachedName="RawMaterialItemCatNum"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatNum]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatNum]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[RawMaterialItemCatName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RawMaterialItemCatName"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatName]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemCatName]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[RawMaterialItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="RawMaterialItemID"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemID]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemID]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[RawMaterialItemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RawMaterialItemName"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemName]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[RawMaterialItemName]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[ConversionUnitDesc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="ConversionUnitDesc"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[ConversionUnitDesc]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[ConversionUnitDesc]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[BeginningOnHandCount]"
+                      cachedDataType="r8"
+                      cachedName="BeginningOnHandCount"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[BeginningOnHandCount]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[BeginningOnHandCount]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[Purchases]"
+                      cachedDataType="r8"
+                      cachedName="Purchases"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Purchases]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Purchases]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[EndingOnHandCount]"
+                      cachedDataType="r8"
+                      cachedName="EndingOnHandCount"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[EndingOnHandCount]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingOnHandCount]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[UsedAmount]"
+                      cachedDataType="r8"
+                      cachedName="UsedAmount"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[UsedAmount]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[UsedAmount]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[EndingItemCost]"
+                      cachedDataType="cy"
+                      cachedName="EndingItemCost"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[EndingItemCost]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingItemCost]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[BeginningInventory$]"
+                      cachedDataType="r8"
+                      cachedName="BeginningInventory$"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[BeginningInventory$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[BeginningInventory$]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[Purchase$]"
+                      cachedDataType="r8"
+                      cachedName="Purchase$"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Purchase$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Purchase$]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[EndingInventory$]"
+                      cachedDataType="r8"
+                      cachedName="EndingInventory$"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[EndingInventory$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[EndingInventory$]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[Used$]"
+                      cachedDataType="r8"
+                      cachedName="Used$"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Used$]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Used$]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[Clear]"
+                      cachedDataType="ui1"
+                      cachedName="Clear"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Clear]"
+                      lineageId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output].Columns[Clear]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[AuditKey]"
+                      cachedDataType="i4"
+                      cachedName="AuditKey"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[AuditKey]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[ExecutionID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ExecutionID"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[ExecutionID]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[SSISExecutionServer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SSISExecutionServer"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[SSISExecutionServer]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[PackageID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PackageID"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageID]" />
+                    <inputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output].Columns[PackageName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[SubPeriod]"
+                      dataType="i4"
+                      name="SubPeriod" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatNum]"
+                      dataType="r8"
+                      name="RawMaterialItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RawMaterialItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="RawMaterialItemID" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[RawMaterialItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RawMaterialItemName" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[ConversionUnitDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ConversionUnitDesc" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[BeginningOnHandCount]"
+                      dataType="r8"
+                      name="BeginningOnHandCount" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Purchases]"
+                      dataType="r8"
+                      name="Purchases" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[EndingOnHandCount]"
+                      dataType="r8"
+                      name="EndingOnHandCount" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[UsedAmount]"
+                      dataType="r8"
+                      name="UsedAmount" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[EndingItemCost]"
+                      dataType="cy"
+                      name="EndingItemCost" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[BeginningInventory$]"
+                      dataType="r8"
+                      name="BeginningInventory$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Purchase$]"
+                      dataType="r8"
+                      name="Purchase$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[EndingInventory$]"
+                      dataType="r8"
+                      name="EndingInventory$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Used$]"
+                      dataType="r8"
+                      name="Used$" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[Clear]"
+                      dataType="ui1"
+                      name="Clear" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[AuditKey]"
+                      dataType="i4"
+                      name="AuditKey" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ExecutionID" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[SSISExecutionServer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SSISExecutionServer" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[PackageID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PackageID" />
+                    <externalMetadataColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PackageName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ST_CostOfGoods.Paths[Derived Column Output]"
+              endId="Package\ST_CostOfGoods\Stage ST_CostOfGoods.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\ST_CostOfGoods\Add Auditing Columns.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\ST_CostOfGoods.Paths[OLE DB Source Output]"
+              endId="Package\ST_CostOfGoods\Add Auditing Columns.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE Tables"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F6B21CE3-22F0-4C2D-B4E2-87457C6C2DAB}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5459652C-7130-4548-9721-FFCBFF982148}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE mlhq.ST_CostOfGoods; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1987EF29-8B7E-4781-BF9E-99A35DEFECE6}"
+      DTS:From="Package\Get Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\TRUNCATE Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DC0E7599-F336-484B-8867-B72AA01559D7}"
+      DTS:From="Package\TRUNCATE Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ST_CostOfGoods" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Get Variables"
+          TopLeft="39,27" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\ST_CostOfGoods"
+          TopLeft="39,175" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\TRUNCATE Tables"
+          TopLeft="39,101" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="122.5,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="122.5,143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ST_CostOfGoods">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="191,42"
+          Id="Package\ST_CostOfGoods\Stage ST_CostOfGoods"
+          TopLeft="32,197" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods"
+          TopLeft="32,26" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\ST_CostOfGoods\Add Auditing Columns"
+          TopLeft="32,111.5" />
+        <EdgeLayout
+          Id="Package\ST_CostOfGoods.Paths[OLE DB Source Output]"
+          TopLeft="127.5,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.5"
+              Start="0,0"
+              End="0,36">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ST_CostOfGoods.Paths[Derived Column Output]"
+          TopLeft="127.5,153.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.5"
+              Start="0,0"
+              End="0,36">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ST_CostOfGoods\Stage ST_CostOfGoods">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ST_CostOfGoods\MLHQ ST_CostOfGoods">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

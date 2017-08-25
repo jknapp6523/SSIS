@@ -1,0 +1,613 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/28/2013 9:15:01 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MJENNINGS3-L7"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{522BCA42-85B8-4920-83E2-49137B02FA41}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RefreshMenuItems"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{F5EDFCD3-5365-4D0F-810E-59C75AB3F90A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.MLAddOn.ReportRunner]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{39F8D8D4-269B-49AF-841D-556C1FCBACC4}"
+      DTS:ObjectName="CRONUS\CRONUSSQL2000.MLAddOn.ReportRunner">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CRONUS\CRONUSSQL2000;User ID=ReportRunner;Initial Catalog=MLAddOn;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-RefreshMenuItems-{39F8D8D4-269B-49AF-841D-556C1FCBACC4}CRONUS\CRONUSSQL2000.MLAddOn.ReportRunner;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC+0ehTN38bxtup0WdkDMvcAAAAAASAAACgAAAAEAAAAIE/3I2UE33n4Ghcb/zoMc0gAAAAmQ1g0XNI9VRb4dptQX041fpsjhOiyZelSI+IAKr12OsUAAAAeeC6AGY697pTvrvaFnJJjvGunhI</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A44A0186-7392-4884-96C5-A455D37B86F1}"
+      DTS:ObjectName="HQ-FINSQL-01.SalesMixCube.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FINSQL-01;User ID=SSISUser;Initial Catalog=SalesMixCube;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADk0+5xA9nE2QUT/D3g474QAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD5rdkT/2/xeM5b54ytCMs/AAAAAASAAACgAAAAEAAAADGF04ycFAPjjsOv3vW2h4soAAAARcrKJWpfaPX2joJXH0m3axZPVSojkQHMIhk0JEbdD5gy96gq8aQ8mhQAAADPkDBa9Ity4sCYRL+roNeXDqjFUQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Refresh Menu Items"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2EBC51FD-EC4C-4ECF-9F36-8D4FFAD3D30C}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Refresh Menu Items"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Refresh Menu Items\MLAddOn MenuItems"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MLAddOn MenuItems"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Menu_Items]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Refresh Menu Items\MLAddOn MenuItems.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.MLAddOn.ReportRunner]"
+                  connectionManagerRefId="Package.ConnectionManagers[CRONUS\CRONUSSQL2000.MLAddOn.ReportRunner]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemID]"
+                      name="MenuItemID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemName]"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemName]"
+                      name="MenuItemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatNum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatNum]"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatNum]"
+                      name="MenuItemCatNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatName]"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatName]"
+                      name="MenuItemCatName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatType]"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatType]"
+                      name="MenuItemCatType"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemName" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatNum]"
+                      dataType="i4"
+                      name="MenuItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatType" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[POSCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="POSCode" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[UpdateDateTime]"
+                      dataType="dbTimeStamp"
+                      name="UpdateDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[UpdateID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="UpdateID" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].ExternalColumns[MaxPrice]"
+                      dataType="r8"
+                      name="MaxPrice" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemID]"
+                      name="MenuItemID" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemName]"
+                      name="MenuItemName" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemCatNum]"
+                      dataType="i4"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemCatNum]"
+                      name="MenuItemCatNum" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemCatName]"
+                      name="MenuItemCatName" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[MenuItemCatType]"
+                      name="MenuItemCatType" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Refresh Menu Items\SalesMixCube MenuItems"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="SalesMixCube MenuItems"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MenuItems]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FINSQL-01.SalesMixCube.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].Columns[MenuItemID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemID"
+                      externalMetadataColumnId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemID]" />
+                    <inputColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].Columns[MenuItemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemName"
+                      externalMetadataColumnId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemName]"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemName]" />
+                    <inputColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].Columns[MenuItemCatNum]"
+                      cachedDataType="i4"
+                      cachedName="MenuItemCatNum"
+                      externalMetadataColumnId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCatNum]"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatNum]" />
+                    <inputColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].Columns[MenuItemCatName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemCatName"
+                      externalMetadataColumnId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCatName]"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatName]" />
+                    <inputColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].Columns[MenuItemCatType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MenuItemCatType"
+                      externalMetadataColumnId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCatType]"
+                      lineageId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output].Columns[MenuItemCatType]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MenuItemID" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemName" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCatNum]"
+                      dataType="i4"
+                      name="MenuItemCatNum" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCatName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatName" />
+                    <externalMetadataColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input].ExternalColumns[MenuItemCatType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MenuItemCatType" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Refresh Menu Items\SalesMixCube MenuItems.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Refresh Menu Items\SalesMixCube MenuItems.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Refresh Menu Items\SalesMixCube MenuItems.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Refresh Menu Items.Paths[OLE DB Source Output]"
+              endId="Package\Refresh Menu Items\SalesMixCube MenuItems.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Refresh Menu Items\MLAddOn MenuItems.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Menu Items"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C57F5E60-33C5-4BAC-8D53-1D5D497236F8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Menu Items"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A44A0186-7392-4884-96C5-A455D37B86F1}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE MenuItems" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C25ADE1D-C651-4012-9277-BF0245A13530}"
+      DTS:From="Package\Truncate Menu Items"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Refresh Menu Items" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Truncate Menu Items"
+          TopLeft="106,50" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Refresh Menu Items"
+          TopLeft="114,160" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="199.5,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="This package refreshes the Menu Items dimension for&#xD;&#xA;the Sales Mix cube from Menulink (MLAddOn).&#xD;&#xA;NOTE: When Menulink is obsolete, new items will not&#xD;&#xA;be automatically added, and a new solution will be &#xD;&#xA;needed to add new items created solely in Fusion."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="314,106"
+          Id="11d901a5-ecc1-45a1-8ed9-6c4ca127f4d2"
+          TopLeft="427,98" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Refresh Menu Items">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Refresh Menu Items\MLAddOn MenuItems"
+          TopLeft="78,44" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Refresh Menu Items\SalesMixCube MenuItems"
+          TopLeft="75,150" />
+        <EdgeLayout
+          Id="Package\Refresh Menu Items.Paths[OLE DB Source Output]"
+          TopLeft="172.25,86">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Refresh Menu Items\MLAddOn MenuItems">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Refresh Menu Items\SalesMixCube MenuItems">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

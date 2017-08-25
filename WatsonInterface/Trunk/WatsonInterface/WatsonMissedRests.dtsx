@@ -1,0 +1,1060 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/10/2012 2:27:51 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="HQ-SSIS2012-01"
+  DTS:CreatorName="CORPHQ\mjennings"
+  DTS:DTSID="{DC72733E-F4F2-467C-8EC8-C81590D446F7}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="WatsonMissedRests"
+  DTS:PackageType="5"
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{A9565E72-F113-4F8A-90BB-2370F12E6A23}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B1921E1C-3403-482B-8820-F8C4D5994873}"
+      DTS:ObjectName="HQ-FinSQL-01.Interfaces.SSISUser">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=HQ-FinSQL-01;User ID=SSISUser;Initial Catalog=Interfaces;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAufOWFZqr40WfvRnghIe+iwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC3RWlaa4YxyzlHnz9fip2UAAAAAASAAACgAAAAEAAAANBNjM5tOS6AxxPHx9JjYVkoAAAAdVQTP9L4dvJFUwWUpmBNNqJIzQCCWlvAO7hsIgbSVp58ML65QhIRkRQAAACik4f5zSZ9m/aDcM7ue6SS6O6bJA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D17D6783-8725-4555-823D-33C92B6153EC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="DATEADD(&quot;day&quot;,DATEDIFF(&quot;day&quot;,(DT_DBTIMESTAMP)0,GETDATE()),(DT_DBTIMESTAMP)0)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateOfBusiness">
+      <DTS:VariableValue
+        DTS:DataType="7">4/10/2017</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Populate Stores and Date Of Business"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9C7ADC3C-711B-4D71-A1AA-D1089A1C5400}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Populate Stores and Date Of Business"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="2" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Populate Stores and Date Of Business\Add Date Of Business"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Date Of Business"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Add Date Of Business.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Add Date Of Business.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Output].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Output].Columns[DateOfBusiness]"
+                      name="DateOfBusiness"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::DateOfBusiness]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::DateOfBusiness]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Add Date Of Business.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Stores and Date Of Business\Derived Column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Output].Columns[Interface]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Output].Columns[Interface]"
+                      name="Interface"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Stores and Date Of Business\Derived Column 1"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Output].Columns[Interface]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Output].Columns[Interface]"
+                      name="Interface"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">2</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">2</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Stores and Date Of Business\Get Stores"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Stores"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT StoreID
+FROM Aloha.RestaurantTimeZone</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate Stores and Date Of Business\Get Stores.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Stores and Date Of Business\Multicast"
+              componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Multicast.Outputs[Multicast Output 6]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 6"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Stores and Date Of Business\Union All"
+              componentClassID="{B594E9A8-4351-4939-891C-CFE1AB93E925}"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 1]"
+                  hasSideEffects="true"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 1].Columns[DateOfBusiness]"
+                      cachedDataType="date"
+                      cachedName="DateOfBusiness"
+                      lineageId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Output].Columns[DateOfBusiness]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[DateOfBusiness]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 1].Columns[Interface]"
+                      cachedDataType="i4"
+                      cachedName="Interface"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Output].Columns[Interface]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[Interface]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 1].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      lineageId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output].Columns[StoreID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[StoresID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 2].Columns[DateOfBusiness]"
+                      cachedDataType="date"
+                      cachedName="DateOfBusiness"
+                      lineageId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Output].Columns[DateOfBusiness]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[DateOfBusiness]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 2].Columns[Interface]"
+                      cachedDataType="i4"
+                      cachedName="Interface"
+                      lineageId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Output].Columns[Interface]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[Interface]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 2].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      lineageId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output].Columns[StoreID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[StoresID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[DateOfBusiness]"
+                      name="DateOfBusiness" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[Interface]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[Interface]"
+                      name="Interface" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[StoresID]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[StoresID]"
+                      name="StoresID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Watson Missed Restaurants"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Watson].[MissedRestaurants]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  connectionManagerRefId="Package.ConnectionManagers[HQ-FinSQL-01.Interfaces.SSISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].Columns[DateOfBusiness]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateOfBusiness"
+                      externalMetadataColumnId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      lineageId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[DateOfBusiness]" />
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].Columns[Interface]"
+                      cachedDataType="i4"
+                      cachedName="Interface"
+                      externalMetadataColumnId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[Interface]"
+                      lineageId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[Interface]" />
+                    <inputColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].Columns[StoresID]"
+                      cachedDataType="i4"
+                      cachedName="StoresID"
+                      externalMetadataColumnId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      lineageId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1].Columns[StoresID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBusiness]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBusiness" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[Reason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Reason" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[Interface]"
+                      dataType="ui1"
+                      name="Interface" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[Processed]"
+                      dataType="ui1"
+                      name="Processed" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[RCounter]"
+                      dataType="ui1"
+                      name="RCounter" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[FirstCreatedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="FirstCreatedBy" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[FirstCreatedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="FirstCreatedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdateBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="LastUpdateBy" />
+                    <externalMetadataColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdateDateTime]"
+                      dataType="dbTimeStamp"
+                      name="LastUpdateDateTime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Populate Stores and Date Of Business.Paths[Derived Column Output]"
+              endId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Populate Stores and Date Of Business\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Populate Stores and Date Of Business.Paths[Derived Column Output1]"
+              endId="Package\Populate Stores and Date Of Business\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Populate Stores and Date Of Business\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Populate Stores and Date Of Business.Paths[Derived Column Output2]"
+              endId="Package\Populate Stores and Date Of Business\Multicast.Inputs[Multicast Input 1]"
+              name="Derived Column Output"
+              startId="Package\Populate Stores and Date Of Business\Add Date Of Business.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Populate Stores and Date Of Business.Paths[Multicast Output 1]"
+              endId="Package\Populate Stores and Date Of Business\Derived Column.Inputs[Derived Column Input]"
+              name="Multicast Output 1"
+              startId="Package\Populate Stores and Date Of Business\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Populate Stores and Date Of Business.Paths[Multicast Output 2]"
+              endId="Package\Populate Stores and Date Of Business\Derived Column 1.Inputs[Derived Column Input]"
+              name="Multicast Output 2"
+              startId="Package\Populate Stores and Date Of Business\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Populate Stores and Date Of Business.Paths[OLE DB Source Output]"
+              endId="Package\Populate Stores and Date Of Business\Add Date Of Business.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Populate Stores and Date Of Business\Get Stores.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Populate Stores and Date Of Business.Paths[Union All Output 1]"
+              endId="Package\Populate Stores and Date Of Business\Watson Missed Restaurants.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Populate Stores and Date Of Business\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="258,42"
+          Id="Package\Populate Stores and Date Of Business"
+          TopLeft="73,107" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Populate Stores and Date Of Business">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Populate Stores and Date Of Business\Multicast"
+          TopLeft="162.744444444444,189.622222222223" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\Populate Stores and Date Of Business\Get Stores"
+          TopLeft="158.744444444444,25.2222222222222" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Populate Stores and Date Of Business\Derived Column"
+          TopLeft="49,271.822222222224" />
+        <NodeLayout
+          Size="209,43"
+          Id="Package\Populate Stores and Date Of Business\Watson Missed Restaurants"
+          TopLeft="118.744444444444,436.222222222224" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Populate Stores and Date Of Business\Derived Column 1"
+          TopLeft="250.277777777778,271.822222222224" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Populate Stores and Date Of Business\Add Date Of Business"
+          TopLeft="132.244444444444,107.422222222222" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Populate Stores and Date Of Business\Union All"
+          TopLeft="162.744444444444,354.022222222224" />
+        <EdgeLayout
+          Id="Package\Populate Stores and Date Of Business.Paths[Union All Output 1]"
+          TopLeft="223.244444444444,396.022222222224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.2000000000002"
+              Start="0,0"
+              End="0,32.7000000000002">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.7000000000002" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Stores and Date Of Business.Paths[OLE DB Source Output]"
+          TopLeft="223.244444444444,67.2222222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.2000000000001"
+              Start="0,0"
+              End="0,32.7000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.7000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Stores and Date Of Business.Paths[Multicast Output 2]"
+          TopLeft="242.077777777778,231.622222222223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89.7000000000002,40.2000000000009"
+              Start="0,0"
+              End="89.7000000000002,32.7000000000009">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.3947797716154" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.3947797716154"
+                    Point2="0,16.3947797716154"
+                    Point3="4,16.3947797716154" />
+                  <mssgle:LineSegment
+                    End="85.7000000000002,16.3947797716154" />
+                  <mssgle:CubicBezierSegment
+                    Point1="85.7000000000002,16.3947797716154"
+                    Point2="89.7000000000002,16.3947797716154"
+                    Point3="89.7000000000002,20.3947797716154" />
+                  <mssgle:LineSegment
+                    End="89.7000000000002,32.7000000000009" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Stores and Date Of Business.Paths[Multicast Output 1]"
+          TopLeft="204.411111111111,231.622222222223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-78.4111111111111,40.2000000000009"
+              Start="0,0"
+              End="-78.4111111111111,32.7000000000009">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.3947797716154" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.3947797716154"
+                    Point2="0,16.3947797716154"
+                    Point3="-4,16.3947797716154" />
+                  <mssgle:LineSegment
+                    End="-74.4111111111111,16.3947797716154" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-74.4111111111111,16.3947797716154"
+                    Point2="-78.4111111111111,16.3947797716154"
+                    Point3="-78.4111111111111,20.3947797716154" />
+                  <mssgle:LineSegment
+                    End="-78.4111111111111,32.7000000000009" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Stores and Date Of Business.Paths[Derived Column Output2]"
+          TopLeft="223.244444444444,149.422222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.2000000000003"
+              Start="0,0"
+              End="0,32.7000000000003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.7000000000003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Stores and Date Of Business.Paths[Derived Column Output1]"
+          TopLeft="331.777777777778,313.822222222224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-89.7000000000002,40.2000000000003"
+              Start="0,0"
+              End="-89.7000000000002,32.7000000000003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.8052202283852" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.8052202283852"
+                    Point2="0,23.8052202283852"
+                    Point3="-4,23.8052202283852" />
+                  <mssgle:LineSegment
+                    End="-85.7000000000002,23.8052202283852" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-85.7000000000002,23.8052202283852"
+                    Point2="-89.7000000000002,23.8052202283852"
+                    Point3="-89.7000000000002,27.8052202283852" />
+                  <mssgle:LineSegment
+                    End="-89.7000000000002,32.7000000000003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Populate Stores and Date Of Business.Paths[Derived Column Output]"
+          TopLeft="126,313.822222222224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="78.4111111111111,40.2000000000003"
+              Start="0,0"
+              End="78.4111111111111,32.7000000000003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.8052202283852" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.8052202283852"
+                    Point2="0,23.8052202283852"
+                    Point3="4,23.8052202283852" />
+                  <mssgle:LineSegment
+                    End="74.4111111111111,23.8052202283852" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74.4111111111111,23.8052202283852"
+                    Point2="78.4111111111111,23.8052202283852"
+                    Point3="78.4111111111111,27.8052202283852" />
+                  <mssgle:LineSegment
+                    End="78.4111111111111,32.7000000000003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate Stores and Date Of Business\Get Stores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Populate Stores and Date Of Business\Watson Missed Restaurants">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
